@@ -1,0 +1,51 @@
+.buttonSurContainer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    height: 50vh;
+}
+.buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-basis: 50%;
+}
+.button {
+    display: flex;
+    justify-content: center;
+    flex-basis: 50%;
+    border-radius: 1vh;
+}
+.subButton {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+}
+.buttonA {
+    background-color: red;
+    color: white;
+}
+.buttonB {
+    background-color: orange;
+    color: white;
+}
+.buttonC {
+    background-color:green;
+    color: white;
+}
+.buttonD {
+    background-color: blue;
+    color: white;
+}
+.buttonA:hover {
+    background-color: darkred;
+}
+.buttonB:hover {
+    background-color: darkorange;
+}
+.buttonC:hover {
+    background-color: darkgreen;
+}
+.buttonD:hover {
+    background-color: darkblue;
+}
