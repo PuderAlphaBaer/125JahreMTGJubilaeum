@@ -49,3 +49,25 @@
 .buttonD:hover {
     background-color: darkblue;
 }
+
+/* benutzername */
+.ubox {
+
+    position: absolute;
+    bottom: 10%;
+    left: 30%;
+    border: solid 2px red;
+    height: 30%;
+    width: 40%;
+}
+
+.un {
+    border: none;
+    outline: grey 2px solid;
+    width: 40%;
+    height: 10%;
+    left: 30%;
+    top: 10%;
+    position: absolute;
+    font-size: large;
+}
