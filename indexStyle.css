@@ -49,20 +49,6 @@
 .buttonD:hover {
     background-color: darkblue;
 }
-.bigbox_1 {
-    border: red solid 2px;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-.bigbox_2 {
-    border: green solid 2px;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: block;
-}
 
 /* benutzername */
 .ubox {
