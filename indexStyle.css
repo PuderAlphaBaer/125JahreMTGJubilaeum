@@ -3,7 +3,7 @@
     flex-flow: column wrap;
     justify-content: center;
     height: 50vh;
-}
+} 
 .buttonContainer {
     display: flex;
     flex-wrap: wrap;
