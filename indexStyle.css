@@ -1,21 +1,37 @@
+/* basic style */
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 2vh;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    text-decoration: none;
+    line-height: 3vh;
+}
+body {
+    background-color: black;
+}
 .buttonSurContainer {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    height: 50vh;
+    height: 30vh;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
 } 
 .buttonContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    flex-basis: 50%;
+    height: 15vh;
+    width: 100vw;
+    justify-content: center;
 }
 .button {
     display: flex;
     justify-content: center;
-    flex-basis: 50%;
-    border-radius: 1vh;
-margin: 1vh;
+    width: 47vw;
+    border-radius: 2vw;
 }
 .subButton {
     display: flex;
@@ -25,93 +41,56 @@ margin: 1vh;
 .buttonA {
     background-color: red;
     color: white;
+    margin-left: 2vw;
+    margin-right: 1vw;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
 }
 .buttonB {
     background-color: orange;
     color: white;
+    margin-left: 1vw;
+    margin-right: 2vw;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
 }
 .buttonC {
     background-color:green;
     color: white;
+    margin-left: 2vw;
+    margin-right: 1vw;;
+    margin-top: 1vw;
+    margin-bottom: 2vw;
 }
 .buttonD {
     background-color: blue;
     color: white;
+    margin-left: 1vw;
+    margin-right: 2vw;
+    margin-top: 1vw;
+    margin-bottom: 2vw;
 }
-.buttonA:hover {
-    background-color: darkred;
+.buttonA:hover {background-color: darkred;}
+.buttonB:hover {background-color: darkorange;}
+.buttonC:hover {background-color: darkgreen;}
+.buttonD:hover {background-color: darkblue;}
+
+.buttonStyle {
+    background-color: gray;
+    width: fit-content;
+    color: lightgray;
+    padding: 0.5vw 1vw;
+    margin: 0.5vw 1vw;
+    border: lightgray solid 0.5vw;
+    border-radius: 1vw;
 }
-.buttonB:hover {
-    background-color: darkorange;
+.buttonStyle:hover {
+    background-color: darkgray;
+    color: white;
+    border: white solid 0.5vw;
 }
-.buttonC:hover {
-    background-color: darkgreen;
+.buttonStyle:active {
+    background-color: black;
+    color: gray;
+    border: gray solid 0.5vw;
 }
-.buttonD:hover {
-    background-color: darkblue;
-}
-
-* {
-    box-sizing: border-box;
-  }
-  ::placeholder {
-    color: darkgray;
-    opacity: 1;
-  }
-
-/* Erst mal display none, wird dann über js geändert, soblad Benutzername fertig is*/
-.quizbox {
-    display: none;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-
-}
-.nickbox {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: brown;
-
-}
-.tb1b {
-display: inherit;
-position: absolute;
-left: 35%;
-top: 80%;
-height: 5%;
-width: 40%;
-border: 2px solid gray;
-}
-
-.txt1 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: rgb(50, 50, 80);
-}
-
-
-
-.tb1{ 
-position: absolute;
-width: 100%;
-height: 100%;
-top: 0%;
-left: 0%;
-outline: none;
-color: gray;
-border: none;
-color: white;
-background-color: rgba(0, 0, 0, 0.5);
-}
-
-.tb1:focus {
-color: black;
-background-color: white;
-}
-
-.tb1b:hover{
-
-    border-color: white;
-  
-  }

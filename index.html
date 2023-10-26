@@ -9,11 +9,13 @@
 
 </head>
 <body>
-   
-    <div class="quizbox" id="quizbox">
-        <div class="buttonSurContainer">
+
+    <div id="toggleButtonBox" class="buttonStyle">toggle ButtonBox</div>
+    <div id="toggleInputBox" class="buttonStyle">toggle InputBox</div>
+
+        <div class="buttonSurContainer" id="buttonBox">
             <div class="buttonContainer">
-                <div class="button buttonA"><div class="subButton">Aaaanal</div></div>
+                <div class="button buttonA"><div class="subButton">A</div></div>
                 <div class="button buttonB"><div class="subButton">B</div></div>
             </div>
             <div class="buttonContainer">
@@ -21,27 +23,19 @@
                 <div class="button buttonD"><div class="subButton">D</div></div>
             </div>
         </div>
-    </div>
 
 
-
-    <div class="nickbox" id="nickbox">
-        <div class="txt1">
-            <h1>Bitte Nickname eingeben</h1>
+        <div id="inputBox">
+            <div class="tb1b" id="tb1b"> <!-- Username -->
+                <lable for="tb1"></lable>
+                <input type="text" id="tb1" class="tb1" placeholder="Nickname eingeben"> <!-- Username_Input_Box -->
+            </div>
+            <div>
+                <input type="button" id="bt1" class="bt1 buttonStyle">
+            </div>
         </div>
-
-
-        <div class="tb1b" id="tb1b"> <!-- Username -->
-            <lable for="tb1"></lable>
-            <input type="text" id="tb1" class="tb1" placeholder="Nickname eingeben"> <!-- Username_Input_Box -->
-        </div>
-
-        <div>
-            <input type="button" id="bt1" class="bt1">
-        </div>
-    </div>
 
     <script src="indexScript.js"></script>
-    <script src="database.js" type="module"></script>
+    <script src="database.js"></script>
 </body>
 </html>
