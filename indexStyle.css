@@ -50,24 +50,67 @@
     background-color: darkblue;
 }
 
-/* benutzername */
-.ubox {
+* {
+    box-sizing: border-box;
+  }
+  ::placeholder {
+    color: darkgray;
+    opacity: 1;
+  }
 
+/* Erst mal display none, wird dann über js geändert, soblad Benutzername fertig is*/
+.quizbox {
+    display: none;
     position: absolute;
-    bottom: 10%;
-    left: 30%;
-    border: solid 2px red;
-    height: 30%;
-    width: 40%;
+    width: 100%;
+    height: 100%;
+
+}
+.nickbox {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: brown;
+
+}
+.tb1b {
+display: inherit;
+position: absolute;
+left: 35%;
+top: 80%;
+height: 5%;
+width: 40%;
+border: 2px solid gray;
 }
 
-.un {
-    border: none;
-    outline: grey 2px solid;
-    width: 40%;
-    height: 10%;
-    left: 30%;
-    top: 10%;
-    position: absolute;
-    font-size: large;
+.txt1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(50, 50, 80);
 }
+
+
+
+.tb1{ 
+position: absolute;
+width: 100%;
+height: 100%;
+top: 0%;
+left: 0%;
+outline: none;
+color: gray;
+border: none;
+color: white;
+background-color: rgba(0, 0, 0, 0.5);
+}
+
+.tb1:focus {
+color: black;
+background-color: white;
+}
+
+.tb1b:hover{
+
+    border-color: white;
+  
+  }
