@@ -14,10 +14,10 @@ var nickname;
 
 
 bt1.addEventListener('click', nicknameuebermitteln());
-bta.addEventListener('click', )
-btb.addEventListener('click', )
-btc.addEventListener('click', )
-btd.addEventListener('click', )
+bta.addEventListener('click', console.log('a'))
+btb.addEventListener('click', console.log('b'))
+btc.addEventListener('click', console.log('c'))
+btd.addEventListener('click', console.log('d'))
 
 function nicknameuebermitteln() {
     nickname = tb1.value;
