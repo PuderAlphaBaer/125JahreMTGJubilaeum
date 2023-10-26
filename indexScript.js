@@ -6,11 +6,18 @@ const toggleButtonBox = document.getElementById('toggleButtonBox');
 const toggleInputBox = document.getElementById('toggleInputBox');
 const inputBox = document.getElementById('inputBox');
 
+const bta = document.getElementById('bta')
+const btb = document.getElementById('btb')
+const btc = document.getElementById('btc')
+const btd = document.getElementById('btd')
 var nickname;
 
 
 bt1.addEventListener('click', nicknameuebermitteln());
-
+bta.addEventListener('click', )
+btb.addEventListener('click', )
+btc.addEventListener('click', )
+btd.addEventListener('click', )
 
 function nicknameuebermitteln() {
     nickname = tb1.value;
