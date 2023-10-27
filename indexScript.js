@@ -38,3 +38,20 @@ toggleInputBox.addEventListener('click', function () {
     toggle(inputBox);
 });
 
+
+
+
+function Frage(loesung, beantwortet, start, streak) {
+  this.loesung = loesung;
+  this.beantwortet = beantwortet;
+  this.start = start;
+  this.streak = streak;
+};
+
+let started = false;
+let timestart = "12:00:00";
+let winstreak = 0;
+
+let frage1 = new Frage('a', started, timestart, winstreak);
+let frage2 = new Frage('c', started, timestart, winstreak); 
+let frage3 = new Frage('c', started, timestart, winstreak);
