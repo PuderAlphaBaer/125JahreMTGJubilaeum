@@ -94,3 +94,8 @@ body {
     color: gray;
     border: gray solid 0.5vw;
 }
+
+.tb1 {
+    color: black;
+    outline: none;
+}
