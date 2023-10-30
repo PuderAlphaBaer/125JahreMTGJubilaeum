@@ -128,7 +128,6 @@ function countDownTimer() {
 
     if(remainingTime <= 0) {
         clearInterval(timerLoop);
-        clearInterval(purpleblinking);
         semicircles[0].style.display = "none";
         semicircles[1].style.display = "none";
         semicircles[2].style.display = "none";
