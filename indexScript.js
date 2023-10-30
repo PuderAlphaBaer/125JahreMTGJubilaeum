@@ -95,9 +95,9 @@ toggleTimer.addEventListener('click', function() {
     futureTime = startTime + setTime;
     semicircles[0].style.display = "block";
     semicircles[1].style.display = "block";
-    semicircles[0].style.backgroundColor = "purple";
-    semicircles[1].style.backgroundColor = "purple";
-    timer.style.color = "white";
+    semicircles[0].style.backgroundColor = "rgb(63, 63, 63)";
+    semicircles[1].style.backgroundColor = "rgb(63, 63, 63)";
+    timer.style.color = "rgb(63, 63, 63)";
     countDownTimer();
 });
 
@@ -127,13 +127,14 @@ function countDownTimer() {
 
     // Letzten 5 Sekunden rot
     if(remainingTime <= 5000) {
-        semicircles[0].style.backgroundColor = "red";
-        semicircles[1].style.backgroundColor = "red";
-        timer.style.color = "red";
+        semicircles[0].style.backgroundColor = "purple";
+        semicircles[1].style.backgroundColor = "purple";
+        timer.style.color = "purple";
     }
 
     if(remainingTime <= 0) {
         clearInterval(timerLoop);
+        clearInterval(purpleblinking);
         semicircles[0].style.display = "none";
         semicircles[1].style.display = "none";
         semicircles[2].style.display = "none";
