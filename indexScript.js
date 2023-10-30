@@ -10,7 +10,6 @@ const bta = document.getElementById('bta')
 const btb = document.getElementById('btb')
 const btc = document.getElementById('btc')
 const btd = document.getElementById('btd') 
-let nickname;
 
 
 bt1.addEventListener('click', function () {
@@ -34,7 +33,7 @@ tb1.addEventListener("keypress", function(event) {
 
 function nicknameuebermitteln() {
     console.log('testss');
-    nickname = tb1.value;
+    window.nickname = tb1.value;
     toggle(inputBox);
     console.log(nickname+"test");
 }
@@ -157,11 +156,11 @@ function countDownTimer() {
 
 
 let checkstring = tb1.value;
-let result = data.includes(checkstring); 
+// let result = data.includes(checkstring); 
 
 
-if (result==true) {
-    // Böser Benutzername
-} else {
-    // Guter Benutzername
-}
+// if (result==true) {
+//     // Böser Benutzername
+// } else {
+//     // Guter Benutzername
+// }

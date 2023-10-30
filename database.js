@@ -1,10 +1,8 @@
 const supaUrl = 'https://cqlueytrxqlhdvhqqyse.supabase.co'
 const supaAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNxbHVleXRyeHFsaGR2aHFxeXNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgyNTQ5NTAsImV4cCI6MjAxMzgzMDk1MH0.Gr19SNLr2pNQFwxkHvKhK09DN-DjglQFPzbNY_p9A9o'
-
 const database = supabase.createClient(supaUrl, supaAnonKey)
 
-
-const supabaseFetch = async (table, [columns]) => {
+const supabaseFetch = async (table, columns) => {
     try {
         const { data, error } = await database
             .from(table)
@@ -20,8 +18,6 @@ const supabaseFetch = async (table, [columns]) => {
         console.log(error)
     }
 }
-
-supabaseFetch('spieler', ['spieler'])
 
 const supabaseInsert = async (table, columns, values) => {
     try {
@@ -47,7 +43,7 @@ const supabaseInsert = async (table, columns, values) => {
 function errorHandling (error, table) {
     if (table == 'spieler') {
         if (error.code == '23505') {
-            alert('Spitzname schon vergeben, bitte suchen einen anderen aus')
+            alert('Der von Ihnen gewaehlte Spitzname ist bereits vergeben, bitte suchen Sie einen anderen aus.')
         }
     }
 }
