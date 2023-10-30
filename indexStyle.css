@@ -114,7 +114,7 @@ body {
 /* Timerzeug*/
 .timerbox {
     position: absolute;
-    background-color: gray;
+    background-color: black;
     width: 40vh;
     height: 40vh;
     border-radius: 50%;
@@ -135,17 +135,17 @@ body {
 }
 
 .semicircle:nth-child(1) {
-    background-color: purple;
+    background-color: rgb(63, 63, 63);
     z-index: 2;
 }
 
 .semicircle:nth-child(2) {
-    background-color: purple;
+    background-color: rgb(63, 63, 63);
     z-index: 3;;
 }
 
 .semicircle:nth-child(3) {
-    background-color: gray;
+    background-color: black;
     z-index: 4 ;
 }
 
@@ -169,6 +169,7 @@ body {
     align-items: center;
     display: flex;
     font-size: 5vh;
+    color: rgb(63, 63, 63);
 }
 
  
