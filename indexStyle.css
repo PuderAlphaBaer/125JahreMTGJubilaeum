@@ -8,6 +8,7 @@
     text-decoration: none;
     line-height: 3vh;
     box-sizing: border-box;
+    user-select: none;
 }
 body {
     background-color: black;

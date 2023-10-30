@@ -1,5 +1,3 @@
-
-
 const bt1 = document.getElementById('bt1');
 const tb1 = document.getElementById('tb1');
 const buttonBox = document.getElementById('buttonBox');
@@ -42,10 +40,6 @@ function nicknameuebermitteln() {
 }
 
 
-
-
-
-
 function toggle(obj) {
     if (obj.style.display == 'none') {
         obj.style.display = 'block';
@@ -60,8 +54,6 @@ toggleButtonBox.addEventListener('click', function () {
 toggleInputBox.addEventListener('click', function () {
     toggle(inputBox);
 });
-
-
 
 
 function Frage(loesung, beantwortet, start, streak) {
@@ -79,11 +71,6 @@ let timestart;
 let frage1 = new Frage('a', started, timestart, winstreak);
 let frage2 = new Frage('c', started, timestart, winstreak); 
 let frage3 = new Frage('c', started, timestart, winstreak);
-
-
-
-
-
 
 
 
@@ -159,3 +146,22 @@ function countDownTimer() {
         // Hier Funktion bei Ablauf des Timers callen
     }
 } 
+
+
+
+
+
+// Abgleich vulgäre Sprache
+
+
+
+
+let checkstring = tb1.value;
+let result = data.includes(checkstring); 
+
+
+if (result==true) {
+    // Böser Benutzername
+} else {
+    // Guter Benutzername
+}
