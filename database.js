@@ -24,12 +24,12 @@ const fetchDataFromspieler = async () => {
 
 fetchDataFromspieler()
 
-const insertDataIntospieler = async () => {
+const insertDataIntospieler = async (spitzname, punkte) => {
     try {
         const { res, error} = await supaClient
         .from("spieler")
         .insert(
-            { spieler: 'spitzname', punktzahl: randomInt(1, 1000)},
+            { spieler: spitzname, punktzahl: punkte},
         )
         if (error) {
             throw error
@@ -46,10 +46,43 @@ const insertDataIntospieler = async () => {
     }
 }
 
-insertDataIntospieler()
 
-function randomInt(min, max) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
+// const supabaseFetch = async (table, [columns], [where]) => {
+//     try {
+//         const { data, error } = await supaClient
+//             .from(table)
+//             .select(columns)
+//             .eq(where)
+//         if (error) {
+//             throw error
+//         }
 
-// const supabaseFetch = async ()
+//     }
+// }
+const initRealtime = async () => {
+    try {
+        const { data: initialData, error } = await supaClient
+            .from('spieler')
+            .select('*');
+
+        if (initialData) {
+            console.log('initial data:', initialData);
+        }
+
+        if (error) {
+            throw error;
+        }
+
+        const realtime = supaClient
+            .from('spieler')
+            .on('*', payload => {
+                console.log('Change received:', payload.new); // Ensure that the payload contains the 'new' property for insert and update events
+            })
+            .subscribe();
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+};
+
+initRealtime();
+
