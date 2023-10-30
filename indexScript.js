@@ -117,7 +117,13 @@ function countDownTimer() {
         semicircles[1].style.transform = "rotate("+angle+"deg)";
     }
 
-    timer.innerHTML = remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3);
+    if(remainingTime > 1000) {
+        timer.innerHTML = remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3);
+    } else {
+        timer.innerHTML = "0"+remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3);
+    }
+
+
 
     // Letzten 5 Sekunden rot
     if(remainingTime <= 5000) {

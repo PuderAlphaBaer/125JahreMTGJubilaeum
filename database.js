@@ -43,7 +43,7 @@ const supabaseInsert = async (table, columns, values) => {
 function errorHandling (error, table) {
     if (table == 'spieler') {
         if (error.code == '23505') {
-            alert('Der von Ihnen gewaehlte Spitzname ist bereits vergeben, bitte suchen Sie einen anderen aus.')
+            alert('Der von Ihnen gewählte Spitzname ist bereits vergeben, bitte suchen Sie sich einen anderen aus.')
         }
     }
 }
