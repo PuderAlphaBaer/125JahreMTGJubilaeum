@@ -88,38 +88,74 @@ let frage3 = new Frage('c', started, timestart, winstreak);
 
 
 // Timerfunktion ------------------------------------------------------------------------
-
+const toggleTimer = document.getElementById('toggleTimer');
 
 const semicircles = document.querySelectorAll('.semicircle');
+const timer = document.getElementById('timertext');
 
 // Müssen wir schaun wie der Input sein wird
 let hr = 0;
 let min = 0;
-let sec = 10;
+let sec = 20;
 
 const hours = hr * 3600000;
 const minutes = min * 60000;
 const seconds = sec * 1000;
 const setTime = hours + minutes + seconds;
-let startTime = Date.now();
-const futureTime = startTime + setTime;
+let timerLoop;
+let startTime;
+let futureTime;
 
 
-const timerLoop = setInterval(countDownTimer);
+toggleTimer.addEventListener('click', function stimer() { 
+timerLoop = setInterval(countDownTimer);
+startTime = Date.now();
+futureTime = startTime + setTime;
+semicircles[0].style.display = "block";
+semicircles[1].style.display = "block";
+semicircles[0].style.backgroundColor = "blue";
+semicircles[1].style.backgroundColor = "blue";
+timer.style.color = "white";
 countDownTimer();
+});
 
+
+// Visuelles und technisches Zeug, bei Ablauf von Zeit siehe unterer Kommentar
 function countDownTimer() {
     const currentTime = Date.now();
     const remainingTime = futureTime - currentTime;
     const angle = (remainingTime / setTime) * 360;
 
     if(angle > 180) {
-        semicircles[2].style.display = 'none';
-        semicircles[0].style.transform = 'rotate(180deg)';
-        semicircles[1].style.transform = 'rotate(${angle}deg)';
+        semicircles[2].style.display = "none";
+        semicircles[0].style.transform = "rotate(180deg)";
+        semicircles[1].style.transform = "rotate("+angle+"deg)";
     } else {
-        semicircles[2].style.display = 'block';
-        semicircles[0].style.transform = 'rotate(${angel}deg)';
-        semicircles[1].style.transform = 'rotate(${angle}deg)';
+        semicircles[2].style.display = "block";
+        semicircles[0].style.transform = "rotate("+angle+"deg)";
+        semicircles[1].style.transform = "rotate("+angle+"deg)";
     }
-}
+
+    const hrs = Math.floor((remainingTime / (1000 * 60 * 60)) % 24).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    const mins = Math.floor((remainingTime / (1000 * 60)) % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    const secs = Math.floor((remainingTime / (1000)) % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+
+    timer.innerHTML = hrs+":"+mins+":"+secs
+
+    // Letzten 5 Sekunden rot
+    if(remainingTime <= 6000) {
+        semicircles[0].style.backgroundColor = "red";
+        semicircles[1].style.backgroundColor = "red";
+        timer.style.color = "red";
+    }
+
+    if(remainingTime < 0) {
+        clearInterval(timerLoop);
+        semicircles[0].style.display = "none";
+        semicircles[1].style.display = "none";
+        semicircles[2].style.display = "none";
+        timer.style.fontSize = "4vh";
+        timer.innerHTML = "ABGELAUFEN";
+        // Hier Funktion bei Ablauf des Timers callen
+    }
+} 
