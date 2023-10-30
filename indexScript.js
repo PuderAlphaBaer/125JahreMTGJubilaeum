@@ -81,7 +81,7 @@ const timer = document.getElementById('timertext');
 
 // Müssen wir schaun wie der Input sein wird
 
-let sec = 20;
+let sec = 7;
 
 const setTime = sec * 1000;
 let timerLoop;
@@ -90,7 +90,7 @@ let futureTime;
 
 
 toggleTimer.addEventListener('click', function() { 
-    timerLoop = setInterval(countDownTimer, 1);
+    timerLoop = setInterval(countDownTimer, 10);
     startTime = Date.now();
     futureTime = startTime + setTime;
     semicircles[0].style.display = "block";
@@ -111,33 +111,33 @@ function countDownTimer() {
         semicircles[2].style.display = "none";
         semicircles[0].style.transform = "rotate(180deg)";
         semicircles[1].style.transform = "rotate("+angle+"deg)";
-    } else if(angle <= 180){
+    } else {
         semicircles[2].style.display = "block";
         semicircles[0].style.transform = "rotate("+angle+"deg)";
         semicircles[1].style.transform = "rotate("+angle+"deg)";
     }
 
     if(remainingTime > 1000) {
-        timer.innerHTML = remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3);
+        timer.innerHTML = remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
     } else {
-        timer.innerHTML = "0"+remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3);
+        timer.innerHTML = "0"+remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
     }
 
 
 
     // Letzten 5 Sekunden rot
-    if(remainingTime <= 5000) {
-        semicircles[0].style.backgroundColor = "purple";
-        semicircles[1].style.backgroundColor = "purple";
-        timer.style.color = "purple";
-    }
+    // if(remainingTime <= 5000) {
+    //     semicircles[0].style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+    //     semicircles[1].style.backgroundColor = "rgba(0, 255, 0, 0.8)";
+    //     timer.style.color = "rgba(55, 0, 255, 0.8)";
+    // }
 
     if(remainingTime <= 0) {
         clearInterval(timerLoop);
         semicircles[0].style.display = "none";
         semicircles[1].style.display = "none";
         semicircles[2].style.display = "none";
-        timer.style.fontSize = "4vh";
+        timer.style.fontSize = "3vh";
         timer.innerHTML = "ABGELAUFEN";
         // Hier Funktion bei Ablauf des Timers callen
     }

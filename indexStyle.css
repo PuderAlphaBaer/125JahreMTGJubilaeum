@@ -135,24 +135,24 @@ body {
 }
 
 .semicircle:nth-child(1) {
-    background-color: rgb(63, 63, 63);
+    background-color: rgba(163, 163, 63,0.8);
     z-index: 2;
 }
 
 .semicircle:nth-child(2) {
-    background-color: rgb(63, 63, 63);
+    background-color: rgba(63, 163, 63,0.8);
     z-index: 3;;
 }
 
 .semicircle:nth-child(3) {
-    background-color: black;
+    background-color: rgba(63, 63, 163, 0.8);
     z-index: 4 ;
 }
 
 .bigcircle {
-    width: 35vh;
-    height: 35vh;
-    background-color: black;
+    width: 30vh;
+    height: 30vh;
+    background-color: rgba(63, 223, 123, 0.8);
     border-radius: 50%;
     z-index: 5;
     position: absolute;
