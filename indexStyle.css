@@ -102,21 +102,29 @@ body {
 }
 
 
+.bigtimerbox {
+    position: absolute;
+    top: 35vh;
+    left: 77vh;
+    width: 30vh;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* Timerzeug*/
 .timerbox {
     position: absolute;
     background-color: white;
-    top: 20%;
-    width: 400px;
-    height: 400px;
+    width: 30vh;
+    height: 30vh;
     border-radius: 50%;
-    left: 30%;
     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .semicircle {
@@ -129,13 +137,13 @@ body {
 }
 
 .semicircle:nth-child(1) {
-    background-color: red;
+    background-color: blue;
     z-index: 2;
 }
 
 .semicircle:nth-child(2) {
     background-color: blue;
-    z-index: 3;
+    z-index: 3;;
 }
 
 .semicircle:nth-child(3) {
@@ -144,13 +152,28 @@ body {
 }
 
 .bigcircle {
-    width: 380px;
-    height: 380px;
+    width: 28vh;
+    height: 28vh;
     background-color: black;
     border-radius: 50%;
     z-index: 5;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
+.timertext {
+    position: absolute;
+    width: 60%;
+    height: 20%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 5vh;
+}
+
+ 
 /*
 
 Folgender Code wird nicht verwendet und dient nur zur Veranschaulichung 
