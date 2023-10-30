@@ -99,8 +99,8 @@ startTime = Date.now();
 futureTime = startTime + setTime;
 semicircles[0].style.display = "block";
 semicircles[1].style.display = "block";
-semicircles[0].style.backgroundColor = "blue";
-semicircles[1].style.backgroundColor = "blue";
+semicircles[0].style.backgroundColor = "purple";
+semicircles[1].style.backgroundColor = "purple";
 timer.style.color = "white";
 countDownTimer();
 });
@@ -124,9 +124,9 @@ function countDownTimer() {
 
     const hrs = Math.floor((remainingTime / (1000 * 60 * 60)) % 24).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     const mins = Math.floor((remainingTime / (1000 * 60)) % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-    const secs = Math.floor((remainingTime / (1000)) % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    const secs = Math.floor((remainingTime / (1000)) % 60+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
 
-    timer.innerHTML = hrs+":"+mins+":"+secs
+    timer.innerHTML = hrs+":"+mins+":"+secs;
 
     // Letzten 5 Sekunden rot
     if(remainingTime <= 6000) {

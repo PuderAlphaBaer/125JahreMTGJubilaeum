@@ -104,22 +104,19 @@ body {
 
 
 .bigtimerbox {
-    position: absolute;
-    top: 35vh;
-    left: 77vh;
-    width: 30vh;
-    height: 30vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 40vh;
 }
 
 /* Timerzeug*/
 .timerbox {
     position: absolute;
-    background-color: white;
-    width: 30vh;
-    height: 30vh;
+    background-color: gray;
+    width: 40vh;
+    height: 40vh;
     border-radius: 50%;
     z-index: 1;
     display: flex;
@@ -138,23 +135,23 @@ body {
 }
 
 .semicircle:nth-child(1) {
-    background-color: blue;
+    background-color: purple;
     z-index: 2;
 }
 
 .semicircle:nth-child(2) {
-    background-color: blue;
+    background-color: purple;
     z-index: 3;;
 }
 
 .semicircle:nth-child(3) {
-    background-color: white;
+    background-color: gray;
     z-index: 4 ;
 }
 
 .bigcircle {
-    width: 28vh;
-    height: 28vh;
+    width: 35vh;
+    height: 35vh;
     background-color: black;
     border-radius: 50%;
     z-index: 5;
