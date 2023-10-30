@@ -29,7 +29,7 @@ const insertDataIntospieler = async () => {
         const { res, error} = await supaClient
         .from("spieler")
         .insert(
-            { spieler: randomInt(1, 89), punktzahl: randomInt(1, 1000)},
+            { spieler: 'spitzname', punktzahl: randomInt(1, 1000)},
         )
         if (error) {
             throw error
@@ -40,6 +40,9 @@ const insertDataIntospieler = async () => {
     }
     catch (error) {
         console.log(error)
+        if (error.code == '23505' ) {
+            alert('Spitzname schon vergeben, bitte suchen einen anderen aus')
+        }
     }
 }
 
@@ -48,3 +51,5 @@ insertDataIntospieler()
 function randomInt(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
+
+// const supabaseFetch = async ()
