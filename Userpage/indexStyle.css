@@ -1,0 +1,195 @@
+/* basic style */
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 2vh;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    text-decoration: none;
+    line-height: 3vh;
+    box-sizing: border-box;
+    user-select: none;
+}
+body {
+    background-color: black;
+}
+.buttonSurContainer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    height: 30vh;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+} 
+.buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    height: 15vh;
+    width: 100vw;
+    justify-content: center;
+}
+.button {
+    display: flex;
+    justify-content: center;
+    width: 47vw;
+    border-radius: 2vw;
+}
+.subButton {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+}
+.buttonA {
+    background-color: red;
+    color: white;
+    margin-left: 2vw;
+    margin-right: 1vw;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+}
+.buttonB {
+    background-color: orange;
+    color: white;
+    margin-left: 1vw;
+    margin-right: 2vw;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+}
+.buttonC {
+    background-color:green;
+    color: white;
+    margin-left: 2vw;
+    margin-right: 1vw;;
+    margin-top: 1vw;
+    margin-bottom: 2vw;
+}
+.buttonD {
+    background-color: blue;
+    color: white;
+    margin-left: 1vw;
+    margin-right: 2vw;
+    margin-top: 1vw;
+    margin-bottom: 2vw;
+}
+.buttonA:hover {background-color: darkred;}
+.buttonB:hover {background-color: darkorange;}
+.buttonC:hover {background-color: darkgreen;}
+.buttonD:hover {background-color: darkblue;}
+
+.buttonStyle {
+    background-color: gray;
+    width: fit-content;
+    color: lightgray;
+    padding: 0.5vw 1vw;
+    margin: 0.5vw 1vw;
+    border: lightgray solid 0.5vw;
+    border-radius: 1vw;
+}
+.buttonStyle:hover {
+    background-color: darkgray;
+    color: white;
+    border: white solid 0.5vw;
+}
+.buttonStyle:active {
+    background-color: black;
+    color: gray;
+    border: gray solid 0.5vw;
+}
+
+.tb1 {
+    color: black;
+    outline: none;
+}
+
+
+.bigtimerbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 40vh;
+}
+
+/* Timerzeug*/
+.timerbox {
+    position: absolute;
+    background-color: black;
+    width: 40vh;
+    height: 40vh;
+    border-radius: 50%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.semicircle {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: right center;
+}
+
+.semicircle:nth-child(1) {
+    background-color: rgb(63, 63, 63);
+    z-index: 2;
+}
+
+.semicircle:nth-child(2) {
+    background-color: rgb(63, 63, 63);
+    z-index: 3;;
+}
+
+.semicircle:nth-child(3) {
+    background-color: black;
+    z-index: 4 ;
+}
+
+.bigcircle {
+    width: 35vh;
+    height: 35vh;
+    background-color: black;
+    border-radius: 50%;
+    z-index: 5;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.timertext {
+    position: absolute;
+    width: 60%;
+    height: 20%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 5vh;
+    color: rgb(63, 63, 63);
+}
+
+ 
+/*
+
+Folgender Code wird nicht verwendet und dient nur zur Veranschaulichung 
+
+.timerbox:hover .semicircle:nth-child(1) {
+    transform: rotate(180deg);
+    transition: 1s linear;
+}
+
+.timerbox:hover .semicircle:nth-child(2) {
+    transform: rotate(360deg);
+    transition: 2s linear;
+}
+
+.timerbox:hover .semicircle:nth-child(3) {
+    opacity: 0;
+    transition: opacity 0s 1s;
+}
+*/
+
