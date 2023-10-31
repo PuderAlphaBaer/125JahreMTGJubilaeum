@@ -15,7 +15,7 @@ const btd = document.getElementById('btd')
 bt1.addEventListener('click', function () {
     nicknameuebermitteln();
     toggle(inputBox);
-}
+} 
 );
 
 bta.addEventListener('click', function () {console.log('a')})

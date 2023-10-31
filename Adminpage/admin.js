@@ -1,7 +1,7 @@
 const bt1 = document.getElementById('bt1');
 const user = document.getElementById('user');
 const fragen = document.getElementById('fragen');
-let activeside = "fragen";
+let activeside = "user";
 
 bt1.addEventListener('click', swap);
 

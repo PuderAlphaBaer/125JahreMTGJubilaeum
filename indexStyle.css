@@ -21,7 +21,7 @@ body {
     width: 100vw;
     position: absolute;
     bottom: 0;
-} 
+}  
 .buttonContainer {
     display: flex;
     flex-wrap: wrap;
