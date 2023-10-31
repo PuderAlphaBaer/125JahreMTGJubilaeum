@@ -5,6 +5,7 @@ const nicknameBox = document.getElementById('nicknameBox');
 const toggleButtonBox = document.getElementById('toggleButtonBox');
 const toggleInputBox = document.getElementById('toggleInputBox');
 const inputBox = document.getElementById('inputBox');
+const quizBox = document.getElementById('quizbox')
 
 const bta = document.getElementById('bta')
 const btb = document.getElementById('btb')
@@ -48,7 +49,7 @@ function toggle(obj) {
 }
 
 toggleButtonBox.addEventListener('click', function () {
-    toggle(buttonBox);
+    toggle(quizBox);
 });
 toggleInputBox.addEventListener('click', function () {
     toggle(inputBox);
@@ -90,6 +91,7 @@ let timerLoop;
 let startTime;
 let futureTime;
 
+timer.innerHTML = sec+".00"
 
 toggleTimer.addEventListener('click', function() { 
     timerLoop = setInterval(countDownTimer, 10);
