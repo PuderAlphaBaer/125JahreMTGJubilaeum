@@ -149,7 +149,12 @@ function countDownTimer() {
 
 // Abgleich vulgäre Sprache
 
-
+// if (!message.replace(/\s/g, '').length) {
+//     alert("Bitte keine leeren Nachrichten versenden")
+//     tb.value = '';
+//     tb.focus();
+// }
+// else {
 // let checkstring = tb1.value;
 // let result = data.includes(checkstring); 
 
