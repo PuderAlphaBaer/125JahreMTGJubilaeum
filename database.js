@@ -23,7 +23,7 @@ const supabaseFetch = async (table, columns, conditionColumn, conditionValue, or
             .from(table)
             .select(columns)
             .eq(conditionColumn, conditionValue)
-            .order(orderColumn, {ascending: AscTrue})
+            .order(orderColumn, AscTrue)
         if (data) {
             console.log('success fetching', data)
         }
