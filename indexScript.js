@@ -5,6 +5,7 @@ const nicknameBox = document.getElementById('nicknameBox');
 const toggleButtonBox = document.getElementById('toggleButtonBox');
 const toggleInputBox = document.getElementById('toggleInputBox');
 const inputBox = document.getElementById('inputBox');
+const quizBox = document.getElementById('quizbox')
 
 const bta = document.getElementById('bta')
 const btb = document.getElementById('btb')
@@ -15,7 +16,7 @@ const btd = document.getElementById('btd')
 bt1.addEventListener('click', function () {
     nicknameuebermitteln();
     toggle(inputBox);
-}
+} 
 );
 
 bta.addEventListener('click', function () {console.log('a')})
@@ -48,7 +49,7 @@ function toggle(obj) {
 }
 
 toggleButtonBox.addEventListener('click', function () {
-    toggle(buttonBox);
+    toggle(quizBox);
 });
 toggleInputBox.addEventListener('click', function () {
     toggle(inputBox);
@@ -76,8 +77,10 @@ let frage3 = new Frage('c', started, timestart, winstreak);
 // Timerfunktion ------------------------------------------------------------------------
 const toggleTimer = document.getElementById('toggleTimer');
 
-const semicircles = document.querySelectorAll('.semicircle');
 const timer = document.getElementById('timertext');
+const s1 = document.getElementById('s1');
+const s2 = document.getElementById('s2');
+const s3 = document.getElementById('s3');
 
 // Müssen wir schaun wie der Input sein wird
 
@@ -88,15 +91,16 @@ let timerLoop;
 let startTime;
 let futureTime;
 
+timer.innerHTML = sec+".00"
 
 toggleTimer.addEventListener('click', function() { 
     timerLoop = setInterval(countDownTimer, 10);
     startTime = Date.now();
     futureTime = startTime + setTime;
-    semicircles[0].style.display = "block";
-    semicircles[1].style.display = "block";
-    semicircles[0].style.backgroundColor = "rgb(63, 63, 63)";
-    semicircles[1].style.backgroundColor = "rgb(63, 63, 63)";
+    s1.style.display = "block";
+    s2.style.display = "block";
+    s1.style.backgroundColor = "rgb(63, 63, 63)";
+    s2.style.backgroundColor = "rgb(63, 63, 63)";
     timer.style.color = "rgb(63, 63, 63)";
     countDownTimer();
 });
@@ -108,13 +112,13 @@ function countDownTimer() {
     const angle = (remainingTime / setTime) * 360;
 
     if(angle > 180) {
-        semicircles[2].style.display = "none";
-        semicircles[0].style.transform = "rotate(180deg)";
-        semicircles[1].style.transform = "rotate("+angle+"deg)";
+        s3.style.display = "none";
+        s1.style.transform = "rotate(180deg)";
+        s2.style.transform = "rotate("+angle+"deg)";
     } else {
-        semicircles[2].style.display = "block";
-        semicircles[0].style.transform = "rotate("+angle+"deg)";
-        semicircles[1].style.transform = "rotate("+angle+"deg)";
+        s3.style.display = "block";
+        s1.style.transform = "rotate("+angle+"deg)";
+        s2.style.transform = "rotate("+angle+"deg)";
     }
 
     if(remainingTime > 1000) {
@@ -127,16 +131,16 @@ function countDownTimer() {
 
     // Letzten 5 Sekunden rot
     // if(remainingTime <= 5000) {
-    //     semicircles[0].style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-    //     semicircles[1].style.backgroundColor = "rgba(0, 255, 0, 0.8)";
+    //     s1.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+    //     s2.style.backgroundColor = "rgba(0, 255, 0, 0.8)";
     //     timer.style.color = "rgba(55, 0, 255, 0.8)";
     // }
 
     if(remainingTime <= 0) {
         clearInterval(timerLoop);
-        semicircles[0].style.display = "none";
-        semicircles[1].style.display = "none";
-        semicircles[2].style.display = "none";
+        s1.style.display = "none";
+        s2.style.display = "none";
+        s3.style.display = "none";
         timer.style.fontSize = "3vh";
         timer.innerHTML = "ABGELAUFEN";
         // Hier Funktion bei Ablauf des Timers callen
@@ -149,7 +153,12 @@ function countDownTimer() {
 
 // Abgleich vulgäre Sprache
 
-
+// if (!message.replace(/\s/g, '').length) {
+//     alert("Bitte keine leeren Nachrichten versenden")
+//     tb.value = '';
+//     tb.focus();
+// }
+// else {
 // let checkstring = tb1.value;
 // let result = data.includes(checkstring); 
 

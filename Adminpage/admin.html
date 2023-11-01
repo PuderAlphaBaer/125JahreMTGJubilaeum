@@ -9,9 +9,31 @@
 </head>
 <body>
     
-    <div id="bt1" class="buttonStyle">Klick für Rangliste</div>
+    <div id="bt1" class="buttonStyle">Klick für Fragen</div>
     <div class="user" id="user">
-        <p>user</p>
+        <table class="ubox" id="ubox">
+            <tr>
+              <th class="udata">UID</th>
+              <th class="udata">User Name</th>
+              <th class="udata">Score</th>
+              <th class="udata">Rank</th>
+            </tr>
+            <tr>
+              <td class="udata">0</td>
+              <td class="udata">Paul</td>
+              <td class="udata">2000</td>
+              <td class="udata">24</td>
+              <td class="ureport" onclick="report(0, 'Paul')">REPORT</td>
+            </tr>
+            <tr>
+              <td class="udata"></td>
+              <td class="udata"></td>
+              <td class="udata"></td>
+              <td class="udata"></td>
+              <td class="ureport" onclick="report('X', 'Test')">REPORT</td>
+            </tr>
+
+          </table>
     </div>
 
     <div class="fragen" id="fragen">
