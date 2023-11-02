@@ -18,12 +18,15 @@ const supabaseFetch = async (table, columns, conditionColumn, conditionValue, or
         if (orderColumn == undefined) {
             orderColumn = 'id'
         }
+        if (AscTrue == undefined) {
+            AscTrue = true
+        }
 
         const { data, error } = await database
             .from(table)
             .select(columns)
             .eq(conditionColumn, conditionValue)
-            .order(orderColumn, AscTrue)
+            .order(orderColumn, { ascending: AscTrue })
         if (data) {
             console.log('success fetching', data)
         }
