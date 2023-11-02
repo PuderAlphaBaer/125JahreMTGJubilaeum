@@ -163,7 +163,7 @@ function countDownTimer() {
 // let result = data.includes(checkstring); 
 
 // if (result==true) {
-//     // Böser Benutzername
+//     // Boeser Benutzername
 // } else {
 //     // Guter Benutzername
 // }

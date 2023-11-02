@@ -88,7 +88,7 @@ const supabaseUpdate = async (table, columns, values, conditionColumn, condition
 function errorHandling (error, table) {
     if (table == 'spieler') {
         if (error.code == '23505') {
-            alert('Der von Ihnen gewählte Spitzname ist bereits vergeben, bitte suchen Sie sich einen anderen aus.')
+            alert('Der von Ihnen gewählte Spitzname ist bereits vergeben, bitte laden Sie die Seite neu und suchen Sie sich einen anderen aus.')
         }
     }
 }
