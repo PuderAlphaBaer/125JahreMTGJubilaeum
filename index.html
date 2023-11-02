@@ -15,14 +15,14 @@
     <div id="toggleTimer" class="buttonStyle">start Timer</div>
 
 
-    <div id="quizbox">
+    <div id="quizbox" class="quizbox">
         <div class="bigtimerbox"> 
             <div class="semitimerbox"> 
                 <div class="timerbox">
                     <div class="s1" id="s1"></div>
                     <div class="s2" id="s2"></div>
+                    <div class="s3" id="s3"></div>
                 </div>
-                <div class="s3" id="s3"></div>
                 <div class="bigcircle">
                     <div class="timertext" id="timertext">7.00</div>
                 </div>
@@ -46,10 +46,10 @@
         <div id="inputBox">
             <div class="tb1b" id="tb1b">
                 <lable for="tb1"></lable>
-                <input type="text" id="tb1" class="tb1" placeholder="Nickname eingeben"> <!-- Username_Input_Box -->
+                <input type="text" id="tb1" class="tb1" placeholder="Nickname eingeben" onchange="checkusername()"> <!-- Username_Input_Box -->
             </div>
             <div>
-                <div type="button" id="bt1" class="bt1 buttonStyle">Enter</div>
+                <div type="button" id="submit" class="submit buttonStyle">Enter</div>
             </div>
         </div>
     </div>
@@ -57,5 +57,6 @@
     <script src="indexScript.js"></script>
     <script src="database.js"></script>
     <script src="app.js"></script>
+    <script src="signin.js"></script>
 </body>
 </html>

@@ -104,10 +104,13 @@ body {
 
 
 .bigtimerbox {
+    position: absolute;
+    top: 10%;
+    left: 30vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 40vw;
     height: 40vh;
 }
 
@@ -124,7 +127,7 @@ body {
 /* Timerzeug*/
 .timerbox {
     position: absolute;
-    background-color: black;
+    background-color: rgb(63, 63, 63);
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -136,7 +139,7 @@ body {
 }
 
 .s1 {
-    background-color: rgb(63, 63, 63);
+    background-color: gray;
     z-index: 2;
     width: 50%;
     height: 100%;
@@ -147,7 +150,7 @@ body {
 }
 
 .s2 {
-    background-color: rgb(63, 63, 63);
+    background-color: gray;
     z-index: 3;
     width: 50%;
     height: 100%;
@@ -158,7 +161,7 @@ body {
 }
 
 .s3 {
-    background-color: black;
+    background-color: rgb(63, 63, 63);
     z-index: 4 ;
     width: 50%;
     height: 100%;
@@ -166,6 +169,7 @@ body {
     top: 0;
     left: 0;
     transform-origin: right center;
+    border: rgb(63, 63, 63) solid;
 }
 
 .bigcircle {
@@ -178,6 +182,7 @@ body {
     justify-content: center;
     align-items: center;
     display: flex;
+
 }
 
 .timertext {
@@ -188,9 +193,12 @@ body {
     align-items: center;
     display: flex;
     font-size: 5vh;
-    color: rgb(63, 63, 63);
+    color: gray;
 }
 
+.quizbox {
+    display: none;
+}
  
 /*
 
@@ -212,3 +220,32 @@ Folgender Code wird nicht verwendet und dient nur zur Veranschaulichung
 }
 */
 
+.tb1b {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tb1 {
+    width: 50vw;
+    height: 5vw;
+    background-color: rgb(63, 63, 63);
+    padding-left: 1%;
+    color: white;
+    border: none;
+    outline: gray solid;
+}
+
+.tb1:hover {
+    outline: white solid;
+    background-color: rgb(45, 45, 45);
+}
+
+.tb1:focus {
+    background-color: white;
+    color: black;
+}
+
+.submit {
+
+}

@@ -1,4 +1,3 @@
-const bt1 = document.getElementById('bt1');
 const tb1 = document.getElementById('tb1');
 const buttonBox = document.getElementById('buttonBox');
 const nicknameBox = document.getElementById('nicknameBox');
@@ -13,31 +12,15 @@ const btc = document.getElementById('btc')
 const btd = document.getElementById('btd') 
 
 
-bt1.addEventListener('click', function () {
-    nicknameuebermitteln();
-    toggle(inputBox);
-} 
-);
-
 bta.addEventListener('click', function () {console.log('a')})
 btb.addEventListener('click', function () {console.log('b')})
 btc.addEventListener('click', function () {console.log('c')})
 btd.addEventListener('click', function () {console.log('d')})
-tb1.addEventListener("keypress", function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        bt1.click;
-    }
-});
 
 
 
-function nicknameuebermitteln() {
-    console.log('testss');
-    window.nickname = tb1.value;
-    toggle(inputBox);
-    console.log(nickname+"test");
-}
+
+
 
 
 function toggle(obj) {
@@ -84,7 +67,7 @@ const s3 = document.getElementById('s3');
 
 // Müssen wir schaun wie der Input sein wird
 
-let sec = 7;
+let sec = 10;
 
 const setTime = sec * 1000;
 let timerLoop;
@@ -99,9 +82,10 @@ toggleTimer.addEventListener('click', function() {
     futureTime = startTime + setTime;
     s1.style.display = "block";
     s2.style.display = "block";
-    s1.style.backgroundColor = "rgb(63, 63, 63)";
-    s2.style.backgroundColor = "rgb(63, 63, 63)";
-    timer.style.color = "rgb(63, 63, 63)";
+    s1.style.backgroundColor = "gray";
+    s2.style.backgroundColor = "gray";
+    timer.style.color = "gray";
+    timer.style.fontSize = "5vh";
     countDownTimer();
 });
 
@@ -154,16 +138,14 @@ function countDownTimer() {
 // Abgleich vulgäre Sprache
 
 // if (!message.replace(/\s/g, '').length) {
-//     alert("Bitte keine leeren Nachrichten versenden")
-//     tb.value = '';
-//     tb.focus();
+//     tb1.focus();
 // }
 // else {
 // let checkstring = tb1.value;
 // let result = data.includes(checkstring); 
 
 // if (result==true) {
-//     // Boeser Benutzername
+//     // Böser Benutzername
 // } else {
 //     // Guter Benutzername
 // }
