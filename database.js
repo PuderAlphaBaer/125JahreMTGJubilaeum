@@ -103,3 +103,13 @@ function rowFormatter (columns, values) {
     return row
 }
 
+const fragen = database.channel('fragenUpdates')
+    .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'fragen' },
+        (payload) => {
+            console.log('fragen', payload)
+        }
+    )
+    .subscribe()
+
