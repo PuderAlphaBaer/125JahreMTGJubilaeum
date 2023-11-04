@@ -79,14 +79,29 @@ const supabaseInsert = async (table, columns, values) => {
     }
 }
 
-const supabaseUpdate = async (table, columns, values, conditionColumn, conditionValue) => {
+const supabaseUpdate = async (table, columns, values, conditionType, conditionColumn, conditionValue) => {
     try {
-        const {data, error} = await database
-            .from(table)
-            .update(
-                rowFormatter(columns, values)
-            )
-            .eq(conditionColumn, conditionValue)
+        let query = database
+        .from(table)
+        .update(
+            rowFormatter(columns, values)
+        )
+    
+        if (conditionType != '' && conditionColumn != '' && conditionValue != '') {
+            if (conditionType == 'eq') {
+                query = query.eq(conditionColumn, conditionValue)
+            }
+            if (conditionType == 'neq') {
+                query = query.neq(conditionColumn, conditionValue)
+            }
+            if (conditionType == 'gt') {
+                query = query.gt(conditionColumn, conditionValue)
+            }
+            if (conditionType == 'lt') {
+                query = query.lt(conditionColumn, conditionValue)
+            }
+        }
+        const {data, error} = await query
             .select()
         if (data) {
             console.log('success updating', data)
@@ -100,12 +115,28 @@ const supabaseUpdate = async (table, columns, values, conditionColumn, condition
 }
 
 
-const supabaseDelete = async (table, conditionColumn, conditionValue) => {
+const supabaseDelete = async (table, conditionType, conditionColumn, conditionValue) => {
     try {
-        const {data, error} = await database
-            .from(table)
-            .delete()
-            .eq(conditionColumn, conditionValue)
+        let query = database
+        .from(table)
+        .delete()
+    
+        if (conditionType != '' && conditionColumn != '' && conditionValue != '') {
+            if (conditionType == 'eq') {
+                query = query.eq(conditionColumn, conditionValue)
+            }
+            if (conditionType == 'neq') {
+                query = query.neq(conditionColumn, conditionValue)
+            }
+            if (conditionType == 'gt') {
+                query = query.gt(conditionColumn, conditionValue)
+            }
+            if (conditionType == 'lt') {
+                query = query.lt(conditionColumn, conditionValue)
+            }
+        }
+        const {data, error} = await query
+            .select()
         if (data) {
             console.log('success deleting')
         }
