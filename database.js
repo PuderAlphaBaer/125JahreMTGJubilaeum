@@ -3,38 +3,34 @@ const supaAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const database = supabase.createClient(supaUrl, supaAnonKey)
 var length;
 
+function ifing(conditionType, conditionColumn, conditionValue, query) {
+    if (conditionType != '' && conditionColumn != '' && conditionValue != '') {
+        if (conditionType == 'eq') {
+            query = query.eq(conditionColumn, conditionValue)
+        }
+        if (conditionType == 'neq') {
+            query = query.neq(conditionColumn, conditionValue)
+        }
+        if (conditionType == 'gt') {
+            query = query.gt(conditionColumn, conditionValue)
+        }
+        if (conditionType == 'lt') {
+            query = query.lt(conditionColumn, conditionValue)
+        }
+    }
+}
+
 const supabaseFetch = async (table, columns, conditionType, conditionColumn, conditionValue, orderColumn, AscTrue) => {
     try {
-        if (conditionColumn == undefined || conditionValue == undefined) {
-            conditionColumn = ''
-            conditionValue = ''
-        }
         if (columns == undefined) {
             columns = '*'
         }
-        if (orderColumn==undefined || AscTrue == undefined) {
-            orderColumn = ''
-            AscTrue = ''
-        }    
-  
+
         let query = database
             .from(table)
             .select(columns)
         
-        if (conditionType != '' && conditionColumn != '' && conditionValue != '') {
-            if (conditionType == 'eq') {
-                query = query.eq(conditionColumn, conditionValue)
-            }
-            if (conditionType == 'neq') {
-                query = query.neq(conditionColumn, conditionValue)
-            }
-            if (conditionType == 'gt') {
-                query = query.gt(conditionColumn, conditionValue)
-            }
-            if (conditionType == 'lt') {
-                query = query.lt(conditionColumn, conditionValue)
-            }
-        }
+        ifing(conditionType, conditionColumn, conditionValue, query)
 
         if (orderColumn != '' && AscTrue != '') {
             query = query.order(orderColumn, { ascending: AscTrue })
@@ -87,20 +83,7 @@ const supabaseUpdate = async (table, columns, values, conditionType, conditionCo
             rowFormatter(columns, values)
         )
     
-        if (conditionType != '' && conditionColumn != '' && conditionValue != '') {
-            if (conditionType == 'eq') {
-                query = query.eq(conditionColumn, conditionValue)
-            }
-            if (conditionType == 'neq') {
-                query = query.neq(conditionColumn, conditionValue)
-            }
-            if (conditionType == 'gt') {
-                query = query.gt(conditionColumn, conditionValue)
-            }
-            if (conditionType == 'lt') {
-                query = query.lt(conditionColumn, conditionValue)
-            }
-        }
+        ifing(conditionType, conditionColumn, conditionValue, query)
         const {data, error} = await query
             .select()
         if (data) {
@@ -121,20 +104,7 @@ const supabaseDelete = async (table, conditionType, conditionColumn, conditionVa
         .from(table)
         .delete()
     
-        if (conditionType != '' && conditionColumn != '' && conditionValue != '') {
-            if (conditionType == 'eq') {
-                query = query.eq(conditionColumn, conditionValue)
-            }
-            if (conditionType == 'neq') {
-                query = query.neq(conditionColumn, conditionValue)
-            }
-            if (conditionType == 'gt') {
-                query = query.gt(conditionColumn, conditionValue)
-            }
-            if (conditionType == 'lt') {
-                query = query.lt(conditionColumn, conditionValue)
-            }
-        }
+        ifing(conditionType, conditionColumn, conditionValue, query)
         const {data, error} = await query
             .select()
         if (data) {
