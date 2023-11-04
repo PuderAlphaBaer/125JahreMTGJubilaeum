@@ -3,34 +3,48 @@ const supaAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const database = supabase.createClient(supaUrl, supaAnonKey)
 var length;
 
-const supabaseFetch = async (table, columns, conditionColumn, conditionValue, orderColumn, AscTrue) => {
+const supabaseFetch = async (table, columns, conditionType, conditionColumn, conditionValue, orderColumn, AscTrue) => {
     try {
-        if (conditionColumn == undefined) {
+        if (conditionColumn == undefined || conditionValue == undefined) {
             conditionColumn = ''
             conditionValue = ''
-        }
-        if (conditionValue == undefined) {
-            conditionValue = ''
-            conditionColumn = ''
         }
         if (columns == undefined) {
             columns = '*'
         }
-        if (orderColumn == undefined) {
-            orderColumn = 'id'
-        }
-        if (AscTrue == undefined) {
-            AscTrue = true
-        }
-
-        const { data, error } = await database
+        if (orderColumn==undefined || AscTrue == undefined) {
+            orderColumn = ''
+            AscTrue = ''
+        }    
+  
+        let query = database
             .from(table)
             .select(columns)
-            .eq(conditionColumn, conditionValue)
-            .order(orderColumn, { ascending: AscTrue })
+        
+        if (conditionType != '' && conditionColumn != '' && conditionValue != '') {
+            if (conditionType == 'eq') {
+                query = query.eq(conditionColumn, conditionValue)
+            }
+            if (conditionType == 'neq') {
+                query = query.neq(conditionColumn, conditionValue)
+            }
+            if (conditionType == 'gt') {
+                query = query.gt(conditionColumn, conditionValue)
+            }
+            if (conditionType == 'lt') {
+                query = query.lt(conditionColumn, conditionValue)
+            }
+        }
+
+        if (orderColumn != '' && AscTrue != '') {
+            query = query.order(orderColumn, { ascending: AscTrue })
+        }
+
+
+
+        const { data, error } = await query
         if (data) {
             console .log('success fetching', data)
-            // WICHTIG, nicht löschen -- Ist für Erkennung, ob Username exitstiert
             length = data.length;
         }
         if (error) {
@@ -41,6 +55,8 @@ const supabaseFetch = async (table, columns, conditionColumn, conditionValue, or
         console.log(error)
     }
 }
+
+
 
 const supabaseInsert = async (table, columns, values) => {
     try {
@@ -84,6 +100,39 @@ const supabaseUpdate = async (table, columns, values, conditionColumn, condition
 }
 
 
+const supabaseDelete = async (table, conditionColumn, conditionValue) => {
+    try {
+        const {data, error} = await database
+            .from(table)
+            .delete()
+            .eq(conditionColumn, conditionValue)
+        if (data) {
+            console.log('success deleting')
+        }
+        if (error) {
+            throw error
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const supabaseDeleteAll = async (table) => {
+    try {
+        const {data, error} = await database
+            .from(table)
+            .delete()
+            .neq('id', -1)
+        if (data) {
+            console.log('success deleting All', data)
+        }
+        if (error) {
+            throw error
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 
