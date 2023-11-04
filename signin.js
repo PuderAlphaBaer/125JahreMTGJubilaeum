@@ -50,7 +50,7 @@ function checkusername() {
             unerror.innerHTML = "Benutzername muss mindestens 1 Zeichen lang sein"
             blocksubmit = true;
         }
-    }, 100);
+    }, 300);
 
 
 
