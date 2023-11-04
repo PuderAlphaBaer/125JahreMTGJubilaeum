@@ -29,6 +29,7 @@ const supabaseFetch = async (table, columns, conditionColumn, conditionValue, or
             .eq(conditionColumn, conditionValue)
             .order(orderColumn, { ascending: AscTrue })
         if (data) {
+            console .log('success fetching', data)
             // WICHTIG, nicht löschen -- Ist für Erkennung, ob Username exitstiert
             length = data.length;
         }
@@ -91,7 +92,7 @@ function errorHandling (error, table) {
     if (table == 'spieler') {
         if (error.code == '23505') {
             toggle(inputBox);
-            alert('Der von Ihnen gewählte Spitzname ist bereits vergeben, bitte suchen Sie sich einen anderen aus.');
+            alert('Der von Ihnen gewählte Spitzname ist bereits vergeben, bitte laden Sie die Seite neun und suchen Sie sich einen anderen aus.');
         }
     }
 }
@@ -106,7 +107,7 @@ function rowFormatter (columns, values) {
     return row
 }
 
-const fragen = database.channel('fragenUpdates')
+const fragenUpdates = database.channel('fragenUpdates')
     .on(
         'postgres_changes',
         { event: 'UPDATE', schema: 'public', table: 'fragen' },

@@ -1,1 +1,0 @@
-console.log('supabase Fetch: \n', supabaseFetch, '\n supabase Insert: \n', supabaseInsert, '\n supabase Update: \n', supabaseUpdate)
