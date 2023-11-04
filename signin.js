@@ -58,7 +58,7 @@ function checkusername() {
         .then((res) => res.text())
         .then((proflist) => {
             
-            let result = proflist.match(new RegExp("\\b" + un + "\\b")) != null; 
+            let result = proflist.toLocaleLowerCase.match(new RegExp("\\b" + un + "\\b")) != null; 
             if (result==true) {
                 unerror.style.color = "red";
                 unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
