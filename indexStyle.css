@@ -17,7 +17,7 @@ body {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    height: 40vh;
+    height: 60vh;
     width: 100vw;
     position: absolute;
     bottom: 0;
@@ -25,7 +25,7 @@ body {
 .buttonContainer {
     display: flex;
     flex-wrap: wrap;
-    height: 20vh;
+    height: 50%;
     width: 100vw;
     justify-content: center;
 }
@@ -102,18 +102,18 @@ body {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    height: 40vh;
+    height: 35vh;
     width: 100vw;
     position: absolute;
-    bottom: 0;
+    
 }
 
 /* Timerzeug*/
 .timerbox {
     position: absolute;
     background-color: rgb(63, 63, 63);
-    width: 30vh;
-    height: 30vh;
+    width: 35vh;
+    height: 35vh;
     border-radius: 50%;
     z-index: 1;
     display: flex;
