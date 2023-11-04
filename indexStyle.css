@@ -191,7 +191,7 @@ body {
 }
 
 .quizbox {
-    display: none;
+    display: block;
 }
  
 /*
@@ -264,7 +264,7 @@ Folgender Code wird nicht verwendet und dient nur zur Veranschaulichung
 }
 
 .inputbox {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }

@@ -23,6 +23,22 @@ btd.addEventListener('click', function () {console.log('d')})
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function toggle(obj) {
     if (obj.style.display == 'none') {
         obj.style.display = 'block';
@@ -39,21 +55,20 @@ toggleInputBox.addEventListener('click', function () {
 });
 
 
-function Frage(loesung, beantwortet, start, streak) {
-  this.loesung = loesung;
-  this.beantwortet = beantwortet;
-  this.start = start;
-  this.streak = streak;
-};
-
-let started = false;
-let winstreak = 0;
-let timestart;
 
 
-let frage1 = new Frage('a', started, timestart, winstreak);
-let frage2 = new Frage('c', started, timestart, winstreak); 
-let frage3 = new Frage('c', started, timestart, winstreak);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -86,7 +101,6 @@ toggleTimer.addEventListener('click', function() {
     s2.style.backgroundColor = "gray";
     timer.style.color = "gray";
     timer.style.fontSize = "5vh";
-    countDownTimer();
 });
 
 
