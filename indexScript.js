@@ -133,19 +133,3 @@ function countDownTimer() {
 
 
 
-
-
-// Abgleich vulgäre Sprache
-
-// if (!message.replace(/\s/g, '').length) {
-//     tb1.focus();
-// }
-// else {
-// let checkstring = tb1.value;
-// let result = data.includes(checkstring); 
-
-// if (result==true) {
-//     // Böser Benutzername
-// } else {
-//     // Guter Benutzername
-// }

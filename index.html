@@ -43,10 +43,10 @@
 
     <!-- Input -->
     <div>
-        <div id="inputBox">
+        <div id="inputBox" class="inputbox">
             <div class="tb1b" id="tb1b">
-                <lable for="tb1"></lable>
-                <input type="text" id="tb1" class="tb1" placeholder="Nickname eingeben" onchange="checkusername()"> <!-- Username_Input_Box -->
+                <input type="text" id="tb1" class="tb1" placeholder="Nickname eingeben" oninput="checkusername()"> <!-- Username_Input_Box -->
+                <p class="unerror" id="unerror"></p>
             </div>
             <div>
                 <div type="button" id="submit" class="submit buttonStyle">Enter</div>

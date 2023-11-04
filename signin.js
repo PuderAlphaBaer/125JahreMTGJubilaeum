@@ -1,5 +1,6 @@
 const submit = document.getElementById('submit');
 let un;
+let unerror = document.getElementById('unerror')
 
 submit.addEventListener('click', function () {
     nicknameuebermitteln();
@@ -21,11 +22,54 @@ function nicknameuebermitteln() {;
 }
 
 
-
+let data;
 function checkusername() {
-    un = tb1.value;
-    console.log(
-    supabaseFetch("spieler", ["id"], ["name"], un, "id", true));
-    
+
+    supabaseFetch("spieler", "id", "name", tb1.value, "id", true);
+    setTimeout(() => {
+        if(length==0) {
+            unerror.style.color = "green";
+            unerror.innerHTML = "Benutzername verfügbar";
+        } else {
+            unerror.style.color = "red";
+            unerror.innerHTML = "Benutzername beireits vergeben";
+        }
+        if (!tb1.value.replace(/\s/g, '').length) {
+            unerror.style.color = "red";
+            unerror.innerHTML = "Benutzername muss mindestens 1 Zeichen lang sein"
+        }
+    }, 100);
+
+
 
 }
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Abgleich vulgäre Sprache
+
+// if (!message.replace(/\s/g, '').length) {
+//     tb1.focus();
+// }
+// else {
+// let checkstring = tb1.value;
+// let result = data.includes(checkstring); 
+
+// if (result==true) {
+//     // Böser Benutzername
+// } else {
+//     // Guter Benutzername
+// }
