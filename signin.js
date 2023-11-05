@@ -53,23 +53,22 @@ function checkusername() {
             unerror.innerHTML = "Benutzername muss mindestens 1 Zeichen lang sein"
             blocksubmit = true;
         } else {
-        // // Abgleich vulgäre Sprache 
-        // fetch("test.txt")
-        // .then((res) => res.text())
-        // .then((proflist) => {
-            
-        //     let result = proflist.toLocaleLowerCase.match(new RegExp("\\b" + un + "\\b")) != null; 
-        //     if (result==true) {
-        //         unerror.style.color = "red";
-        //         unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
-        //         blocksubmit = true;
-        //     }
-        // })}
+        // Abgleich vulgäre Sprache 
+        fetch("test.txt")
+        .then((res) => res.text())
+        .then((proflist) => {
+            let result = proflist.match(new RegExp("\\b" + un.toLocaleLowerCase() + "\\b")) != null; 
+            if (result==true) {
+                unerror.style.color = "red";
+                unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
+                blocksubmit = true;
+            }
+        })}
 
-        // if (un.length>20) {
-        //     unerror.style.color = "red";
-        //     unerror.innerHTML = "Benutzername darf maximal 20 Zeichen lang sein";
-        //     blocksubmit = true;
+        if (un.length>20) {
+            unerror.style.color = "red";
+            unerror.innerHTML = "Benutzername darf maximal 20 Zeichen lang sein";
+            blocksubmit = true;
         }
 
     }, 300);
