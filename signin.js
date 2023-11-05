@@ -31,7 +31,7 @@ function checkusername() {
     unerror.style.color = "gray";
     blocksubmit = true;
     tb1.classList.remove('error');
-    supabaseFetch("spieler", "id", "name", tb1.value, "id", true);
+    supabaseFetch("spieler", "id", "eq", "name", tb1.value, "id", true);
     setTimeout(() => {
         un = tb1.value;
         if (length==0) {

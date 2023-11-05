@@ -142,7 +142,7 @@ function errorHandling (error, table) {
     if (table == 'spieler') {
         if (error.code == '23505') {
             toggle(inputBox);
-            alert('Der von Ihnen gewählte Spitzname ist bereits vergeben, bitte laden Sie die Seite neun und suchen Sie sich einen anderen aus.');
+            alert('Der von Ihnen gewählte Spitzname ist bereits vergeben, bitte suchen Sie sich einen anderen aus.');
         }
     }
 }
