@@ -14,19 +14,19 @@ body {
     user-select: none;
 }
 
+.bt1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
-.user {
+.admin {
     display: none;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
-}
-
-.fragen {
-    display: flex;
-    width: 100%;
-    height: 100%;
+    position: absolute;
 }
 
 .buttonStyle {
@@ -49,10 +49,6 @@ body {
     background-color: black;
     color: gray;
     border: gray solid 0.5vw;
-}
-
-.ubox {
-    
 }
 
 .udata{
@@ -92,4 +88,44 @@ table, th, td {
     padding: 0;
     border-spacing: 0;
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.surface {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.bt2 {
+    right: 0;
+    position: absolute;
+    top: 0;
+}
+
+.rangliste {
+    display: none;
+    background-color: darkviolet;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#fragenbox {
+    display: flex;
+    background-color: darkblue;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }

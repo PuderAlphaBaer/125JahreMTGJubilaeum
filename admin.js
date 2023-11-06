@@ -1,20 +1,21 @@
 const bt1 = document.getElementById('bt1');
-const user = document.getElementById('user');
-const fragenbox = document.getElementById('fragen');
+const admin = document.getElementById('admin');
+const surface = document.getElementById('surface');
 const ubox = document.getElementById('ubox');
+let repbox = "";
 
 bt1.addEventListener('click', swap);
 
 
 function swap() {
-if(user.style.display=="flex") {
-    bt1.innerHTML = "Klick für Rangliste"
-    user.style.display = "none";
-    fragenbox.style.display = "flex";
+if(admin.style.display=="flex") {
+    bt1.innerHTML = "Klick für Surface"
+    admin.style.display = "none";
+    surface.style.display = "flex";
 } else {
-    bt1.innerHTML = "Klick für Fragen"
-    fragenbox.style.display = "none";
-    user.style.display = "flex";
+    bt1.innerHTML = "Klick für Admin"
+    surface.style.display = "none";
+    admin.style.display = "flex";
 }};
 
 
@@ -28,16 +29,15 @@ userupdate(1, "Tilman_der_erste", 1000, 3);
 userupdate(1, "Tilman_der_zweite", 100, 5);
 userupdate(1, "Tilman_der_dritte", 10, 18);
 
-
-
-
 function userupdate(uid, uname, score, rank, banned) {
     
 if(banned==true) {
     uclass = "banned"; 
+    repbox = "";
 } 
 else {
     uclass = "udata"
+    repbox = `<td class="ureport" onclick="report(${uid}, '${uname}')">REPORT</td>`
 }
 
 
@@ -47,7 +47,7 @@ else {
         <td class="${uclass}">${uname}</th>
         <td class="${uclass}">${score}</th>
         <td class="${uclass}">${rank}</th>
-        <td class="ureport" onclick="report(${uid}, '${uname}')">REPORT</td>
+        ${repbox}
     </tr>`;
 }
 
@@ -57,8 +57,60 @@ else {
  function report(uid, uname) {
     if (confirm(`Sind Sie sich sicher, dass Sie User ${uid} mit dem Namen "${uname}" sperren möchten`)) {
         // Bann
-        supabaseUpdate("spieler", ["blocked", "punktzahl"], [true, -1], "id", uid);
+        supabaseUpdate("spieler", ["blocked", "punktzahl"], [true, -1], "eq",  "id",  uid);
       } else {
         // Nix
       }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const bt2 = document.getElementById('bt2');
+const fragenbox = document.getElementById('fragenbox');
+const rangeliste = document.getElementById('rangliste');
+bt2.addEventListener('click', toggleSurface);
+
+function toggleSurface() {
+    if(fragenbox.style.display=="flex") {
+        fragenbox.style.display = "none";
+        rangeliste.style.display = "flex";
+    } else {
+        fragenbox.style.display = "flex";
+        rangeliste.style.display = "none";
+    }
+}
+
+class Frage {
+    constructor(type, frage, a, b, c, d, loesung) {
+      this.type = type;
+      this.frage = frage;
+      this.a = a;
+      this.b = b;
+      this.c = c;
+      this.d = d;
+      this.loesung = loesung;
+    }
+  }
+
+
+  const f1 = new Frage("mcoice", "Wer passt nicht", "Herr Waschbüsch", "Frau Leeb", "Frau Till", "Frau Fendt", "b");
+  console.log(f1);
