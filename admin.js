@@ -8,7 +8,7 @@ bt1.addEventListener('click', swap);
 
 
 function swap() {
-if(admin.style.display=="flex") {
+if(surface.style.display=="none") {
     bt1.innerHTML = "Klick für Surface"
     admin.style.display = "none";
     surface.style.display = "flex";
@@ -90,7 +90,7 @@ const rangeliste = document.getElementById('rangliste');
 bt2.addEventListener('click', toggleSurface);
 
 function toggleSurface() {
-    if(fragenbox.style.display=="flex") {
+    if(rangeliste.style.display=="none") {
         fragenbox.style.display = "none";
         rangeliste.style.display = "flex";
     } else {
