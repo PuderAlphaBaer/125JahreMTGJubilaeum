@@ -98,19 +98,27 @@ function toggleSurface() {
         rangeliste.style.display = "none";
     }
 }
+// Alles unwichtig, Fragen werden warscheinlich in Datenbank direkt eingetrangen
+// class Frage {
+//     constructor(type, frage, a, b, c, d, loesung) {
+//       this.type = type;
+//       this.frage = frage;
+//       this.a = a;
+//       this.b = b;
+//       this.c = c;
+//       this.d = d;
+//       this.loesung = loesung;
+//     }
+//   }
 
-class Frage {
-    constructor(type, frage, a, b, c, d, loesung) {
-      this.type = type;
-      this.frage = frage;
-      this.a = a;
-      this.b = b;
-      this.c = c;
-      this.d = d;
-      this.loesung = loesung;
-    }
+
+//   const f1 = new Frage("mcoice", "Wer passt nicht", "Herr Waschbüsch", "Frau Leeb", "Frau Till", "Frau Fendt", "b");
+//   const f2 = new Frage("ynquestion", "Herr Markel kann viele Liegestütze", "", "", "", "", "T")
+//   console.log(f2);
+
+
+
+
+  function startQuestion() {
+    
   }
-
-
-  const f1 = new Frage("mcoice", "Wer passt nicht", "Herr Waschbüsch", "Frau Leeb", "Frau Till", "Frau Fendt", "b");
-  console.log(f1);

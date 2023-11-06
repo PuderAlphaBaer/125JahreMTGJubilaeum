@@ -4,25 +4,52 @@ const btb = document.getElementById('btb')
 const btc = document.getElementById('btc')
 const btd = document.getElementById('btd') 
 
-// Ich hasse diese klassen und Objekte des ist viel einfacher ohne die zu machen basta
-// class Frage {
-//   constructor(loesung, ) {
-//     this.loesung = loesung;
-//     this. = ;
-//   }
-// }
+class Frage {
+  constructor(type, frage, a, b, c, d, loesung) {
+    this.type = type;
+    this.frage = frage;
+    this.a = a;
+    this.b = b;
+    this.c = c;
+    this.d = d;
+    this.loesung = loesung;
+  }
+}
 
-sqbt.addEventListener('click', startQuestion);
+
+function getQuestion(id) {
+
+  
+}
+
+
+
+
+
+
+
+
+
+
+sqbt.addEventListener('click', startQuestionTimer);
 
 // Wird dann eif aus supabase übertragen
+let questionid = "2"; // 1 = fragen-id
 let timestartquestion = Date.now + 5000;
 
 
-  function startQuestion(time) {
+
+  function startQuestionTimer(time) {
     timestartquestion = Date.now + 5000;
     console.log('REG MICH NICHT AUF');
     startTimer(time);
-    questionstarted = true;
+  }
+
+
+
+  function startQuestion() {
+    console.log("test");
+    a = supabaseFetch("fragen", "a", "eq", "id", questionid, "id", true);
   }
 
 
@@ -33,8 +60,7 @@ let timestartquestion = Date.now + 5000;
 
 
 
-
-
+  startQuestion();
 
 
 
@@ -57,7 +83,8 @@ const s3 = document.getElementById('s3');
 // Müssen wir schaun wie der Input sein wird
 
 // Länge der Zeit für Fragen
-const setTime = 20000;
+const sec = 5;
+const setTime = sec *1000;
 
 
 let timerLoop;
