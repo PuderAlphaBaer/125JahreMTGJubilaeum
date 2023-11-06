@@ -1,7 +1,6 @@
 const supaUrl = 'https://cqlueytrxqlhdvhqqyse.supabase.co'
 const supaAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNxbHVleXRyeHFsaGR2aHFxeXNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgyNTQ5NTAsImV4cCI6MjAxMzgzMDk1MH0.Gr19SNLr2pNQFwxkHvKhK09DN-DjglQFPzbNY_p9A9o'
 const database = supabase.createClient(supaUrl, supaAnonKey)
-var length;
 
 function ifing(conditionType, conditionColumn, conditionValue, query) {
     if (conditionType != '' && conditionColumn != '' && conditionValue != '') {
@@ -41,8 +40,8 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
         const { data, error } = await query
         if (data) {
             console .log('success fetching', data)
-            length = data.length;
         }
+
         if (error) {
         throw error
         }
@@ -52,8 +51,37 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
     }
 }
 
+//a function that returns true or false if a dataset exists
+const supabaseExists =  async (table, conditionType, conditionColumn, conditionValue) => {
+    try {
+        let query = database
+            .from(table)
+            .select('id')
+        
+        ifing(conditionType, conditionColumn, conditionValue, query)
 
+        const { data, error } = await query
 
+        if (await data.length > 0) {
+        return true
+        } else {
+        return false
+        }
+
+        if (error) {
+            throw error
+        }
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
+if (supabaseExists('spieler', 'eq', 'name', 'test').then((result) => {
+    return result
+}) == false){
+    console.log('heehaw')
+}
 const supabaseInsert = async (table, columns, values) => {
     try {
         const {data, error} = await database

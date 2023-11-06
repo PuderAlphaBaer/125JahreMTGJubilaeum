@@ -31,51 +31,50 @@ function checkusername() {
     unerror.style.color = "gray";
     blocksubmit = true;
     tb1.classList.remove('error');
-    supabaseFetch("spieler", "id", "eq", "name", tb1.value, "id", true);
     setTimeout(() => {
         un = tb1.value;
-        if (length==0) {
-            unerror.style.color = "green";
-            unerror.innerHTML = "Benutzername verfügbar";
-            blocksubmit = false;
-        } else {
-            unerror.style.color = "red";
-            unerror.innerHTML = "Benutzername beireits vergeben";
-            blocksubmit = true;
-        }
-        if (/\s/.test(un)) {
-            unerror.style.color = "red";
-            unerror.innerHTML = "Benutzername darf keine Leerzeichen enthalten"
-            blocksubmit = true;}
-
-        if (un.length==0) {
-            unerror.style.color = "red";
-            unerror.innerHTML = "Benutzername muss mindestens 1 Zeichen lang sein"
-            blocksubmit = true;
-        } else {
-        // Abgleich vulgäre Sprache 
-        fetch("test.txt")
-        .then((res) => res.text())
-        .then((proflist) => {
-            let result = proflist.match(new RegExp("\\b" + un.toLocaleLowerCase() + "\\b")) != null; 
-            if (result==true) {
+        async function checking() {
+            const exists = await supabaseExists('spieler', 'eq', 'name', un)
+            if (exists == false){
+                unerror.style.color = "green";
+                unerror.innerHTML = "Benutzername verfügbar";
+                blocksubmit = false;
+            } else {
                 unerror.style.color = "red";
-                unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
+                unerror.innerHTML = "Benutzername beireits vergeben";
                 blocksubmit = true;
             }
-        })}
+            if (/\s/.test(un)) {
+                unerror.style.color = "red";
+                unerror.innerHTML = "Benutzername darf keine Leerzeichen enthalten"
+                blocksubmit = true;}
 
-        if (un.length>20) {
-            unerror.style.color = "red";
-            unerror.innerHTML = "Benutzername darf maximal 20 Zeichen lang sein";
-            blocksubmit = true;
+            if (un.length==0) {
+                unerror.style.color = "red";
+                unerror.innerHTML = "Benutzername muss mindestens 1 Zeichen lang sein"
+                blocksubmit = true;
+            } else {
+            // Abgleich vulgäre Sprache 
+            fetch("test.txt")
+            .then((res) => res.text())
+            .then((proflist) => {
+                let result = proflist.match(new RegExp("\\b" + un.toLocaleLowerCase() + "\\b")) != null; 
+                if (result==true) {
+                    unerror.style.color = "red";
+                    unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
+                    blocksubmit = true;
+                }
+            })}
+
+            if (un.length>20) {
+                unerror.style.color = "red";
+                unerror.innerHTML = "Benutzername darf maximal 20 Zeichen lang sein";
+                blocksubmit = true;
+            }
         }
-
-    }, 300);
-
-
-}
-;
+        checking();
+    }, 300)
+    }
 
 
 

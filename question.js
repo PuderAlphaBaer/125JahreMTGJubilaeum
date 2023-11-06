@@ -60,7 +60,7 @@ let timestartquestion = Date.now + 5000;
 
 
 
-  startQuestion();
+  // startQuestion();
 
 
 
