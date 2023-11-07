@@ -115,7 +115,7 @@ table, th, td {
 }
 
 .rangliste {
-    display: none;
+    display: flex;
     background-color: darkviolet;
     position: absolute;
     width: 100%;
@@ -123,7 +123,9 @@ table, th, td {
 }
 
 .fragenbox {
-    display: flex;
+    display: none;
+    justify-content: center;
+    align-items: center;
     background-color: darkblue;
     position: absolute;
     width: 100%;
@@ -189,4 +191,96 @@ table, th, td {
     margin-right: 2vw;
     margin-top: 1vw;
     margin-bottom: 2vw;
+}
+
+.frage {
+    color: white;
+    font-size: 5vw;
+}
+
+
+
+
+
+
+/* Timer */
+
+.timerContainer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    height: 50vmin;
+    width: 100vw;
+    position: absolute;
+    pointer-events: none;
+    justify-self: right;
+    align-self: baseline;
+}
+
+/* Timerzeug*/
+.timerbox {
+    position: absolute;
+    background-color: yellow;
+    width: 40vmin;
+    height: 40vmin;
+    border-radius: 50%;
+    z-index: 1;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.s1 {
+    background-color: orangered;
+    z-index: 2;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: right center;
+}
+
+.s2 {
+    background-color: orangered;
+    z-index: 3;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: right center;
+}
+
+.s3 {
+    background-color: yellow;
+    z-index: 4 ;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: right center;
+    border: yellow solid;
+}
+
+.bigcircle {
+    width: 80%;
+    height: 80%;
+    background-color: darkblue;
+    border-radius: 50%;
+    z-index: 5;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.timertext {
+    font-size: 5vh;
+    color: yellow;
 }
