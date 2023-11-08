@@ -39,7 +39,8 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
 
         const { data, error } = await query
         if (data) {
-            console .log('success fetching', data)
+            console .log('success fetching')
+            return data
         }
 
         if (error) {
@@ -53,35 +54,21 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
 
 //a function that returns true or false if a dataset exists
 const supabaseExists =  async (table, conditionType, conditionColumn, conditionValue) => {
-    try {
-        let query = database
-            .from(table)
-            .select('id')
-        
-        ifing(conditionType, conditionColumn, conditionValue, query)
+    let query = database
+        .from(table)
+        .select('id')
+    
+    ifing(conditionType, conditionColumn, conditionValue, query)
 
-        const { data, error } = await query
+    const { data, error } = await query
 
-        if (await data.length > 0) {
+    if (await data.length > 0) {
         return true
-        } else {
+    } else {
         return false
-        }
-
-        if (error) {
-            throw error
-        }
-    }
-    catch (error) {
-        console.log(error)
     }
 }
 
-if (supabaseExists('spieler', 'eq', 'name', 'test').then((result) => {
-    return result
-}) == false){
-    console.log('heehaw')
-}
 const supabaseInsert = async (table, columns, values) => {
     try {
         const {data, error} = await database
@@ -91,7 +78,8 @@ const supabaseInsert = async (table, columns, values) => {
             )
             .select()
         if (data) {
-            console.log('success inserting', data)
+            console.log('success inserting')
+            return data;
         }
         if (error) {
             throw error
@@ -115,7 +103,8 @@ const supabaseUpdate = async (table, columns, values, conditionType, conditionCo
         const {data, error} = await query
             .select()
         if (data) {
-            console.log('success updating', data)
+            console.log('success updating')
+            return data;
         }
         if (error) {
             throw error
@@ -137,6 +126,7 @@ const supabaseDelete = async (table, conditionType, conditionColumn, conditionVa
             .select()
         if (data) {
             console.log('success deleting')
+            return data;
         }
         if (error) {
             throw error
@@ -154,6 +144,7 @@ const supabaseDeleteAll = async (table) => {
             .neq('id', -1)
         if (data) {
             console.log('success deleting All', data)
+            return data;
         }
         if (error) {
             throw error
