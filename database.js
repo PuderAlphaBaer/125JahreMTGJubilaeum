@@ -3,7 +3,7 @@ const supaAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const database = supabase.createClient(supaUrl, supaAnonKey)
 
 function ifing(conditionType, conditionColumn, conditionValue, query) {
-    if (conditionType != '' && conditionColumn != '' && conditionValue != '') {
+    if (conditionType != undefined && conditionColumn != undefined && conditionValue != undefined) {
         if (conditionType == 'eq') {
             query = query.eq(conditionColumn, conditionValue)
         }
@@ -28,10 +28,10 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
         let query = database
             .from(table)
             .select(columns)
-        
+
         ifing(conditionType, conditionColumn, conditionValue, query)
 
-        if (orderColumn != '' && AscTrue != '') {
+        if (orderColumn != undefined && AscTrue != undefined) {
             query = query.order(orderColumn, { ascending: AscTrue })
         }
 
@@ -182,7 +182,14 @@ const fragenUpdates = database.channel('fragenUpdates')
         { event: 'UPDATE', schema: 'public', table: 'fragen' },
         (payload) => {
             console.log('fragen', payload)
+
         }
     )
     .subscribe()
 
+// let test123 = await supabaseFetch('spieler')
+// console.log(test123.length)
+// console.log(typeof test123)
+// console.dir(test123)
+// console.log(test123[2])
+// console.log(test123.find(obj => obj['id'] === 1))
