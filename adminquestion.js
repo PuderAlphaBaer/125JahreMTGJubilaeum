@@ -19,8 +19,6 @@ class Frage {
   ];
 
 
-
-  
   
 
 
@@ -45,6 +43,10 @@ let timestart;
 
 
 function startQuestion() {
+    if(actualquestionid==questions.length) {
+        // Wird noch schöner :P
+        alert("Quiz fertig, keine fragen mehr da");
+    } else {
     actualquestionid = actualquestionid+1;
     // Wolltest du noch machen mit UTC
     timestart = Date.now();
@@ -57,6 +59,7 @@ function startQuestion() {
     c.innerHTML = questions[actualquestionid-1].c;
     d.innerHTML = questions[actualquestionid-1].d;
     startTimer();
+    }
     }
 
 
@@ -168,4 +171,5 @@ bt3.addEventListener('click', weiter);
 function weiter() {
     rangeliste.style.display = "flex";
     fragenbox.style.display = "none";
+    bt3.style.display = "none";
 }
