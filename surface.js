@@ -32,7 +32,7 @@ class Frage {
 
   const bt2 = document.getElementById('bt2');
   const fragenbox = document.getElementById('fragenbox');
-  const rangeliste = document.getElementById('rangliste');
+  const rangliste = document.getElementById('rangliste');
   bt2.addEventListener('click', startQuestion);
   
 
@@ -52,7 +52,7 @@ function startQuestion() {
     timestart = Date.now();
     supabaseUpdate("fragen", ["start"], [timestart], "eq",  "id",  actualquestionid);
     fragenbox.style.display = "flex";
-    rangeliste.style.display = "none";
+    rangliste.style.display = "none";
     anzeigefrage.innerHTML = questions[actualquestionid-1].frage;
     a.innerHTML = questions[actualquestionid-1].a;
     b.innerHTML = questions[actualquestionid-1].b;
@@ -162,10 +162,53 @@ function timerend() {
     auswertung();
 }
 
+
+
+const votebox = document.getElementById('votebox');
+const vote = document.getElementById('vote');
+
+
+
+
+function auswertung() {
+    votebox.style.display = "block"
+
+
+
+
+    supabaseFetch('fragen', 'avotes, bvotes, cvotes, dvotes', 'eq', 'id', actualquestionid, 'id', false).then((data) => {
+        // Siehe alles https://www.w3schools.com/js/js_graphics_chartjs.asp
+        const xValues = ["A", "B", "C", "D"];
+        const yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes, data[0].dvotes];
+        const barColors = ["red", "yellow","green","blue"];
+        
+        new Chart("vote", {
+          type: "bar",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            legend: {display: false},
+            title: {
+              display: false,
+              text: "Verteilung"
+            }
+          }
+        });
+    });
+
+};
+
+
+
 bt3.addEventListener('click', weiter);
 
 function weiter() {
-    rangeliste.style.display = "flex";
+    rangliste.style.display = "flex";
     fragenbox.style.display = "none";
     bt3.style.display = "none";
     votebox.style.display = "none";
@@ -176,5 +219,53 @@ function weiter() {
     d.style.opacity = "1";
     // refresht das alte diagramm
     votebox.removeChild(document.getElementById('vote'));
-    votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>'
+    votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
+    tablebox.removeChild(document.getElementById('table'));
+    tablebox.innerHTML = 
+    `<table class="table" id="table">
+        <tr> 
+            <th class="udata">Platz</th>
+            <th class="udata">Benutzername</th>
+            <th class="udata">Punktzahl</th>
+        </tr>
+    </table>`;
+    fetchRangliste();
 }
+
+
+
+
+
+
+
+
+const table = document.getElementById('table');
+const tablebox = document.getElementById('tablebox');
+
+
+function userupdate(uid, uname, score) {
+
+    document.getElementById('table').innerHTML += `
+    <tr>
+        <td class="row">${uid}</th>
+        <td class="row">${uname}</th>
+        <td class="row">${score}</th>
+    </tr>`;
+}
+
+
+function fetchRangliste() {
+supabaseFetch('spieler', 'id, name, punktzahl', 'gt', 'punktzahl', -1, 'punktzahl', false).then((data) => {
+            console.log(data)
+     for (let i = 0; i < data.length; i++) {
+        userupdate(i + 1, data[i].name, data[i].punktzahl)
+     }
+    });
+}
+
+
+
+
+
+
+fetchRangliste();

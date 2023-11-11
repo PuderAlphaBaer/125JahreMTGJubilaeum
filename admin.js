@@ -1,22 +1,6 @@
-const bt1 = document.getElementById('bt1');
 const admin = document.getElementById('admin');
-const surface = document.getElementById('surface');
 const ubox = document.getElementById('ubox');
 let repbox = "";
-
-bt1.addEventListener('click', swap);
-
-
-function swap() {
-if(surface.style.display=="none") {
-    bt1.innerHTML = "Klick für Surface"
-    admin.style.display = "none";
-    surface.style.display = "flex";
-} else {
-    bt1.innerHTML = "Klick für Admin"
-    surface.style.display = "none";
-    admin.style.display = "flex";
-}};
 
 
 
@@ -61,26 +45,4 @@ else {
         // Nix
       }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
