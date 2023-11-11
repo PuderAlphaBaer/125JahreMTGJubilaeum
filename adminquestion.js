@@ -86,11 +86,6 @@ timer.innerHTML = sec+".00"
 
 
 function startTimer() { 
-  timerContainer.style.display = "flex";
-  a.style.opacity = "1";
-  b.style.opacity = "1";
-  c.style.opacity = "1";
-  d.style.opacity = "1";
   timerLoop = setInterval(countDownTimer, 10);
   futureTime = Date.now() + setTime;
   s1.style.display = "block";
@@ -164,6 +159,7 @@ function timerend() {
         d.style.opacity = "0.5";
     }
     bt3.style.display = "block";
+    auswertung();
 }
 
 bt3.addEventListener('click', weiter);
@@ -172,4 +168,10 @@ function weiter() {
     rangeliste.style.display = "flex";
     fragenbox.style.display = "none";
     bt3.style.display = "none";
+    votebox.style.display = "none";
+    timerContainer.style.display = "flex";
+    a.style.opacity = "1";
+    b.style.opacity = "1";
+    c.style.opacity = "1";
+    d.style.opacity = "1";
 }

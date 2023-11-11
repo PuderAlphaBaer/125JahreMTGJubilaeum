@@ -134,7 +134,7 @@ table, th, td {
     display: none;
     justify-content: center;
     align-items: center;
-    background-color: darkblue;
+    background-color: gray;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -278,7 +278,7 @@ table, th, td {
 .bigcircle {
     width: 80%;
     height: 80%;
-    background-color: darkblue;
+    background-color: gray;
     border-radius: 50%;
     z-index: 5;
     position: absolute;
@@ -294,10 +294,11 @@ table, th, td {
 }
 
 .votebox {
-    display: block;
+    display: none;
+    position: absolute;
     border: red solid 5px;
     width: 60%;
-    height: 30%;
+    height: 40%;
     top: 0%;
     left: 20%;
 }
