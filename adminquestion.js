@@ -174,4 +174,7 @@ function weiter() {
     b.style.opacity = "1";
     c.style.opacity = "1";
     d.style.opacity = "1";
+    // refresht das alte diagramm
+    votebox.removeChild(document.getElementById('vote'));
+    votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>'
 }

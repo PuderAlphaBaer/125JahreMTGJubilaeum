@@ -1,9 +1,5 @@
 const votebox = document.getElementById('votebox');
 const vote = document.getElementById('vote');
-var avotes;
-var bvotes;
-var cvotes;
-var dvotes;
 
 
 
