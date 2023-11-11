@@ -10,91 +10,54 @@ class Frage {
     }
   }
 
+  let questions = [
+    new Frage("mchoice", "Paul", "Meister", "Hindenburg", "Paul der Bär", "Ich", "b"),
+    new Frage("mchoice", "Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", "d"),
+    new Frage("mchoice", "Sonne", "rot", "gelb", "grün", "blau", "b"),
+      
+    // Add more questions as needed
+  ];
+
+
+
+  
+  
+
+
   const anzeigefrage = document.getElementById('anzeigefrage');
-  const bta = document.getElementById('bta');
-  const btb = document.getElementById('btb');
-  const btc = document.getElementById('btc');
-  const btd = document.getElementById('btd');
-
-
+  const a = document.getElementById('a');
+  const b = document.getElementById('b');
+  const c = document.getElementById('c');
+  const d = document.getElementById('d');
+  const buttonContainer = document.getElementById('buttonContainer');
+  const bt3 = document.getElementById('bt3');
 
   const bt2 = document.getElementById('bt2');
   const fragenbox = document.getElementById('fragenbox');
   const rangeliste = document.getElementById('rangliste');
   bt2.addEventListener('click', startQuestion);
   
-  function toggleSurface() {
-          fragenbox.style.display = "flex";
-          rangeliste.style.display = "none";
-  }
-  
+
 
 
 let actualquestionid= 0;
 let timestart;
 
-const f1 = new Frage("mchoice", "Paul", "Meister", "Hindenburg", "Paul der Bär", "Ich", "b");
-const f2 = new Frage("mchoice", "Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", "d");
-const f3 = new Frage("mchoice", "Sonne", "rot", "gelb", "grün", "blau", "b");
-
-
-
 
 function startQuestion() {
-    toggleSurface;
     actualquestionid = actualquestionid+1;
     // Wolltest du noch machen mit UTC
     timestart = Date.now();
     supabaseUpdate("fragen", ["start"], [timestart], "eq",  "id",  actualquestionid);
-    console.log("f"+actualquestionid.loesung)
+    fragenbox.style.display = "flex";
+    rangeliste.style.display = "none";
+    anzeigefrage.innerHTML = questions[actualquestionid-1].frage;
+    a.innerHTML = questions[actualquestionid-1].a;
+    b.innerHTML = questions[actualquestionid-1].b;
+    c.innerHTML = questions[actualquestionid-1].c;
+    d.innerHTML = questions[actualquestionid-1].d;
+    startTimer();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -106,11 +69,11 @@ const timer = document.getElementById('timertext');
 const s1 = document.getElementById('s1');
 const s2 = document.getElementById('s2');
 const s3 = document.getElementById('s3');
-
+const timerContainer = document.getElementById('timerContainer');
 // Müssen wir schaun wie der Input sein wird
 
 // Länge der Zeit für Fragen
-const sec = 10;
+const sec = 5;
 const setTime = sec *1000;
 
 
@@ -119,7 +82,12 @@ let futureTime;
 timer.innerHTML = sec+".00"
 
 
-function startTimer(time) { 
+function startTimer() { 
+  timerContainer.style.display = "flex";
+  a.style.opacity = "1";
+  b.style.opacity = "1";
+  c.style.opacity = "1";
+  d.style.opacity = "1";
   timerLoop = setInterval(countDownTimer, 10);
   futureTime = Date.now() + setTime;
   s1.style.display = "block";
@@ -162,15 +130,42 @@ function countDownTimer() {
     // }
 
     if(remainingTime <= 0) {
-        clearInterval(timerLoop);
-        s1.style.display = "none";
-        s2.style.display = "none";
-        s3.style.display = "none";
-        timer.style.fontSize = "3vh";
-        timer.innerHTML = "ABGELAUFEN";
-        fragenbox.style.display = "none";
-        rangeliste.style.display = "block";
+        timerend();
         // Hier Funktion bei Ablauf des Timers callen
     }
 } 
 
+
+
+function timerend() {
+    clearInterval(timerLoop);
+    timerContainer.style.display = "none";
+    if(questions[actualquestionid-1].loesung=="a") {
+        a.style.opacity = "1";
+    } else {
+        a.style.opacity = "0.5";
+    }
+    if(questions[actualquestionid-1].loesung=="b") {
+        b.style.opacity = "1";
+    } else {
+        b.style.opacity = "0.5";
+    }
+    if(questions[actualquestionid-1].loesung=="c") {
+        c.style.opacity = "1";
+    } else {
+        c.style.opacity = "0.5";
+    }
+    if(questions[actualquestionid-1].loesung=="d") {
+        d.style.opacity = "1";
+    } else {
+        d.style.opacity = "0.5";
+    }
+    bt3.style.display = "block";
+}
+
+bt3.addEventListener('click', weiter);
+
+function weiter() {
+    rangeliste.style.display = "flex";
+    fragenbox.style.display = "none";
+}

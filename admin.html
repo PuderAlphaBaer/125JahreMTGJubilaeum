@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="Data/logo2.png" type="image/png">
     <link rel="stylesheet" href="admin.css">
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <body>
     
@@ -36,7 +37,7 @@
         </div>
         <div id="fragenbox" class="fragenbox">
             <div class="frage" id="anzeigefrage">Test</div>
-            <div class="timerContainer">
+            <div class="timerContainer" id="timerContainer">
                 <div class="timerbox">
                         <div class="s1" id="s1"></div>
                         <div class="s2" id="s2"></div>
@@ -47,13 +48,17 @@
                 </div>
             </div>
             <div class="buttonSurContainer" id="buttonBox">
-                <div class="buttonContainer">
-                    <div id="bta" class="button buttonA"><div class="subButton">A</div></div>
-                    <div id="btb" class="button buttonB"><div class="subButton">B</div></div>
-                    <div id="btc" class="button buttonC"><div class="subButton">C</div></div>
-                    <div id="btd" class="button buttonD"><div class="subButton">D</div></div>
+                <div class="buttonContainer" id="buttonContainer">
+                    <div id="a" class="button buttonA"><div class="subButton">A</div></div>
+                    <div id="b" class="button buttonB"><div class="subButton">B</div></div>
+                    <div id="c" class="button buttonC"><div class="subButton">C</div></div>
+                    <div id="d" class="button buttonD"><div class="subButton">D</div></div>
                 </div>
             </div>
+            <div id="bt3" class="buttonStyle bt3">Weiter</div>
+        </div>
+        <div id="votebox" class="votebox">
+            <canvas id="vote" class="vote"></canvas>
         </div>
     </div>
 

@@ -114,6 +114,14 @@ table, th, td {
     top: 0;
 }
 
+.bt3 {
+    display: none;
+    right: 0;
+    position: absolute;
+    top: 0;
+}
+
+
 .rangliste {
     display: flex;
     background-color: darkviolet;
@@ -283,4 +291,13 @@ table, th, td {
 .timertext {
     font-size: 5vh;
     color: yellow;
+}
+
+.votebox {
+    display: block;
+    border: red solid 5px;
+    width: 60%;
+    height: 30%;
+    top: 0%;
+    left: 20%;
 }
