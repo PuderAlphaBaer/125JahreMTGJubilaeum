@@ -305,6 +305,25 @@ supabaseFetch('spieler', 'id, name, punktzahl', 'gt', 'punktzahl', -1, 'punktzah
 
 
 
+document.addEventListener("keypress", function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault()
+            if(bt3.style.display=="block"){
+                bt3.click();
+                console.log("bt3c")
+            } else {
+                if(bt2.style.display=="none"){
+                } else {
+                    bt2.click();
+                    console.log("bt2c")
+                }
+            }
+    }
+});
+
+
+
+
 
 
 
