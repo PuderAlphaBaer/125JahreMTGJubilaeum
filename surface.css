@@ -260,9 +260,14 @@ table, th, td {
 .votebox {
     display: none;
     position: absolute;
-    border: red solid 5px;
+    border: none;
     width: 60%;
-    height: 40%;
-    top: 0%;
+    height: 50%;
+    top: 2vw;
     left: 20%;
+}
+
+.vote {
+    width: 50vw;
+    height: 30vw;
 }

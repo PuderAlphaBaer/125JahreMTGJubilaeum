@@ -1,3 +1,4 @@
+// Konstruktor für Fragen
 class Frage {
     constructor(type, frage, a, b, c, d, loesung) {
       this.type = type;
@@ -11,11 +12,11 @@ class Frage {
   }
 
   let questions = [
+    // Hier alle Fragen in richtiger Reinfolge auflisten
     new Frage("mchoice", "Paul", "Meister", "Hindenburg", "Paul der Bär", "Ich", "b"),
     new Frage("mchoice", "Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", "d"),
     new Frage("mchoice", "Sonne", "rot", "gelb", "grün", "blau", "b"),
-      
-    // Add more questions as needed
+    new Frage("mchoice", "Wie war das kack Ding mit dem Diagramm", "alles nachfolgende", "anstrengend", "kompliziert", "nervenaufreibend", "a"),
   ];
 
 
@@ -48,7 +49,7 @@ function startQuestion() {
         alert("Quiz fertig, keine fragen mehr da");
     } else {
     actualquestionid = actualquestionid+1;
-    // Wolltest du noch machen mit UTC
+    // Wolltest du noch machen mit UTC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     timestart = Date.now();
     supabaseUpdate("fragen", ["start"], [timestart], "eq",  "id",  actualquestionid);
     fragenbox.style.display = "flex";
@@ -73,7 +74,8 @@ const s1 = document.getElementById('s1');
 const s2 = document.getElementById('s2');
 const s3 = document.getElementById('s3');
 const timerContainer = document.getElementById('timerContainer');
-// Müssen wir schaun wie der Input sein wird
+
+// Timerlaufzeit, wird später warscheinlich kein const sein, sondern veränderbar, weil wir ja noch 5 Sekunden Vorlaufzeit vor Fragen haben wollen oder so, müssen wir noch besprechen
 
 // Länge der Zeit für Fragen
 const sec = 2;
@@ -84,7 +86,7 @@ let timerLoop;
 let futureTime;
 timer.innerHTML = sec+".00"
 
-
+// startet Timer
 function startTimer() { 
   timerLoop = setInterval(countDownTimer, 10);
   futureTime = Date.now() + setTime;
@@ -97,7 +99,7 @@ function startTimer() {
 }
 
 
-// Visuelles und technisches Zeug, bei Ablauf von Zeit siehe unterer Kommentar
+// Timer technik
 function countDownTimer() {
     const remainingTime = futureTime - Date.now();
     const angle = (remainingTime / setTime) * 360;
@@ -134,7 +136,7 @@ function countDownTimer() {
 } 
 
 
-
+// Wird bei Ablaufen der Zeit aufgerufen
 function timerend() {
     clearInterval(timerLoop);
     timerContainer.style.display = "none";
@@ -168,16 +170,12 @@ const votebox = document.getElementById('votebox');
 const vote = document.getElementById('vote');
 
 
-
-
+// Diagramm wer für was gestimmt hat
+// Musst du nicht verstehen, hab versucht so gut wie möglich zu kommentieren, damit für Style einfacher ist
 function auswertung() {
     votebox.style.display = "block"
-
-
-    ctx = document.getElementById('vote').getContext('2d');
-
     supabaseFetch('fragen', 'avotes, bvotes, cvotes, dvotes', 'eq', 'id', actualquestionid, 'id', false).then((data) => {
-        // Siehe alles https://www.w3schools.com/js/js_graphics_chartjs.asp
+        // Lies nach alles unter https://www.chartjs.org/docs/latest/
         const xValues = ["A", "B", "C", "D"];
         const yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes, data[0].dvotes];
         const barColors = ["#D11031", "#F99306","#1B7A08","#0B52C1"];
@@ -192,37 +190,45 @@ function auswertung() {
             }]
           },
             options: {
+                // Größe muss so, damit der Wert der größten Column nicht abgeschnitten wird
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 50,
+                        bottom: 50
+                    }},
                 legend: {
+                    // Würde oben noch mal zu jeder Column den Wert anzeigen, wird aber weiter unten im Code schon mit Plugin "Datalabels" geregelt
                 display: false,
                 },
                 title: {
+                    // Würde Titel des Diagramms Antzeigen
                 display: false,
                 },
-
-
             tooltips: {
                 mode: 'single',
             },
-            plugins: {
+            plugins: { // Lies alles nach unter https://v0_7_0--chartjs-plugin-datalabels.netlify.app/guide/positioning.html#anchoring
                 datalabels: {
-                    // Farbe in den Säulen
+                    // Style von den Werten der Columns
                     color: "white",
+                    font: {
+                        size: 30,
+                      },
+                    // Positionierung
+                      anchor: 'end',
+                      align: 'top',
+                      clamp: true     
             }},
             scales: {
-                xAxes: [{ 
-                    gridLines: {
-                        display: false,
-                    },
-                    ticks: {
-                        // Farbe von A,B,C,D unter den Säulen, für entfernen durch "display: false" ersetzen
-                        fontColor: "#ffffff"
-                    },
+                xAxes: [{
+                    // Würde xAchse und Beschriftung der Columns (A, B, C, D) anzeigen lassen
+                    display: false
                 }],
                 yAxes: [{
+                    // Würde yAchse mit Beschriftung (also 100, 150, 200, 250, etc) anzeigen Lassen
                     display: false,
-                    gridLines: {
-                        display: false,
-                    },
                 }],
             }
              }
@@ -235,7 +241,10 @@ function auswertung() {
 
 bt3.addEventListener('click', weiter);
 
+
+// wird bei click auf den Knopf "Weiter" nach beenden des Timers aufgerufen
 function weiter() {
+    // setzt alles auf Anfang zurück
     rangliste.style.display = "flex";
     fragenbox.style.display = "none";
     bt3.style.display = "none";
@@ -245,9 +254,10 @@ function weiter() {
     b.style.opacity = "1";
     c.style.opacity = "1";
     d.style.opacity = "1";
-    // refresht das alte diagramm
+    // entfernt das alte Diagramm und erstellt ein neues leeres, was dann mit beenden des nächsten Timers befüllt wird
     votebox.removeChild(document.getElementById('vote'));
     votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
+    // entfert letzte Rangliste und erstellt neue leere, die mit fetchRangliste(); gefüllt wird
     tablebox.removeChild(document.getElementById('table'));
     tablebox.innerHTML = 
     `<table class="table" id="table">
@@ -271,8 +281,8 @@ const table = document.getElementById('table');
 const tablebox = document.getElementById('tablebox');
 
 
+// Erzeugt eine neue Spalte in Rangliste mit eingegebenen Daten
 function userupdate(uid, uname, score) {
-
     document.getElementById('table').innerHTML += `
     <tr>
         <td class="row">${uid}</th>
@@ -282,6 +292,8 @@ function userupdate(uid, uname, score) {
 }
 
 
+
+// Ruft Userupdate mehrfach auf und fetcht Userdaten aus supabase
 function fetchRangliste() {
 supabaseFetch('spieler', 'id, name, punktzahl', 'gt', 'punktzahl', -1, 'punktzahl', false).then((data) => {
             console.log(data)
