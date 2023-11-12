@@ -38,7 +38,9 @@ body {
 }
 
 
-
+canvas {
+    background-color: gray;
+ }
 
 
 

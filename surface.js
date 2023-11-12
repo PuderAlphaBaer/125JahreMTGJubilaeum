@@ -76,7 +76,7 @@ const timerContainer = document.getElementById('timerContainer');
 // Müssen wir schaun wie der Input sein wird
 
 // Länge der Zeit für Fragen
-const sec = 5;
+const sec = 2;
 const setTime = sec *1000;
 
 
@@ -174,13 +174,13 @@ function auswertung() {
     votebox.style.display = "block"
 
 
-
+    ctx = document.getElementById('vote').getContext('2d');
 
     supabaseFetch('fragen', 'avotes, bvotes, cvotes, dvotes', 'eq', 'id', actualquestionid, 'id', false).then((data) => {
         // Siehe alles https://www.w3schools.com/js/js_graphics_chartjs.asp
         const xValues = ["A", "B", "C", "D"];
         const yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes, data[0].dvotes];
-        const barColors = ["red", "yellow","green","blue"];
+        const barColors = ["#D11031", "#F99306","#1B7A08","#0B52C1"];
         
         new Chart("vote", {
           type: "bar",
@@ -191,13 +191,41 @@ function auswertung() {
               data: yValues
             }]
           },
-          options: {
-            legend: {display: false},
-            title: {
-              display: false,
-              text: "Verteilung"
+            options: {
+                legend: {
+                display: false,
+                },
+                title: {
+                display: false,
+                },
+
+
+            tooltips: {
+                mode: 'single',
+            },
+            plugins: {
+                datalabels: {
+                    // Farbe in den Säulen
+                    color: "white",
+            }},
+            scales: {
+                xAxes: [{ 
+                    gridLines: {
+                        display: false,
+                    },
+                    ticks: {
+                        // Farbe von A,B,C,D unter den Säulen, für entfernen durch "display: false" ersetzen
+                        fontColor: "#ffffff"
+                    },
+                }],
+                yAxes: [{
+                    display: false,
+                    gridLines: {
+                        display: false,
+                    },
+                }],
             }
-          }
+             }
         });
     });
 
