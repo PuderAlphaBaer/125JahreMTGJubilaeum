@@ -271,3 +271,32 @@ table, th, td {
     width: 50vw;
     height: 30vw;
 }
+
+
+
+.zwischenbox {
+    background-color: blue;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;    
+}
+
+.tbox1 {
+    background-color: red;
+    width: 80%;
+    height: 4%;
+    position: absolute;
+    top: 48%;
+    left: 10%;
+}
+
+.tbox2 {
+    background-color: white;
+    width: 1%;
+    height: 4%;
+    position: absolute;
+    top: 48%;
+    left: 10%;
+    transition: linear 5s;
+}

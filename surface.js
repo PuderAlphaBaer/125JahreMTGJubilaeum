@@ -34,9 +34,27 @@ class Frage {
   const bt2 = document.getElementById('bt2');
   const fragenbox = document.getElementById('fragenbox');
   const rangliste = document.getElementById('rangliste');
-  bt2.addEventListener('click', startQuestion);
+  bt2.addEventListener('click', startpreQuestion);
   
 
+
+  const tbox1 = document.getElementById('tbox1');
+  const tbox2 = document.getElementById('tbox2');
+  const zwischenbox = document.getElementById('zwischenbox');
+
+
+  function startpreQuestion() {
+    if(actualquestionid==questions.length) {
+        // Wird noch schöner :P
+        alert("Quiz fertig, keine fragen mehr da");
+    } else {
+    rangliste.style.display = "none";
+    tbox2.style.width = "80%";
+    setTimeout(() => {
+        tbox2.style.width = "0";
+        startQuestion();
+    }, 5000);
+  }};
 
 
 let actualquestionid= 0;
@@ -44,10 +62,6 @@ let timestart;
 
 
 function startQuestion() {
-    if(actualquestionid==questions.length) {
-        // Wird noch schöner :P
-        alert("Quiz fertig, keine fragen mehr da");
-    } else {
     actualquestionid = actualquestionid+1;
     // Wolltest du noch machen mit UTC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     timestart = Date.now();
@@ -60,7 +74,6 @@ function startQuestion() {
     c.innerHTML = questions[actualquestionid-1].c;
     d.innerHTML = questions[actualquestionid-1].d;
     startTimer();
-    }
     }
 
 
@@ -141,22 +154,22 @@ function timerend() {
     clearInterval(timerLoop);
     timerContainer.style.display = "none";
     if(questions[actualquestionid-1].loesung=="a") {
-        a.style.opacity = "1";
+        a.style.border = "green solid 5px";
     } else {
         a.style.opacity = "0.5";
     }
     if(questions[actualquestionid-1].loesung=="b") {
-        b.style.opacity = "1";
+        b.style.border = "green solid 5px"
     } else {
         b.style.opacity = "0.5";
     }
     if(questions[actualquestionid-1].loesung=="c") {
-        c.style.opacity = "1";
+        c.style.border = "green solid 5px"
     } else {
         c.style.opacity = "0.5";
     }
     if(questions[actualquestionid-1].loesung=="d") {
-        d.style.opacity = "1";
+        d.style.border = "green solid 5px"
     } else {
         d.style.opacity = "0.5";
     }
@@ -254,6 +267,10 @@ function weiter() {
     b.style.opacity = "1";
     c.style.opacity = "1";
     d.style.opacity = "1";
+    a.style.border = "none";
+    b.style.border = "none";
+    c.style.border = "none";
+    d.style.border = "none";
     // entfernt das alte Diagramm und erstellt ein neues leeres, was dann mit beenden des nächsten Timers befüllt wird
     votebox.removeChild(document.getElementById('vote'));
     votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
