@@ -182,7 +182,7 @@ const fragenUpdates = database.channel('fragenUpdates')
         { event: 'UPDATE', schema: 'public', table: 'fragen' },
         (payload) => {
             console.log('fragen', payload)
-
+            return payload;
         }
     )
     .subscribe()
