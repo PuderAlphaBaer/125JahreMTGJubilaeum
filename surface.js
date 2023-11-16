@@ -23,7 +23,8 @@ class Frage {
   
 
 
-  const anzeigefrage = document.getElementById('anzeigefrage');
+  const anzeigefrage1 = document.getElementById('anzeigefrage1');
+    const anzeigefrage2 = document.getElementById('anzeigefrage2');
   const a = document.getElementById('a');
   const b = document.getElementById('b');
   const c = document.getElementById('c');
@@ -48,8 +49,13 @@ class Frage {
         // Wird noch schöner :P
         alert("Quiz fertig, keine fragen mehr da");
     } else {
+            actualquestionid = actualquestionid+1;
+    // Wolltest du noch machen mit UTC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    timestart = Date.now();
+    supabaseUpdate("fragen", ["start"], [timestart], "eq",  "id",  actualquestionid);
     rangliste.style.display = "none";
     tbox2.style.width = "80%";
+    anzeigefrage1.innerHTML = questions[actualquestionid-1].frage;
     setTimeout(() => {
         tbox2.style.width = "0";
         startQuestion();
@@ -62,13 +68,9 @@ let timestart;
 
 
 function startQuestion() {
-    actualquestionid = actualquestionid+1;
-    // Wolltest du noch machen mit UTC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    timestart = Date.now();
-    supabaseUpdate("fragen", ["start"], [timestart], "eq",  "id",  actualquestionid);
     fragenbox.style.display = "flex";
     rangliste.style.display = "none";
-    anzeigefrage.innerHTML = questions[actualquestionid-1].frage;
+    anzeigefrage2.innerHTML = questions[actualquestionid-1].frage;
     a.innerHTML = questions[actualquestionid-1].a;
     b.innerHTML = questions[actualquestionid-1].b;
     c.innerHTML = questions[actualquestionid-1].c;
@@ -278,7 +280,7 @@ function weiter() {
     tablebox.removeChild(document.getElementById('table'));
     tablebox.innerHTML = 
     `<table class="table" id="table">
-        <tr> 
+        <tr class=""> 
             <th class="udata">Platz</th>
             <th class="udata">Benutzername</th>
             <th class="udata">Punktzahl</th>
@@ -297,12 +299,13 @@ function weiter() {
 const table = document.getElementById('table');
 const tablebox = document.getElementById('tablebox');
 
-
 // Erzeugt eine neue Spalte in Rangliste mit eingegebenen Daten
-function userupdate(uid, uname, score) {
+// row hat als class "rank1", "rank2", "rank4", "rakn5" usw.
+// einzelnes feld hat als class "row", ist noch änderbar
+function userupdate(rank, uname, score) {
     document.getElementById('table').innerHTML += `
-    <tr>
-        <td class="row">${uid}</th>
+    <tr class="rank${rank}">
+        <td class="row">${rank}</th>
         <td class="row">${uname}</th>
         <td class="row">${score}</th>
     </tr>`;

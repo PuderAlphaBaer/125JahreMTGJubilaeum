@@ -23,6 +23,7 @@ body {
     margin: 0.5vw 1vw;
     border: lightgray solid 0.5vw;
     border-radius: 1vw;
+    cursor: pointer;
 }
 
 .buttonStyle:hover {
@@ -165,12 +166,14 @@ table, th, td {
     margin-bottom: 2vw;
 }
 
-.frage {
+.frage1 {
     color: white;
     font-size: 5vw;
 }
 
-
+.frage2 {
+    font-size: 10vh;
+}
 
 
 
@@ -279,7 +282,9 @@ table, th, td {
     position: absolute;
     width: 100%;
     height: 100%;
-    display: block;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tbox1 {
@@ -287,7 +292,7 @@ table, th, td {
     width: 80%;
     height: 4%;
     position: absolute;
-    top: 48%;
+    top: 55%;
     left: 10%;
 }
 
@@ -296,7 +301,7 @@ table, th, td {
     width: 1%;
     height: 4%;
     position: absolute;
-    top: 48%;
+    top: 55%;
     left: 10%;
     transition: linear 5s;
 }
