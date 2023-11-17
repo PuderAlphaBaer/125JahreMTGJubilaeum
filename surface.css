@@ -12,6 +12,7 @@ body {
     text-decoration: none;
     line-height: 3vh;
     box-sizing: border-box;
+    user-select: none;
 }
 
 .buttonStyle {
@@ -72,14 +73,14 @@ table, th, td {
     height: 100%;
 }
 
-.bt2 {
+.bt1 {
     display: block;
     right: 0;
     position: absolute;
     top: 0;
 }
 
-.bt3 {
+.bt2 {
     display: none;
     right: 0;
     position: absolute;
@@ -115,13 +116,21 @@ table, th, td {
     position: absolute;
     bottom: 0;
 }  
-.buttonContainer {
+.mcbtbox {
     display: flex;
     flex-wrap: wrap;
     height: 50%;
     width: 100vw;
     justify-content: center;
 }
+.ynbtbox {
+    display: flex;
+    flex-wrap: wrap;
+    height: 50%;
+    width: 100vw;
+    justify-content: center;
+}
+
 .button {
     display: flex;
     justify-content: center;
@@ -166,6 +175,22 @@ table, th, td {
     margin-bottom: 2vw;
 }
 
+.buttonY {
+    background-color: #0B52C1;
+    color: white;
+    margin-left: 2vw;
+    margin-right: 1vw;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+}
+.buttonN {
+    background-color: #D11031;
+    color: white;
+    margin-left: 2vw;
+    margin-right: 1vw;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+}
 .frage1 {
     color: white;
     font-size: 5vw;
@@ -303,5 +328,5 @@ table, th, td {
     position: absolute;
     top: 55%;
     left: 10%;
-    transition: linear 5s;
+    transition: linear 1s;
 }

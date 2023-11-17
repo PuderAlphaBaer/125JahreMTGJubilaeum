@@ -10,56 +10,84 @@
 <body>
     
     
-    <div id="zwischenbox" class="zwischenbox">
-        <div class="frage1" id="anzeigefrage1"></div>
-        <div id="tbox1" class="tbox1"></div>
-        <div id="tbox2" class="tbox2"></div>
+
+    <div id="beforegamebox" class="beforegamebox">
+
     </div>
 
 
-    <div id="rangliste" class="rangliste">
-        <div id="bt2" class="buttonStyle bt2">Nächste Frage</div>
-        <div class="tablebox" id="tablebox">
-            <table class="table" id="table">
-                <tr> 
-                  <th class="row">Platz</th>
-                  <th class="row">Benutzername</th>
-                  <th class="row">Punktzahl</th>
-                </tr>
-            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="gamebox" class="gamebox">
+        <div id="zwischenbox" class="zwischenbox">
+            <div class="frage1" id="anzeigefrage1"></div>
+            <div id="tbox1" class="tbox1"></div>
+            <div id="tbox2" class="tbox2"></div>
         </div>
-    
-    </div>
+
+
+        <div id="rangliste" class="rangliste">
+            <div id="bt1" class="buttonStyle bt1">Nächste Frage</div>
+            <div class="tablebox" id="tablebox">
+                <table class="table" id="table">
+                    <tr> 
+                    <th class="row">Platz</th>
+                    <th class="row">Benutzername</th>
+                    <th class="row">Punktzahl</th>
+                    </tr>
+                </table>
+            </div>
+        
+        </div>
 
 
 
 
-    <div id="fragenbox" class="fragenbox">
-        <div class="frage2" id="anzeigefrage2">Test</div>
-        <div class="timerContainer" id="timerContainer">
-            <div class="timerbox">
-                    <div class="s1" id="s1"></div>
-                    <div class="s2" id="s2"></div>
-                    <div class="s3" id="s3"></div>
-                <div class="bigcircle">
-                    <div class="timertext" id="timertext">7.00</div>
+        <div id="fragenbox" class="fragenbox">
+            <div class="frage2" id="anzeigefrage2">Test</div>
+            <div class="timerContainer" id="timerContainer">
+                <div class="timerbox">
+                        <div class="s1" id="s1"></div>
+                        <div class="s2" id="s2"></div>
+                        <div class="s3" id="s3"></div>
+                    <div class="bigcircle">
+                        <div class="timertext" id="timertext">7.00</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="buttonSurContainer" id="buttonBox">
-            <div class="buttonContainer" id="buttonContainer">
-                <div id="a" class="button buttonA"><div class="subButton">A</div></div>
-                <div id="b" class="button buttonB"><div class="subButton">B</div></div>
-                <div id="c" class="button buttonC"><div class="subButton">C</div></div>
-                <div id="d" class="button buttonD"><div class="subButton">D</div></div>
+            <div class="buttonSurContainer" id="buttonBox">
+                <div class="mcbtbox" id="mcbtbox">
+                    <div id="a" class="button buttonA"><div class="subButton">A</div></div>
+                    <div id="b" class="button buttonB"><div class="subButton">B</div></div>
+                    <div id="c" class="button buttonC"><div class="subButton">C</div></div>
+                    <div id="d" class="button buttonD"><div class="subButton">D</div></div>
+                </div>
+                <div class="ynbtbox" id="ynbtbox">
+                    <div id="y" class="buttonY">Ja</div>
+                    <div id="n" class="buttonN">Nein</div>
+                </div>
+            </div>
+
+
+
+            <div id="bt2" class="buttonStyle bt2">Weiter</div>
+            <div id="votebox" class="votebox">
+                <canvas id="vote" class="vote"></canvas>
             </div>
         </div>
-        <div id="bt3" class="buttonStyle bt3">Weiter</div>
-        <div id="votebox" class="votebox">
-            <canvas id="vote" class="vote"></canvas>
-        </div>
     </div>
-
 
 
 
@@ -76,5 +104,5 @@
 <script src="https://unpkg.com/@supabase/supabase-js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/0.7.0/chartjs-plugin-datalabels.min.js"></script>
 <script src="database.js"></script>
-<script src="surface.js"></script>
+<script src="game.js"></script>
 </html>

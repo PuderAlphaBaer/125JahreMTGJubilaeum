@@ -1,7 +1,37 @@
-// Konstruktor für Fragen
-class Frage {
-    constructor(type, frage, a, b, c, d, loesung) {
-      this.type = type;
+  
+
+
+  const anzeigefrage1 = document.getElementById('anzeigefrage1');
+  const anzeigefrage2 = document.getElementById('anzeigefrage2');
+  const a = document.getElementById('a');
+  const b = document.getElementById('b');
+  const c = document.getElementById('c');
+  const d = document.getElementById('d');
+  const y = document.getElementById('y');
+  const n = document.getElementById('n');
+  const mcbtbox = document.getElementById('mcbtbox');
+  const ynbtbox = document.getElementById('ynbtbox');
+  const buttonBox = document.getElementById('buttonBox');
+  const bt2 = document.getElementById('bt2');
+
+  const bt1 = document.getElementById('bt1');
+  const fragenbox = document.getElementById('fragenbox');
+  const rangliste = document.getElementById('rangliste');
+  bt1.addEventListener('click', startpreQuestion);
+  
+
+
+  const tbox1 = document.getElementById('tbox1');
+  const tbox2 = document.getElementById('tbox2');
+  const zwischenbox = document.getElementById('zwischenbox');
+
+
+
+
+
+// Konstruktor für Multiple Choice Fragen
+class MCFrage {
+    constructor(frage, a, b, c, d, loesung) {
       this.frage = frage;
       this.a = a;
       this.b = b;
@@ -11,73 +41,123 @@ class Frage {
     }
   }
 
+  // Konstruktor für Ja Nein Fragen
+  class YNFrage {
+    constructor(frage, y, n, loesung) {
+        this.frage = frage;
+        this.y = y;
+        this.n = n;
+        this.loesung = loesung;
+    }
+  }
+
   let questions = [
     // Hier alle Fragen in richtiger Reinfolge auflisten
-    new Frage("mchoice", "Paul", "Meister", "Hindenburg", "Paul der Bär", "Ich", "b"),
-    new Frage("mchoice", "Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", "d"),
-    new Frage("mchoice", "Sonne", "rot", "gelb", "grün", "blau", "b"),
-    new Frage("mchoice", "Wie war das kack Ding mit dem Diagramm", "alles nachfolgende", "anstrengend", "kompliziert", "nervenaufreibend", "a"),
+    new MCFrage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", "d"),
+    new MCFrage("Tilman", "gut", "besser", "am besten", "", "c"),
+    new YNFrage("Christian ist ein Profi", "Ja", "Nein", "y"),
+    new MCFrage("Paul", "Meister", "Hindenburg", "Paul der Bär", "Ich", "b"),
+    new MCFrage("Sonne", "rot", "gelb", "grün", "blau", "b"),
   ];
 
 
-  
-
-
-  const anzeigefrage1 = document.getElementById('anzeigefrage1');
-    const anzeigefrage2 = document.getElementById('anzeigefrage2');
-  const a = document.getElementById('a');
-  const b = document.getElementById('b');
-  const c = document.getElementById('c');
-  const d = document.getElementById('d');
-  const buttonContainer = document.getElementById('buttonContainer');
-  const bt3 = document.getElementById('bt3');
-
-  const bt2 = document.getElementById('bt2');
-  const fragenbox = document.getElementById('fragenbox');
-  const rangliste = document.getElementById('rangliste');
-  bt2.addEventListener('click', startpreQuestion);
-  
-
-
-  const tbox1 = document.getElementById('tbox1');
-  const tbox2 = document.getElementById('tbox2');
-  const zwischenbox = document.getElementById('zwischenbox');
-
-
+  let pretime = 1000;
+//  tbox2.style.transition = "linear " + pretime;  
   function startpreQuestion() {
-    if(actualquestionid==questions.length) {
+    if(questionid==questions.length) {
         // Wird noch schöner :P
         alert("Quiz fertig, keine fragen mehr da");
     } else {
-            actualquestionid = actualquestionid+1;
+            questionid = questionid+1;
     // Wolltest du noch machen mit UTC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     timestart = Date.now();
-    supabaseUpdate("fragen", ["start"], [timestart], "eq",  "id",  actualquestionid);
+    supabaseUpdate("fragen", ["start"], [timestart], "eq",  "id",  questionid);
     rangliste.style.display = "none";
     tbox2.style.width = "80%";
-    anzeigefrage1.innerHTML = questions[actualquestionid-1].frage;
+    anzeigefrage1.innerHTML = questions[questionid-1].frage;
     setTimeout(() => {
         tbox2.style.width = "0";
         startQuestion();
-    }, 5000);
+    }, pretime);
   }};
 
 
-let actualquestionid= 0;
-let timestart;
 
-
-function startQuestion() {
+  function startQuestion() {
     fragenbox.style.display = "flex";
     rangliste.style.display = "none";
-    anzeigefrage2.innerHTML = questions[actualquestionid-1].frage;
-    a.innerHTML = questions[actualquestionid-1].a;
-    b.innerHTML = questions[actualquestionid-1].b;
-    c.innerHTML = questions[actualquestionid-1].c;
-    d.innerHTML = questions[actualquestionid-1].d;
+    anzeigefrage2.innerHTML = questions[questionid-1].frage;
+    if(questions[questionid-1].constructor.name=="MCFrage") {
+        ynbtbox.style.display = "none";
+        a.innerHTML = questions[questionid-1].a;
+        b.innerHTML = questions[questionid-1].b;
+        c.innerHTML = questions[questionid-1].c;
+        // Ermöglicht Fragen mit nur drei Antwortmöglichkeiten
+        if (questions[questionid-1].d==""){
+                d.style.display = "none"
+            } else {
+                d.innerHTML = questions[questionid-1].d;
+        }
+    }
+    if(questions[questionid-1].constructor.name=="YNFrage") {
+        mcbtbox.style.display = "none";
+        y.innerHTML = questions[questionid-1].y;
+        n.innerHTML = questions[questionid-1].n;
+    }    
+
+
+
+
+
+
+
+
     startTimer();
     }
 
+
+let questionid= 0;
+let timestart;
+
+
+
+bt2.addEventListener('click', weiter);
+
+
+// wird bei click auf den Knopf "Weiter" nach beenden des Timers aufgerufen
+function weiter() {
+    // setzt alles auf Anfang zurück
+    rangliste.style.display = "flex";
+    fragenbox.style.display = "none";
+    bt2.style.display = "none";
+    votebox.style.display = "none";
+    timerContainer.style.display = "flex";
+    mcbtbox.style.display = "flex";
+    ynbtbox.style.display = "flex";
+    d.style.display = "flex";
+    a.style.opacity = "1";
+    b.style.opacity = "1";
+    c.style.opacity = "1";
+    d.style.opacity = "1";
+    a.style.border = "none";
+    b.style.border = "none";
+    c.style.border = "none";
+    d.style.border = "none";
+    // entfernt das alte Diagramm und erstellt ein neues leeres, was dann mit beenden des nächsten Timers befüllt wird
+    votebox.removeChild(document.getElementById('vote'));
+    votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
+    // entfert letzte Rangliste und erstellt neue leere, die mit fetchRangliste(); gefüllt wird
+    tablebox.removeChild(document.getElementById('table'));
+    tablebox.innerHTML = 
+    `<table class="table" id="table">
+        <tr class=""> 
+            <th class="udata">Platz</th>
+            <th class="udata">Benutzername</th>
+            <th class="udata">Punktzahl</th>
+        </tr>
+    </table>`;
+    fetchRangliste();
+}
 
 
 
@@ -155,27 +235,27 @@ function countDownTimer() {
 function timerend() {
     clearInterval(timerLoop);
     timerContainer.style.display = "none";
-    if(questions[actualquestionid-1].loesung=="a") {
-        a.style.border = "green solid 5px";
+    if(questions[questionid-1].loesung=="a") {
+        a.style.border = "white solid 5px";
     } else {
         a.style.opacity = "0.5";
     }
-    if(questions[actualquestionid-1].loesung=="b") {
-        b.style.border = "green solid 5px"
+    if(questions[questionid-1].loesung=="b") {
+        b.style.border = "white solid 5px"
     } else {
         b.style.opacity = "0.5";
     }
-    if(questions[actualquestionid-1].loesung=="c") {
-        c.style.border = "green solid 5px"
+    if(questions[questionid-1].loesung=="c") {
+        c.style.border = "white solid 5px"
     } else {
         c.style.opacity = "0.5";
     }
-    if(questions[actualquestionid-1].loesung=="d") {
-        d.style.border = "green solid 5px"
+    if(questions[questionid-1].loesung=="d") {
+        d.style.border = "white solid 5px"
     } else {
         d.style.opacity = "0.5";
     }
-    bt3.style.display = "block";
+    bt2.style.display = "block";
     auswertung();
 }
 
@@ -188,22 +268,50 @@ const vote = document.getElementById('vote');
 // Diagramm wer für was gestimmt hat
 // Musst du nicht verstehen, hab versucht so gut wie möglich zu kommentieren, damit für Style einfacher ist
 function auswertung() {
-    votebox.style.display = "block"
-    supabaseFetch('fragen', 'avotes, bvotes, cvotes, dvotes', 'eq', 'id', actualquestionid, 'id', false).then((data) => {
-        // Lies nach alles unter https://www.chartjs.org/docs/latest/
-        const xValues = ["A", "B", "C", "D"];
-        const yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes, data[0].dvotes];
-        const barColors = ["#D11031", "#F99306","#1B7A08","#0B52C1"];
-        
-        new Chart("vote", {
-          type: "bar",
-          data: {
+    votebox.style.display = "block";
+
+    if (questions[questionid-1].constructor.name=="MCFrage") {
+        if(questions[questionid-1].d=="") {
+        supabaseFetch('fragen', 'avotes, bvotes, cvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
+            xValues = ["A", "B", "C"];
+            yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes];
+            barColors = ["#D11031", "#F99306","#1B7A08"];
+            nchart();
+        });
+        } else {
+        supabaseFetch('fragen', 'avotes, bvotes, cvotes, dvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
+            xValues = ["A", "B", "C", "D"];
+            yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes, data[0].dvotes];
+            barColors = ["#D11031", "#F99306","#1B7A08","#0B52C1"];
+            nchart();
+        });
+    }
+    }
+
+    
+    if(questions[questionid-1].constructor.name=="YNFrage") {
+        supabaseFetch('fragen', 'yvotes, nvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
+            // Lies nach alles unter https://www.chartjs.org/docs/latest/
+            xValues = ["Y", "N"];
+            yValues = [data[0].yvotes, data[0].nvotes];
+            barColors = ["#0B52C1", "#D11031"];
+            nchart();
+        });
+    }
+
+}
+
+
+function nchart() {
+    new Chart("vote", {
+        type: "bar",
+        data: {
             labels: xValues,
             datasets: [{
-              backgroundColor: barColors,
-              data: yValues
+            backgroundColor: barColors,
+            data: yValues
             }]
-          },
+        },
             options: {
                 // Größe muss so, damit der Wert der größten Column nicht abgeschnitten wird
                 layout: {
@@ -230,11 +338,11 @@ function auswertung() {
                     color: "white",
                     font: {
                         size: 30,
-                      },
+                    },
                     // Positionierung
-                      anchor: 'end',
-                      align: 'top',
-                      clamp: true     
+                    anchor: 'end',
+                    align: 'top',
+                    clamp: true     
             }},
             scales: {
                 xAxes: [{
@@ -246,50 +354,9 @@ function auswertung() {
                     display: false,
                 }],
             }
-             }
+            }
         });
-    });
-
-};
-
-
-
-bt3.addEventListener('click', weiter);
-
-
-// wird bei click auf den Knopf "Weiter" nach beenden des Timers aufgerufen
-function weiter() {
-    // setzt alles auf Anfang zurück
-    rangliste.style.display = "flex";
-    fragenbox.style.display = "none";
-    bt3.style.display = "none";
-    votebox.style.display = "none";
-    timerContainer.style.display = "flex";
-    a.style.opacity = "1";
-    b.style.opacity = "1";
-    c.style.opacity = "1";
-    d.style.opacity = "1";
-    a.style.border = "none";
-    b.style.border = "none";
-    c.style.border = "none";
-    d.style.border = "none";
-    // entfernt das alte Diagramm und erstellt ein neues leeres, was dann mit beenden des nächsten Timers befüllt wird
-    votebox.removeChild(document.getElementById('vote'));
-    votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
-    // entfert letzte Rangliste und erstellt neue leere, die mit fetchRangliste(); gefüllt wird
-    tablebox.removeChild(document.getElementById('table'));
-    tablebox.innerHTML = 
-    `<table class="table" id="table">
-        <tr class=""> 
-            <th class="udata">Platz</th>
-            <th class="udata">Benutzername</th>
-            <th class="udata">Punktzahl</th>
-        </tr>
-    </table>`;
-    fetchRangliste();
 }
-
-
 
 
 
@@ -328,14 +395,16 @@ supabaseFetch('spieler', 'id, name, punktzahl', 'gt', 'punktzahl', -1, 'punktzah
 document.addEventListener("keypress", function(event) {
     if (event.key === 'Enter') {
         event.preventDefault()
-            if(bt3.style.display=="block"){
-                bt3.click();
-                console.log("bt3c")
+
+            if(bt2.style.display === 'block'){
+                bt2.click();
+                console.log("bt2c")
             } else {
-                if(bt2.style.display=="none"){
+                if(bt1.style.display === 'block'){
+                    bt1.click();
+                    console.log("bt1c")
                 } else {
-                    bt2.click();
-                    console.log("bt2c")
+                    console.log("notbt1")
                 }
             }
     }

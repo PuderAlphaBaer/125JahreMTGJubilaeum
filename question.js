@@ -4,6 +4,7 @@ const btb = document.getElementById('btb')
 const btc = document.getElementById('btc')
 const btd = document.getElementById('btd') 
 
+// Konstruktor für Fragen
 class Frage {
   constructor(type, frage, a, b, c, d, loesung) {
     this.type = type;
@@ -16,11 +17,13 @@ class Frage {
   }
 }
 
-
-function getQuestion(id) {
-
-  
-}
+let questions = [
+  // Hier alle Fragen in richtiger Reinfolge auflisten
+  new Frage("mchoice", "Paul", "Meister", "Hindenburg", "Paul der Bär", "Ich", "b"),
+  new Frage("mchoice", "Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", "d"),
+  new Frage("mchoice", "Sonne", "rot", "gelb", "grün", "blau", "b"),
+  new Frage("mchoice", "Wie war das kack Ding mit dem Diagramm", "alles nachfolgende", "anstrengend", "kompliziert", "nervenaufreibend", "a"),
+];
 
 
 
