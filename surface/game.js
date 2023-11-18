@@ -23,6 +23,30 @@
   const tbox1 = document.getElementById('tbox1');
   const tbox2 = document.getElementById('tbox2');
   const zwischenbox = document.getElementById('zwischenbox');
+  const gamebox = document.getElementById('gamebox');
+  const beforegamebox = document.getElementById('beforegamebox');
+  const startgamebt = document.getElementById('startgamebt');
+
+
+  startgamebt.addEventListener('click', startgame);
+
+  function startgame() {
+    beforegamebox.style.display = "none";
+    startpreQuestion();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   let pretime = 1000;
