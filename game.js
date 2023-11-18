@@ -9,8 +9,7 @@
   const d = document.getElementById('d');
   const y = document.getElementById('y');
   const n = document.getElementById('n');
-  const mcbtbox = document.getElementById('mcbtbox');
-  const ynbtbox = document.getElementById('ynbtbox');
+  const btbox = document.getElementById('btbox');
   const buttonBox = document.getElementById('buttonBox');
   const bt2 = document.getElementById('bt2');
 
@@ -54,28 +53,22 @@
     rangliste.style.display = "none";
     anzeigefrage2.innerHTML = questions[questionid-1].frage;
     // Multiple Choice Frage
-    if(questions[questionid-1].constructor.name=="MCFrage") {
-        ynbtbox.style.display = "none";
         a.innerHTML = questions[questionid-1].a;
         b.innerHTML = questions[questionid-1].b;
+        if (questions[questionid-1].c=="") {
+            c.style.display = "none";
+            d.style.display = "none";
+            a.style.backgroundColor = "#0B52C1";
+            b.style.backgroundColor = "#D11031";
+        } else {
         c.innerHTML = questions[questionid-1].c;
-        // Ermöglicht Fragen mit nur drei Antwortmöglichkeiten
-        if (questions[questionid-1].d==""){
-                d.style.display = "none"
-            } else {
-                d.innerHTML = questions[questionid-1].d;
+            if (questions[questionid-1].d==""){
+                    d.style.display = "none"
+                } else {
+                    d.innerHTML = questions[questionid-1].d;
+            }
         }
-    }
-
-    // Ja Nein Frage
-    if(questions[questionid-1].constructor.name=="YNFrage") {
-        mcbtbox.style.display = "none";
-        y.innerHTML = questions[questionid-1].y;
-        n.innerHTML = questions[questionid-1].n;
-    }    
-
-
-
+    
 
 
 
@@ -101,8 +94,6 @@ function weiter() {
     bt2.style.display = "none";
     votebox.style.display = "none";
     timerContainer.style.display = "flex";
-    mcbtbox.style.display = "flex";
-    ynbtbox.style.display = "flex";
     d.style.display = "flex";
     a.style.opacity = "1";
     b.style.opacity = "1";
@@ -112,6 +103,8 @@ function weiter() {
     b.style.border = "none";
     c.style.border = "none";
     d.style.border = "none";
+    a.style.backgroundColor = "#D11031";
+    b.style.backgroundColor = "#F99306";
     // entfernt das alte Diagramm und erstellt ein neues leeres, was dann mit beenden des nächsten Timers befüllt wird
     votebox.removeChild(document.getElementById('vote'));
     votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
@@ -239,32 +232,34 @@ const vote = document.getElementById('vote');
 function auswertung() {
     votebox.style.display = "block";
     // Entscheidet, welches Diagramm verwendet werden soll, je nach Fragentyp
-    if (questions[questionid-1].constructor.name=="MCFrage") {
-        if(questions[questionid-1].d=="") {
-        supabaseFetch('fragen', 'avotes, bvotes, cvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
-            xValues = ["A", "B", "C"];
-            yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes];
-            barColors = ["#D11031", "#F99306","#1B7A08"];
-            nchart();
-        });
-        } else {
-        supabaseFetch('fragen', 'avotes, bvotes, cvotes, dvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
-            xValues = ["A", "B", "C", "D"];
-            yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes, data[0].dvotes];
-            barColors = ["#D11031", "#F99306","#1B7A08","#0B52C1"];
-            nchart();
-        });
-    }
-    }
-
-    if(questions[questionid-1].constructor.name=="YNFrage") {
-        supabaseFetch('fragen', 'yvotes, nvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
-            xValues = ["Y", "N"];
-            yValues = [data[0].yvotes, data[0].nvotes];
+    if (questions[questionid-1].c=="") {
+        // Zwei Antwortmöglichkeiten
+        supabaseFetch('fragen', 'avotes, bvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
+            xValues = [a.innerHTML, b.innerHTML];
+            yValues = [data[0].avotes, data[0].bvotes];
             barColors = ["#0B52C1", "#D11031"];
             nchart();
         });
+    } else {
+        if(questions[questionid-1].d=="") {
+            // Drei Antwortmöglichkeiten
+            supabaseFetch('fragen', 'avotes, bvotes, cvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
+                xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
+                yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes];
+                barColors = ["#D11031", "#F99306","#1B7A08"];
+                nchart();
+            });
+        } else {
+            // Vier Antwortmöglichkeiten (Normalfall)
+            supabaseFetch('fragen', 'avotes, bvotes, cvotes, dvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
+                xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
+                yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes, data[0].dvotes];
+                barColors = ["#D11031", "#F99306","#1B7A08","#0B52C1"];
+                nchart();
+            });
+        }
     }
+
 
 }
 

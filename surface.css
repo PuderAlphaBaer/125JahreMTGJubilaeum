@@ -116,14 +116,7 @@ table, th, td {
     position: absolute;
     bottom: 0;
 }  
-.mcbtbox {
-    display: flex;
-    flex-wrap: wrap;
-    height: 50%;
-    width: 100vw;
-    justify-content: center;
-}
-.ynbtbox {
+.btbox {
     display: flex;
     flex-wrap: wrap;
     height: 50%;
@@ -175,28 +168,14 @@ table, th, td {
     margin-bottom: 2vw;
 }
 
-.buttonY {
-    background-color: #0B52C1;
-    color: white;
-    margin-left: 2vw;
-    margin-right: 1vw;
-    margin-top: 2vw;
-    margin-bottom: 1vw;
-}
-.buttonN {
-    background-color: #D11031;
-    color: white;
-    margin-left: 2vw;
-    margin-right: 1vw;
-    margin-top: 2vw;
-    margin-bottom: 1vw;
-}
+
 .frage1 {
     color: white;
     font-size: 5vw;
 }
 
 .frage2 {
+    color: white;
     font-size: 10vh;
 }
 
