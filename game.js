@@ -26,50 +26,16 @@
   const zwischenbox = document.getElementById('zwischenbox');
 
 
-
-
-
-// Konstruktor für Multiple Choice Fragen
-class MCFrage {
-    constructor(frage, a, b, c, d, loesung) {
-      this.frage = frage;
-      this.a = a;
-      this.b = b;
-      this.c = c;
-      this.d = d;
-      this.loesung = loesung;
-    }
-  }
-
-  // Konstruktor für Ja Nein Fragen
-  class YNFrage {
-    constructor(frage, y, n, loesung) {
-        this.frage = frage;
-        this.y = y;
-        this.n = n;
-        this.loesung = loesung;
-    }
-  }
-
-  let questions = [
-    // Hier alle Fragen in richtiger Reinfolge auflisten
-    new MCFrage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", "d"),
-    new MCFrage("Tilman", "gut", "besser", "am besten", "", "c"),
-    new YNFrage("Christian ist ein Profi", "Ja", "Nein", "y"),
-    new MCFrage("Paul", "Meister", "Hindenburg", "Paul der Bär", "Ich", "b"),
-    new MCFrage("Sonne", "rot", "gelb", "grün", "blau", "b"),
-  ];
-
-
   let pretime = 1000;
 //  tbox2.style.transition = "linear " + pretime;  
   function startpreQuestion() {
+    // if operator checkt, ob noch fragen da sind
     if(questionid==questions.length) {
         // Wird noch schöner :P
         alert("Quiz fertig, keine fragen mehr da");
     } else {
             questionid = questionid+1;
-    // Wolltest du noch machen mit UTC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // Hier einfach des Snippetsding für UTC einfügen !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     timestart = Date.now();
     supabaseUpdate("fragen", ["start"], [timestart], "eq",  "id",  questionid);
     rangliste.style.display = "none";
@@ -82,11 +48,12 @@ class MCFrage {
   }};
 
 
-
+// wird nach ablaufen der ersten 5s aufgerufen
   function startQuestion() {
     fragenbox.style.display = "flex";
     rangliste.style.display = "none";
     anzeigefrage2.innerHTML = questions[questionid-1].frage;
+    // Multiple Choice Frage
     if(questions[questionid-1].constructor.name=="MCFrage") {
         ynbtbox.style.display = "none";
         a.innerHTML = questions[questionid-1].a;
@@ -99,6 +66,8 @@ class MCFrage {
                 d.innerHTML = questions[questionid-1].d;
         }
     }
+
+    // Ja Nein Frage
     if(questions[questionid-1].constructor.name=="YNFrage") {
         mcbtbox.style.display = "none";
         y.innerHTML = questions[questionid-1].y;
@@ -124,7 +93,7 @@ let timestart;
 bt2.addEventListener('click', weiter);
 
 
-// wird bei click auf den Knopf "Weiter" nach beenden des Timers aufgerufen
+// wird bei click auf den Knopf "Weiter" nach Beenden der Frage aufgerufen
 function weiter() {
     // setzt alles auf Anfang zurück
     rangliste.style.display = "flex";
@@ -170,8 +139,6 @@ const s2 = document.getElementById('s2');
 const s3 = document.getElementById('s3');
 const timerContainer = document.getElementById('timerContainer');
 
-// Timerlaufzeit, wird später warscheinlich kein const sein, sondern veränderbar, weil wir ja noch 5 Sekunden Vorlaufzeit vor Fragen haben wollen oder so, müssen wir noch besprechen
-
 // Länge der Zeit für Fragen
 const sec = 2;
 const setTime = sec *1000;
@@ -194,7 +161,7 @@ function startTimer() {
 }
 
 
-// Timer technik
+// Lässt Timer ablaufen, hinterfrags nicht, es funtioniert einfach
 function countDownTimer() {
     const remainingTime = futureTime - Date.now();
     const angle = (remainingTime / setTime) * 360;
@@ -235,22 +202,23 @@ function countDownTimer() {
 function timerend() {
     clearInterval(timerLoop);
     timerContainer.style.display = "none";
-    if(questions[questionid-1].loesung=="a") {
+    // Verwendet "includes()", um mehrere Lösungen zu ermöglichen -- ACHTUNG includes() wird von Internetexplorer 11 oder weniger nicht unterstützt, sollte kein Problem darstellen, da es nur für surface.html verwendet wird
+    if(questions[questionid-1].loesung.includes("a")==true) {
         a.style.border = "white solid 5px";
     } else {
         a.style.opacity = "0.5";
     }
-    if(questions[questionid-1].loesung=="b") {
+    if(questions[questionid-1].loesung.includes("b")==true) {
         b.style.border = "white solid 5px"
     } else {
         b.style.opacity = "0.5";
     }
-    if(questions[questionid-1].loesung=="c") {
+    if(questions[questionid-1].loesung.includes("c")==true) {
         c.style.border = "white solid 5px"
     } else {
         c.style.opacity = "0.5";
     }
-    if(questions[questionid-1].loesung=="d") {
+    if(questions[questionid-1].loesung.includes("d")==true) {
         d.style.border = "white solid 5px"
     } else {
         d.style.opacity = "0.5";
@@ -267,9 +235,10 @@ const vote = document.getElementById('vote');
 
 // Diagramm wer für was gestimmt hat
 // Musst du nicht verstehen, hab versucht so gut wie möglich zu kommentieren, damit für Style einfacher ist
+// Im Fall der Fälle kannst du unter https://www.chartjs.org/docs/latest/ alles nachlesen
 function auswertung() {
     votebox.style.display = "block";
-
+    // Entscheidet, welches Diagramm verwendet werden soll, je nach Fragentyp
     if (questions[questionid-1].constructor.name=="MCFrage") {
         if(questions[questionid-1].d=="") {
         supabaseFetch('fragen', 'avotes, bvotes, cvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
@@ -288,10 +257,8 @@ function auswertung() {
     }
     }
 
-    
     if(questions[questionid-1].constructor.name=="YNFrage") {
         supabaseFetch('fragen', 'yvotes, nvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
-            // Lies nach alles unter https://www.chartjs.org/docs/latest/
             xValues = ["Y", "N"];
             yValues = [data[0].yvotes, data[0].nvotes];
             barColors = ["#0B52C1", "#D11031"];
@@ -301,7 +268,7 @@ function auswertung() {
 
 }
 
-
+// Erstellt Diagramm, greift zurück auf "auswertung();"
 function nchart() {
     new Chart("vote", {
         type: "bar",
@@ -380,7 +347,7 @@ function userupdate(rank, uname, score) {
 
 
 
-// Ruft Userupdate mehrfach auf und fetcht Userdaten aus supabase
+// Ruft "userupdate()" für jeden User auf und füllt so Ranglistentabelle
 function fetchRangliste() {
 supabaseFetch('spieler', 'id, name, punktzahl', 'gt', 'punktzahl', -1, 'punktzahl', false).then((data) => {
             console.log(data)
@@ -392,28 +359,30 @@ supabaseFetch('spieler', 'id, name, punktzahl', 'gt', 'punktzahl', -1, 'punktzah
 
 
 
-document.addEventListener("keypress", function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault()
 
-            if(bt2.style.display === 'block'){
-                bt2.click();
-                console.log("bt2c")
-            } else {
-                if(bt1.style.display === 'block'){
-                    bt1.click();
-                    console.log("bt1c")
-                } else {
-                    console.log("notbt1")
-                }
-            }
-    }
-});
+// Muss ich noch machen, is damit abhängig von Bereich entsprechender btn bei Enter gedrückt wird
+// document.addEventListener("keypress", function(event) {
+//     if (event.key === 'Enter') {
+//         event.preventDefault()
 
-
-
-
+//             if(bt2.style.display === 'block'){
+//                 bt2.click();
+//                 console.log("bt2c")
+//             } else {
+//                 if(bt1.style.display === 'block'){
+//                     bt1.click();
+//                     console.log("bt1c")
+//                 } else {
+//                     console.log("notbt1")
+//                 }
+//             }
+//     }
+// });
 
 
 
+
+
+
+// Nur vorläufig, weil noch keine Spielstartsequenz gibt
 fetchRangliste();
