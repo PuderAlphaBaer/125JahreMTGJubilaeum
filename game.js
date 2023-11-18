@@ -51,6 +51,22 @@
   function startQuestion() {
     fragenbox.style.display = "flex";
     rangliste.style.display = "none";
+    // reset der letzten Frage
+    timerContainer.style.display = "flex";
+    c.style.display = "flex";
+    d.style.display = "flex";
+    a.style.opacity = "1";
+    b.style.opacity = "1";
+    c.style.opacity = "1";
+    d.style.opacity = "1";
+    a.style.border = "none";
+    b.style.border = "none";
+    c.style.border = "none";
+    d.style.border = "none";
+    a.style.backgroundColor = "#D11031";
+    b.style.backgroundColor = "#F99306";
+    c.style.backgroundColor = "#1B7A08";
+    d.style.backgroundColor = "#0B52C1";
     anzeigefrage2.innerHTML = questions[questionid-1].frage;
     // Multiple Choice Frage
         a.innerHTML = questions[questionid-1].a;
@@ -93,18 +109,6 @@ function weiter() {
     fragenbox.style.display = "none";
     bt2.style.display = "none";
     votebox.style.display = "none";
-    timerContainer.style.display = "flex";
-    d.style.display = "flex";
-    a.style.opacity = "1";
-    b.style.opacity = "1";
-    c.style.opacity = "1";
-    d.style.opacity = "1";
-    a.style.border = "none";
-    b.style.border = "none";
-    c.style.border = "none";
-    d.style.border = "none";
-    a.style.backgroundColor = "#D11031";
-    b.style.backgroundColor = "#F99306";
     // entfernt das alte Diagramm und erstellt ein neues leeres, was dann mit beenden des nächsten Timers befüllt wird
     votebox.removeChild(document.getElementById('vote'));
     votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
@@ -194,6 +198,7 @@ function countDownTimer() {
 // Wird bei Ablaufen der Zeit aufgerufen
 function timerend() {
     clearInterval(timerLoop);
+    supabaseUpdate("fragen", ["beendet"], ["true"], "eq", "id", questionid);
     timerContainer.style.display = "none";
     // Verwendet "includes()", um mehrere Lösungen zu ermöglichen -- ACHTUNG includes() wird von Internetexplorer 11 oder weniger nicht unterstützt, sollte kein Problem darstellen, da es nur für surface.html verwendet wird
     if(questions[questionid-1].loesung.includes("a")==true) {
@@ -237,7 +242,8 @@ function auswertung() {
         supabaseFetch('fragen', 'avotes, bvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
             xValues = [a.innerHTML, b.innerHTML];
             yValues = [data[0].avotes, data[0].bvotes];
-            barColors = ["#0B52C1", "#D11031"];
+            barColors = [a.style.backgroundColor, b.style.backgroundColor];
+            borderColors = ["white", "black", "white", "black"];
             nchart();
         });
     } else {
@@ -246,7 +252,8 @@ function auswertung() {
             supabaseFetch('fragen', 'avotes, bvotes, cvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
                 xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
                 yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes];
-                barColors = ["#D11031", "#F99306","#1B7A08"];
+                barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor];
+                borderColors = ["white", "black", "white", "black"]
                 nchart();
             });
         } else {
@@ -254,7 +261,8 @@ function auswertung() {
             supabaseFetch('fragen', 'avotes, bvotes, cvotes, dvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
                 xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
                 yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes, data[0].dvotes];
-                barColors = ["#D11031", "#F99306","#1B7A08","#0B52C1"];
+                barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor, d.style.backgroundColor];
+                borderColors = ["white", "black", "white", "black"]
                 nchart();
             });
         }
@@ -271,7 +279,8 @@ function nchart() {
             labels: xValues,
             datasets: [{
             backgroundColor: barColors,
-            data: yValues
+            data: yValues,
+            borderColor: borderColors,
             }]
         },
             options: {

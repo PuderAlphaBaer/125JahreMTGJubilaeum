@@ -18,13 +18,14 @@ class Frage {
     new Frage("Sonne", "rot", "gelb", "grün", "blau", "b"),
 
     // Frage mit zwei Lösungen
-    new Frage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", ["d", "a"]),
+    new Frage("Liegestütze", "Herr Krois", "Herr Grasmaier", "Frau Ager", "Herr Markl", ["d", "a"]),
 
     // Frage mit nur 3 Antwortmöglichkeiten
     new Frage("Tilman", "gut", "besser", "am besten", "", "c"),
 
     // Ja Nein Frage
     new Frage("Christian ist ein Profi", "Ja", "Nein", "", "", "a"),
+
   ];
 
 
@@ -32,4 +33,5 @@ class Frage {
   // aktuelle Frage:
   // questions[questionid-1]
   // kann mit .a , .b , .loesung usw stehen
+
 
