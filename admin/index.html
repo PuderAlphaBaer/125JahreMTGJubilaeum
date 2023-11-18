@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System</title>
+    <link rel="shortcut icon" href="../Data/logo2.png" type="image/png">
+    <link rel="stylesheet" href="indexStyle.css">
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
+</head>
+<body>
+    
+    <div class="admin" id="admin">
+        <table class="ubox" id="ubox">
+            <tr> 
+              <th class="udata">UID</th>
+              <th class="udata">User Name</th>
+              <th class="udata">Score</th>
+              <th class="udata">Rank</th>
+            </tr>
+            <tr>
+              <td class="udata">0</td>
+              <td class="udata">Paul</td>
+              <td class="udata">2000</td>
+              <td class="udata">24</td>
+              <td class="ureport" onclick="report(0, 'Paul')">REPORT</td>
+            </tr>
+        </table>
+    </div>
+
+
+
+    <script src="../database.js"></script>
+    <script src="indexScript.js"></script>
+</body>
+</html>
