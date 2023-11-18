@@ -1,0 +1,87 @@
+body {
+    background-color: black;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 2vh;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    text-decoration: none;
+    line-height: 3vh;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.admin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.buttonStyle {
+    width: 20%;
+    background-color: gray;
+    width: fit-content;
+    color: lightgray;
+    padding: 0.5vw 1vw;
+    margin: 0.5vw 1vw;
+    border: lightgray solid 0.5vw;
+    border-radius: 1vw;
+}
+
+.buttonStyle:hover {
+    background-color: darkgray;
+    color: white;
+    border: white solid 0.5vw;
+}
+.buttonStyle:active {
+    background-color: black;
+    color: gray;
+    border: gray solid 0.5vw;
+}
+
+.udata{
+    width: 20vw;
+    text-align: center;
+    border-spacing: 0;
+}
+.ureport{
+    background-color: gray;
+    width: fit-content;
+    color: lightgray;
+    padding: 0vw 1vw;
+    margin: 0.5vw 1vw;
+    border: red solid 0.5vw;
+    border-radius: 1vw;
+    width: 10vw;
+    text-align: center;
+    color: red;
+    font-weight: bolder;
+}
+.ureport:hover {
+    background-color: darkgray;
+}
+.ureport:active {
+    opacity: 0.7;
+}
+
+.banned {
+    background-color: rgba(255, 0, 0, 0.5);
+    width: 20vw;
+    text-align: center;
+}
+
+table, th, td {
+    border: white 2px solid;
+    margin: 0;
+    padding: 0;
+    border-spacing: 0;
+
+}
+
+
