@@ -2,6 +2,20 @@ const submit = document.getElementById('submit');
 let un;
 let unerror = document.getElementById('unerror');
 blocksubmit = true;
+let nickname;
+const biginputbox = document.getElementById('biginputbox');
+
+
+
+
+document.getElementById('skip').addEventListener('click', skip);
+
+function skip() {
+  nickname = "Tilman";
+  biginputbox.style.display = "none";
+}
+
+
 
 
 submit.addEventListener('click', function () {
@@ -15,7 +29,7 @@ tb1.addEventListener("keypress", function(event) {
     }
 });
 
-window.nickname;
+
 
 function nicknameuebermitteln() {
     if (blocksubmit==true) {
@@ -56,16 +70,17 @@ function checkusername() {
                 blocksubmit = true;
             } else {
             // Abgleich vulgäre Sprache 
-            fetch("../data/test.txt")
-            .then((res) => res.text())
-            .then((proflist) => {
-                let result = proflist.match(new RegExp("\\b" + un.toLocaleLowerCase() + "\\b")) != null; 
-                if (result==true) {
-                    unerror.style.color = "red";
-                    unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
-                    blocksubmit = true;
-                }
-            })}
+            // fetch("data/test.txt")
+            // .then((res) => res.text())
+            // .then((proflist) => {
+            //     let result = proflist.match(new RegExp("\\b" + un.toLocaleLowerCase() + "\\b")) != null; 
+            //     if (result==true) {
+            //         unerror.style.color = "red";
+            //         unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
+            //         blocksubmit = true;
+            //     }
+            // })
+        }
 
             if (un.length>20) {
                 unerror.style.color = "red";

@@ -10,11 +10,11 @@ const frage1 = document.getElementById('frage1');
 const frage2 = document.getElementById('frage2');
 const zwischenbox3 = document.getElementById('zwischenbox3');
 const text2 = document.getElementById('text2');
+const skip2 = document.getElementById('skip2');
 
+skip2.addEventListener('click', questionEnd);
 sqbt.addEventListener('click', questionStarted);
 
-// nur vorläufig
-let nickname = "Tilman"
 let timestartquestion = Date.now + 5000;
 let questionid = 0;
 let addPoints = 0;
@@ -83,6 +83,10 @@ function startQuestion() {
 
 
 function questionEnd() {
+  clearInterval(timerLoop);
+  s1.style.display = "none";
+  s2.style.display = "none";
+  s3.style.display = "none";
   quizbox.style.display = "none";
   zwischenbox.style.display = "flex";
   zwischenbox3.style.display = "none";
@@ -223,7 +227,7 @@ const s3 = document.getElementById('s3');
 // Müssen wir schaun wie der Input sein wird
 
 // Länge der Zeit für Fragen
-const sec = 3;
+const sec = 20;
 const setTime = sec *1000;
 
 
@@ -275,10 +279,6 @@ function countDownTimer() {
     // }
 
     if(remainingTime <= 0) {
-        clearInterval(timerLoop);
-        s1.style.display = "none";
-        s2.style.display = "none";
-        s3.style.display = "none";
         questionEnd();
     }
 } 
