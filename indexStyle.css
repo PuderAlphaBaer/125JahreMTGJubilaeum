@@ -229,4 +229,77 @@ body {
 .inputbox {
     justify-content: center;
     align-items: center;
+    display: none;
+}
+
+.zwischenbox {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: green;
+    position: absolute;
+}
+
+.zwischenbox2 {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: red;
+}
+
+.zwischenbox3 {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: burlywood;
+    position: absolute;
+}
+
+.tbox {
+    background-color: blue;
+    width: 80%;
+    height: 4%;
+    position: absolute;
+    top: 55%;
+    left: 10%;
+}
+
+.tbox2 {
+    background-color: white;
+    width: 0%;
+    height: 4%;
+    position: absolute;
+    top: 55%;
+    left: 10%;
+    transition: linear 2s;
+}
+
+.quizbox {
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: none;
+    background-color: black;
+}
+
+.sQbt {
+    position: absolute;
+}
+
+.frage1 {
+    font-size: 8vh;
+}
+
+
+.frage2 {
+    font-size: 8vh;
 }

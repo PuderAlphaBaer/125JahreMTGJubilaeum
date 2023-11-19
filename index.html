@@ -10,15 +10,24 @@
 </head>
 <body oncontextmenu="return false">
 
-    <div id="toggleButtonBox" class="buttonStyle">toggle Quiz</div>
-    <div id="toggleInputBox" class="buttonStyle">toggle Nick</div>
-    <div id="sQbt" class="buttonStyle">start Question</div>
+    <div id="zwischenbox2" class="zwischenbox2">
+        <div id="frage1" class="frage1"></div>
+        <div id="tbox" class="tbox"></div>
+        <div id="tbox2" class="tbox2"></div>
+    </div>
+
+    
+    <div id="zwischenbox" class="zwischenbox">
+        <div id="text1" class="text1">Du bist:</div>
+        <div id="text2" class="text2">Deine Punktzahl ist:</div>
+        <div id="text3" class="text3">Deine Platzierung ist:</div>
+    </div>
+
+    <div id="zwischenbox3" class="zwischenbox3">BLABLA PURE GENIUS BLA BLA</div>
 
 
     <div id="quizbox" class="quizbox">
-
-
-
+        <div id="frage2" class="frage2"></div>
         <div class="buttonSurContainer" id="buttonBox">
             <div class="buttonContainer">
                 <div id="bta" class="button buttonA"><div class="subButton">A</div></div>
@@ -40,6 +49,7 @@
             </div>
         </div>
     </div>
+    
 
     <!-- Input -->
     <div>
@@ -51,13 +61,12 @@
             <div>
                 <div type="button" id="submit" class="submit buttonStyle">Enter</div>
             </div>
-        </div>
     </div>
 
+    <div id="sQbt" class="buttonStyle sQbt">start Question</div>
 
     <script src="database.js"></script>
     <script src="questions.js"></script>
-    <script src="indexScript.js"></script>
     <script src="signin.js"></script>
     <script src="startquestion.js"></script>
 </body>

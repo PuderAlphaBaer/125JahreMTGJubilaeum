@@ -1,14 +1,13 @@
 
 // Konstruktor für Multiple Choice Fragen
 class Frage {
-    constructor(frage, a, b, c, d, loesung, punkte) {
+    constructor(frage, a, b, c, d, loesung) {
       this.frage = frage;
       this.a = a;
       this.b = b;
       this.c = c;
       this.d = d;
       this.loesung = loesung;
-      this.punkte = punkte;
     }
   }
 
@@ -16,16 +15,16 @@ class Frage {
     // Hier alle Fragen in richtiger Reinfolge auflisten
 
     // Normale Frage 
-    new Frage("Sonne", "rot", "gelb", "grün", "blau", "b", ''),
+    new Frage("Sonne", "rot", "gelb", "grün", "blau", "b"),
 
     // Frage mit zwei Lösungen
-    new Frage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", ["d", "a"], ''),
+    new Frage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", ["d", "a"]),
 
     // Frage mit nur 3 Antwortmöglichkeiten
-    new Frage("Tilman", "gut", "besser", "am besten", "", "c", ''),
+    new Frage("Tilman", "gut", "besser", "am besten", "", "c"),
 
     // Ja Nein Frage
-    new Frage("Christian ist ein Profi", "Ja", "Nein", "", "", "a", ''),
+    new Frage("Christian ist ein Profi", "Ja", "Nein", "", "", "a"),
   ];
 
 

@@ -15,12 +15,13 @@ tb1.addEventListener("keypress", function(event) {
     }
 });
 
+window.nickname;
 
 function nicknameuebermitteln() {
     if (blocksubmit==true) {
         tb1.classList.add('error');
     } else {
-    window.nickname = tb1.value;
+    nickname = tb1.value;
     inputBox.style.display = "none";
     supabaseInsert("spieler", ["name", "punktzahl"], [nickname, 0]) ;
 }}
@@ -55,7 +56,7 @@ function checkusername() {
                 blocksubmit = true;
             } else {
             // Abgleich vulgäre Sprache 
-            fetch("test.txt")
+            fetch("../data/test.txt")
             .then((res) => res.text())
             .then((proflist) => {
                 let result = proflist.match(new RegExp("\\b" + un.toLocaleLowerCase() + "\\b")) != null; 
