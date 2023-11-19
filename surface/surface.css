@@ -317,8 +317,10 @@ table, th, td {
     top: 0;
     right: 0;
     width: 10%;
-    height: 10%;   
+    height: 12%;   
     background-image: url("../Data/logo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .gamebox {

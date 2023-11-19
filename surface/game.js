@@ -146,6 +146,7 @@ function weiter() {
             <th class="udata">Punktzahl</th>
         </tr>
     </table>`;
+    supabaseUpdate('spieler', ["avotes", "bvotes", "cvotes", "dvotes"], [false, false, false, false], "gt", "id", 0)
     fetchRangliste();
 }
 
@@ -262,32 +263,46 @@ function auswertung() {
     votebox.style.display = "block";
     // Entscheidet, welches Diagramm verwendet werden soll, je nach Fragentyp
     if (questions[questionid-1].c=="") {
+
         // Zwei Antwortmöglichkeiten
-        supabaseFetch('fragen', 'avotes, bvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
-            xValues = [a.innerHTML, b.innerHTML];
-            yValues = [data[0].avotes, data[0].bvotes];
-            barColors = [a.style.backgroundColor, b.style.backgroundColor];
-            borderColors = ["white", "black", "white", "black"];
-            nchart();
-        });
-    } else {
-        if(questions[questionid-1].d=="") {
-            // Drei Antwortmöglichkeiten
-            supabaseFetch('fragen', 'avotes, bvotes, cvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
-                xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
-                yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes];
-                barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor];
-                borderColors = ["white", "black", "white", "black"]
+        supabaseFetch('spieler', 'avotes', 'eq', 'avotes', true, 'avotes', false).then((data) => {
+            supabaseFetch('spieler', 'bvotes', 'eq', 'bvotes', true, 'bvotes', false).then((data2) => {
+                xValues = [a.innerHTML, b.innerHTML];
+                yValues = [data.length, data2.length];
+                barColors = [a.style.backgroundColor, b.style.backgroundColor];
                 nchart();
             });
+        });
+
+    } else {
+        if(questions[questionid-1].d=="") {
+
+            // Drei Antwortmöglichkeiten
+            supabaseFetch('spieler', 'avotes', 'eq', 'avotes', true, 'avotes', false).then((data) => {
+                supabaseFetch('spieler', 'bvotes', 'eq', 'bvotes', true, 'bvotes', false).then((data2) => {
+                    supabaseFetch('spieler', 'cvotes', 'eq', 'cvotes', true, 'cvotes', false).then((data3) => {
+                        xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
+                        yValues = [data.length, data2.length, data3.length];
+                        barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor];
+                        nchart();
+                    });
+                });
+            });
+
         } else {
+
             // Vier Antwortmöglichkeiten (Normalfall)
-            supabaseFetch('fragen', 'avotes, bvotes, cvotes, dvotes', 'eq', 'id', questionid, 'id', false).then((data) => {
-                xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
-                yValues = [data[0].avotes, data[0].bvotes, data[0].cvotes, data[0].dvotes];
-                barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor, d.style.backgroundColor];
-                borderColors = ["white", "black", "white", "black"]
-                nchart();
+            supabaseFetch('spieler', 'avotes', 'eq', 'avotes', true, 'avotes', false).then((data) => {
+                supabaseFetch('spieler', 'bvotes', 'eq', 'bvotes', true, 'bvotes', false).then((data2) => {
+                    supabaseFetch('spieler', 'cvotes', 'eq', 'cvotes', true, 'cvotes', false).then((data3) => {
+                        supabaseFetch('spieler', 'dvotes', 'eq', 'dvotes', true, 'dvotes', false).then((data4) => {
+                            xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
+                            yValues = [data.length, data2.length, data3.length, data4.length];
+                            barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor, d.style.backgroundColor];
+                            nchart();
+                        });
+                    });
+                });
             });
         }
     }
@@ -304,7 +319,6 @@ function nchart() {
             datasets: [{
             backgroundColor: barColors,
             data: yValues,
-            borderColor: borderColors,
             }]
         },
             options: {
@@ -347,6 +361,9 @@ function nchart() {
                 yAxes: [{
                     // Würde yAchse mit Beschriftung (also 100, 150, 200, 250, etc) anzeigen Lassen
                     display: false,
+                    ticks: {
+                        beginAtZero: true
+                      }
                 }],
             }
             }
@@ -408,9 +425,3 @@ supabaseFetch('spieler', 'id, name, punktzahl', 'gt', 'punktzahl', -1, 'punktzah
 // });
 
 
-
-
-
-
-// Nur vorläufig, weil noch keine Spielstartsequenz gibt
-fetchRangliste();
