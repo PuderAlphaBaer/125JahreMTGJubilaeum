@@ -32,6 +32,7 @@ body {
 .button {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 47vw;
     border-radius: 2vw;
 }
@@ -39,6 +40,7 @@ body {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
+    align-items: center;
 }
 .buttonA {
     background-color: #D11031;
@@ -299,14 +301,14 @@ body {
 }
 
 .frage1 {
-    padding-top: 5%;
+    padding-top: 35%;
     font-size: 8vh;
 }
 
 
 .frage2 {
     font-size: 8vh;
-    padding-top: 5%;
+    padding-top: 35%;
 }
 
 .biginputbox {

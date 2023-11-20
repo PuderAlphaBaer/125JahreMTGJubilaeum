@@ -254,7 +254,7 @@ function timerend() {
 
 const votebox = document.getElementById('votebox');
 const vote = document.getElementById('vote');
-
+let borderColors;
 
 // Diagramm wer für was gestimmt hat
 // Musst du nicht verstehen, hab versucht so gut wie möglich zu kommentieren, damit für Style einfacher ist
@@ -306,7 +306,7 @@ function auswertung() {
             });
         }
     }
-
+    borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
 
 }
 
@@ -318,6 +318,8 @@ function nchart() {
             labels: xValues,
             datasets: [{
             backgroundColor: barColors,
+            borderColor: borderColors,
+            borderWidth: 3,
             data: yValues,
             }]
         },
