@@ -339,4 +339,34 @@ table, th, td {
     background-color: black;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
+
+.text {
+    display: flex;
+    justify-content: center;
+    align-items: bottom;
+    flex-direction: row;
+}
+
+.is {
+    color: red;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.start {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.qr {
+    width: 20%;
+    height: 0;
+    padding-bottom: 20%;
+    background-image: url("../Data/qr.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+

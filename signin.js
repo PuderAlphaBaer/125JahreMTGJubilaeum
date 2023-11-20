@@ -12,7 +12,7 @@ document.getElementById('skip').addEventListener('click', skip);
 
 function skip() {
   nickname = "Tilman";
-  biginputbox.style.display = "none";
+  startGame();
 }
 
 
@@ -36,8 +36,8 @@ function nicknameuebermitteln() {
         tb1.classList.add('error');
     } else {
     nickname = tb1.value;
-    inputBox.style.display = "none";
-    supabaseInsert("spieler", ["name", "punktzahl"], [nickname, 0]) ;
+    supabaseInsert("spieler", ["name", "punkte"], [nickname, 0]) ;
+    startGame();
 }}
 
 

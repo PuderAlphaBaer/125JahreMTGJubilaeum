@@ -382,6 +382,7 @@ const tablebox = document.getElementById('tablebox');
 // row hat als class "rank1", "rank2", "rank4", "rakn5" usw.
 // einzelnes feld hat als class "row", ist noch änderbar
 function userupdate(rank, uname, score) {
+    supabaseUpdate("spieler", ["rang"], [rank], "eq", "name", uname);
     document.getElementById('table').innerHTML += `
     <tr class="rank${rank}">
         <td class="row">${rank}</th>

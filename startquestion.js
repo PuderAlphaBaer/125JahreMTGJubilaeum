@@ -9,7 +9,10 @@ const zwischenbox = document.getElementById('zwischenbox');
 const frage1 = document.getElementById('frage1');
 const frage2 = document.getElementById('frage2');
 const zwischenbox3 = document.getElementById('zwischenbox3');
+const text1 = document.getElementById('text1');
 const text2 = document.getElementById('text2');
+const text3 = document.getElementById('text3');
+const text4 = document.getElementById('text4');
 const skip2 = document.getElementById('skip2');
 
 skip2.addEventListener('click', questionEnd);
@@ -24,6 +27,7 @@ let points = 0;
 let streak = 0;
 let streakrech;
 let allpoints = 0;
+let rank;
 
 function questionStarted() {
   // questionstarted starten sobald timestartquestion ereicht ist
@@ -91,91 +95,111 @@ function questionEnd() {
   zwischenbox.style.display = "flex";
   zwischenbox3.style.display = "none";
   sqbt.style.display = "block";  
-  allpoints = allpoints+points;
-  text2.innerHTML = "           Deine Punktzahl: "+allpoints+"                ";
+  text1.innerHTML = "Dein Nickname: "+nickname;
+  text3.innerHTML = "Deine Streak: "+streak;
+  supabaseFetch('spieler', 'punkte, rang', 'eq', 'name', nickname, 'punkte', true).then((data) => {
+  text2.innerHTML = "Deine Punktzahl: "+data[0].punkte;
+  if(data[0].rang<11) {
+    text4.innerHTML = "Du bist unter den top 10";
+  } else {
+  text4.innerHTML = "Dein Rang: "+data[0].rang;
+}});
 }
 
 
 function aClicked() {
-    supabaseUpdate('spieler', 'avotes', true, 'eq', 'name', nickname);
+    supabaseUpdate('spieler', ['avotes'], [true], 'eq', 'name', nickname);
     if(questions[questionid-1].loesung.includes('a')==true) {
-      points = Date.now()-questionStart;
-      points = 20000-points;
+      console.log("richtig");
+      addPoints = Date.now()-questionStart;
+      addPoints = 20000-addPoints;
       streakrech = streak*0.1;
       streakrech = 1+streakrech;
-      points = points*streakrech;
-      points = Math.floor(points / 10);
+      addPoints = addPoints*streakrech;
+      addPoints = Math.floor(addPoints / 20);
       streak = streak+1;
-      supabaseUpdate('spieler', 'punkte', points, 'eq', 'name', nickname);
-      supabaseUpdate('spieler', 'streak', streak, 'eq', 'name', nickname);
+      console.log(addPoints);
+      supabaseFetch('spieler', 'punkte', 'eq', 'name', nickname, 'punkte', true).then((data) => {
+        supabaseUpdate('spieler', ['punkte'], [addPoints+data[0].punkte], 'eq', 'name', nickname);
+      });
     }
     else {
       streak = 0;
-      supabaseUpdate('spieler', 'streak', streak, 'eq', 'name', nickname);
     }
+    supabaseUpdate('spieler', ['streak'], [streak], 'eq', 'name', nickname);
     quizbox.style.display = "none";
     zwischenbox3.style.display = "flex";
 }
 
+
 function bClicked() {
-  supabaseUpdate('spieler', 'bvotes', true, 'eq', 'name', nickname);
+  supabaseUpdate('spieler', ['bvotes'], [true], 'eq', 'name', nickname);
   if(questions[questionid-1].loesung.includes('b')==true) {
-    points = Date.now()-questionStart;
-    points = 20000-points;
+    console.log("richtig");
+    addPoints = Date.now()-questionStart;
+    addPoints = 20000-addPoints;
     streakrech = streak*0.1;
     streakrech = 1+streakrech;
-    points = points*streakrech;
-    points = Math.floor(points / 10);
+    addPoints = addPoints*streakrech;
+    addPoints = Math.floor(addPoints / 20);
     streak = streak+1;
-    supabaseUpdate('spieler', 'punkte', points, 'eq', 'name', nickname);
-    supabaseUpdate('spieler', 'streak', streak, 'eq', 'name', nickname);
+    console.log(addPoints);
+    supabaseFetch('spieler', 'punkte', 'eq', 'name', nickname, 'punkte', true).then((data) => {
+      supabaseUpdate('spieler', ['punkte'], [addPoints+data[0].punkte], 'eq', 'name', nickname);
+    });
   }
   else {
     streak = 0;
-    supabaseUpdate('spieler', 'streak', streak, 'eq', 'name', nickname);
   }
+  supabaseUpdate('spieler', ['streak'], [streak], 'eq', 'name', nickname);
   quizbox.style.display = "none";
   zwischenbox3.style.display = "flex";
 }
 
 function cClicked() {
-  supabaseUpdate('spieler', 'cvotes', true, 'eq', 'name', nickname);
+  supabaseUpdate('spieler', ['cvotes'], [true], 'eq', 'name', nickname);
   if(questions[questionid-1].loesung.includes('c')==true) {
-    points = Date.now()-questionStart;
-    points = 20000-points;
+    console.log("richtig");
+    addPoints = Date.now()-questionStart;
+    addPoints = 20000-addPoints;
     streakrech = streak*0.1;
     streakrech = 1+streakrech;
-    points = points*streakrech;
-    points = Math.floor(points / 10);
+    addPoints = addPoints*streakrech;
+    addPoints = Math.floor(addPoints / 20);
     streak = streak+1;
-    supabaseUpdate('spieler', 'punkte', points, 'eq', 'name', nickname);
-    supabaseUpdate('spieler', 'streak', streak, 'eq', 'name', nickname);
+    console.log(addPoints);
+    supabaseFetch('spieler', 'punkte', 'eq', 'name', nickname, 'punkte', true).then((data) => {
+      supabaseUpdate('spieler', ['punkte'], [addPoints+data[0].punkte], 'eq', 'name', nickname);
+    });
   }
   else {
     streak = 0;
-    supabaseUpdate('spieler', 'streak', streak, 'eq', 'name', nickname);
   }
+  supabaseUpdate('spieler', ['streak'], [streak], 'eq', 'name', nickname);
   quizbox.style.display = "none";
   zwischenbox3.style.display = "flex";
 }
 
 function dClicked() {
-  supabaseUpdate('spieler', 'dvotes', true, 'eq', 'name', nickname);
+  supabaseUpdate('spieler', ['dvotes'], [true], 'eq', 'name', nickname);
   if(questions[questionid-1].loesung.includes('d')==true) {
-    points = Date.now()-questionStart;
-    points = 20000-points;
+    console.log("richtig");
+    addPoints = Date.now()-questionStart;
+    addPoints = 20000-addPoints;
     streakrech = streak*0.1;
     streakrech = 1+streakrech;
-    points = points*streakrech;
-    points = Math.floor(points / 10);
+    addPoints = addPoints*streakrech;
+    addPoints = Math.floor(addPoints / 20);
     streak = streak+1;
-    supabaseUpdate('spieler', 'punkte', points, 'eq', 'name', nickname);
-    supabaseUpdate('spieler', 'streak', streak, 'eq', 'name', nickname);
+    console.log(addPoints);
+    supabaseFetch('spieler', 'punkte', 'eq', 'name', nickname, 'punkte', true).then((data) => {
+      supabaseUpdate('spieler', ['punkte'], [addPoints+data[0].punkte], 'eq', 'name', nickname);
+    });
   }
   else {
     streak = 0;
-    supabaseUpdate('spieler', 'streak', streak, 'eq', 'name', nickname);
   }
+  supabaseUpdate('spieler', ['streak'], [streak], 'eq', 'name', nickname);
   quizbox.style.display = "none";
   zwischenbox3.style.display = "flex";
 }
@@ -192,9 +216,14 @@ function dClicked() {
 
 
 
-
-
-
+function startGame() {
+  biginputbox.style.display = "none";
+  zwischenbox.style.display = "flex";
+  text1.innerHTML = "Dein Nickname: "+nickname;
+  text2.innerHTML = "Deine Punktzahl: 0";
+  text3.innerHTML = "Deine Streak: 0";
+  text4.innerHTML = "Dein Rang: -";
+}
 
 
 

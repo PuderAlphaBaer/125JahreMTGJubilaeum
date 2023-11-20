@@ -313,3 +313,24 @@ body {
     width: 100%;
     display: flex;
 }
+
+.text1 {
+
+}
+
+
+.text2 {
+
+}
+
+
+.text3 {
+
+}
+
+.textbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
