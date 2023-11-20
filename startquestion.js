@@ -42,8 +42,8 @@ function questionStarted() {
 
 function startPreQuestion() {
   supabaseFetch("spieler", "blocked", "eq", "name", nickname, "id", true).then((data) => {
-    if(data[0].blocked==true) {
-      alert("Du wurdest geblockt, Grund dafür kann ein unangemessener Benutzername oder Hacken sein.");
+    if(data[0].blocked!=NULL) {
+      alert("Du wurdest gesperrt. Grund dafür: "+data[0].blocked+".");
       window.location.href = "index.html";
     }
   })

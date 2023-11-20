@@ -31,14 +31,26 @@ else {
 }
 
 
-
+let ban;
 
  function report(uid, uname) {
-    if (confirm(`Sind Sie sich sicher, dass Sie User ${uid} mit dem Namen "${uname}" sperren möchten`)) {
-        supabaseUpdate("spieler", ["blocked", "punkte"], [true, -1], "eq",  "id",  uid).then(() => {
+    // if (confirm(`Sind Sie sich sicher, dass Sie User ${uid} mit dem Namen "${uname}" sperren möchten`)) {
+    //     supabaseUpdate("spieler", ["blocked", "punkte"], [true, -1], "eq",  "id",  uid).then(() => {
+    //         fetchUserlist();
+    //     });
+    // }
+    
+    
+
+    ban = prompt(`Wofür wollen Sie User ${uid} mit dem Namen "${uname}" sperren`);
+    if (person == null || person == "") {
+      console.log("bann abgebrochen");
+    } else {
+        supabaseUpdate("spieler", ["blocked", "punkte"], [person, -1], "eq",  "id",  uid).then(() => {
             fetchUserlist();
         });
-    } 
+    }
+
     };
 
 function fetchUserlist() {
