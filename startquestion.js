@@ -18,7 +18,7 @@ const skip2 = document.getElementById('skip2');
 skip2.addEventListener('click', questionEnd);
 sqbt.addEventListener('click', questionStarted); // ist dann ein update in der fragendatenbank !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-let timestartquestion = Date.now() + 10000;
+let timestartquestion;
 let questionid = 0;
 let addPoints = 0;
 let questionStart = 0;
@@ -31,6 +31,7 @@ let rank;
 let waituntilquestion;
 
 function questionStarted() {
+  timestartquestion = Date.now() + 2000;
   // questionstarted starten sobald timestartquestion ereicht ist
    waituntilquestion = timestartquestion-Date.now();
     setTimeout(() => {
