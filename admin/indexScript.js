@@ -10,7 +10,7 @@ let uclass = "udata"
 
 function userupdate(uid, rank, uname, score, blocked) {
     
-if(blocked > 0) {
+if(blocked != null) {
     uclass = "banned"; 
     repbox = "";
 } 
@@ -42,11 +42,11 @@ let ban;
     
     
 
-    ban = prompt(`Wofür wollen Sie User ${uid} mit dem Namen "${uname}" sperren`);
-    if (person == null || person == "") {
+    ban = prompt(`Wofür wollen Sie User ${uid} mit dem Namen "${uname}" sperren`,  "Anstößiger Benutzername");
+    if ((ban )== null || ban == "") {
       console.log("bann abgebrochen");
     } else {
-        supabaseUpdate("spieler", ["blocked", "punkte"], [person, -1], "eq",  "id",  uid).then(() => {
+        supabaseUpdate("spieler", ["blocked", "punkte"], [ban, -1], "eq",  "id",  uid).then(() => {
             fetchUserlist();
         });
     }
