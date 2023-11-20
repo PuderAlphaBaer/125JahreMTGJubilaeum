@@ -146,7 +146,8 @@ function weiter() {
             <th class="udata">Punktzahl</th>
         </tr>
     </table>`;
-    supabaseUpdate('spieler', ["avotes", "bvotes", "cvotes", "dvotes"], [false, false, false, false], "gt", "id", 0)
+    console.log("hier commentar weg")
+    // supabaseUpdate('spieler', ["avotes", "bvotes", "cvotes", "dvotes"], [false, false, false, false], "gt", "id", 0)
     fetchRangliste();
 }
 
@@ -255,16 +256,26 @@ function timerend() {
 const votebox = document.getElementById('votebox');
 const vote = document.getElementById('vote');
 let borderColors;
+let avotes;
+let bvotes;
+let cvotes;
+let dvotes;
+
 
 // Diagramm wer für was gestimmt hat
 // Musst du nicht verstehen, hab versucht so gut wie möglich zu kommentieren, damit für Style einfacher ist
 // Im Fall der Fälle kannst du unter https://www.chartjs.org/docs/latest/ alles nachlesen
 function auswertung() {
     votebox.style.display = "block";
+    avotes = 0;
+    bvotes = 0;
+    cvotes = 0;
+    dvotes = 0;
     // Entscheidet, welches Diagramm verwendet werden soll, je nach Fragentyp
     if (questions[questionid-1].c=="") {
-
         // Zwei Antwortmöglichkeiten
+
+
         supabaseFetch('spieler', 'avotes', 'eq', 'avotes', true, 'avotes', false).then((data) => {
             supabaseFetch('spieler', 'bvotes', 'eq', 'bvotes', true, 'bvotes', false).then((data2) => {
                 xValues = [a.innerHTML, b.innerHTML];
@@ -274,10 +285,31 @@ function auswertung() {
             });
         });
 
-    } else {
-        if(questions[questionid-1].d=="") {
 
-            // Drei Antwortmöglichkeiten
+        // supabaseFetch('spieler', 'avotes, bvotes', '', '', "", 'avotes', false).then((data) => {
+        //     for (let i = 0; i < data.length; i++) {
+        //         if(data[i].avotes==true) {
+        //             avotes = avotes+1;
+        //         }
+        //         if(data[i].bvotes==true) {
+        //             bvotes = bvotes+1;
+        //         }
+        //         if(i==data.length) {
+        //             xValues = [a.innerHTML, b.innerHTML];
+        //             yValues = [avotes, bvotes];
+        //             barColors = [a.style.backgroundColor, b.style.backgroundColor];
+        //         }
+        //     }
+        // });
+
+
+
+
+
+    } else {
+         if(questions[questionid-1].d=="") {
+
+        //     // Drei Antwortmöglichkeiten
             supabaseFetch('spieler', 'avotes', 'eq', 'avotes', true, 'avotes', false).then((data) => {
                 supabaseFetch('spieler', 'bvotes', 'eq', 'bvotes', true, 'bvotes', false).then((data2) => {
                     supabaseFetch('spieler', 'cvotes', 'eq', 'cvotes', true, 'cvotes', false).then((data3) => {
@@ -289,9 +321,30 @@ function auswertung() {
                 });
             });
 
+        // supabaseFetch('spieler', 'avotes, bvotes, cvotes', '', '', "", 'avotes', false).then((data) => {
+        //     for (let i = 0; i < data.length; i++) {
+        //         if(data[i].avotes==true) {
+        //             avotes = avotes+1;
+        //         }
+        //         if(data[i].bvotes==true) {
+        //             bvotes = bvotes+1;
+        //         }
+        //         if(data[i].cvotes==true) {
+        //             cvotes = cvotes+1;
+        //         }
+        //         if(i==data.length) {
+        //             xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
+        //             yValues = [avotes, bvotes, cvotes];
+        //             barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor];
+        //         }
+        //     }
+
+        // });
+
+
         } else {
 
-            // Vier Antwortmöglichkeiten (Normalfall)
+            // // Vier Antwortmöglichkeiten (Normalfall)
             supabaseFetch('spieler', 'avotes', 'eq', 'avotes', true, 'avotes', false).then((data) => {
                 supabaseFetch('spieler', 'bvotes', 'eq', 'bvotes', true, 'bvotes', false).then((data2) => {
                     supabaseFetch('spieler', 'cvotes', 'eq', 'cvotes', true, 'cvotes', false).then((data3) => {
@@ -304,6 +357,31 @@ function auswertung() {
                     });
                 });
             });
+
+            // supabaseFetch('spieler', 'avotes, bvotes, cvotes, dvotes', '', '', "", 'avotes', false).then((data) => {
+            //     for (let i = 0; i < data.length; i++) {
+            //         if(data[i].avotes==true) {
+            //             avotes = avotes+1;
+            //         }
+            //         if(data[i].bvotes==true) {
+            //             bvotes = bvotes+1;
+            //         }
+            //         if(data[i].cvotes==true) {
+            //             cvotes = cvotes+1;
+            //         }
+            //         if(data[i].dvotes==true) {
+            //             dvotes = dvotes+1;
+            //         }
+            //         if(i==data.length) {
+            //             xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
+            //             yValues = [avotes, bvotes, cvotes, dvotes];
+            //             barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor, d.style.backgroundColor];
+            //         }
+            //     }
+
+            // });
+
+
         }
     }
     borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
@@ -397,10 +475,11 @@ function userupdate(rank, uname, score) {
 
 // Ruft "userupdate()" für jeden User auf und füllt so Ranglistentabelle
 function fetchRangliste() {
-supabaseFetch('spieler', 'id, name, punktzahl', 'gt', 'punktzahl', -1, 'punktzahl', false).then((data) => {
+    
+supabaseFetch('spieler', 'id, name, punkte', 'gt', 'punkte', -1, 'punkte', false).then((data) => {
             console.log(data)
      for (let i = 0; i < data.length; i++) {
-        userupdate(i + 1, data[i].name, data[i].punktzahl)
+        userupdate(i + 1, data[i].name, data[i].punkte)
      }
     });
 }

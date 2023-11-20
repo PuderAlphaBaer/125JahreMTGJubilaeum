@@ -1,4 +1,4 @@
-const admin = document.getElementById('admin');
+const rangliste = document.getElementById('rangliste');
 const ubox = document.getElementById('ubox');
 let repbox = "";
 
@@ -6,16 +6,11 @@ let repbox = "";
 
 let uclass = "udata"
 // Hier einfach userupdate() mit supabase verbinden
-userupdate(2, "Christian", 999999999999, 2);
-userupdate(1, "Tilman", 1000000000000, 1);
-userupdate(42, "Banndoll", undefined, undefined, true)
-userupdate(1, "Tilman_der_erste", 1000, 3);
-userupdate(1, "Tilman_der_zweite", 100, 5);
-userupdate(1, "Tilman_der_dritte", 10, 18);
 
-function userupdate(uid, uname, score, rank, banned) {
+
+function userupdate(uid, rank, uname, score, blocked) {
     
-if(banned==true) {
+if(blocked > 0) {
     uclass = "banned"; 
     repbox = "";
 } 
@@ -40,9 +35,25 @@ else {
 
  function report(uid, uname) {
     if (confirm(`Sind Sie sich sicher, dass Sie User ${uid} mit dem Namen "${uname}" sperren möchten`)) {
-        supabaseUpdate("spieler", ["blocked", "punktzahl"], [true, -1], "eq",  "id",  uid);
-      } else {
-        // Nix
-      }
-};
+        supabaseUpdate("spieler", ["blocked", "punkte"], [true, -1], "eq",  "id",  uid).then(() => {
+            fetchUserlist();
+        });
+    } 
+    };
 
+function fetchUserlist() {
+    ubox.innerHTML =`<tr> 
+    <th class="udata">UID</th>
+    <th class="udata">User Name</th>
+    <th class="udata">Score</th>
+    <th class="udata">Rank</th>
+  </tr>`;
+    supabaseFetch('spieler', 'id, name, punkte, rang, blocked', '', '', "", 'rang', false).then((data) => {
+                console.log(data)
+         for (let i = 0; i < data.length; i++) {
+            userupdate(data[i].id, i + 1, data[i].name, data[i].punkte, data[i].blocked)
+         }
+        });
+    }
+
+    fetchUserlist();

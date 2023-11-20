@@ -16,30 +16,37 @@ const text4 = document.getElementById('text4');
 const skip2 = document.getElementById('skip2');
 
 skip2.addEventListener('click', questionEnd);
-sqbt.addEventListener('click', questionStarted);
+sqbt.addEventListener('click', questionStarted); // ist dann ein update in der fragendatenbank !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-let timestartquestion = Date.now + 5000;
+let timestartquestion = Date.now() + 10000;
 let questionid = 0;
 let addPoints = 0;
 let questionStart = 0;
-let interval1;
+let interval;
 let points = 0;
 let streak = 0;
 let streakrech;
 let allpoints = 0;
 let rank;
+let waituntilquestion;
 
 function questionStarted() {
   // questionstarted starten sobald timestartquestion ereicht ist
-  interval1 = setInterval(function() {
-    if(Date.now() >> timestartquestion) {
+   waituntilquestion = timestartquestion-Date.now();
+    setTimeout(() => {
       startPreQuestion();
-      console.log("test")
-      clearInterval(interval1);
-    }});
-  }
+    }, waituntilquestion);
+  };
+
+
 
 function startPreQuestion() {
+  supabaseFetch("spieler", "blocked", "eq", "name", nickname, "id", true).then((data) => {
+    if(data[0].blocked==true) {
+      alert("Du wurdest geblockt, Grund dafür kann ein unangemessener Benutzername oder Hacken sein.");
+      window.location.href = "index.html";
+    }
+  })
   questionid = questionid+1;
   zwischenbox.style.display = "none";
   frage1.innerHTML = questions[questionid-1].frage;

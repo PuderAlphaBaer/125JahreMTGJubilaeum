@@ -14,7 +14,7 @@ body {
     user-select: none;
 }
 
-.admin {
+.rangliste {
     display: flex;
     justify-content: center;
     align-items: center;
