@@ -10,71 +10,81 @@
 </head>
 <body oncontextmenu="return false">
 
-    <div id="zwischenbox2" class="zwischenbox2">
-        <div id="frage1" class="frage1"></div>
-        <div id="tbox" class="tbox"></div>
-        <div id="tbox2" class="tbox2"></div>
-    </div>
 
-    
-    <div id="zwischenbox" class="zwischenbox">
-        <div class="textbox" id="textbox">
-            <div id="text1" class="text1"></div>
-            <div id="text2" class="text2"></div>
-            <div id="text3" class="text3"></div>
-            <div id="text4" class="text4"></div>
+    <div id="bigbox" class="bigbox"> <!-- Box für alles was nicht Signin ist-->
+
+        <div id="zwischenbox2" class="zwischenbox2">  <!-- Ablaufende Bar mit Frage  WICHTIG! display property der Box darf nicht verändert werden, sonst funktioniert transition nicht mehr-->
+            <div id="frage1" class="frage1"></div>
+            <div id="tbox" class="tbox"></div>
+            <div id="tbox2" class="tbox2"></div>
         </div>
-    </div>
 
-    <div id="zwischenbox3" class="zwischenbox3">
-        <div>BLABLA PURE GENIUS BLA BLA</div>
-        <div id="skip2" class="skip2 buttonStyle"> Timer Skippen</div>
-    </div>
+        <div id="zwischenbox3" class="zwischenbox3"> <!-- Box nach click eines buttons während Frage noch aktiv ist-->
+            <div>BLABLA PURE GENIUS BLA BLA</div>
+            <div id="skip2" class="skip2 buttonStyle"> Timer Skippen</div> <!-- Nur temporär für einfacheren Umgang mit Website-->
+        </div>
 
+        <div id="zwischenbox4" class="zwischenbox4"> <!-- Box zwischen bzw nach Fragen-->
+            <div class="img imgr" id="imgr"></div>
+            <div class="img imgf" id="imgf"></div>
+            <div class="worte" id="worte"></div>
+            <div class="img ims" id="ims"></div> 
+            <div class="streak" id="streak"></div> 
+        </div>
 
-    <div id="quizbox" class="quizbox">
-        <div id="frage2" class="frage2"></div>
-        <div class="buttonSurContainer" id="buttonBox">
-            <div class="buttonContainer">
-                <div id="bta" class="button buttonA"><div class="subButton">A</div></div>
-                <div id="btb" class="button buttonB"><div class="subButton">B</div></div>
-            </div>
-            <div class="timerContainer">
-                <div class="timerbox">
-                        <div class="s1" id="s1"></div>
-                        <div class="s2" id="s2"></div>
-                        <div class="s3" id="s3"></div>
-                    <div class="bigcircle">
-                        <div class="timertext" id="timertext">7.00</div>
+        <div id="zwischenbox1" class="zwischenbox1"> <!-- Box nach Signin vor erster Frage-->
+            	<div>
+                    Danke, dass sie sich für unsere Dienste entschieden haben. Es fallen Ende jedes Monats Gebühren an, folgend sind die Geschäftsbedingungen denen sie zugestimmt haben:
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad explicabo reprehenderit officia ut cupiditate id libero facere beatae velit, ratione accusamus nesciunt, delectus illum voluptates quibusdam error. Facilis id obcaecati dolore doloribus, dignissimos non dolor minus possimus sit officiis, quam, sed nemo eligendi nam aliquid doloremque distinctio praesentium reprehenderit quae voluptas rem? Rem aliquid autem numquam. Aliquid iste amet sunt sint nostrum recusandae animi illum, eaque quidem minus quos quis, aut accusantium exercitationem, et laboriosam facilis totam? Pariatur ipsa fugit, numquam ipsum perspiciatis veniam modi autem quam enim, natus magnam laboriosam aut necessitatibus blanditiis architecto atque aliquam, veritatis totam fugiat dignissimos temporibus. Repellat dolorem harum itaque soluta, veritatis illum perferendis rem commodi eaque, odit maiores reiciendis, quibusdam voluptatem eum deleniti nesciunt omnis laudantium quia? Facere recusandae repellendus doloribus officia laboriosam assumenda voluptatem tempore excepturi qui unde, eveniet accusantium saepe non. Velit illo odit neque exercitationem vel iure! Temporibus officia quam sequi consequatur accusantium, beatae animi eos! Aliquid repellat possimus labore ad corrupti illo accusamus laborum earum sapiente id impedit dolorem consectetur non architecto corporis minus, eos illum aperiam esse asperiores ab mollitia voluptates. Quis quibusdam ipsam, consequuntur officia in, molestias deserunt beatae ea aut vero alias. Perferendis sunt deserunt ipsam. 
+                </div>
+        </div>
+
+        <div id="quizbox" class="quizbox"> <!-- Box für Quizentscheidung und Timer-->
+            <div id="frage2" class="frage2"></div>
+            <div class="buttonSurContainer" id="buttonBox">
+                <div class="buttonContainer">
+                    <div id="bta" class="button buttonA"><div class="subButton">A</div></div>
+                    <div id="btb" class="button buttonB"><div class="subButton">B</div></div>
+                </div>
+                <div class="timerContainer"> <!-- Timer-->
+                    <div class="timerbox">
+                            <div class="s1" id="s1"></div>
+                            <div class="s2" id="s2"></div>
+                            <div class="s3" id="s3"></div>
+                        <div class="bigcircle">
+                            <div class="timertext" id="timertext">7.00</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="buttonContainer">
-                <div id="btc" class="button buttonC"><div class="subButton">C</div></div>
-                <div id="btd" class="button buttonD"><div class="subButton">D</div></div>
+                <div class="buttonContainer">
+                    <div id="btc" class="button buttonC"><div class="subButton">C</div></div>
+                    <div id="btd" class="button buttonD"><div class="subButton">D</div></div>
+                </div>
             </div>
         </div>
+
+        <div class="unbox" id="unbox"></div> <!-- Box für Username oben rechts-->
     </div>
     
 
-    <!-- Input -->
+    <!-- Box für Singin -->
     <div id="biginputbox" class="biginputbox">
         <div id="inputBox" class="inputbox">
             <div class="tb1b" id="tb1b">
-                <input type="text" id="tb1" class="tb1" placeholder="Nickname eingeben" oninput="setTimeout(checkusername(),300)"> <!-- Username_Input_Box -->
-                <p class="unerror" id="unerror"></p>
+                <input type="text" id="tb1" class="tb1" placeholder="Nickname eingeben" oninput="setTimeout(checkusername(),300)">
+                <p class="unerror" id="unerror"></p> <!-- Zeigt ob Username verwendet werden kann-->
             </div>
             <div>
                 <div id="submit" class="submit buttonStyle">Enter</div>
-                <div id="skip" class="skip buttonStyle"> Überspringen</div>
+                <div id="skip" class="skip buttonStyle"> Überspringen</div> <!-- Nur temporär für einfacheren Umgang mit Website-->
             </div>
         </div>
     </div>
 
-    <div id="sQbt" class="buttonStyle sQbt">start Question</div>
+    <div id="sQbt" class="buttonStyle sQbt">start Question</div> <!-- Nur temporär bis realtime da ist-->
 
     <script src="database.js"></script>
-    <script src="questions.js"></script>
+    <script src="value.js"></script>
     <script src="signin.js"></script>
     <script src="startquestion.js"></script>
 </body>

@@ -94,3 +94,22 @@ function checkusername() {
 
 
 
+
+
+
+
+
+
+    const bigbox = document.getElementById('bigbox');
+    const unbox = document.getElementById('unbox');
+
+
+
+
+    function startGame() {
+        biginputbox.style.display = "none";
+        bigbox.style.display = "flex";
+        unbox.innerHTML = nickname;
+    }
+    
+    
