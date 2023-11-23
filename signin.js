@@ -15,13 +15,13 @@ function skip() {
   startGame();
 }
 
+function submit() {
+  nickname = tb1.value;
+  startGame();
+}
 
 
-
-submit.addEventListener('click', function () {
-    nicknameuebermitteln();
-} 
-);
+submit.addEventListener('click', submit());
 tb1.addEventListener("keypress", function(event) {
     if (event.key === 'Enter') {
         event.preventDefault();
@@ -33,14 +33,13 @@ tb1.addEventListener("keypress", function(event) {
 
 function nicknameuebermitteln() {
     checkusername();
-    //if (blocksubmit==true) {
-    //    tb1.classList.add('error');
-    //} else {
+    if (blocksubmit==true) {
+        tb1.classList.add('error');
+    } else {
     nickname = tb1.value;
     supabaseInsert("spieler", ["name", "punkte"], [nickname, 0]) ;
     startGame();
-//}
-}
+}}
 
 
 // Kriterien für Benutzername
