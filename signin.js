@@ -33,13 +33,14 @@ tb1.addEventListener("keypress", function(event) {
 
 function nicknameuebermitteln() {
     checkusername();
-    if (blocksubmit==true) {
-        tb1.classList.add('error');
-    } else {
+    //if (blocksubmit==true) {
+    //    tb1.classList.add('error');
+    //} else {
     nickname = tb1.value;
     supabaseInsert("spieler", ["name", "punkte"], [nickname, 0]) ;
     startGame();
-}}
+//}
+}
 
 
 // Kriterien für Benutzername
