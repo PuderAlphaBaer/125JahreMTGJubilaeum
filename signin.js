@@ -15,14 +15,14 @@ function skip() {
   startGame();
 }
 
-function submit() {
+function submitt() {
   nickname = tb1.value;
   supabaseInsert("spieler", ["name", "punkte"], [nickname, 0]) ;
   startGame();
 }
 
 
-submit.addEventListener('click', submit());
+submit.addEventListener('click', submitt());
 tb1.addEventListener("keypress", function(event) {
     if (event.key === 'Enter') {
         event.preventDefault();
@@ -109,6 +109,7 @@ function checkusername() {
 
 
     function startGame() {
+        console.log("submited");
         biginputbox.style.display = "none";
         bigbox.style.display = "flex";
         unbox.innerHTML = nickname;
