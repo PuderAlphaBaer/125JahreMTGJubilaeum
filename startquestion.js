@@ -30,26 +30,33 @@ let rank;
 let waituntilquestion;
 let ergebnis;
 
-// Wird aufgerufen bei Update in Tabelle
+
+// PAYLOAD SOLL WAS AUSLÖSEN
+// PAYLOAD MUSS WO ZWISCHENSCHREIBEN
+// ZWISCHENSCHREIBEN MUSS GELESEN WERDEN
+
+
 function questionStarted() {
+  // ZEIT UND ID
+  // -------------------> hier kommt dann die frage ZEIT rein (wenn du die hast)
   timestartquestion = Date.now() + 100; // timestartquestion später das was in die datenbank geschrieben wird (utc umgewandelt dann musst du eif machen)
   // questionstarted starten sobald timestartquestion ereicht ist
    waituntilquestion = timestartquestion-Date.now();
     setTimeout(() => {
       startPreQuestion();
     }, waituntilquestion);
-  };
+};
 
 
 // 5s vor Fragen beginn
-function startPreQuestion() {
+function startPreQuestion(startId) {
   supabaseFetch("spieler", "blocked", "eq", "name", nickname, "id", true).then((data) => {
     if(data[0].blocked!=null) {
       alert("Du wurdest gesperrt. Grund dafür: "+data[0].blocked);
       window.location.href = "index.html";
     }
   })
-  questionid = questionid+1;
+  questionid = startId;
   zwischenbox1.style.display = "none";
   zwischenbox4.style.display = "none";
   frage1.innerHTML = questions[questionid-1].frage;

@@ -40,18 +40,6 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 //  tbox2.style.transition = "linear " + pretime;  
   function startpreQuestion() {
     // if operator checkt, ob noch fragen da sind
@@ -228,7 +216,7 @@ function countDownTimer() {
 // Wird bei Ablaufen der Zeit aufgerufen
 function timerend() {
     clearInterval(timerLoop);
-    supabaseUpdate("fragen", ["beendet"], ["true"], "eq", "id", questionid);
+    // supabaseUpdate("fragen", ["beendet"], ["true"], "eq", "id", questionid);
     timerContainer.style.display = "none";
     // Verwendet "includes()", um mehrere Lösungen zu ermöglichen -- ACHTUNG includes() wird von Internetexplorer 11 oder weniger nicht unterstützt, sollte kein Problem darstellen, da es nur für surface.html verwendet wird
     if(questions[questionid-1].loesung.includes("a")==true) {

@@ -1,5 +1,3 @@
-
-// Konstruktor für Multiple Choice Fragen
 class Frage {
     constructor(frage, a, b, c, d, loesung, zeit, id, startzeit) {
       this.id = id;
@@ -23,7 +21,7 @@ class Frage {
 
   const questions = [
     // Hier alle Fragen in richtiger Reinfolge auflisten
-
+    new Frage("Spiel", "Spiel", "Spiel", "Spiel", "Spiel", "a", 5, 0, 0), // Dummy Frage, damit die IDs stimmen
     // Normale Frage 
     new Frage("Sonne", "rot", "gelb", "grün", "blau", "b", 5, 1, 0),
 

@@ -183,6 +183,8 @@ const fragenUpdates = database.channel('fragenUpdates')
         (payload) => {
             console.log('fragen', payload)
             console.log(payload.new)
+            questions[payload.new.id].startzeit = payload.new.start;
+            console.log(questions[payload.new.id])
             return payload;
         }
     )

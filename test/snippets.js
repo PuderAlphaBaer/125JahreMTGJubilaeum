@@ -24,19 +24,19 @@ async function ligma() {
         frage3.innerHTML = 'Frage 3 gestartet';
     }
 }
-ligma();
+// ligma();
 
 function milliUTC() {
     return jetzt().getTime() + (jetzt().getTimezoneOffset() * 60000);
 }
 
-frage1.addEventListener('click', function() {
-    if (checkIfQuestionStarted(1)==true) {
-        return;
-    }
-    supabaseUpdate('fragen', ['start'], [milliUTC()], 'eq', 'id', 1);
-    alert('Frage 1 gestartet');
-})
+// frage1.addEventListener('click', function() {
+//     if (checkIfQuestionStarted(1)==true) {
+//         return;
+//     }
+//     supabaseUpdate('fragen', ['start'], [milliUTC()], 'eq', 'id', 1);
+//     alert('Frage 1 gestartet');
+// })
 
 
 
