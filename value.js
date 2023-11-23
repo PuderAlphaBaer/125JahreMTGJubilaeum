@@ -15,7 +15,7 @@ class Frage {
 
 
   // Wartezeit vor Fragen
-  pretime = 1000;
+  pretime = 2000;
 
 
 
