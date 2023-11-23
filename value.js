@@ -14,6 +14,13 @@ class Frage {
     }
   }
 
+
+
+  // Wartezeit vor Fragen
+  pretime = 2000;
+
+
+
   const questions = [
     // Hier alle Fragen in richtiger Reinfolge auflisten
 

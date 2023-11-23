@@ -1,4 +1,4 @@
-  
+document.addEventListener('contextmenu', event => event.preventDefault());
 
 
   const anzeigefrage1 = document.getElementById('anzeigefrage1');
@@ -26,7 +26,7 @@
   const gamebox = document.getElementById('gamebox');
   const beforegamebox = document.getElementById('beforegamebox');
   const startgamebt = document.getElementById('startgamebt');
-
+  const qnumber = document.getElementById('qnumber');
 
   startgamebt.addEventListener('click', startgame);
 
@@ -51,7 +51,7 @@
 
 
 
-  let pretime = 1000;
+
 //  tbox2.style.transition = "linear " + pretime;  
   function startpreQuestion() {
     // if operator checkt, ob noch fragen da sind
@@ -59,7 +59,9 @@
         // Wird noch schöner :P
         alert("Quiz fertig, keine fragen mehr da");
     } else {
-            questionid = questionid+1;
+    questionid = questionid+1;
+    qnumber.style.display = "block";
+    qnumber.innerHTML = "Frage "+questionid+" von "+questions.length;
     // Hier einfach des Snippetsding für UTC einfügen !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     timestart = Date.now();
     supabaseUpdate("fragen", ["start"], [timestart], "eq",  "id",  questionid);
@@ -131,6 +133,7 @@ bt2.addEventListener('click', weiter);
 // wird bei click auf den Knopf "Weiter" nach Beenden der Frage aufgerufen
 function weiter() {
     // setzt alles auf Anfang zurück
+    qnumber.style.display = "none";
     rangliste.style.display = "flex";
     fragenbox.style.display = "none";
     bt2.style.display = "none";
@@ -139,8 +142,7 @@ function weiter() {
     votebox.removeChild(document.getElementById('vote'));
     votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
     // entfert letzte Rangliste und erstellt neue leere, die mit fetchRangliste(); gefüllt wird
-    tablebox.removeChild(document.getElementById('table'));
-    tablebox.innerHTML = 
+    table.innerHTML = 
     `<table class="table" id="table">
         <tr class=""> 
             <th class="udata">Platz</th>
@@ -148,6 +150,7 @@ function weiter() {
             <th class="udata">Punktzahl</th>
         </tr>
     </table>`;
+    bt1.innerHTML = "Starte Frage "+(questionid+1)+" von "+questions.length;
     console.log("hier commentar weg")
     // supabaseUpdate('spieler', ["avotes", "bvotes", "cvotes", "dvotes"], [false, false, false, false], "gt", "id", 0)
     fetchRangliste();
@@ -165,17 +168,16 @@ const s3 = document.getElementById('s3');
 const timerContainer = document.getElementById('timerContainer');
 
 // Länge der Zeit für Fragen
-const sec = 2;
-const setTime = sec *1000;
-
-
+let setTime;
 let timerLoop;
 let futureTime;
-timer.innerHTML = sec+".00"
+
 
 // startet Timer
 function startTimer() { 
   timerLoop = setInterval(countDownTimer, 10);
+  setTime = questions[questionid-1].zeit*1000;
+  timer.innerHTML = questions[questionid-1].zeit+".00";
   futureTime = Date.now() + setTime;
   s1.style.display = "block";
   s2.style.display = "block";
@@ -233,21 +235,25 @@ function timerend() {
         a.style.border = "white solid 5px";
     } else {
         a.style.opacity = "0.5";
+        a.style.border = "transparent";
     }
     if(questions[questionid-1].loesung.includes("b")==true) {
         b.style.border = "white solid 5px"
     } else {
         b.style.opacity = "0.5";
+        b.style.border = "transparent";
     }
     if(questions[questionid-1].loesung.includes("c")==true) {
         c.style.border = "white solid 5px"
     } else {
         c.style.opacity = "0.5";
+        c.style.border = "transparent";
     }
     if(questions[questionid-1].loesung.includes("d")==true) {
         d.style.border = "white solid 5px"
     } else {
         d.style.opacity = "0.5";
+        d.style.border = "transparent";
     }
     bt2.style.display = "block";
     auswertung();
@@ -276,118 +282,73 @@ function auswertung() {
     // Entscheidet, welches Diagramm verwendet werden soll, je nach Fragentyp
     if (questions[questionid-1].c=="") {
         // Zwei Antwortmöglichkeiten
-
-
-        supabaseFetch('spieler', 'avotes', 'eq', 'avotes', true, 'avotes', false).then((data) => {
-            supabaseFetch('spieler', 'bvotes', 'eq', 'bvotes', true, 'bvotes', false).then((data2) => {
-                xValues = [a.innerHTML, b.innerHTML];
-                yValues = [data.length, data2.length];
-                barColors = [a.style.backgroundColor, b.style.backgroundColor];
-                nchart();
-            });
+        supabaseFetch('spieler', 'avotes, bvotes', '', '', "", 'avotes', false).then((data) => {
+            for (let i = 0; i < data.length; i++) {
+                if(data[i].avotes==true) {
+                    avotes = avotes+1;
+                }
+                if(data[i].bvotes==true) {
+                    bvotes = bvotes+1;
+                }
+                if(i==data.length-1) {
+                    xValues = [a.innerHTML, b.innerHTML];
+                    yValues = [avotes, bvotes];
+                    barColors = [a.style.backgroundColor, b.style.backgroundColor];
+                    borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
+                    nchart();
+                }
+            }
         });
-
-
-        // supabaseFetch('spieler', 'avotes, bvotes', '', '', "", 'avotes', false).then((data) => {
-        //     for (let i = 0; i < data.length; i++) {
-        //         if(data[i].avotes==true) {
-        //             avotes = avotes+1;
-        //         }
-        //         if(data[i].bvotes==true) {
-        //             bvotes = bvotes+1;
-        //         }
-        //         if(i==data.length) {
-        //             xValues = [a.innerHTML, b.innerHTML];
-        //             yValues = [avotes, bvotes];
-        //             barColors = [a.style.backgroundColor, b.style.backgroundColor];
-        //         }
-        //     }
-        // });
-
-
-
-
-
     } else {
          if(questions[questionid-1].d=="") {
-
-        //     // Drei Antwortmöglichkeiten
-            supabaseFetch('spieler', 'avotes', 'eq', 'avotes', true, 'avotes', false).then((data) => {
-                supabaseFetch('spieler', 'bvotes', 'eq', 'bvotes', true, 'bvotes', false).then((data2) => {
-                    supabaseFetch('spieler', 'cvotes', 'eq', 'cvotes', true, 'cvotes', false).then((data3) => {
-                        xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
-                        yValues = [data.length, data2.length, data3.length];
-                        barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor];
-                        nchart();
-                    });
-                });
-            });
-
-        // supabaseFetch('spieler', 'avotes, bvotes, cvotes', '', '', "", 'avotes', false).then((data) => {
-        //     for (let i = 0; i < data.length; i++) {
-        //         if(data[i].avotes==true) {
-        //             avotes = avotes+1;
-        //         }
-        //         if(data[i].bvotes==true) {
-        //             bvotes = bvotes+1;
-        //         }
-        //         if(data[i].cvotes==true) {
-        //             cvotes = cvotes+1;
-        //         }
-        //         if(i==data.length) {
-        //             xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
-        //             yValues = [avotes, bvotes, cvotes];
-        //             barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor];
-        //         }
-        //     }
-
-        // });
-
-
+        // Drei Antwortmöglichkeiten
+        supabaseFetch('spieler', 'avotes, bvotes, cvotes', '', '', "", 'avotes', false).then((data) => {
+            for (let i = 0; i < data.length; i++) {
+                if(data[i].avotes==true) {
+                    avotes = avotes+1;
+                }
+                if(data[i].bvotes==true) {
+                    bvotes = bvotes+1;
+                }
+                if(data[i].cvotes==true) {
+                    cvotes = cvotes+1;
+                }
+                if(i==data.length-1) {
+                    xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
+                    yValues = [avotes, bvotes, cvotes];
+                    barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor];
+                    borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
+                    nchart();
+                }
+            }
+        });
         } else {
-
-            // // Vier Antwortmöglichkeiten (Normalfall)
-            supabaseFetch('spieler', 'avotes', 'eq', 'avotes', true, 'avotes', false).then((data) => {
-                supabaseFetch('spieler', 'bvotes', 'eq', 'bvotes', true, 'bvotes', false).then((data2) => {
-                    supabaseFetch('spieler', 'cvotes', 'eq', 'cvotes', true, 'cvotes', false).then((data3) => {
-                        supabaseFetch('spieler', 'dvotes', 'eq', 'dvotes', true, 'dvotes', false).then((data4) => {
-                            xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
-                            yValues = [data.length, data2.length, data3.length, data4.length];
-                            barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor, d.style.backgroundColor];
-                            nchart();
-                        });
-                    });
-                });
+            // Vier Antwortmöglichkeiten (Normalfall)
+            supabaseFetch('spieler', 'avotes, bvotes, cvotes, dvotes', '', '', "", 'avotes', false).then((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    if(data[i].avotes==true) {
+                        avotes = avotes+1;
+                    }
+                    if(data[i].bvotes==true) {
+                        bvotes = bvotes+1;
+                    }
+                    if(data[i].cvotes==true) {
+                        cvotes = cvotes+1;
+                    }
+                    if(data[i].dvotes==true) {
+                        dvotes = dvotes+1;
+                    }
+                    if(i==data.length-1) {
+                        xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
+                        yValues = [avotes, bvotes, cvotes, dvotes];
+                        barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor, d.style.backgroundColor];
+                        borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
+                        nchart();
+                    }
+                }
             });
-
-            // supabaseFetch('spieler', 'avotes, bvotes, cvotes, dvotes', '', '', "", 'avotes', false).then((data) => {
-            //     for (let i = 0; i < data.length; i++) {
-            //         if(data[i].avotes==true) {
-            //             avotes = avotes+1;
-            //         }
-            //         if(data[i].bvotes==true) {
-            //             bvotes = bvotes+1;
-            //         }
-            //         if(data[i].cvotes==true) {
-            //             cvotes = cvotes+1;
-            //         }
-            //         if(data[i].dvotes==true) {
-            //             dvotes = dvotes+1;
-            //         }
-            //         if(i==data.length) {
-            //             xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
-            //             yValues = [avotes, bvotes, cvotes, dvotes];
-            //             barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor, d.style.backgroundColor];
-            //         }
-            //     }
-
-            // });
-
-
         }
     }
-    borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
-
 }
 
 // Erstellt Diagramm, greift zurück auf "auswertung();"

@@ -1,3 +1,5 @@
+document.addEventListener('contextmenu', event => event.preventDefault());
+
 const sqbt = document.getElementById('sQbt');
 const a = document.getElementById('bta')
 const b = document.getElementById('btb')
@@ -56,7 +58,7 @@ function startPreQuestion() {
   setTimeout(() => {
     tbox2.style.width = "0%";
     startQuestion();
-  }, 2000);
+  }, pretime);
 };
 
 
@@ -110,6 +112,9 @@ const imgr = document.getElementById('imgr');
 const imgf = document.getElementById('imgf');
 const streaktext = document.getElementById('streak');
 const ims = document.getElementById('ims');
+const punkte = document.getElementById('punkte');
+const rang = document.getElementById('rang');
+
 
 // Wird nach Ende einer Frage aufgerufen
 function questionEnd() {
@@ -147,11 +152,11 @@ if(streak==0) {
 }
   //text1.innerHTML = "Deine Streak: "+streak;
   supabaseFetch('spieler', 'punkte, rang', 'eq', 'name', nickname, 'punkte', true).then((data) => {
-  //text2.innerHTML = "Deine Punktzahl: "+data[0].punkte;
+  punkte.innerHTML = "Deine Punktzahl: "+data[0].punkte;
   if(data[0].rang<11) {
-    //text3.innerHTML = "Du bist unter den top 10";
+    rang.innerHTML = "Du bist unter den top 10";
   } else {
-  //text4.innerHTML = "Dein Rang: "+data[0].rang;
+  rang.innerHTML = "Dein Rang: "+data[0].rang;
 }});
 }
 
@@ -163,7 +168,6 @@ d.addEventListener('click', dClicked);
 
 // wird aufgerufen bei vote für a
 function aClicked() {
-    supabaseUpdate('spieler', ['avotes'], [true], 'eq', 'name', nickname);
     if(questions[questionid-1].loesung.includes('a')==true) {
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
@@ -173,97 +177,82 @@ function aClicked() {
       addPoints = addPoints*streakrech;
       addPoints = Math.floor(addPoints / 20);
       streak = streak+1;
-      console.log(addPoints);
-      supabaseFetch('spieler', 'punkte', 'eq', 'name', nickname, 'punkte', true).then((data) => {
-        supabaseUpdate('spieler', ['punkte'], [addPoints+data[0].punkte], 'eq', 'name', nickname);
-      });
-    }
-    else {
+      points = points+addPoints;
+      supabaseUpdate('spieler', ['avotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
+    } else {
       ergebnis = "falsch";
       streak = 0;
+      supabaseUpdate('spieler', ['avotes','streak'], [true, streak], 'eq', 'name', nickname);
     }
-    supabaseUpdate('spieler', ['streak'], [streak], 'eq', 'name', nickname);
     quizbox.style.display = "none";
     zwischenbox3.style.display = "flex";
 }
+
 // wird aufgerufen bei vote für b
 function bClicked() {
-  supabaseUpdate('spieler', ['bvotes'], [true], 'eq', 'name', nickname);
-  if(questions[questionid-1].loesung.includes('b')==true) {
-    ergebnis = "richtig";
-    addPoints = Date.now()-questionStart;
-    addPoints = 20000-addPoints;
-    streakrech = streak*0.1;
-    streakrech = 1+streakrech;
-    addPoints = addPoints*streakrech;
-    addPoints = Math.floor(addPoints / 20);
-    streak = streak+1;
-    console.log(addPoints);
-    supabaseFetch('spieler', 'punkte', 'eq', 'name', nickname, 'punkte', true).then((data) => {
-      supabaseUpdate('spieler', ['punkte'], [addPoints+data[0].punkte], 'eq', 'name', nickname);
-    });
-  }
-  else {
-    ergebnis = "falsch";
-    streak = 0;
-  }
-  supabaseUpdate('spieler', ['streak'], [streak], 'eq', 'name', nickname);
-  quizbox.style.display = "none";
-  zwischenbox3.style.display = "flex";
+    if(questions[questionid-1].loesung.includes('b')==true) {
+      ergebnis = "richtig";
+      addPoints = Date.now()-questionStart;
+      addPoints = 20000-addPoints;
+      streakrech = streak*0.1;
+      streakrech = 1+streakrech;
+      addPoints = addPoints*streakrech;
+      addPoints = Math.floor(addPoints / 20);
+      streak = streak+1;
+      points = points+addPoints;
+      supabaseUpdate('spieler', ['bvotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
+    } else {
+      ergebnis = "falsch";
+      streak = 0;
+      supabaseUpdate('spieler', ['bvotes','streak'], [true, streak], 'eq', 'name', nickname);
+    }
+    quizbox.style.display = "none";
+    zwischenbox3.style.display = "flex";
 }
 
 // wird aufgerufen bei vote für c
 function cClicked() {
-  supabaseUpdate('spieler', ['cvotes'], [true], 'eq', 'name', nickname);
-  if(questions[questionid-1].loesung.includes('c')==true) {
-    ergebnis = "richtig";
-    addPoints = Date.now()-questionStart;
-    addPoints = 20000-addPoints;
-    streakrech = streak*0.1;
-    streakrech = 1+streakrech;
-    addPoints = addPoints*streakrech;
-    addPoints = Math.floor(addPoints / 20);
-    streak = streak+1;
-    console.log(addPoints);
-    supabaseFetch('spieler', 'punkte', 'eq', 'name', nickname, 'punkte', true).then((data) => {
-      supabaseUpdate('spieler', ['punkte'], [addPoints+data[0].punkte], 'eq', 'name', nickname);
-    });
-  }
-  else {
-    ergebnis = "falsch";
-    streak = 0;
-  }
-  supabaseUpdate('spieler', ['streak'], [streak], 'eq', 'name', nickname);
-  quizbox.style.display = "none";
-  zwischenbox3.style.display = "flex";
+    if(questions[questionid-1].loesung.includes('c')==true) {
+      ergebnis = "richtig";
+      addPoints = Date.now()-questionStart;
+      addPoints = 20000-addPoints;
+      streakrech = streak*0.1;
+      streakrech = 1+streakrech;
+      addPoints = addPoints*streakrech;
+      addPoints = Math.floor(addPoints / 20);
+      streak = streak+1;
+      points = points+addPoints;
+      supabaseUpdate('spieler', ['cvotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
+    } else {
+      ergebnis = "falsch";
+      streak = 0;
+      supabaseUpdate('spieler', ['cvotes','streak'], [true, streak], 'eq', 'name', nickname);
+    }
+    quizbox.style.display = "none";
+    zwischenbox3.style.display = "flex";
 }
 
 // wird aufgerufen bei vote für d
 function dClicked() {
-  supabaseUpdate('spieler', ['dvotes'], [true], 'eq', 'name', nickname);
-  if(questions[questionid-1].loesung.includes('d')==true) {
-    ergebnis = "richtig";
-    addPoints = Date.now()-questionStart;
-    addPoints = 20000-addPoints;
-    streakrech = streak*0.1;
-    streakrech = 1+streakrech;
-    addPoints = addPoints*streakrech;
-    addPoints = Math.floor(addPoints / 20);
-    streak = streak+1;
-    console.log(addPoints);
-    supabaseFetch('spieler', 'punkte', 'eq', 'name', nickname, 'punkte', true).then((data) => {
-      supabaseUpdate('spieler', ['punkte'], [addPoints+data[0].punkte], 'eq', 'name', nickname);
-    });
-  }
-  else {
-    ergebnis = "falsch";
-    streak = 0;
-  }
-  supabaseUpdate('spieler', ['streak'], [streak], 'eq', 'name', nickname);
-  quizbox.style.display = "none";
-  zwischenbox3.style.display = "flex";
+    if(questions[questionid-1].loesung.includes('d')==true) {
+      ergebnis = "richtig";
+      addPoints = Date.now()-questionStart;
+      addPoints = 20000-addPoints;
+      streakrech = streak*0.1;
+      streakrech = 1+streakrech;
+      addPoints = addPoints*streakrech;
+      addPoints = Math.floor(addPoints / 20);
+      streak = streak+1;
+      points = points+addPoints;
+      supabaseUpdate('spieler', ['dvotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
+    } else {
+      ergebnis = "falsch";
+      streak = 0;
+      supabaseUpdate('spieler', ['dvotes','streak'], [true, streak], 'eq', 'name', nickname);
+    }
+    quizbox.style.display = "none";
+    zwischenbox3.style.display = "flex";
 }
-
 
 
 const toggleTimer = document.getElementById('toggleTimer');
@@ -272,19 +261,16 @@ const s1 = document.getElementById('s1');
 const s2 = document.getElementById('s2');
 const s3 = document.getElementById('s3');
 
-// Zeit für  Fragen
-let  sec = 20;
 let setTime;
 
 
 let timerLoop;
 let futureTime;
-timer.innerHTML = sec+".00"
 
 // Timerfunktion unwichtig
 function startTimer() { 
-  sec = questions[questionid-1].zeit;
-  setTime = sec *1000;
+  setTime = questions[questionid-1].zeit*1000;
+  timer.innerHTML = questions[questionid-1].zeit+".00";
   timerLoop = setInterval(countDownTimer, 10);
   futureTime = Date.now() + setTime;
   s1.style.display = "block";
