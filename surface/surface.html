@@ -29,6 +29,7 @@
 
 
     <div id="gamebox" class="gamebox">
+
         <div id="zwischenbox" class="zwischenbox">
             <div class="frage1" id="anzeigefrage1"></div>
             <div id="tbox1" class="tbox1"></div>
@@ -37,9 +38,9 @@
 
 
         <div id="rangliste" class="rangliste">
-            <div id="bt1" class="buttonStyle bt1">Nächste Frage</div>
+            <div id="bt1" class="buttonStyle bt1"></div> <!--Startet nächste Frage-->
             <div class="tablebox" id="tablebox">
-                <table class="table" id="table">
+                <table class="table" id="table"> <!--Rangliste-->
                     <tr> 
                     <th class="row">Platz</th>
                     <th class="row">Benutzername</th>
@@ -54,7 +55,8 @@
 
 
         <div id="fragenbox" class="fragenbox">
-            <div class="frage2" id="anzeigefrage2">Test</div>
+
+            <div class="frage2" id="anzeigefrage2"></div>
             <div class="timerContainer" id="timerContainer">
                 <div class="timerbox">
                         <div class="s1" id="s1"></div>
@@ -67,20 +69,21 @@
             </div>
             <div class="buttonSurContainer" id="buttonBox">
                 <div class="btbox" id="btbox">
-                    <div id="a" class="button buttonA"><div class="subButton">A</div></div>
-                    <div id="b" class="button buttonB"><div class="subButton">B</div></div>
-                    <div id="c" class="button buttonC"><div class="subButton">C</div></div>
+                    <div id="a" class="button buttonA"><div class="subButton"></div></div>
+                    <div id="b" class="button buttonB"><div class="subButton"></div></div>
+                    <div id="c" class="button buttonC"><div class="subButton"></div></div>
                     <div id="d" class="button buttonD"><div class="subButton">D</div></div>
                 </div>
             </div>
 
 
 
-            <div id="bt2" class="buttonStyle bt2">Weiter</div>
+            <div id="bt2" class="buttonStyle bt2">Weiter</div> <!--Beendet letzte Frage und geht zur Rangliste-->
             <div id="votebox" class="votebox">
                 <canvas id="vote" class="vote"></canvas>
             </div>
         </div>
+        <div class="qnumber" id="qnumber"></div>
     </div>
 
 

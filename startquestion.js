@@ -1,3 +1,5 @@
+document.addEventListener('contextmenu', event => event.preventDefault());
+
 const sqbt = document.getElementById('sQbt');
 const a = document.getElementById('bta')
 const b = document.getElementById('btb')
@@ -56,7 +58,7 @@ function startPreQuestion() {
   setTimeout(() => {
     tbox2.style.width = "0%";
     startQuestion();
-  }, 2000);
+  }, pretime);
 };
 
 
@@ -110,6 +112,9 @@ const imgr = document.getElementById('imgr');
 const imgf = document.getElementById('imgf');
 const streaktext = document.getElementById('streak');
 const ims = document.getElementById('ims');
+const punkte = document.getElementById('punkte');
+const rang = document.getElementById('rang');
+
 
 // Wird nach Ende einer Frage aufgerufen
 function questionEnd() {
@@ -147,11 +152,11 @@ if(streak==0) {
 }
   //text1.innerHTML = "Deine Streak: "+streak;
   supabaseFetch('spieler', 'punkte, rang', 'eq', 'name', nickname, 'punkte', true).then((data) => {
-  //text2.innerHTML = "Deine Punktzahl: "+data[0].punkte;
+  punkte.innerHTML = "Deine Punktzahl: "+data[0].punkte;
   if(data[0].rang<11) {
-    //text3.innerHTML = "Du bist unter den top 10";
+    rang.innerHTML = "Du bist unter den top 10";
   } else {
-  //text4.innerHTML = "Dein Rang: "+data[0].rang;
+  rang.innerHTML = "Dein Rang: "+data[0].rang;
 }});
 }
 
@@ -272,19 +277,16 @@ const s1 = document.getElementById('s1');
 const s2 = document.getElementById('s2');
 const s3 = document.getElementById('s3');
 
-// Zeit für  Fragen
-let  sec = 20;
 let setTime;
 
 
 let timerLoop;
 let futureTime;
-timer.innerHTML = sec+".00"
 
 // Timerfunktion unwichtig
 function startTimer() { 
-  sec = questions[questionid-1].zeit;
-  setTime = sec *1000;
+  setTime = questions[questionid-1].zeit*1000;
+  timer.innerHTML = questions[questionid-1].zeit+".00";
   timerLoop = setInterval(countDownTimer, 10);
   futureTime = Date.now() + setTime;
   s1.style.display = "block";

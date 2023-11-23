@@ -57,7 +57,7 @@ table, th, td {
     position: absolute;
     width: 80%;
     height: 60%;
-    
+    right: 0;
 }
 
 .row {
@@ -75,7 +75,7 @@ table, th, td {
 
 .bt1 {
     display: block;
-    right: 0;
+    left: 0;
     position: absolute;
     top: 0;
 }
@@ -370,3 +370,8 @@ table, th, td {
     background-size: cover;
 }
 
+.qnumber {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
