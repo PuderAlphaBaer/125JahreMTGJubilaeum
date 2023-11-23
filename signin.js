@@ -17,6 +17,7 @@ function skip() {
 
 function submit() {
   nickname = tb1.value;
+  supabaseInsert("spieler", ["name", "punkte"], [nickname, 0]) ;
   startGame();
 }
 
