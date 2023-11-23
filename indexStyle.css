@@ -361,9 +361,9 @@ body {
 .ims {
     display: block;
     background-image: url(Data/streak.png);
-    width: 5%;
+    width: 15%;
     height: 0;
-    padding-bottom: 5%;
+    padding-bottom: 15%;
 }
 
 .sbox {
@@ -376,6 +376,14 @@ body {
 }
 
 .box1 {
-    height: 30%;
-    width: 20%;
+    padding-top: 30%;
+    height: 60%;
+    width: 40%;
+}
+
+.box2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

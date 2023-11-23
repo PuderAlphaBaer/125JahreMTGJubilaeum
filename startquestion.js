@@ -168,7 +168,6 @@ d.addEventListener('click', dClicked);
 
 // wird aufgerufen bei vote für a
 function aClicked() {
-    supabaseUpdate('spieler', ['avotes'], [true], 'eq', 'name', nickname);
     if(questions[questionid-1].loesung.includes('a')==true) {
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
@@ -178,97 +177,82 @@ function aClicked() {
       addPoints = addPoints*streakrech;
       addPoints = Math.floor(addPoints / 20);
       streak = streak+1;
-      console.log(addPoints);
-      supabaseFetch('spieler', 'punkte', 'eq', 'name', nickname, 'punkte', true).then((data) => {
-        supabaseUpdate('spieler', ['punkte'], [addPoints+data[0].punkte], 'eq', 'name', nickname);
-      });
-    }
-    else {
+      points = points+addPoints;
+      supabaseUpdate('spieler', ['avotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
+    } else {
       ergebnis = "falsch";
       streak = 0;
+      supabaseUpdate('spieler', ['avotes','streak'], [true, streak], 'eq', 'name', nickname);
     }
-    supabaseUpdate('spieler', ['streak'], [streak], 'eq', 'name', nickname);
     quizbox.style.display = "none";
     zwischenbox3.style.display = "flex";
 }
+
 // wird aufgerufen bei vote für b
 function bClicked() {
-  supabaseUpdate('spieler', ['bvotes'], [true], 'eq', 'name', nickname);
-  if(questions[questionid-1].loesung.includes('b')==true) {
-    ergebnis = "richtig";
-    addPoints = Date.now()-questionStart;
-    addPoints = 20000-addPoints;
-    streakrech = streak*0.1;
-    streakrech = 1+streakrech;
-    addPoints = addPoints*streakrech;
-    addPoints = Math.floor(addPoints / 20);
-    streak = streak+1;
-    console.log(addPoints);
-    supabaseFetch('spieler', 'punkte', 'eq', 'name', nickname, 'punkte', true).then((data) => {
-      supabaseUpdate('spieler', ['punkte'], [addPoints+data[0].punkte], 'eq', 'name', nickname);
-    });
-  }
-  else {
-    ergebnis = "falsch";
-    streak = 0;
-  }
-  supabaseUpdate('spieler', ['streak'], [streak], 'eq', 'name', nickname);
-  quizbox.style.display = "none";
-  zwischenbox3.style.display = "flex";
+    if(questions[questionid-1].loesung.includes('b')==true) {
+      ergebnis = "richtig";
+      addPoints = Date.now()-questionStart;
+      addPoints = 20000-addPoints;
+      streakrech = streak*0.1;
+      streakrech = 1+streakrech;
+      addPoints = addPoints*streakrech;
+      addPoints = Math.floor(addPoints / 20);
+      streak = streak+1;
+      points = points+addPoints;
+      supabaseUpdate('spieler', ['bvotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
+    } else {
+      ergebnis = "falsch";
+      streak = 0;
+      supabaseUpdate('spieler', ['bvotes','streak'], [true, streak], 'eq', 'name', nickname);
+    }
+    quizbox.style.display = "none";
+    zwischenbox3.style.display = "flex";
 }
 
 // wird aufgerufen bei vote für c
 function cClicked() {
-  supabaseUpdate('spieler', ['cvotes'], [true], 'eq', 'name', nickname);
-  if(questions[questionid-1].loesung.includes('c')==true) {
-    ergebnis = "richtig";
-    addPoints = Date.now()-questionStart;
-    addPoints = 20000-addPoints;
-    streakrech = streak*0.1;
-    streakrech = 1+streakrech;
-    addPoints = addPoints*streakrech;
-    addPoints = Math.floor(addPoints / 20);
-    streak = streak+1;
-    console.log(addPoints);
-    supabaseFetch('spieler', 'punkte', 'eq', 'name', nickname, 'punkte', true).then((data) => {
-      supabaseUpdate('spieler', ['punkte'], [addPoints+data[0].punkte], 'eq', 'name', nickname);
-    });
-  }
-  else {
-    ergebnis = "falsch";
-    streak = 0;
-  }
-  supabaseUpdate('spieler', ['streak'], [streak], 'eq', 'name', nickname);
-  quizbox.style.display = "none";
-  zwischenbox3.style.display = "flex";
+    if(questions[questionid-1].loesung.includes('c')==true) {
+      ergebnis = "richtig";
+      addPoints = Date.now()-questionStart;
+      addPoints = 20000-addPoints;
+      streakrech = streak*0.1;
+      streakrech = 1+streakrech;
+      addPoints = addPoints*streakrech;
+      addPoints = Math.floor(addPoints / 20);
+      streak = streak+1;
+      points = points+addPoints;
+      supabaseUpdate('spieler', ['cvotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
+    } else {
+      ergebnis = "falsch";
+      streak = 0;
+      supabaseUpdate('spieler', ['cvotes','streak'], [true, streak], 'eq', 'name', nickname);
+    }
+    quizbox.style.display = "none";
+    zwischenbox3.style.display = "flex";
 }
 
 // wird aufgerufen bei vote für d
 function dClicked() {
-  supabaseUpdate('spieler', ['dvotes'], [true], 'eq', 'name', nickname);
-  if(questions[questionid-1].loesung.includes('d')==true) {
-    ergebnis = "richtig";
-    addPoints = Date.now()-questionStart;
-    addPoints = 20000-addPoints;
-    streakrech = streak*0.1;
-    streakrech = 1+streakrech;
-    addPoints = addPoints*streakrech;
-    addPoints = Math.floor(addPoints / 20);
-    streak = streak+1;
-    console.log(addPoints);
-    supabaseFetch('spieler', 'punkte', 'eq', 'name', nickname, 'punkte', true).then((data) => {
-      supabaseUpdate('spieler', ['punkte'], [addPoints+data[0].punkte], 'eq', 'name', nickname);
-    });
-  }
-  else {
-    ergebnis = "falsch";
-    streak = 0;
-  }
-  supabaseUpdate('spieler', ['streak'], [streak], 'eq', 'name', nickname);
-  quizbox.style.display = "none";
-  zwischenbox3.style.display = "flex";
+    if(questions[questionid-1].loesung.includes('d')==true) {
+      ergebnis = "richtig";
+      addPoints = Date.now()-questionStart;
+      addPoints = 20000-addPoints;
+      streakrech = streak*0.1;
+      streakrech = 1+streakrech;
+      addPoints = addPoints*streakrech;
+      addPoints = Math.floor(addPoints / 20);
+      streak = streak+1;
+      points = points+addPoints;
+      supabaseUpdate('spieler', ['dvotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
+    } else {
+      ergebnis = "falsch";
+      streak = 0;
+      supabaseUpdate('spieler', ['dvotes','streak'], [true, streak], 'eq', 'name', nickname);
+    }
+    quizbox.style.display = "none";
+    zwischenbox3.style.display = "flex";
 }
-
 
 
 const toggleTimer = document.getElementById('toggleTimer');
