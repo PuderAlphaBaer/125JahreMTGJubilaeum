@@ -185,6 +185,9 @@ const fragenUpdates = database.channel('fragenUpdates')
             console.log(payload.new)
             questions[payload.new.id].startzeit = payload.new.start;
             console.log(questions[payload.new.id])
+            console.log("Fragen id: "+payload.new.id)
+            console.log("Fragenstartzeit: "+payload.new.start)
+            questionStarted(payload.new.id, payload.new.start);
             return payload;
         }
     )
