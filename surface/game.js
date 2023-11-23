@@ -31,6 +31,8 @@
   startgamebt.addEventListener('click', startgame);
 
   function startgame() {
+    //startet das spiel
+    supabaseUpdate("fragen", ["start"], [milliUTC()], "eq", "id", 0);
     beforegamebox.style.display = "none";
     startpreQuestion();
   }
