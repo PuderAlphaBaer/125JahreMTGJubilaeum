@@ -181,8 +181,9 @@ const fragenUpdates = database.channel('fragenUpdates')
         'postgres_changes',
         { event: 'UPDATE', schema: 'public', table: 'fragen' },
         (payload) => {
-            console.log('fragen', payload)
-            console.log(payload.new)
+            console.log("Fragen id: "+payload.new.id)
+            console.log("Fragenstartzeit: "+payload.new.start)
+            questionStarted(payload.new.id, payload.new.start);
             return payload;
         }
     )
