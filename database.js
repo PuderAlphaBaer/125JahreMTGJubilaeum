@@ -183,8 +183,19 @@ const fragenUpdates = database.channel('fragenUpdates')
         (payload) => {
             console.log('fragen', payload)
             console.log(payload.new)
-            questions[payload.new.id].startzeit = payload.new.start;
-            questions[payload.new.id].endzeit = payload.new.start + questions[payload.new.id].zeit * 1000;
+
+            function hjetzt() {
+                return new Date()
+            }
+            
+            function hmilliUTCToLocal(a) {
+                const hmilliLocal = new Date(a-(hjetzt().getTimezoneOffset() * 60000));
+                return hmilliLocal.getTime();
+            }
+
+
+            questions[payload.new.id].startzeit = hmilliUTCToLocal(payload.new.start);
+            questions[payload.new.id].endzeit = hmilliUTCToLocal(payload.new.start) + questions[payload.new.id].zeit * 1000;
             if (questions[payload.new.id].startzeit == 0) {
                 questions[payload.new.id].endzeit = 0;
             }

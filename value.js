@@ -40,8 +40,10 @@ const pretime = 5000;
 async function getQuestions() {
    for (let i = 0; i < questions.length; i++) {
     let daten = await supabaseFetch('fragen', 'start', 'eq', 'id', i)
-    questions[i].startzeit = milliUTCToLocal(daten[0].start)
-    questions[i].endzeit = questions[i].startzeit + questions[i].zeit * 1000
+    if (questions[i].startzeit != 0) {
+      questions[i].startzeit = milliUTCToLocal(daten[0].start)
+      questions[i].endzeit = questions[i].startzeit + questions[i].zeit * 1000
+    }
   }
   console.log('das sind die questions: ')
   console.log(questions)

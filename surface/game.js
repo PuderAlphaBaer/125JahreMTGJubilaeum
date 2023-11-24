@@ -30,9 +30,8 @@ bt2.addEventListener('click', weiter);
 function startgame() {
     supabaseUpdate("fragen", ["start"], [milliUTC()+pretime], "eq", "id", 0);
     beforegamebox.style.display = "none";
-    setTimeout(() => {
+        console.log('wird jetzt gestartet')
         startpreQuestion();
-    }, pretime);
 }
 
 
@@ -47,7 +46,12 @@ function startpreQuestion() {
     } else {
     qnumber.style.display = "block";
     qnumber.innerHTML = "Frage "+fragennumber+" von "+questions.length;
-    supabaseUpdate("fragen", ["start"], [milliUTC()+5000], "eq",  "id",  fragennumber);
+    //startzeit der Frage wird gesetztl in Zukunft
+    console.log('setze startzeit')
+    supabaseUpdate("fragen", ["start"], [milliUTC()+pretime], "eq",  "id",  fragennumber);
+    // setTimeout(() => {
+
+    console.log('updated')
     rangliste.style.display = "none";
     tbox2.style.width = "80%";
     anzeigefrage1.innerHTML = questions[fragennumber].frage;
@@ -55,6 +59,7 @@ function startpreQuestion() {
         tbox2.style.width = "0";
         startQuestion();
     }, pretime);
+    // }, 1000);
 }};
 
 
@@ -124,6 +129,7 @@ function weiter() {
     </table>`;
     bt1.innerHTML = "Starte Frage "+(fragennumber)+" von "+questions.length;
     fetchRangliste();
+    supabaseUpdate('spieler', ['avotes', 'bvotes', 'cvotes', 'dvotes'], [false, false, false, false], '', '', '', '');
 }
 
   

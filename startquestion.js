@@ -1,4 +1,3 @@
-const sqbt = document.getElementById('sQbt');
 const a = document.getElementById('bta')
 const b = document.getElementById('btb')
 const c = document.getElementById('btc')
@@ -9,16 +8,15 @@ const zwischenbox4 = document.getElementById('zwischenbox4');
 const frage1 = document.getElementById('frage1');
 const frage2 = document.getElementById('frage2');
 const zwischenbox3 = document.getElementById('zwischenbox3');
-const skip2 = document.getElementById('skip2');
+
 const zwischenbox1 = document.getElementById('zwischenbox1');
 
-skip2.addEventListener('click', questionEnd);
 
 
 
 
 let timestartquestion;
-let questionid = 0;
+let questionid = 1;
 let addPoints = 0;
 let questionStart = 0;
 let interval;
@@ -32,29 +30,29 @@ let ergebnis;
 let gamestarted = false;
 
 
-function derAnfang() {
-  alert('Das Spiel beginnt in 5 Sekunden');
+function derAnfangVonAllem() {
+  console.log('Der Anfang von Allem');
 }
 
-function checkStarting() {
-  for (let i = 0; i < questions.length; i++) {
-    // Wenn Frage gestartet
-    if (questions[i].startzeit>0) {
 
-      //unwichtig, nur start
-      if (i == 0) {
+let currentQuestionCounter = 0;
+function checkStarting() {
+  if (questions[currentQuestionCounter].startzeit > 0) {
+      if (currentQuestionCounter == 0) {
         gamestarted = true;
         if (angemeldet == false) {
-          alert('Du hast es leider nicht rechtzeitig geschafft dich anzumelden');
+          console.log('Du bist nicht angemeldet');
           return;
         }
-        derAnfang();
+        derAnfangVonAllem();
+        currentQuestionCounter++;
+        return;
       }
 
-      startVorFragen(i, questions[i].startzeit)
-
+      startVorFragen(currentQuestionCounter, questions[currentQuestionCounter].startzeit);
+      currentQuestionCounter++;
+      return;
     }
-  }
 }
 
 
@@ -77,18 +75,19 @@ function startVorFragen(qid, starttime) {
   zwischenbox1.style.display = "none";
   zwischenbox4.style.display = "none";
   frage1.innerHTML = questions[qid].frage;
-  sqbt.style.display = "none";
   tbox2.style.width = "80%";
 
+  const intervalXZ = setInterval(checkTime, 1);
   function checkTime() {
     if (jetzt().getTime() >= starttime) {
       startQuestion(qid);
-      clearInterval(interval);
+      clearInterval(intervalXZ);
+      console.log('Frage '+qid+' gestartet um '+milliUTCToLocal(starttime));
     }
   }
   
   // Set an interval to check the time every second (adjust as needed)
-  const interval = setInterval(checkTime, 1);
+
 
 };
 
@@ -101,7 +100,6 @@ function startQuestion(id) {
     frage2.innerHTML = questions[questionid].frage;
     quizbox.style.display = "flex";
     questionStart = Date.now();
-    sqbt.style.display = "none";
     a.style.display = "flex";
     b.style.display = "flex";
     c.style.display = "flex";
@@ -161,8 +159,6 @@ function questionEnd() {
   }
   zwischenbox4.style.display = "flex";
   zwischenbox3.style.display = "none";
-  sqbt.style.display = "block";
-
 
 if(ergebnis=="richtig") {
   imgr.style.display = "flex";
