@@ -1,10 +1,8 @@
-document.addEventListener('contextmenu', event => event.preventDefault());
-
 const sqbt = document.getElementById('sQbt');
 const a = document.getElementById('bta')
 const b = document.getElementById('btb')
 const c = document.getElementById('btc')
-const d = document.getElementById('btd') 
+const d = document.getElementById('btd')
 const quizbox = document.getElementById('quizbox');
 const tbox2 = document.getElementById('tbox2');
 const zwischenbox4 = document.getElementById('zwischenbox4');
@@ -15,7 +13,9 @@ const skip2 = document.getElementById('skip2');
 const zwischenbox1 = document.getElementById('zwischenbox1');
 
 skip2.addEventListener('click', questionEnd);
-sqbt.addEventListener('click', questionStarted); // ist dann ein realtimelistener für fragentabelle !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
 
 let timestartquestion;
 let questionid = 0;
@@ -97,8 +97,7 @@ function startQuestion() {
 const worte = document.getElementById('worte');
 
 
-console.log(rworte);
-console.log(fworte);
+
 
 
 

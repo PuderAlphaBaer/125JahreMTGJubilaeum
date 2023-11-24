@@ -185,17 +185,7 @@ const fragenUpdates = database.channel('fragenUpdates')
             console.log(payload.new)
             questions[payload.new.id].startzeit = payload.new.start;
             console.log(questions[payload.new.id])
-            console.log("Fragen id: "+payload.new.id)
-            console.log("Fragenstartzeit: "+payload.new.start)
-            questionStarted(payload.new.id, payload.new.start);
             return payload;
         }
     )
     .subscribe()
-
-// let test123 = await supabaseFetch('spieler')
-// console.log(test123.length)
-// console.log(typeof test123)
-// console.dir(test123)
-// console.log(test123[2])
-// console.log(test123.find(obj => obj['id'] === 1))

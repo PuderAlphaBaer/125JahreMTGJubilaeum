@@ -1,5 +1,7 @@
 class Frage {
-    constructor(frage, a, b, c, d, loesung, zeit, id, startzeit) {
+    constructor(frage, a, b, c, d, loesung, zeit, id, startzeit, endzeit) {
+      this.startzeit = startzeit;
+      this.endzeit = endzeit;
       this.id = id;
       this.frage = frage;
       this.a = a;
@@ -8,32 +10,42 @@ class Frage {
       this.d = d;
       this.loesung = loesung;
       this.zeit = zeit;
-      this.startzeit = startzeit;
     }
   }
 
 
-
-  // Wartezeit vor Fragen
-  pretime = 2000;
-
+const pretime = 5000;
 
 
   const questions = [
     // Hier alle Fragen in richtiger Reinfolge auflisten
-    new Frage("Spiel", "Spiel", "Spiel", "Spiel", "Spiel", "a", 5, 0, 0), // Dummy Frage, damit die IDs stimmen
+    new Frage("Spiel", "Spiel", "Spiel", "Spiel", "Spiel", "a", 5, 0, 0, 0),
     // Normale Frage 
-    new Frage("Sonne", "rot", "gelb", "grün", "blau", "b", 5, 1, 0),
+    new Frage("Sonne", "rot", "gelb", "grün", "blau", "b", 5, 1, 0, 0),
 
     // Frage mit zwei Lösungen
-    new Frage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", ["d", "a"], 20, 2, 0),
+    new Frage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", ["d", "a"], 20, 2, 0, 0),
 
     // Frage mit nur 3 Antwortmöglichkeiten
-    new Frage("Tilman", "gut", "besser", "am besten", "", "c", 20, 3, 0),
+    new Frage("Tilman", "gut", "besser", "am besten", "", "c", 20, 3, 0, 0),
 
     // Ja Nein Frage
-    new Frage("Christian ist ein Profi", "Ja", "Nein", "", "", "a", 20, 4, 0),
+    new Frage("Christian ist ein Profi", "Ja", "Nein", "", "", "a", 20, 4, 0, 0),
+
+    new Frage("Tilman", "gut", "besser", "am besten", "", "c", 20, 5, 0, 0),
+
+    new Frage ("Christian ist ein Profi", "Ja", "Nein", "", "", "a", 20, 6, 0, 0),
   ];
+
+async function getQuestions() {
+  for (let i = 0; i < questions.length; i++) {
+    let daten = await supabaseFetch('fragen', 'start', 'eq', 'id', i)
+    questions[i].startzeit = milliUTCToLocal(daten[0].start)
+    questions[i].endzeit = questions[i].startzeit + questions[i].zeit * 1000
+  }
+  console.log(questions)
+}
+getQuestions();
 
 
   // Sprüche wenn Antwort richtig ist
