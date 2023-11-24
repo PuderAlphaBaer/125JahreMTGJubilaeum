@@ -1,7 +1,3 @@
-const frage1 = document.getElementById('frage1');
-const frage2 = document.getElementById('frage2');
-const frage3 = document.getElementById('frage3');
-
 const checkIfQuestionStarted = async (questionId) => {
     const data = await supabaseFetch('fragen', 'start', 'eq', 'id', questionId);
     start = await data[0].start;

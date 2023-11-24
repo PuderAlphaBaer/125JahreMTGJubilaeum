@@ -28,10 +28,13 @@ bt1.addEventListener('click', startpreQuestion);
 bt2.addEventListener('click', weiter);
 
 function startgame() {
-    supabaseUpdate("fragen", ["start"], [milliUTC()], "eq", "id", 0);
+    supabaseUpdate("fragen", ["start"], [milliUTC()+5000], "eq", "id", 0);
     beforegamebox.style.display = "none";
-    startpreQuestion();
+    setTimeout(() => {
+        startpreQuestion();
+    }, questions[fragennumber].startzeit-milliUTCToLocal(milliUTC()));
 }
+
 
 //  tbox2.style.transition = "linear " + pretime;  
 function startpreQuestion() {
@@ -44,14 +47,14 @@ function startpreQuestion() {
     } else {
     qnumber.style.display = "block";
     qnumber.innerHTML = "Frage "+fragennumber+" von "+questions.length;
-    supabaseUpdate("fragen", ["start"], [milliUTC()], "eq",  "id",  fragennumber);
+    supabaseUpdate("fragen", ["start"], [milliUTC()+5000], "eq",  "id",  fragennumber);
     rangliste.style.display = "none";
     tbox2.style.width = "80%";
     anzeigefrage1.innerHTML = questions[fragennumber].frage;
     setTimeout(() => {
         tbox2.style.width = "0";
         startQuestion();
-    }, questions[fragennumber].startzeit-jetzt());
+    }, questions[fragennumber].startzeit-milliUTCToLocal(milliUTC()));
 }};
 
 

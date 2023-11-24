@@ -43,9 +43,13 @@ async function getQuestions() {
     questions[i].startzeit = milliUTCToLocal(daten[0].start)
     questions[i].endzeit = questions[i].startzeit + questions[i].zeit * 1000
   }
+  console.log('das sind die questions: ')
   console.log(questions)
+  console.log('jetzt ist die Zeit: ')
 }
 getQuestions();
+
+
 
 
   // Sprüche wenn Antwort richtig ist
