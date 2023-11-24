@@ -34,7 +34,7 @@ const pretime = 5000;
 
     new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 20, 5, 0, 0),
 
-    new Frage ("Luzia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 20, 6, 0, 0),
+    new Frage ("Luzia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 20, 6, 0, 0)
 
   ];
 
