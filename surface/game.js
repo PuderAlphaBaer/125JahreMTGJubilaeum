@@ -28,7 +28,7 @@ bt1.addEventListener('click', startpreQuestion);
 bt2.addEventListener('click', weiter);
 
 function startgame() {
-    supabaseUpdate("fragen", ["start"], [milliUTC()+5000], "eq", "id", 0);
+    supabaseUpdate("fragen", ["start"], [milliUTC()+pretime], "eq", "id", 0);
     beforegamebox.style.display = "none";
     setTimeout(() => {
         startpreQuestion();

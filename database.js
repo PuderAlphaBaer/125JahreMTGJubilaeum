@@ -188,7 +188,9 @@ const fragenUpdates = database.channel('fragenUpdates')
             if (questions[payload.new.id].startzeit == 0) {
                 questions[payload.new.id].endzeit = 0;
             }
+
             console.log(questions[payload.new.id])
+            checkStarting();
             return payload;
         }
     )

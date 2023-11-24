@@ -29,12 +29,41 @@ let allpoints = 0;
 let rank;
 let waituntilquestion;
 let ergebnis;
+let gamestarted = false;
 
 
+function derAnfang() {
+  alert('Das Spiel beginnt in 5 Sekunden');
+}
+
+function checkStarting() {
+  for (let i = 0; i < questions.length; i++) {
+    // Wenn Frage gestartet
+    if (questions[i].startzeit>0) {
+
+      //unwichtig, nur start
+      if (i == 0) {
+        gamestarted = true;
+        if (angemeldet == false) {
+          alert('Du hast es leider nicht rechtzeitig geschafft dich anzumelden');
+          return;
+        }
+        derAnfang();
+      }
+
+      startVorFragen(i, questions[i].startzeit)
+
+    }
+  }
+}
 
 
+if (gamestarted == true) {
+  alert('Du bist zu spät gekommen, das Spiel hat bereits begonnen');
+}
 // 5s vor Fragen beginn
-function startPreQuestion(qid, starttime) {
+function startVorFragen(qid, starttime) {
+
   //Bann Ding
     supabaseFetch("spieler", "blocked", "eq", "name", nickname, "id", true).then((data) => {
       if(data[0].blocked!=null) {
@@ -42,26 +71,34 @@ function startPreQuestion(qid, starttime) {
         window.location.href = "index.html";
       }
     })
+
   
-  
-  questionid = qid;
+  // html stuff und balken
   zwischenbox1.style.display = "none";
   zwischenbox4.style.display = "none";
-  frage1.innerHTML = questions[questionid-1].frage;
+  frage1.innerHTML = questions[qid].frage;
   sqbt.style.display = "none";
   tbox2.style.width = "80%";
-  setTimeout(() => {
-    tbox2.style.width = "0%";
-    startQuestion();
-  }, pretime);
+
+  function checkTime() {
+    if (jetzt().getTime() >= starttime) {
+      startQuestion(qid);
+      clearInterval(interval);
+    }
+  }
+  
+  // Set an interval to check the time every second (adjust as needed)
+  const interval = setInterval(checkTime, 1);
+
 };
 
 
 
 
 // Wird nach pre5s aufgerufen, starte die eigentliche Frage mit votebox
-function startQuestion() {
-  frage2.innerHTML = questions[questionid-1].frage;
+function startQuestion(id) {
+    questionid = id;
+    frage2.innerHTML = questions[questionid].frage;
     quizbox.style.display = "flex";
     questionStart = Date.now();
     sqbt.style.display = "none";
@@ -69,19 +106,19 @@ function startQuestion() {
     b.style.display = "flex";
     c.style.display = "flex";
     d.style.display = "flex";
-    a.innerHTML = questions[questionid-1].a;
-    b.innerHTML = questions[questionid-1].b;
-    if (questions[questionid-1].c=="") {
+    a.innerHTML = questions[questionid].a;
+    b.innerHTML = questions[questionid].b;
+    if (questions[questionid].c=="") {
         c.style.display = "none";
         d.style.display = "none";
         a.style.backgroundColor = "#0B52C1";
         b.style.backgroundColor = "#D11031";
     } else {
-    c.innerHTML = questions[questionid-1].c;
-        if (questions[questionid-1].d==""){
+    c.innerHTML = questions[questionid].c;
+        if (questions[questionid].d==""){
                 d.style.display = "none"
             } else {
-                d.innerHTML = questions[questionid-1].d;
+                d.innerHTML = questions[questionid].d;
         }
     }
     ergebnis = "offen";
@@ -162,7 +199,7 @@ d.addEventListener('click', dClicked);
 
 // wird aufgerufen bei vote für a
 function aClicked() {
-    if(questions[questionid-1].loesung.includes('a')==true) {
+    if(questions[questionid].loesung.includes('a')==true) {
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
       addPoints = 20000-addPoints;
@@ -184,7 +221,7 @@ function aClicked() {
 
 // wird aufgerufen bei vote für b
 function bClicked() {
-    if(questions[questionid-1].loesung.includes('b')==true) {
+    if(questions[questionid].loesung.includes('b')==true) {
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
       addPoints = 20000-addPoints;
@@ -206,7 +243,7 @@ function bClicked() {
 
 // wird aufgerufen bei vote für c
 function cClicked() {
-    if(questions[questionid-1].loesung.includes('c')==true) {
+    if(questions[questionid].loesung.includes('c')==true) {
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
       addPoints = 20000-addPoints;
@@ -228,7 +265,7 @@ function cClicked() {
 
 // wird aufgerufen bei vote für d
 function dClicked() {
-    if(questions[questionid-1].loesung.includes('d')==true) {
+    if(questions[questionid].loesung.includes('d')==true) {
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
       addPoints = 20000-addPoints;
@@ -263,8 +300,8 @@ let futureTime;
 
 // Timerfunktion unwichtig
 function startTimer() { 
-  setTime = questions[questionid-1].zeit*1000;
-  timer.innerHTML = questions[questionid-1].zeit+".00";
+  setTime = questions[questionid].zeit*1000;
+  timer.innerHTML = questions[questionid].zeit+".00";
   timerLoop = setInterval(countDownTimer, 10);
   futureTime = Date.now() + setTime;
   s1.style.display = "block";
