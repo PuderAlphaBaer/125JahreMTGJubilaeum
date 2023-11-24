@@ -77,7 +77,7 @@ function startVorFragen(qid, starttime) {
   frage1.innerHTML = questions[qid].frage;
   tbox2.style.width = "80%";
 
-  const intervalXZ = setInterval(checkTime, 1);
+  const intervalXZ = setInterval(checkTime, 10);
   function checkTime() {
     if (jetzt().getTime() >= starttime) {
       startQuestion(qid);

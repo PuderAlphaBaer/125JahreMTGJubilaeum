@@ -31,7 +31,11 @@ function startgame() {
     supabaseUpdate("fragen", ["start"], [milliUTC()+pretime], "eq", "id", 0);
     beforegamebox.style.display = "none";
         console.log('wird jetzt gestartet')
+
+    setTimeout(() => {
         startpreQuestion();
+    }, 2);
+
 }
 
 
