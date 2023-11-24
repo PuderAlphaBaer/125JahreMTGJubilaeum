@@ -32,9 +32,10 @@ const pretime = 5000;
     // Ja Nein Frage
     new Frage("Christian ist ein Profi", "Ja", "Nein", "", "", "a", 20, 4, 0, 0),
 
-    new Frage("Tilman", "gut", "besser", "am besten", "", "c", 20, 5, 0, 0),
+    new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 20, 5, 0, 0),
 
-    new Frage ("Christian ist ein Profi", "Ja", "Nein", "", "", "a", 20, 6, 0, 0),
+    new Frage ("Luzia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 20, 6, 0, 0),
+
   ];
 
 async function getQuestions() {
