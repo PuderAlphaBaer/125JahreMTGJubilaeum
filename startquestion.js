@@ -30,23 +30,20 @@ let rank;
 let waituntilquestion;
 let ergebnis;
 
-function questionStarted(qid, starttime) {
-  // questionstarted starten sobald timestartquestion ereicht ist
-   waituntilquestion = starttime-Date.now();
-    setTimeout(() => {
-      startPreQuestion(qid);
-    }, waituntilquestion);
-};
+
 
 
 // 5s vor Fragen beginn
-function startPreQuestion(qid) {
-  supabaseFetch("spieler", "blocked", "eq", "name", nickname, "id", true).then((data) => {
-    if(data[0].blocked!=null) {
-      alert("Du wurdest gesperrt. Grund dafür: "+data[0].blocked);
-      window.location.href = "index.html";
-    }
-  })
+function startPreQuestion(qid, starttime) {
+  //Bann Ding
+    supabaseFetch("spieler", "blocked", "eq", "name", nickname, "id", true).then((data) => {
+      if(data[0].blocked!=null) {
+        alert("Du wurdest gesperrt. Grund dafür: "+data[0].blocked);
+        window.location.href = "index.html";
+      }
+    })
+  
+  
   questionid = qid;
   zwischenbox1.style.display = "none";
   zwischenbox4.style.display = "none";

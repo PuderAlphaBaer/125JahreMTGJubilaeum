@@ -32,7 +32,7 @@ function startgame() {
     beforegamebox.style.display = "none";
     setTimeout(() => {
         startpreQuestion();
-    }, questions[fragennumber].startzeit-milliUTCToLocal(milliUTC()));
+    }, pretime);
 }
 
 
@@ -54,7 +54,7 @@ function startpreQuestion() {
     setTimeout(() => {
         tbox2.style.width = "0";
         startQuestion();
-    }, questions[fragennumber].startzeit-milliUTCToLocal(milliUTC()));
+    }, pretime);
 }};
 
 

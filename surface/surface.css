@@ -307,7 +307,7 @@ table, th, td {
     position: absolute;
     top: 55%;
     left: 10%;
-    transition: linear 1s;
+    transition: linear 5s;
 }
 
 .logo {

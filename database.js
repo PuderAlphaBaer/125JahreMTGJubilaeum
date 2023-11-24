@@ -184,6 +184,10 @@ const fragenUpdates = database.channel('fragenUpdates')
             console.log('fragen', payload)
             console.log(payload.new)
             questions[payload.new.id].startzeit = payload.new.start;
+            questions[payload.new.id].endzeit = payload.new.start + questions[payload.new.id].zeit * 1000;
+            if (questions[payload.new.id].startzeit == 0) {
+                questions[payload.new.id].endzeit = 0;
+            }
             console.log(questions[payload.new.id])
             return payload;
         }

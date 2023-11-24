@@ -42,5 +42,5 @@ function jetzt() {
 
 function milliUTCToLocal(a) {
     const milliLocal = new Date(a-(jetzt().getTimezoneOffset() * 60000));
-    return milliLocal.toLocaleString();
+    return milliLocal.getTime();
 }
