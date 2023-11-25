@@ -16,7 +16,13 @@ const rangliste = document.getElementById('rangliste');
 const btbox = document.getElementById('btbox');
 const buttonBox = document.getElementById('buttonBox');
 const qnumber = document.getElementById('qnumber');
-
+const votebox = document.getElementById('votebox');
+const vote = document.getElementById('vote');
+let borderColors;
+let avotes;
+let bvotes;
+let cvotes;
+let dvotes;
 const bt2 = document.getElementById('bt2');
 const bt1 = document.getElementById('bt1');
 const startgamebt = document.getElementById('startgamebt');
@@ -28,21 +34,15 @@ bt1.addEventListener('click', startpreQuestion);
 bt2.addEventListener('click', weiter);
 
 function startgame() {
-    supabaseUpdate("fragen", ["start"], [milliUTC()+pretime], "eq", "id", 0);
+    console.log('beginne spiel')
     beforegamebox.style.display = "none";
-        console.log('wird jetzt gestartet')
-
-    setTimeout(() => {
-        startpreQuestion();
-    }, 2);
-
+    startpreQuestion();
 }
 
 
 //  tbox2.style.transition = "linear " + pretime;  
 function startpreQuestion() {
     fragennumber++;
-    console.log('starte' + fragennumber)
     // if operator checkt, ob noch fragen da sind
     if(fragennumber==questions.length) {
         alert("Quiz fertig, keine fragen mehr da");
@@ -50,15 +50,15 @@ function startpreQuestion() {
     } else {
     qnumber.style.display = "block";
     qnumber.innerHTML = "Frage "+fragennumber+" von "+questions.length;
-    //startzeit der Frage wird gesetztl in Zukunft
-    console.log('setze startzeit')
-    supabaseUpdate("fragen", ["start"], [milliUTC()+pretime], "eq",  "id",  fragennumber);
-    // setTimeout(() => {
 
-    console.log('updated')
+    console.log('%c beginne' + fragennumber, 'background: #222; color: #bada55')
+    supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', fragennumber)
+
+
     rangliste.style.display = "none";
     tbox2.style.width = "80%";
     anzeigefrage1.innerHTML = questions[fragennumber].frage;
+
     setTimeout(() => {
         tbox2.style.width = "0";
         startQuestion();
@@ -69,6 +69,9 @@ function startpreQuestion() {
 
 // wird nach ablaufen der ersten 5s aufgerufen
   function startQuestion() {
+    console.log('%c starte frage' + fragennumber, 'background: #222; color: #bada55')
+    supabaseUpdate('fragen', ['start'], [true], 'eq', 'id', fragennumber)
+
     fragenbox.style.display = "flex";
     rangliste.style.display = "none";
     // reset der letzten Frage
@@ -105,7 +108,7 @@ function startpreQuestion() {
             }
         }
     
-
+    // Timer starten
     startTimer();
     }
 
@@ -204,7 +207,9 @@ function countDownTimer() {
 // Wird bei Ablaufen der Zeit aufgerufen
 function timerend() {
     clearInterval(timerLoop);
-    // supabaseUpdate("fragen", ["beendet"], ["true"], "eq", "id", );
+    // ende auf true setzen
+    console.log('%c beende frage' + fragennumber, 'background: #222; color: #bada55')
+    supabaseUpdate('fragen', ['ende'], [true], 'eq', 'id', fragennumber)
     timerContainer.style.display = "none";
     // Verwendet "includes()", um mehrere Lösungen zu ermöglichen -- ACHTUNG includes() wird von Internetexplorer 11 oder weniger nicht unterstützt, sollte kein Problem darstellen, da es nur für surface.html verwendet wird
     if(questions[fragennumber].loesung.includes("a")==true) {
@@ -237,13 +242,7 @@ function timerend() {
 
 
 
-const votebox = document.getElementById('votebox');
-const vote = document.getElementById('vote');
-let borderColors;
-let avotes;
-let bvotes;
-let cvotes;
-let dvotes;
+
 
 
 // Diagramm wer für was gestimmt hat
@@ -449,6 +448,13 @@ supabaseFetch('spieler', 'id, name, punkte', 'gt', 'punkte', -1, 'punkte', false
 const reseto = document.getElementById('resetFragen');
 reseto.addEventListener('click', function() {
     for (let i = 0; i < questions.length; i++) {
-        supabaseUpdate('fragen', ['start'], [0], 'eq', 'id', i)
+        console.log('%c resete frage' + i, 'background: #222; color: #bada55')
+        supabaseUpdate('fragen', ['beginn', 'start', 'ende'], [false, false, false], 'eq', 'id', i)
     }
 })
+
+
+function checkStarting () {
+    console.log('nix')
+}
+

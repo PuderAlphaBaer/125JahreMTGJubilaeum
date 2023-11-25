@@ -1,7 +1,8 @@
 class Frage {
-    constructor(frage, a, b, c, d, loesung, zeit, id, startzeit, endzeit) {
-      this.startzeit = startzeit;
-      this.endzeit = endzeit;
+    constructor(frage, a, b, c, d, loesung, zeit, id, beginn, start, ende) {
+      this.beginn = beginn;
+      this.start = start;
+      this.ende = ende;
       this.id = id;
       this.frage = frage;
       this.a = a;
@@ -14,37 +15,36 @@ class Frage {
   }
 
 
-const pretime = 5000;
+const pretime = 6000;
 
 
   const questions = [
     // Hier alle Fragen in richtiger Reinfolge auflisten
-    new Frage("Spiel", "Spiel", "Spiel", "Spiel", "Spiel", "a", 5, 0, 0, 0),
+    new Frage("Spiel", "Spiel", "Spiel", "Spiel", "Spiel", "a", 5, 0, false, false, false),
     // Normale Frage 
-    new Frage("Sonne", "rot", "gelb", "grün", "blau", "b", 5, 1, 0, 0),
+    new Frage("Sonne", "rot", "gelb", "grün", "blau", "b", 5, 1, false, false, false),
 
     // Frage mit zwei Lösungen
-    new Frage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", ["d", "a"], 20, 2, 0, 0),
+    new Frage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", ["d", "a"], 20, 2, false, false, false),
 
     // Frage mit nur 3 Antwortmöglichkeiten
-    new Frage("Tilman", "gut", "besser", "am besten", "", "c", 20, 3, 0, 0),
+    new Frage("Tilman", "gut", "besser", "am besten", "", "c", 20, 3, false, false, false),
 
     // Ja Nein Frage
-    new Frage("Christian ist ein Profi", "Ja", "Nein", "", "", "a", 20, 4, 0, 0),
+    new Frage("Christian ist ein Profi", "Ja", "Nein", "", "", "a", 20, 4, false, false, false),
 
-    new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 20, 5, 0, 0),
+    new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 20, 5, false, false, false),
 
-    new Frage ("Luzia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 20, 6, 0, 0)
+    new Frage ("Luzia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 20, 6, false, false, false)
 
   ];
 
 async function getQuestions() {
-   for (let i = 0; i < questions.length; i++) {
+  for (let i = 0; i < questions.length; i++) {
     let daten = await supabaseFetch('fragen', 'start', 'eq', 'id', i)
-    if (questions[i].startzeit != 0) {
-      questions[i].startzeit = milliUTCToLocal(daten[0].start)
-      questions[i].endzeit = questions[i].startzeit + questions[i].zeit * 1000
-    }
+    questions[i].beginn = daten[0].beginn;
+    questions[i].start = daten[0].start;
+    questions[i].ende = daten[0].ende;
   }
   console.log('das sind die questions: ')
   console.log(questions)

@@ -184,22 +184,10 @@ const fragenUpdates = database.channel('fragenUpdates')
             console.log('fragen', payload)
             console.log(payload.new)
 
-            function hjetzt() {
-                return new Date()
-            }
+            questions[payload.new.id].beginn = payload.new.beginn;
+            questions[payload.new.id].start = payload.new.start;
+            questions[payload.new.id].ende = payload.new.ende;
             
-            function hmilliUTCToLocal(a) {
-                const hmilliLocal = new Date(a-(hjetzt().getTimezoneOffset() * 60000));
-                return hmilliLocal.getTime();
-            }
-
-
-            questions[payload.new.id].startzeit = hmilliUTCToLocal(payload.new.start);
-            questions[payload.new.id].endzeit = hmilliUTCToLocal(payload.new.start) + questions[payload.new.id].zeit * 1000;
-            if (questions[payload.new.id].startzeit == 0) {
-                questions[payload.new.id].endzeit = 0;
-            }
-
             console.log(questions[payload.new.id])
             checkStarting();
             return payload;

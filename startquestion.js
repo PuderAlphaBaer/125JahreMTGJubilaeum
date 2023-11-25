@@ -11,9 +11,14 @@ const zwischenbox3 = document.getElementById('zwischenbox3');
 
 const zwischenbox1 = document.getElementById('zwischenbox1');
 
-
-
-
+const worte = document.getElementById('worte');
+const img = document.getElementById('img');
+const imgr = document.getElementById('imgr');
+const imgf = document.getElementById('imgf');
+const streaktext = document.getElementById('streak');
+const ims = document.getElementById('ims');
+const punkte = document.getElementById('punkte');
+const rang = document.getElementById('rang');
 
 let timestartquestion;
 let questionid = 1;
@@ -29,30 +34,48 @@ let waituntilquestion;
 let ergebnis;
 let gamestarted = false;
 
+const toggleTimer = document.getElementById('toggleTimer');
+const timer = document.getElementById('timertext');
+const s1 = document.getElementById('s1');
+const s2 = document.getElementById('s2');
+const s3 = document.getElementById('s3');
+
+let setTime;
+let timerLoop;
+let futureTime;
+
+let begonnen = [];
+let gestartet = [];
+let beendet = [];
+for (let i = 0; i < questions.length; i++) {
+  begonnen.push(questions[i].beginn);
+  gestartet.push(questions[i].start);
+  beendet.push(questions[i].ende);
+}
 
 function derAnfangVonAllem() {
   console.log('Der Anfang von Allem');
 }
-
-
 let currentQuestionCounter = 0;
-function checkStarting() {
-  if (questions[currentQuestionCounter].startzeit > 0) {
-      if (currentQuestionCounter == 0) {
-        gamestarted = true;
-        if (angemeldet == false) {
-          console.log('Du bist nicht angemeldet');
-          return;
-        }
-        derAnfangVonAllem();
-        currentQuestionCounter++;
-        return;
-      }
 
-      startVorFragen(currentQuestionCounter, questions[currentQuestionCounter].startzeit);
-      currentQuestionCounter++;
-      return;
+function checkStarting() {
+  for (let i = 0; i < questions.length; i++) {
+    if (questions[i].beginn == true &&  begonnen[i] == false) {
+      currentQuestionCounter = i;
+      begonnen[i] = true;
+      startVorFragen(i);
     }
+    if (questions[i].start == true && gestartet[i] == false) {
+      currentQuestionCounter = i;
+      gestartet[i] = true;
+      startQuestion(i);
+    }
+    if (questions[i].ende == true && beendet[i] == false) {
+      currentQuestionCounter = i;
+      beendet[i] = true;
+      questionEnd();
+    }
+  }
 }
 
 
@@ -60,8 +83,7 @@ if (gamestarted == true) {
   alert('Du bist zu spät gekommen, das Spiel hat bereits begonnen');
 }
 // 5s vor Fragen beginn
-function startVorFragen(qid, starttime) {
-
+function startVorFragen(qid) {
   //Bann Ding
     supabaseFetch("spieler", "blocked", "eq", "name", nickname, "id", true).then((data) => {
       if(data[0].blocked!=null) {
@@ -70,36 +92,21 @@ function startVorFragen(qid, starttime) {
       }
     })
 
-  
   // html stuff und balken
   zwischenbox1.style.display = "none";
   zwischenbox4.style.display = "none";
   frage1.innerHTML = questions[qid].frage;
   tbox2.style.width = "80%";
 
-  const intervalXZ = setInterval(checkTime, 10);
-  function checkTime() {
-    if (jetzt().getTime() >= starttime) {
-      startQuestion(qid);
-      clearInterval(intervalXZ);
-      console.log('Frage '+qid+' gestartet um '+milliUTCToLocal(starttime));
-    }
-  }
-  
-  // Set an interval to check the time every second (adjust as needed)
-
-
 };
-
-
 
 
 // Wird nach pre5s aufgerufen, starte die eigentliche Frage mit votebox
 function startQuestion(id) {
     questionid = id;
+    // html stuff box
     frage2.innerHTML = questions[questionid].frage;
     quizbox.style.display = "flex";
-    questionStart = Date.now();
     a.style.display = "flex";
     b.style.display = "flex";
     c.style.display = "flex";
@@ -119,31 +126,54 @@ function startQuestion(id) {
                 d.innerHTML = questions[questionid].d;
         }
     }
+
+    questionStart = Date.now();
     ergebnis = "offen";
     startTimer();
 }
 
 
+function startTimer() { 
+  setTime = questions[questionid].zeit*1000;
+  timer.innerHTML = questions[questionid].zeit+".00";
+  timerLoop = setInterval(countDownTimer, 10);
+  futureTime = Date.now() + setTime;
+  s1.style.display = "block";
+  s2.style.display = "block";
+  s1.style.backgroundColor = "gray";
+  s2.style.backgroundColor = "gray";
+  timer.style.color = "gray";
+  timer.style.fontSize = "5vh";
+}
 
+function countDownTimer() {
+  const remainingTime = futureTime - Date.now();
+  const angle = (remainingTime / setTime) * 360;
 
-const worte = document.getElementById('worte');
+  if(angle > 180) {
+      s3.style.display = "none";
+      s1.style.transform = "rotate(180deg)";
+      s2.style.transform = "rotate("+angle+"deg)";
+  } else {
+      s3.style.display = "block";
+      s1.style.transform = "rotate("+angle+"deg)";
+      s2.style.transform = "rotate("+angle+"deg)";
+  }
 
+  if(remainingTime > 1000) {
+      timer.innerHTML = remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
+  } else {
+      timer.innerHTML = "0"+remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
+  }
 
+  // Letzten 5 Sekunden rot
+  // if(remainingTime <= 5000) {
+  //     s1.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+  //     s2.style.backgroundColor = "rgba(0, 255, 0, 0.8)";
+  //     timer.style.color = "rgba(55, 0, 255, 0.8)";
+  // }
 
-
-
-
-
-
-
-const img = document.getElementById('img');
-const imgr = document.getElementById('imgr');
-const imgf = document.getElementById('imgf');
-const streaktext = document.getElementById('streak');
-const ims = document.getElementById('ims');
-const punkte = document.getElementById('punkte');
-const rang = document.getElementById('rang');
-
+}
 
 // Wird nach Ende einer Frage aufgerufen
 function questionEnd() {
@@ -280,69 +310,3 @@ function dClicked() {
     quizbox.style.display = "none";
     zwischenbox3.style.display = "flex";
 }
-
-
-const toggleTimer = document.getElementById('toggleTimer');
-const timer = document.getElementById('timertext');
-const s1 = document.getElementById('s1');
-const s2 = document.getElementById('s2');
-const s3 = document.getElementById('s3');
-
-let setTime;
-
-
-let timerLoop;
-let futureTime;
-
-// Timerfunktion unwichtig
-function startTimer() { 
-  setTime = questions[questionid].zeit*1000;
-  timer.innerHTML = questions[questionid].zeit+".00";
-  timerLoop = setInterval(countDownTimer, 10);
-  futureTime = Date.now() + setTime;
-  s1.style.display = "block";
-  s2.style.display = "block";
-  s1.style.backgroundColor = "gray";
-  s2.style.backgroundColor = "gray";
-  timer.style.color = "gray";
-  timer.style.fontSize = "5vh";
-}
-
-
-// Timerfunktion unwichtig
-function countDownTimer() {
-    const remainingTime = futureTime - Date.now();
-    const angle = (remainingTime / setTime) * 360;
-
-    if(angle > 180) {
-        s3.style.display = "none";
-        s1.style.transform = "rotate(180deg)";
-        s2.style.transform = "rotate("+angle+"deg)";
-    } else {
-        s3.style.display = "block";
-        s1.style.transform = "rotate("+angle+"deg)";
-        s2.style.transform = "rotate("+angle+"deg)";
-    }
-
-    if(remainingTime > 1000) {
-        timer.innerHTML = remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
-    } else {
-        timer.innerHTML = "0"+remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
-    }
-
-
-
-    // Letzten 5 Sekunden rot
-    // if(remainingTime <= 5000) {
-    //     s1.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-    //     s2.style.backgroundColor = "rgba(0, 255, 0, 0.8)";
-    //     timer.style.color = "rgba(55, 0, 255, 0.8)";
-    // }
-
-    if(remainingTime <= 0) {
-        questionEnd();
-    }
-} 
-
-
-
