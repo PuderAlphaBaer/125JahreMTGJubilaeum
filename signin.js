@@ -20,7 +20,7 @@ async function login() {
         unerror.innerHTML = "Bitte gib einen Benutzernamen ein";
         return;
     }
-    if (nickname.length>20) {
+    if (nickname.length>50) {
         console.log("nickname zu lang");
         tb1.classList.add('error');
         unerror.style.color = "red";
