@@ -49,7 +49,7 @@ function startpreQuestion() {
         return;
     } else {
     qnumber.style.display = "block";
-    qnumber.innerHTML = "Frage "+fragennumber+" von "+questions.length;
+    qnumber.innerHTML = "Frage "+fragennumber+" von "+questions.length-1;
 
     console.log('%c beginne' + fragennumber, 'background: #222; color: #bada55')
     supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', fragennumber)
@@ -134,7 +134,7 @@ function weiter() {
             <th class="udata">Punktzahl</th>
         </tr>
     </table>`;
-    bt1.innerHTML = "Starte Frage "+(fragennumber+1)+" von "+questions.length;
+    bt1.innerHTML = "Starte Frage "+(fragennumber+1)+" von "+(questions.length-1);
     fetchRangliste();
     supabaseUpdate('spieler', ['avotes', 'bvotes', 'cvotes', 'dvotes'], [false, false, false, false], '', '', '', '');
 }
