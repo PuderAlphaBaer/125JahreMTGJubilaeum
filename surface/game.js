@@ -134,7 +134,7 @@ function weiter() {
             <th class="udata">Punktzahl</th>
         </tr>
     </table>`;
-    bt1.innerHTML = "Starte Frage "+(fragennumber)+" von "+questions.length;
+    bt1.innerHTML = "Starte Frage "+(fragennumber+1)+" von "+questions.length;
     fetchRangliste();
     supabaseUpdate('spieler', ['avotes', 'bvotes', 'cvotes', 'dvotes'], [false, false, false, false], '', '', '', '');
 }

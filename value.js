@@ -35,7 +35,33 @@ const pretime = 6000;
 
     new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 20, 5, false, false, false),
 
-    new Frage ("Luzia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 20, 6, false, false, false)
+    new Frage ("Luzia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 20, 6, false, false, false),
+
+    new Frage ('Was heisst Sklave auf Latein?', 'Sklave', 'Sklavus', 'Servus', 'Moinmoin', 'c', 20, 7, false, false, false),
+
+    new Frage ('Wann begann die Französische Revolution?', '1789', '1788', '1787', '1786', 'a', 20, 8, false, false, false),
+
+    new Frage ('Wie viele Bundesländer hat Deutschland?', '16', '17', '18', '19', 'a', 20, 9, false, false, false),
+
+    new Frage ('Wie viele Bundesländer hat Österreich?', '8', '9', '10', '11', 'b', 20, 10, false, false, false),
+
+    new Frage ('Wie viele Bundesländer hat die Schweiz?', '23', '24', '25', '26', 'c', 20, 11, false, false, false),
+
+    new Frage ('Wann wurde die Bundesrepublik Deutschland gegründet?', '1945', '1946', '1947', '1948', 'd', 20, 12, false, false, false),
+
+    new Frage ('Wann wurde die DDR gegründet?', '1945', '1946', '1947', '1948', 'b', 20, 13, false, false, false),
+
+    new Frage ('Wann wurde die BRD gegründet?', '1945', '1946', '1947', '1948', 'd', 20, 14, false, false, false),
+
+    new Frage ('Wann begann der 2. Weltkrieg?', '1938', '1939', '1940', '1941', 'b', 20, 15, false, false, false),
+
+    new Frage ('Wer war der erste Bundeskanzler der BRD?', 'Konrad Adenauer', 'Helmut Kohl', 'Angela Merkel', 'Otto von Bismarck', 'a', 20, 16, false, false, false),
+
+    new Frage ('Wer war der erste Reichskanzler des Deutschen Reiches?', 'Otfried Biscuits', 'Alice Weidel', 'Angela Merkel', 'Otto von Bismarck', 'd', 20, 17, false, false, false),
+    
+    new Frage ('Wie viele Bits sind in einem Byte?', '4', '8', '16', '32', 'b', 20, 18, false, false, false),
+
+    new Frage ('Wie viele Bytes sind in einem Kilobyte?', '1000', '1024', '1032', '1048', 'b', 20, 19, false, false, false)
 
   ];
 
