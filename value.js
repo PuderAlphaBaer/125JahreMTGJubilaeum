@@ -14,6 +14,7 @@ class Frage {
     }
   }
 
+  // ID brauchen wir nicht, oder?
 
 const pretime = 6000;
 
@@ -106,5 +107,13 @@ getQuestions();
     "Ein Stich in mein Lateinerherz  ~Frau Wächter 2018, oft genug",
     "Cicero in sarkophaco rotat", 
     "sklavus  ~Maya, Lateinstunde mit Herr Waschbüsch",
+  ]
+
+  const zwischenworte = [
+    "pure genius",
+    "schlau?",
+    "so gut wie Tilman?",
+    "PURE GENIUS",
+    "GENIUS PURE"
   ]
   

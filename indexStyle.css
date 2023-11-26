@@ -334,6 +334,14 @@ body {
     background-color: cadetblue;
 }
 
+.spätbox {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: khaki;
+}
+
 .img {
     display: flex;
     background-size: cover;
@@ -386,4 +394,9 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.devtext {
+    position: absolute;
+    display: block;
 }

@@ -10,7 +10,7 @@ const frage2 = document.getElementById('frage2');
 const zwischenbox3 = document.getElementById('zwischenbox3');
 
 const zwischenbox1 = document.getElementById('zwischenbox1');
-
+const puregenius = document.getElementById('puregenius');
 const worte = document.getElementById('worte');
 const img = document.getElementById('img');
 const imgr = document.getElementById('imgr');
@@ -32,7 +32,6 @@ let allpoints = 0;
 let rank;
 let waituntilquestion;
 let ergebnis;
-let gamestarted = false;
 
 const toggleTimer = document.getElementById('toggleTimer');
 const timer = document.getElementById('timertext');
@@ -52,36 +51,43 @@ for (let i = 0; i < questions.length; i++) {
   gestartet.push(questions[i].start);
   beendet.push(questions[i].ende);
 }
-
-function derAnfangVonAllem() {
-  console.log('Der Anfang von Allem');
-}
 let currentQuestionCounter = 0;
 
 function checkStarting() {
+  if (angemeldet==true) {
   for (let i = 0; i < questions.length; i++) {
     if (questions[i].beginn == true &&  begonnen[i] == false) {
+      if (spätstart==true) {
+      } else {
       currentQuestionCounter = i;
       begonnen[i] = true;
       startVorFragen(i);
+      }
     }
     if (questions[i].start == true && gestartet[i] == false) {
+      if (spätstart==true) {
+      } else {
       currentQuestionCounter = i;
       gestartet[i] = true;
       startQuestion(i);
+      }
     }
     if (questions[i].ende == true && beendet[i] == false) {
+      if (spätstart==true) {
+        spätstart = false;
+      } else {
       currentQuestionCounter = i;
       beendet[i] = true;
       questionEnd();
+      }
     }
   }
+} else {
+  console.log("Frage gestartet, sie sind noch nicht angemeldet")
+}
 }
 
 
-if (gamestarted == true) {
-  alert('Du bist zu spät gekommen, das Spiel hat bereits begonnen');
-}
 // 5s vor Fragen beginn
 function startVorFragen(qid) {
   //Bann Ding
@@ -94,6 +100,7 @@ function startVorFragen(qid) {
 
   // html stuff und balken
   zwischenbox1.style.display = "none";
+  spätbox.style.display = "none";
   zwischenbox4.style.display = "none";
   frage1.innerHTML = questions[qid].frage;
   tbox2.style.width = "80%";
@@ -103,6 +110,7 @@ function startVorFragen(qid) {
 
 // Wird nach pre5s aufgerufen, starte die eigentliche Frage mit votebox
 function startQuestion(id) {
+    tbox2.style.width = "0%";
     questionid = id;
     // html stuff box
     frage2.innerHTML = questions[questionid].frage;
@@ -111,6 +119,8 @@ function startQuestion(id) {
     b.style.display = "flex";
     c.style.display = "flex";
     d.style.display = "flex";
+    a.style.backgroundColor = "#D11031";
+    b.style.backgroundColor = "#F99306";
     a.innerHTML = questions[questionid].a;
     b.innerHTML = questions[questionid].b;
     if (questions[questionid].c=="") {
@@ -129,6 +139,7 @@ function startQuestion(id) {
 
     questionStart = Date.now();
     ergebnis = "offen";
+    puregenius.innerHTML = zwischenworte[Math.floor(Math.random() * fworte.length)];
     startTimer();
 }
 

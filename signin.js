@@ -9,6 +9,8 @@ console.log('biginputbox: ' + biginputbox);
 let nickname = "";
 console.log('nickname: ' + nickname);
 let angemeldet = false;
+spätstart = false;
+const spätbox = document.getElementById('spätbox');
 
 async function login() {
     tb1.classList.remove('error');
@@ -36,19 +38,23 @@ async function login() {
         return;
     }
     // Sonderzeichen verbieten
-    if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(nickname)) {
+    // if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(nickname)) {
+    if (/(?=[^\w-]+|-$)/g.test(nickname)) {
         console.log("nickname enthält Sonderzeichen");
         tb1.classList.add('error');
         unerror.style.color = "red";
-        unerror.innerHTML = "Benutzername darf keine Sonderzeichen enthalten";
+        unerror.innerHTML = "Benutzername darf keine Sonderzeichen oder Leerzeichen enthalten";
         return;
     }
     console.log("nickname ok");
     supabaseInsert('spieler', ['name', 'punkte'], [nickname, 0])
+        if (questions[1].start == true) {
+            spätstart = true;
+        }
+
     angemeldet = true;
     startGame();
-}
-
+    }
 submitbutton.addEventListener('click', login);
 
 
@@ -58,8 +64,12 @@ const unbox = document.getElementById('unbox');
 
 
 function startGame() {
-    console.log("submited");
     biginputbox.style.display = "none";
     bigbox.style.display = "flex";
     unbox.innerHTML = 'Du bist '+nickname;
-}
+    if (spätstart==true) {
+        spätbox.style.display = "flex";
+    } else {
+        console.log("püntklich gejoined");
+        spätbox.style.display = "none";
+}}
