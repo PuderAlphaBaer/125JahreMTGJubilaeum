@@ -245,7 +245,7 @@ function aClicked() {
       streakrech = streak*0.1;
       streakrech = 1+streakrech;
       addPoints = addPoints*streakrech;
-      addPoints = Math.floor(addPoints / 20);
+      addPoints = Math.floor(addPoints / questions[questionid].zeit);
       streak = streak+1;
       points = points+addPoints;
       supabaseUpdate('spieler', ['avotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
