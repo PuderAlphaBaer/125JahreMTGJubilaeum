@@ -399,7 +399,7 @@ const tablebox = document.getElementById('tablebox');
 // Erzeugt eine neue Spalte in Rangliste mit eingegebenen Daten
 // row hat als class "rank1", "rank2", "rank4", "rakn5" usw.
 // einzelnes feld hat als class "row", ist noch änderbar
-function userupdate(rank, uname, score) {
+function userupdate(rank, uname, score, streak) {
     supabaseUpdate("spieler", ["rang"], [rank], "eq", "name", uname);
     document.getElementById('table').innerHTML += `
     <tr class="rank${rank}">
@@ -414,10 +414,10 @@ function userupdate(rank, uname, score) {
 // Ruft "userupdate()" für jeden User auf und füllt so Ranglistentabelle
 function fetchRangliste() {
     
-supabaseFetch('spieler', 'id, name, punkte', 'gt', 'punkte', -1, 'punkte', false).then((data) => {
+supabaseFetch('spieler', 'id, name, punkten streak', 'gt', 'punkte', -1, 'punkte', false).then((data) => {
             console.log(data)
      for (let i = 0; i < data.length; i++) {
-        userupdate(i + 1, data[i].name, data[i].punkte)
+        userupdate(i + 1, data[i].name, data[i].punkte, data[i].streak)
      }
     });
 }

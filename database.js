@@ -136,8 +136,6 @@ const supabaseDelete = async (table, conditionType, conditionColumn, conditionVa
     }
 }
 
-
-
 const supabaseDeleteAll = async (table) => {
     try {
         const {data, error} = await database
@@ -191,9 +189,8 @@ const fragenUpdates = database.channel('fragenUpdates')
             questions[payload.new.id].ende = payload.new.ende;
             
             console.log(questions[payload.new.id])
-            if (angemeldet==true) {
-                checkStarting();
-            }
+        
+            checkStarting();
             return payload;
         }
     )

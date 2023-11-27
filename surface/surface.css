@@ -46,11 +46,16 @@ canvas {
 
 
 table, th, td {
-    border: white 2px solid;
     margin: 0;
     padding: 0;
     border-spacing: 0;
+}
 
+table { border-collapse: collapse; }
+tr { border: none; }
+td {
+  border-right: solid 2px white; 
+  border-left: solid 2px white;
 }
 
 .table {
