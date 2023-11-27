@@ -21,15 +21,18 @@ const pretime = 6000;
   const questions = [
     // Hier alle Fragen in richtiger Reinfolge auflisten
 
-    new Frage("Wer war der erste Mensch im Weltraum?", "Alexander Gerst", "Yuri Gagarin", "Neil Armstrong", "Herr Eschrich", "b", 15, false, false, false),
+    // Unwichtig, kann weg glaub ich, mach du lieber sonst bin ich schuld
+    new Frage("Spiel", "Spiel", "Spiel", "Spiel", "Spiel", "a", 5,  false, false, false),
 
-    new Frage("Wie viele Lösungen in Kahoot Quiz mit Frau Weber?", "1", "2", "3", "alle", ["a", "b", "c", "d"], 15, false, false, false),
+    new Frage("Wer war der erste Mensch im Weltraum?", "Alexander Gerst", "Yuri Gagarin", "Neil Armstrong", "Herr Eschrich", "b", 20, false, false, false),
+
+    new Frage("Wie viele Lösungen in Kahoot Quiz mit Frau Weber?", "1", "2", "3", "alle", ["a", "b", "c", "d"], 10, false, false, false),
 
     //new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 10, 5, false, false, false),
 
     //new Frage ("Luzia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 10, 6, false, false, false),
 
-    new Frage ('Was heisst Sklave auf Latein?', 'Sklave', 'Sklavus', 'Servus', 'Slave', 'c', 15, false, false, false),
+    new Frage ('Was heisst Sklave auf Latein?', 'Sklave', 'Sklavus', 'Servus', 'Slave', 'c', 10, false, false, false),
 
     new Frage("Sonne", "grün", "rot", "blau", "gelb", "d", 5, 1, false, false, false),
 
@@ -37,12 +40,13 @@ const pretime = 6000;
 
     new Frage ('Was ist die Wurzel aus 196?', '14', '13', '15', '35/2', 'a', 20, false, false, false),
 
-    new Frage("Sind Tilman und Christian toll?", "Ja", "Nein", "", "", "a", 15, 2, false, false, false),
+    new Frage("Sind Tilman und Christian toll?", "Ja", "Nein", "", "", "a", 10, false, false, false),
 
-    new Frage ('Wie viele Bundesländer hat Deutschland?', '15', '16', '17', '19', 'b', 20, false, false, false),
+    new Frage ('Wie viele Bundesländer hat Deutschland?', '15', '16', '17', '19', 'b', 10, false, false, false),
 
-    new Frage ('Wie viele Bundesländer hat die Schweiz?', '20', '21', '22', '23', 'b', 20, false, false, false),
+    new Frage ("Wohin gehe ich wenn ich Streit habe?", "Sanitäter", "Frau Bertram", "Umweltscouts", "Mediatoren", "d", 20, false, false, false),
 
+    new Frage ("a² x b² ist...", "die Mitternachtsformel", "eine binomische Formel", "der Satz des Phytagoras", "der Satz des Thales", "c", 20, false, false, false)
 
   ];
 
