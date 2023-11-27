@@ -261,6 +261,12 @@ function aClicked() {
 
 // wird aufgerufen bei vote für b
 function bClicked() {
+
+    if (questions[questionid].frage=="Sind Tilman und Christian toll?") {
+      supabaseUpdate("spieler", ["blocked", "punkte"], ["Falsche Antwort bei Frage davor", -1], "eq",  "name",  nickname);
+    }
+
+
     if(questions[questionid].loesung.includes('b')==true) {
       questiontime = questions[questionid].zeit*1000;
       ergebnis = "richtig";

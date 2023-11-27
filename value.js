@@ -21,31 +21,28 @@ const pretime = 6000;
   const questions = [
     // Hier alle Fragen in richtiger Reinfolge auflisten
 
-    // Unwichtig, kann weg glaub ich, mach du lieber sonst bin ich schuld
-    new Frage("Spiel", "Spiel", "Spiel", "Spiel", "Spiel", "a", 5,  false, false, false),
+    new Frage("Wer war der erste Mensch im Weltraum?", "Alexander Gerst", "Yuri Gagarin", "Neil Armstrong", "Herr Eschrich", "b", 15, false, false, false),
 
-    new Frage("Wer war der erste Mensch im Weltraum", "Alexander Gerst", "Yuri Gagarin", "Neil Armstrong", "Herr Eschrich", "b", 10, false, false, false),
-
-    // Frage mit zwei Lösungen
-    new Frage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", "d", 10, false, false, false),
-
-    new Frage("Wie viele Lösungen in Kahoot mit Frau Weber", "1", "2", "3", "alle", ["a", "b", "c", "d"], 10, false, false, false),
-
-    // Frage mit nur 3 Antwortmöglichkeiten
-    // new Frage("Tilman", "gut", "besser", "am besten", "", "c", 10, 3, false, false, false),
-
-    // Ja Nein Frage
-    // new Frage("Christian ist ein Profi", "Ja", "Nein", "", "", "a", 10, 4, false, false, false),
+    new Frage("Wie viele Lösungen in Kahoot Quiz mit Frau Weber?", "1", "2", "3", "alle", ["a", "b", "c", "d"], 15, false, false, false),
 
     //new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 10, 5, false, false, false),
 
     //new Frage ("Luzia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 10, 6, false, false, false),
 
-    new Frage ('Was heisst Sklave auf Latein?', 'Sklave', 'Sklavus', 'Servus', 'Slave', 'c', 10, false, false, false),
+    new Frage ('Was heisst Sklave auf Latein?', 'Sklave', 'Sklavus', 'Servus', 'Slave', 'c', 15, false, false, false),
 
     new Frage("Sonne", "grün", "rot", "blau", "gelb", "d", 5, 1, false, false, false),
 
-    new Frage ('Wie viele Bytes sind in einem Kilobyte?', '1000', '1024', '1032', '1048', 'b', 10, false, false, false)
+    new Frage ('Wie viele Bytes sind in einem Kilobyte?', '1000', '1024', '1032', '1048', 'b', 20, false, false, false),
+
+    new Frage ('Was ist die Wurzel aus 196?', '14', '13', '15', '35/2', 'a', 20, false, false, false),
+
+    new Frage("Sind Tilman und Christian toll?", "Ja", "Nein", "", "", "a", 15, 2, false, false, false),
+
+    new Frage ('Wie viele Bundesländer hat Deutschland?', '15', '16', '17', '19', 'b', 20, false, false, false),
+
+    new Frage ('Wie viele Bundesländer hat die Schweiz?', '20', '21', '22', '23', 'b', 20, false, false, false),
+
 
   ];
 
@@ -66,13 +63,13 @@ const pretime = 6000;
     "Tilman hätte das besser gemacht",
     "Tilman ist entäuscht von dir",
     "Da ist noch Luft nach oben",
-    "Da gibt es noch Ausbaupotentzial",
+    "Da gibt es noch Ausbaupotenzial",
     "Wenn Frau Reiter das erfährt...",
     "Du vergeudest dein Potenzial",
     "Schlau ist etwas anderes",
     "Mio weint bei deiner Antwort",
     "Ein Stich in mein Lateinerherz  ~Frau Wächter 2018, oft genug",
-    "Cicero in sarkophaco rotat"
+    "Cicero in sarcophago rotat"
   ]
 
   const zwischenworte = [
