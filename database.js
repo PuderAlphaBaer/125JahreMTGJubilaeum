@@ -136,6 +136,8 @@ const supabaseDelete = async (table, conditionType, conditionColumn, conditionVa
     }
 }
 
+
+
 const supabaseDeleteAll = async (table) => {
     try {
         const {data, error} = await database
