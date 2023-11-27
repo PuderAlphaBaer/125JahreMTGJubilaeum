@@ -26,6 +26,10 @@ let dvotes;
 const bt2 = document.getElementById('bt2');
 const bt1 = document.getElementById('bt1');
 const startgamebt = document.getElementById('startgamebt');
+const resettu = document.getElementById('resetUsers');
+resettu.addEventListener('click', function() {
+    supabaseDeleteAll('spieler');
+})
 
 let fragennumber = 0;
 
