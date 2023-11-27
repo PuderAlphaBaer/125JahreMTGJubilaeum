@@ -87,7 +87,7 @@ getQuestions();
     "INTELLIGENZ",
     "Bene bene bene",
     "Ouich  ~Frau Fendt, immer",
-    "Gute Spieleinstellung",
+    "Gute Spieleinstellung"
   ]
   
   // Sprüche wenn Antwort falsch ist

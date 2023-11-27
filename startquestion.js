@@ -55,33 +55,33 @@ let currentQuestionCounter = 0;
 
 function checkStarting() {
   if (angemeldet==true) {
-  for (let i = 0; i < questions.length; i++) {
-    if (questions[i].beginn == true &&  begonnen[i] == false) {
-      if (spätstart==true) {
-      } else {
-      currentQuestionCounter = i;
-      begonnen[i] = true;
-      startVorFragen(i);
+    for (let i = 0; i < questions.length; i++) {
+      if (questions[i].beginn == true &&  begonnen[i] == false) {
+        if (spätstart==true) {
+        } else {
+        currentQuestionCounter = i;
+        begonnen[i] = true;
+        startVorFragen(i);
+        }
+      }
+      if (questions[i].start == true && gestartet[i] == false) {
+        if (spätstart==true) {
+        } else {
+        currentQuestionCounter = i;
+        gestartet[i] = true;
+        startQuestion(i);
+        }
+      }
+      if (questions[i].ende == true && beendet[i] == false) {
+        if (spätstart==true) {
+          spätstart = false;
+        } else {
+        currentQuestionCounter = i;
+        beendet[i] = true;
+        questionEnd();
+        }
       }
     }
-    if (questions[i].start == true && gestartet[i] == false) {
-      if (spätstart==true) {
-      } else {
-      currentQuestionCounter = i;
-      gestartet[i] = true;
-      startQuestion(i);
-      }
-    }
-    if (questions[i].ende == true && beendet[i] == false) {
-      if (spätstart==true) {
-        spätstart = false;
-      } else {
-      currentQuestionCounter = i;
-      beendet[i] = true;
-      questionEnd();
-      }
-    }
-  }
 }
 }
 
@@ -251,6 +251,7 @@ function aClicked() {
       supabaseUpdate('spieler', ['avotes','streak'], [true, streak], 'eq', 'name', nickname);
     }
     quizbox.style.display = "none";
+    zwischenbox4.style.display = "none";
     zwischenbox3.style.display = "flex";
 }
 
@@ -273,6 +274,7 @@ function bClicked() {
       supabaseUpdate('spieler', ['bvotes','streak'], [true, streak], 'eq', 'name', nickname);
     }
     quizbox.style.display = "none";
+    zwischenbox4.style.display = "none";
     zwischenbox3.style.display = "flex";
 }
 
@@ -295,6 +297,7 @@ function cClicked() {
       supabaseUpdate('spieler', ['cvotes','streak'], [true, streak], 'eq', 'name', nickname);
     }
     quizbox.style.display = "none";
+    zwischenbox4.style.display = "none";
     zwischenbox3.style.display = "flex";
 }
 
@@ -317,5 +320,6 @@ function dClicked() {
       supabaseUpdate('spieler', ['dvotes','streak'], [true, streak], 'eq', 'name', nickname);
     }
     quizbox.style.display = "none";
+    zwischenbox4.style.display = "none";
     zwischenbox3.style.display = "flex";
 }
