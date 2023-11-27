@@ -255,7 +255,7 @@ body {
     align-items: start;
     height: 100%;
     width: 100%;
-    background-color: red;
+    background-color: black;
 }
 
 .zwischenbox3 {
@@ -339,7 +339,7 @@ body {
     display: flex;
     height: 100%;
     width: 100%;
-    background-color: khaki;
+    background-color: goldenrod;
 }
 
 .img {
