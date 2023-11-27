@@ -48,7 +48,7 @@ function startgame() {
 function startpreQuestion() {
     fragennumber++;
     // if operator checkt, ob noch fragen da sind
-    if(fragennumber==questions.length) {
+    if(fragennumber>=questions.length) {
         alert("Quiz fertig, keine fragen mehr da");
         return;
     } else {

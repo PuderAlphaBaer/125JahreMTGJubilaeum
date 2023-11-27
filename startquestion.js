@@ -232,12 +232,16 @@ c.addEventListener('click', cClicked);
 d.addEventListener('click', dClicked);
 
 
+
+let questiontime = 20000;
+
 // wird aufgerufen bei vote für a
 function aClicked() {
     if(questions[questionid].loesung.includes('a')==true) {
+      questiontime = questions[questionid].zeit*1000;
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
-      addPoints = 20000-addPoints;
+      addPoints = questiontime-addPoints;
       streakrech = streak*0.1;
       streakrech = 1+streakrech;
       addPoints = addPoints*streakrech;
@@ -258,9 +262,10 @@ function aClicked() {
 // wird aufgerufen bei vote für b
 function bClicked() {
     if(questions[questionid].loesung.includes('b')==true) {
+      questiontime = questions[questionid].zeit*1000;
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
-      addPoints = 20000-addPoints;
+      addPoints = questiontime-addPoints;
       streakrech = streak*0.1;
       streakrech = 1+streakrech;
       addPoints = addPoints*streakrech;
@@ -281,9 +286,10 @@ function bClicked() {
 // wird aufgerufen bei vote für c
 function cClicked() {
     if(questions[questionid].loesung.includes('c')==true) {
+      questiontime = questions[questionid].zeit*1000;
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
-      addPoints = 20000-addPoints;
+      addPoints = questiontime-addPoints;
       streakrech = streak*0.1;
       streakrech = 1+streakrech;
       addPoints = addPoints*streakrech;
@@ -301,12 +307,14 @@ function cClicked() {
     zwischenbox3.style.display = "flex";
 }
 
+
 // wird aufgerufen bei vote für d
 function dClicked() {
     if(questions[questionid].loesung.includes('d')==true) {
+      questiontime = questions[questionid].zeit*1000;
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
-      addPoints = 20000-addPoints;
+      addPoints = questiontime-addPoints;
       streakrech = streak*0.1;
       streakrech = 1+streakrech;
       addPoints = addPoints*streakrech;

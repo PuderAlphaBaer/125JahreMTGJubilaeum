@@ -21,15 +21,19 @@ const pretime = 6000;
 
   const questions = [
     // Hier alle Fragen in richtiger Reinfolge auflisten
+
+    // Unwichtig, kann weg glaub ich, mach du lieber sonst bin ich schuld
     new Frage("Spiel", "Spiel", "Spiel", "Spiel", "Spiel", "a", 5, 0, false, false, false),
     // Normale Frage 
     new Frage("Sonne", "rot", "gelb", "grün", "blau", "b", 5, 1, false, false, false),
 
+    new Frage("Wer war der erste Mensch im Weltraum", "Alexander Gerst", "Yuri Gagarin", "Neil Armstrong", "Herr Eschrich", "b", 20, 14, false, false, false),
+
     // Frage mit zwei Lösungen
-    //new Frage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", ["d", "a"], 10, 2, false, false, false),
+    new Frage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", ["d" ,"a"], 10, 2, false, false, false),
 
     // Frage mit nur 3 Antwortmöglichkeiten
-    new Frage("Tilman", "gut", "besser", "am besten", "", "c", 10, 3, false, false, false),
+    // new Frage("Tilman", "gut", "besser", "am besten", "", "c", 10, 3, false, false, false),
 
     // Ja Nein Frage
     new Frage("Christian ist ein Profi", "Ja", "Nein", "", "", "a", 10, 4, false, false, false),
@@ -61,22 +65,6 @@ const pretime = 6000;
     new Frage ('Wie viele Bytes sind in einem Kilobyte?', '1000', '1024', '1032', '1048', 'b', 10, 19, false, false, false)
 
   ];
-
-async function getQuestions() {
-  for (let i = 0; i < questions.length; i++) {
-    let daten = await supabaseFetch('fragen', 'start', 'eq', 'id', i)
-    questions[i].beginn = daten[0].beginn;
-    questions[i].start = daten[0].start;
-    questions[i].ende = daten[0].ende;
-  }
-  console.log('das sind die questions: ')
-  console.log(questions)
-  console.log('jetzt ist die Zeit: ')
-}
-getQuestions();
-
-
-
 
   // Sprüche wenn Antwort richtig ist
   const rworte = [
@@ -113,3 +101,30 @@ getQuestions();
     "PUUUUUUUUUURE GEEEEEENIUS"
   ]
   
+
+
+
+
+
+
+
+
+
+
+
+
+// Hat hier nix zu suchen, übersetz mal value.js
+async function getQuestions() {
+  for (let i = 0; i < questions.length; i++) {
+    let daten = await supabaseFetch('fragen', 'start', 'eq', 'id', i)
+    questions[i].beginn = daten[0].beginn;
+    questions[i].start = daten[0].start;
+    questions[i].ende = daten[0].ende;
+  }
+  console.log('das sind die questions: ')
+  console.log(questions)
+  console.log('jetzt ist die Zeit: ')
+}
+getQuestions();
+
+
