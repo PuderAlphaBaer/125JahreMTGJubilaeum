@@ -189,7 +189,9 @@ const fragenUpdates = database.channel('fragenUpdates')
             questions[payload.new.id].ende = payload.new.ende;
             
             console.log(questions[payload.new.id])
-            checkStarting();
+            if (angemeldet==true) {
+                checkStarting();
+            }
             return payload;
         }
     )

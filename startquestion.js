@@ -54,15 +54,14 @@ for (let i = 0; i < questions.length; i++) {
 let currentQuestionCounter = 0;
 
 function checkStarting() {
-  if (angemeldet==true) {
   for (let i = 0; i < questions.length; i++) {
     if (questions[i].beginn == true &&  begonnen[i] == false) {
       if (spätstart==true) {
-        spätstart = false;
-      }
+      } else {
       currentQuestionCounter = i;
       begonnen[i] = true;
       startVorFragen(i);
+      }
     }
     if (questions[i].start == true && gestartet[i] == false) {
       if (spätstart==true) {
@@ -82,9 +81,6 @@ function checkStarting() {
       }
     }
   }
-} else {
-  console.log("Frage gestartet, sie sind noch nicht angemeldet")
-}
 }
 
 

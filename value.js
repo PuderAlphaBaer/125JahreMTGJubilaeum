@@ -101,8 +101,7 @@ getQuestions();
     "Schlau ist etwas anderes",
     "Mio weint bei deiner Antwort",
     "Ein Stich in mein Lateinerherz  ~Frau Wächter 2018, oft genug",
-    "Cicero in sarkophaco rotat", 
-    "sklavus  ~Maya, Lateinstunde mit Herr Waschbüsch",
+    "Cicero in sarkophaco rotat"
   ]
 
   const zwischenworte = [
@@ -110,6 +109,7 @@ getQuestions();
     "schlau?",
     "so gut wie Tilman?",
     "PURE GENIUS",
-    "GENIUS PURE"
+    "GENIUS PURE?",
+    "PUUUUUUUUUURE GEEEEEENIUS"
   ]
   

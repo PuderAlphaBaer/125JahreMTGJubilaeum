@@ -50,6 +50,7 @@ async function login() {
     supabaseInsert('spieler', ['name', 'punkte'], [nickname, 0])
         if (questions[1].start == true) {
             spätstart = true;
+            console.log("zu spät")
         }
 
     angemeldet = true;
