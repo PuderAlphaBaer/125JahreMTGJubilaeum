@@ -49,7 +49,7 @@ function startpreQuestion() {
         return;
     } else {
     qnumber.style.display = "block";
-    qnumber.innerHTML = "Frage "+fragennumber+" von "+questions.length-1;
+    qnumber.innerHTML = "Frage "+fragennumber+" von "+questions.length;
 
     console.log('%c beginne' + fragennumber, 'background: #222; color: #bada55')
     supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', fragennumber)

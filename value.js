@@ -26,7 +26,7 @@ const pretime = 6000;
     new Frage("Sonne", "rot", "gelb", "grün", "blau", "b", 5, 1, false, false, false),
 
     // Frage mit zwei Lösungen
-    new Frage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", ["d", "a"], 10, 2, false, false, false),
+    //new Frage("Liegestütze", "Herr Krois", "Herr Pleger", "Frau Ager", "Herr Markl", ["d", "a"], 10, 2, false, false, false),
 
     // Frage mit nur 3 Antwortmöglichkeiten
     new Frage("Tilman", "gut", "besser", "am besten", "", "c", 10, 3, false, false, false),
@@ -34,9 +34,9 @@ const pretime = 6000;
     // Ja Nein Frage
     new Frage("Christian ist ein Profi", "Ja", "Nein", "", "", "a", 10, 4, false, false, false),
 
-    new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 10, 5, false, false, false),
+    //new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 10, 5, false, false, false),
 
-    new Frage ("Luzia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 10, 6, false, false, false),
+    //new Frage ("Luzia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 10, 6, false, false, false),
 
     new Frage ('Was heisst Sklave auf Latein?', 'Sklave', 'Sklavus', 'Servus', 'Moinmoin', 'c', 10, 7, false, false, false),
 
@@ -52,15 +52,11 @@ const pretime = 6000;
 
     new Frage ('Wann wurde die DDR gegründet?', '1945', '1946', '1947', '1948', 'b', 10, 13, false, false, false),
 
-    new Frage ('Wann wurde die BRD gegründet?', '1945', '1946', '1947', '1948', 'd', 10, 14, false, false, false),
-
     new Frage ('Wann begann der 2. Weltkrieg?', '1938', '1939', '1940', '1941', 'b', 10, 15, false, false, false),
 
     new Frage ('Wer war der erste Bundeskanzler der BRD?', 'Konrad Adenauer', 'Helmut Kohl', 'Angela Merkel', 'Otto von Bismarck', 'a', 10, 16, false, false, false),
 
     new Frage ('Wer war der erste Reichskanzler des Deutschen Reiches?', 'Otfried Biscuits', 'Alice Weidel', 'Angela Merkel', 'Otto von Bismarck', 'd', 10, 17, false, false, false),
-    
-    new Frage ('Wie viele Bits sind in einem Byte?', '4', '8', '16', '32', 'b', 10, 18, false, false, false),
 
     new Frage ('Wie viele Bytes sind in einem Kilobyte?', '1000', '1024', '1032', '1048', 'b', 10, 19, false, false, false)
 

@@ -58,11 +58,11 @@ function checkStarting() {
   for (let i = 0; i < questions.length; i++) {
     if (questions[i].beginn == true &&  begonnen[i] == false) {
       if (spätstart==true) {
-      } else {
+        spätstart = false;
+      }
       currentQuestionCounter = i;
       begonnen[i] = true;
       startVorFragen(i);
-      }
     }
     if (questions[i].start == true && gestartet[i] == false) {
       if (spätstart==true) {
@@ -139,7 +139,7 @@ function startQuestion(id) {
 
     questionStart = Date.now();
     ergebnis = "offen";
-    puregenius.innerHTML = zwischenworte[Math.floor(Math.random() * fworte.length)];
+    puregenius.innerHTML = zwischenworte[Math.floor(Math.random() * zwischenworte.length)];
     startTimer();
 }
 

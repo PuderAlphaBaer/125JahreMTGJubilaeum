@@ -303,12 +303,12 @@ body {
 
 .frage1 {
     padding-top: 35%;
-    font-size: 8vh;
+    font-size: 4vh;
 }
 
 
 .frage2 {
-    font-size: 8vh;
+    font-size: 4vh;
     padding-top: 35%;
 }
 
@@ -332,6 +332,8 @@ body {
     height: 100%;
     width: 100%;
     background-color: cadetblue;
+    align-items: center;
+    justify-content: center;
 }
 
 .spätbox {
@@ -399,4 +401,8 @@ body {
 .devtext {
     position: absolute;
     display: block;
+}
+
+.tbox1text {
+    font-size: 10vh;
 }
