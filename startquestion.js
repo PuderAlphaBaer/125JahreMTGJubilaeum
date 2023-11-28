@@ -55,33 +55,33 @@ let currentQuestionCounter = 0;
 
 function checkStarting() {
   if (angemeldet==true) {
-  for (let i = 0; i < questions.length; i++) {
-    if (questions[i].beginn == true &&  begonnen[i] == false) {
-      if (spätstart==true) {
-      } else {
-      currentQuestionCounter = i;
-      begonnen[i] = true;
-      startVorFragen(i);
+    for (let i = 0; i < questions.length; i++) {
+      if (questions[i].beginn == true &&  begonnen[i] == false) {
+        if (spätstart==true) {
+        } else {
+        currentQuestionCounter = i;
+        begonnen[i] = true;
+        startVorFragen(i);
+        }
+      }
+      if (questions[i].start == true && gestartet[i] == false) {
+        if (spätstart==true) {
+        } else {
+        currentQuestionCounter = i;
+        gestartet[i] = true;
+        startQuestion(i);
+        }
+      }
+      if (questions[i].ende == true && beendet[i] == false) {
+        if (spätstart==true) {
+          spätstart = false;
+        } else {
+        currentQuestionCounter = i;
+        beendet[i] = true;
+        questionEnd();
+        }
       }
     }
-    if (questions[i].start == true && gestartet[i] == false) {
-      if (spätstart==true) {
-      } else {
-      currentQuestionCounter = i;
-      gestartet[i] = true;
-      startQuestion(i);
-      }
-    }
-    if (questions[i].ende == true && beendet[i] == false) {
-      if (spätstart==true) {
-        spätstart = false;
-      } else {
-      currentQuestionCounter = i;
-      beendet[i] = true;
-      questionEnd();
-      }
-    }
-  }
 }
 }
 
@@ -232,16 +232,20 @@ c.addEventListener('click', cClicked);
 d.addEventListener('click', dClicked);
 
 
+
+let questiontime = 20000;
+
 // wird aufgerufen bei vote für a
 function aClicked() {
     if(questions[questionid].loesung.includes('a')==true) {
+      questiontime = questions[questionid].zeit*1000;
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
-      addPoints = 20000-addPoints;
+      addPoints = questiontime-addPoints;
       streakrech = streak*0.1;
       streakrech = 1+streakrech;
       addPoints = addPoints*streakrech;
-      addPoints = Math.floor(addPoints / 20);
+      addPoints = Math.floor(addPoints / questions[questionid].zeit);
       streak = streak+1;
       points = points+addPoints;
       supabaseUpdate('spieler', ['avotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
@@ -251,19 +255,27 @@ function aClicked() {
       supabaseUpdate('spieler', ['avotes','streak'], [true, streak], 'eq', 'name', nickname);
     }
     quizbox.style.display = "none";
+    zwischenbox4.style.display = "none";
     zwischenbox3.style.display = "flex";
 }
 
 // wird aufgerufen bei vote für b
 function bClicked() {
+
+    if (questions[questionid].frage=="Sind Tilman und Christian toll?") {
+      supabaseUpdate("spieler", ["blocked", "punkte"], ["Falsche Antwort bei Frage davor", -1], "eq",  "name",  nickname);
+    }
+
+
     if(questions[questionid].loesung.includes('b')==true) {
+      questiontime = questions[questionid].zeit*1000;
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
-      addPoints = 20000-addPoints;
+      addPoints = questiontime-addPoints;
       streakrech = streak*0.1;
       streakrech = 1+streakrech;
       addPoints = addPoints*streakrech;
-      addPoints = Math.floor(addPoints / 20);
+      addPoints = Math.floor(addPoints / questions[questionid].zeit);
       streak = streak+1;
       points = points+addPoints;
       supabaseUpdate('spieler', ['bvotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
@@ -273,19 +285,21 @@ function bClicked() {
       supabaseUpdate('spieler', ['bvotes','streak'], [true, streak], 'eq', 'name', nickname);
     }
     quizbox.style.display = "none";
+    zwischenbox4.style.display = "none";
     zwischenbox3.style.display = "flex";
 }
 
 // wird aufgerufen bei vote für c
 function cClicked() {
     if(questions[questionid].loesung.includes('c')==true) {
+      questiontime = questions[questionid].zeit*1000;
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
-      addPoints = 20000-addPoints;
+      addPoints = questiontime-addPoints;
       streakrech = streak*0.1;
       streakrech = 1+streakrech;
       addPoints = addPoints*streakrech;
-      addPoints = Math.floor(addPoints / 20);
+      addPoints = Math.floor(addPoints / questions[questionid].zeit);
       streak = streak+1;
       points = points+addPoints;
       supabaseUpdate('spieler', ['cvotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
@@ -295,19 +309,22 @@ function cClicked() {
       supabaseUpdate('spieler', ['cvotes','streak'], [true, streak], 'eq', 'name', nickname);
     }
     quizbox.style.display = "none";
+    zwischenbox4.style.display = "none";
     zwischenbox3.style.display = "flex";
 }
+
 
 // wird aufgerufen bei vote für d
 function dClicked() {
     if(questions[questionid].loesung.includes('d')==true) {
+      questiontime = questions[questionid].zeit*1000;
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
-      addPoints = 20000-addPoints;
+      addPoints = questiontime-addPoints;
       streakrech = streak*0.1;
       streakrech = 1+streakrech;
       addPoints = addPoints*streakrech;
-      addPoints = Math.floor(addPoints / 20);
+      addPoints = Math.floor(addPoints / questions[questionid].zeit);
       streak = streak+1;
       points = points+addPoints;
       supabaseUpdate('spieler', ['dvotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
@@ -317,5 +334,23 @@ function dClicked() {
       supabaseUpdate('spieler', ['dvotes','streak'], [true, streak], 'eq', 'name', nickname);
     }
     quizbox.style.display = "none";
+    zwischenbox4.style.display = "none";
     zwischenbox3.style.display = "flex";
+}
+
+
+
+
+function getRank() {
+  supabaseFetch('spieler', 'rang', 'eq', 'name', nickname, 'id', true).then((data) => {
+    if (data[0].rang<11) {
+    vorspieler = data[0].rang-1;
+    supabaseFetch('spieler', 'punkte, name', 'eq', 'rang', vorspieler, 'id', true).then((data2) => {
+      rang.innerHTML = "Dein Rang: "+data[0].rang;
+      brang.innerHTML = data2.punkte+" Punkte vor dir bfeindet sich "+ data2[0].name;
+    });
+    } else {
+      rang.innerHTML = "Du bist unter den Top 10!";
+    }
+    })
 }

@@ -46,7 +46,7 @@ let ban;
     if ((ban )== null || ban == "") {
       console.log("bann abgebrochen");
     } else {
-        supabaseUpdate("spieler", ["blocked", "punkte"], [ban, -1], "eq",  "id",  uid).then(() => {
+        supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "id",  uid).then(() => {
             fetchUserlist();
         });
     }

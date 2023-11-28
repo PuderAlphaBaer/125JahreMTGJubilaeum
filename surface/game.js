@@ -48,7 +48,7 @@ function startgame() {
 function startpreQuestion() {
     fragennumber++;
     // if operator checkt, ob noch fragen da sind
-    if(fragennumber==questions.length) {
+    if(fragennumber>=questions.length) {
         alert("Quiz fertig, keine fragen mehr da");
         return;
     } else {
@@ -139,7 +139,6 @@ function weiter() {
         </tr>
     </table>`;
     bt1.innerHTML = "Starte Frage "+(fragennumber+1)+" von "+(questions.length-1);
-    fetchRangliste();
     supabaseUpdate('spieler', ['avotes', 'bvotes', 'cvotes', 'dvotes'], [false, false, false, false], 'gt', 'id', '-2');
 }
 
@@ -328,6 +327,7 @@ function auswertung() {
             });
         }
     }
+    fetchRangliste();
 }
 
 // Erstellt Diagramm, greift zurück auf "auswertung();"
@@ -405,20 +405,29 @@ const tablebox = document.getElementById('tablebox');
 // einzelnes feld hat als class "row", ist noch änderbar
 function userupdate(rank, uname, score, streak) {
     supabaseUpdate("spieler", ["rang"], [rank], "eq", "name", uname);
+    if (streak==0) {
+        sbox = "";
+    } else {
+        sbox = `        <div class="simg img"></div>
+        <div>${streak}</div>`
+    }
     document.getElementById('table').innerHTML += `
     <tr class="rank${rank}">
         <td class="row">${rank}</th>
         <td class="row">${uname}</th>
         <td class="row">${score}</th>
+        <td class="rowstreak">${sbox}</th>
     </tr>`;
 }
+
+
 
 
 
 // Ruft "userupdate()" für jeden User auf und füllt so Ranglistentabelle
 function fetchRangliste() {
     
-supabaseFetch('spieler', 'id, name, punkten streak', 'gt', 'punkte', -1, 'punkte', false).then((data) => {
+supabaseFetch('spieler', 'id, name, punkte, streak', 'gt', 'punkte', -1, 'punkte', false).then((data) => {
             console.log(data)
      for (let i = 0; i < data.length; i++) {
         userupdate(i + 1, data[i].name, data[i].punkte, data[i].streak)

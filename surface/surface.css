@@ -45,17 +45,14 @@ canvas {
 
 
 
-table, th, td {
-    margin: 0;
-    padding: 0;
-    border-spacing: 0;
-}
 
 table { border-collapse: collapse; }
-tr { border: none; }
+tr {
+    border: white solid 2px;
+}
 td {
-  border-right: solid 2px white; 
-  border-left: solid 2px white;
+  border-top: solid 2px white; 
+  border-bottom: solid 2px white;
 }
 
 .table {
@@ -86,6 +83,8 @@ td {
     top: 0;
 }
 
+.row {
+}
 
 .rangliste {
     display: flex;
@@ -379,4 +378,22 @@ td {
     top: 0;
     left: 0;
     position: absolute;
+}
+
+.simg {
+    display: flex;
+    background-image: url(../Data/streak.png);
+    width: 60%;
+    height: 0;
+    padding-bottom: 60%;
+}
+
+.img {
+    display: flex;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.rowstreak {
+    flex-direction: row;
 }
