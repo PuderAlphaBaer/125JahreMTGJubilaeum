@@ -337,3 +337,20 @@ function dClicked() {
     zwischenbox4.style.display = "none";
     zwischenbox3.style.display = "flex";
 }
+
+
+
+
+function getRank() {
+  supabaseFetch('spieler', 'rang', 'eq', 'name', nickname, 'id', true).then((data) => {
+    if (data[0].rang<11) {
+    vorspieler = data[0].rang-1;
+    supabaseFetch('spieler', 'punkte, name', 'eq', 'rang', vorspieler, 'id', true).then((data2) => {
+      rang.innerHTML = "Dein Rang: "+data[0].rang;
+      brang.innerHTML = data2.punkte+" Punkte vor dir bfeindet sich "+ data2[0].name;
+    });
+    } else {
+      rang.innerHTML = "Du bist unter den Top 10!";
+    }
+    })
+}

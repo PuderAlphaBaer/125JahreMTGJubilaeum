@@ -139,7 +139,6 @@ function weiter() {
         </tr>
     </table>`;
     bt1.innerHTML = "Starte Frage "+(fragennumber+1)+" von "+(questions.length-1);
-    fetchRangliste();
     supabaseUpdate('spieler', ['avotes', 'bvotes', 'cvotes', 'dvotes'], [false, false, false, false], 'gt', 'id', '-2');
 }
 
@@ -328,6 +327,7 @@ function auswertung() {
             });
         }
     }
+    fetchRangliste();
 }
 
 // Erstellt Diagramm, greift zurück auf "auswertung();"
