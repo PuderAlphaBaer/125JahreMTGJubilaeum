@@ -367,10 +367,10 @@ td {
 }
 
 .qr {
-    width: 20%;
-    height: 0;
+    width: 60vmin;
+    height: 60vmin;
     padding-bottom: 20%;
-    background-image: url("../Data/qr.png");
+    background-image: url("../Data/qr-code.svg");
     background-repeat: no-repeat;
     background-size: cover;
 }
