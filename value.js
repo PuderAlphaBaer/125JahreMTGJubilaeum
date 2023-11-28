@@ -46,7 +46,7 @@ const pretime = 6000;
 
     new Frage ("Wohin gehe ich wenn ich Streit habe?", "Sanitäter", "Frau Bertram", "Umweltscouts", "Mediatoren", "d", 20, false, false, false),
 
-    new Frage ("a² x b² = c² ist...", "die Mitternachtsformel", "eine binomische Formel", "der Satz des Phytagoras", "der Satz des Thales", "c", 20, false, false, false)
+    new Frage ("a² + b² = c² ist...", "die Mitternachtsformel", "eine binomische Formel", "der Satz des Phytagoras", "der Satz des Thales", "c", 20, false, false, false)
 
   ];
 
