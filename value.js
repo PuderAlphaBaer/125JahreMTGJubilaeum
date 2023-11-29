@@ -30,7 +30,7 @@ const pretime = 6000;
 
     new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 10, 5, false, false, false),
 
-    new Frage ("Luzia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 10, 6, false, false, false),
+    new Frage ("Olivia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 10, 6, false, false, false),
 
     new Frage ('Wann begann die Französische Revolution?', '1789', '1788', '1787', '1786', 'a', 10, 8, false, false, false),
 
