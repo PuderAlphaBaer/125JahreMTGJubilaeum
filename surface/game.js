@@ -239,6 +239,7 @@ function timerend() {
     }
     bt2.style.display = "block";
     auswertung();
+    fetchRangliste();
 }
 
 
@@ -325,7 +326,6 @@ function auswertung() {
             });
         }
     }
-    fetchRangliste();
 }
 
 // Erstellt Diagramm, greift zurück auf "auswertung();"
