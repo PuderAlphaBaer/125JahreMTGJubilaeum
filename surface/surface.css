@@ -397,3 +397,11 @@ td {
 .rowstreak {
     flex-direction: row;
 }
+
+#resetFragen {
+    display: none;
+}
+
+#resetUsers {
+    display: none;
+}

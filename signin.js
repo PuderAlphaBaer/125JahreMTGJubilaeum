@@ -37,22 +37,37 @@ async function login() {
         unerror.innerHTML = "Benutzername bereits vergeben";
         return;
     }
-    // Sonderzeichen verbieten
-    // if (/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(nickname)) {
-    if (/(?=[^\w-]+|-$)/g.test(nickname)) {
+
+
+    //sonderzeichen verbieten, inklusive leerzeichen
+    if (nickname.match(/^[a-zA-Z0-9]+$/)) {
         console.log("nickname enthält Sonderzeichen");
         tb1.classList.add('error');
         unerror.style.color = "red";
-        unerror.innerHTML = "Benutzername darf keine Sonderzeichen oder Leerzeichen enthalten";
+        unerror.innerHTML = "Benutzername darf nur Buchstaben und Zahlen enthalten";
         return;
     }
+
+    // profanity list fluch.txt, woerter sind mit nur mit leerzeichen getrennt, wenn nutzername ein wort aus der liste enthaelt, wird er nicht zugelassen
+    const fs = require('fs');
+    const boese = fs.readFileSync('fluch.txt', 'utf8');
+    const boesearray = boese.split(" ");
+    for (let i = 0; i < boesearray.length; i++) {
+        if (nickname.includes(boesearray[i])) {
+            console.log("nickname enthält böses wort");
+            tb1.classList.add('error');
+            unerror.style.color = "red";
+            unerror.innerHTML = "Benutzername enthält ein unangemessenes Wort";
+            return;
+        }
+    }
+
     console.log("nickname ok");
     supabaseInsert('spieler', ['name', 'punkte'], [nickname, 0])
         if (questions[1].start == true) {
             spätstart = true;
             console.log("zu spät")
-        }
-
+        }    
     angemeldet = true;
     startGame();
     }

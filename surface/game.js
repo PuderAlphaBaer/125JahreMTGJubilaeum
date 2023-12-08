@@ -27,9 +27,7 @@ const bt2 = document.getElementById('bt2');
 const bt1 = document.getElementById('bt1');
 const startgamebt = document.getElementById('startgamebt');
 const resettu = document.getElementById('resetUsers');
-resettu.addEventListener('click', function() {
-    supabaseDeleteAll('spieler');
-})
+
 
 let fragennumber = 0;
 
@@ -458,16 +456,24 @@ supabaseFetch('spieler', 'id, name, punkte, streak', 'gt', 'punkte', -1, 'punkte
 // });
 
 
-const reseto = document.getElementById('resetFragen');
-reseto.addEventListener('click', function() {
-    for (let i = 0; i < questions.length; i++) {
-        console.log('%c resete frage' + i, 'background: #222; color: #bada55')
-        supabaseUpdate('fragen', ['beginn', 'start', 'ende'], [false, false, false], 'eq', 'id', i)
-    }
-})
+// const reseto = document.getElementById('resetFragen');
+// reseto.addEventListener('click', function() {
+//     for (let i = 0; i < questions.length; i++) {
+//         console.log('%c resete frage' + i, 'background: #222; color: #bada55')
+//         supabaseUpdate('fragen', ['beginn', 'start', 'ende'], [false, false, false], 'eq', 'id', i)
+//     }
+// })
+// resettu.addEventListener('click', function() {
+//     supabaseDeleteAll('spieler');
+// })
 
 
 function checkStarting () {
     console.log('nix')
 }
 
+for (let i = 0; i < questions.length; i++) {
+    console.log('%c resete frage' + i, 'background: #222; color: #bada55')
+    supabaseUpdate('fragen', ['beginn', 'start', 'ende'], [false, false, false], 'eq', 'id', i)
+}
+supabaseDeleteAll('spieler');
