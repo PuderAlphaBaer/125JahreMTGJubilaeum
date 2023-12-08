@@ -39,28 +39,30 @@ async function login() {
     }
 
 
-    //sonderzeichen verbieten, inklusive leerzeichen
-    if (nickname.match(/^[a-zA-Z0-9]+$/)) {
-        console.log("nickname enthält Sonderzeichen");
+    //wenn sonderzeichen (inklusive leerzeichen) enthalten sind, wird geblockt
+    if (nickname.match(/[^a-zA-Z0-9]/g)) {
+        console.log("nickname enthält sonderzeichen");
         tb1.classList.add('error');
         unerror.style.color = "red";
         unerror.innerHTML = "Benutzername darf nur Buchstaben und Zahlen enthalten";
         return;
     }
 
-    // profanity list fluch.txt, woerter sind mit nur mit leerzeichen getrennt, wenn nutzername ein wort aus der liste enthaelt, wird er nicht zugelassen
-    const fs = require('fs');
-    const boese = fs.readFileSync('fluch.txt', 'utf8');
-    const boesearray = boese.split(" ");
-    for (let i = 0; i < boesearray.length; i++) {
-        if (nickname.includes(boesearray[i])) {
-            console.log("nickname enthält böses wort");
+    // profanity list fluch.txt, woerter sind mit nur mit leerzeichen getrennt, wenn nutzername ein wort aus der liste enthaelt, wird er nicht zugelassen, browser javascript, kein node.js oder module
+    let fluch = await fetch('fluch.txt');
+    let fluchtext = await fluch.text();
+    let fluchliste = fluchtext.split(' ');
+    console.log(fluchliste);
+    for (let i = 0; i < fluchliste.length; i++) {
+        if (nickname.includes(fluchliste[i])) {
+            console.log("nickname enthält fluchwort");
             tb1.classList.add('error');
             unerror.style.color = "red";
-            unerror.innerHTML = "Benutzername enthält ein unangemessenes Wort";
+            unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
             return;
         }
     }
+
 
     console.log("nickname ok");
     supabaseInsert('spieler', ['name', 'punkte'], [nickname, 0])

@@ -472,8 +472,9 @@ function checkStarting () {
     console.log('nix')
 }
 
-for (let i = 0; i < questions.length; i++) {
+for (let i = 0; i <= questions.length; i++) {
     console.log('%c resete frage' + i, 'background: #222; color: #bada55')
     supabaseUpdate('fragen', ['beginn', 'start', 'ende'], [false, false, false], 'eq', 'id', i)
 }
+
 supabaseDeleteAll('spieler');
