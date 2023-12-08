@@ -54,7 +54,7 @@ async function login() {
     let fluchliste = fluchtext.split(' ');
     console.log(fluchliste);
     for (let i = 0; i < fluchliste.length; i++) {
-        if (nickname.includes(fluchliste[i])) {
+        if (nickname.toLowerCase().includes(fluchliste[i].toLowerCase())) {
             console.log("nickname enthält fluchwort");
             tb1.classList.add('error');
             unerror.style.color = "red";
