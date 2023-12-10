@@ -1,3 +1,5 @@
+// Tilman Todo: ❌✅🔥
+
 const a = document.getElementById('bta')
 const b = document.getElementById('btb')
 const c = document.getElementById('btc')
@@ -155,7 +157,7 @@ function startQuestion(id) {
 function startTimer() { 
   setTime = questions[questionid].zeit*1000;
   timer.innerHTML = questions[questionid].zeit+".00";
-  timerLoop = setInterval(countDownTimer, 10);
+  timerLoop = setInterval(countDownTimer, 60);
   futureTime = Date.now() + setTime;
   s1.style.display = "block";
   s2.style.display = "block";

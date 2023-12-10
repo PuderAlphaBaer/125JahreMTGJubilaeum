@@ -10,9 +10,12 @@
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
 </head>
 <body oncontextmenu="return false">
-    <div id="bigbox" class="bigbox"> <!-- Box für alles was nicht Signin ist-->
 
-        <div id="zwischenbox2" class="zwischenbox2">  <!-- Ablaufende Bar mit Frage  WICHTIG! display property der Box darf nicht verändert werden, sonst funktioniert transition nicht mehr-->
+    <!-- Box für alles was nicht Signin ist-->
+    <div id="bigbox" class="bigbox">
+
+        <!-- Phase 1: Balken Ding -->
+        <div id="zwischenbox2" class="zwischenbox2"><!-- Ablaufende Bar mit Frage  WICHTIG! display property der Box darf nicht verändert werden, sonst funktioniert transition nicht mehr-->
             <div>
                 <p id="frage1" class="frage1"></p>
             </div>
@@ -20,14 +23,16 @@
             <div id="tbox2" class="tbox2"></div>
         </div>
 
+        <!-- Phase 2.5 puregenius? -->
         <div id="zwischenbox3" class="zwischenbox3"> <!-- Box nach click eines buttons während Frage noch aktiv ist-->
             <div id="puregenius" class="puregenius"></div>
         </div>
 
+        <!-- Phase 3: Richtig oder Falsche Antwort -->
         <div id="zwischenbox4" class="zwischenbox4"> <!-- Box zwischen bzw nach Fragen-->
             <div class="box1">
-                <div class="img imgr" id="imgr"></div>
-                <div class="img imgf" id="imgf"></div>
+                <div class="img imgr" id="imgr">✅</div>
+                <div class="img imgf" id="imgf">❌</div>
                 <div class="worte" id="worte"></div>
             </div>
             <div class="box2">
@@ -50,6 +55,8 @@
                     Das Spiel hat schon begonnen, du wirst bei der nächsten Frage mit einsteigen!
                 </div>
         </div>
+
+        <!-- Phase 2: Frage Button Click -->
         <div id="quizbox" class="quizbox"> <!-- Box für Quizentscheidung und Timer-->
             <div>
                 <p id="frage2" class="frage2"></p>

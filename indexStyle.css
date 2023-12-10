@@ -352,7 +352,6 @@ body {
 
 /* https://www.bing.com/images/search?view=detailV2&ccid=oM%2Fpk81r&id=8A1469D3F13C9002C610363C911937E0B94DD93D&thid=OIP.oM_pk81rLlQqteN5tUKxugAAAA&mediaurl=https%3A%2F%2Fsourceenergy.com.au%2Fwp-content%2Fthemes%2Fsource%2Fassets%2Fimg%2Fgreen-checkw.png&cdnurl=https%3A%2F%2Fth.bing.com%2Fth%2Fid%2FR.a0cfe993cd6b2e542ab5e379b542b1ba%3Frik%3DPdlNueA3GZE8Ng%26pid%3DImgRaw%26r%3D0&exph=300&expw=300&q=richtig+symbol&simid=608003645550638670&form=IRPRST&ck=8C0165EA5D9ACC848F1FEC27D00DA65A&selectedindex=141&ajaxhist=0&ajaxserp=0&vt=0&sim=11 */
 .imgr {
-    background-image: url(Data/r.png);
     width: 100%;
     height: 0;
     padding-bottom: 100%;
@@ -361,7 +360,6 @@ body {
 /* https://www.bing.com/images/search?view=detailV2&ccid=GmsJfFpG&id=7E1D0275AE49F3466E747329950973DBAD8FDB80&thid=OIP.GmsJfFpGWMjYACtDsuqvVQHaHa&mediaurl=https%3A%2F%2Fillust8.com%2Fwp-content%2Fuploads%2F2018%2F08%2Fmark_batsu_illust_899-768x768.png&cdnurl=https%3A%2F%2Fth.bing.com%2Fth%2Fid%2FR.1a6b097c5a4658c8d8002b43b2eaaf55%3Frik%3DgNuPrdtzCZUpcw%26pid%3DImgRaw%26r%3D0&exph=768&expw=768&q=falsch+symbol&simid=608048008266133631&form=IRPRST&ck=16877369DF3FBDFB4004B74A1590471C&selectedindex=11&ajaxhist=0&ajaxserp=0&pivotparams=insightsToken%3Dccid_jxOkPutK*cp_B99351C1912DC33C12560952D5A9548F*mid_490AD07D61BA5B86795F33C5E6EE94BD901B48BD*simid_608013691479864762*thid_OIP.jxOkPutK5i93qQI1ndr6EQHaHa&vt=0&sim=11&iss=VSI&ajaxhist=0&ajaxserp=0 */
 .imgf {
     display: block;
-    background-image: url(Data/f.png);
     width: 100%;
     height: 0;
     padding-bottom: 100%;
