@@ -259,46 +259,99 @@ function auswertung() {
     // Entscheidet, welches Diagramm verwendet werden soll, je nach Fragentyp
     if (questions[fragennumber].c=="") {
         // Zwei Antwortmöglichkeiten
-        supabaseFetch('spieler', 'avotes, bvotes', '', '', "", 'avotes', false).then((data) => {
+        supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes', '', '', '', 'punkte', false).then((data) => {
             for (let i = 0; i < data.length; i++) {
-                if(data[i].avotes==true) {
-                    avotes = avotes+1;
+                userIndex = userlist.findIndex((obj => obj.id == data[i].id));
+                if (userIndex==-1) {
+                    userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false, 0));
+                    userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                 }
-                if(data[i].bvotes==true) {
-                    bvotes = bvotes+1;
-                }
-                if(i==data.length-1) {
-                    xValues = [a.innerHTML, b.innerHTML];
-                    yValues = [avotes, bvotes];
-                    barColors = [a.style.backgroundColor, b.style.backgroundColor];
-                    borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
-                    nchart();
-                }
-            }
+                if(data[i].punkte<0) {
+                    userlist[userIndex].punkte = -1;
+                    userlist[userIndex].banned = true;
+                } else {
+                    userlist[userIndex].punkte = data[i].punkte;
+                    userlist[userIndex].streak = data[i].streak;
+                    userlist[userIndex].rank = i+1;
+                    supabaseUpdate('spieler', ['rang'], [i+1], 'eq', 'id', data[i].id);
+                    if(data[i].avotes==true) {
+                        avotes = avotes+1;
+                        // userlist[userIndex].afk = 0;
+                    } else {
+                        if(data[i].bvotes==true) {
+                            bvotes = bvotes+1;
+                            // userlist[userIndex].afk = 0;
+                        } 
+                                }// else {
+                                    // Wird aufgerufen, wenn user nicht abgestimmt hat
+                                 //   userlist[userIndex].afk = 1;
+                                 //   if (userlist[userIndex].afk>=2) {
+                                 //       supabaseUpdate('spieler', ['punkte', 'blocked'], [-1, ], 'eq', 'id', data[i].id);
+                                 //       userlist[userIndex].banned = true;
+                                 //   }
+                                // }
+                        }
+                    }
+                    if(i==data.length-1) {
+                        userlist.sort(function (a, b) {return a.rank - b.rank});
+                        xValues = [a.innerHTML, b.innerHTML];
+                        yValues = [avotes, bvotes];
+                        barColors = [a.style.backgroundColor, b.style.backgroundColor];
+                        borderColors = [a.style.borderColor, b.style.borderColor];
+                        nchart();
+                    } 
         });
     } else {
          if(questions[fragennumber].d=="") {
         // Drei Antwortmöglichkeiten
-        supabaseFetch('spieler', 'avotes, bvotes, cvotes', '', '', "", 'avotes', false).then((data) => {
+        supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes, cvotes', '', '', '', 'punkte', false).then((data) => {
             for (let i = 0; i < data.length; i++) {
-                if(data[i].avotes==true) {
-                    avotes = avotes+1;
+                userIndex = userlist.findIndex((obj => obj.id == data[i].id));
+                if (userIndex==-1) {
+                    userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false, 0));
+                    userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                 }
-                if(data[i].bvotes==true) {
-                    bvotes = bvotes+1;
-                }
-                if(data[i].cvotes==true) {
-                    cvotes = cvotes+1;
-                }
-                if(i==data.length-1) {
-                    xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
-                    yValues = [avotes, bvotes, cvotes];
-                    barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor];
-                    borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
-                    nchart();
+                if(data[i].punkte<0) {
+                    userlist[userIndex].punkte = -1;
+                    userlist[userIndex].banned = true;
+                } else {
+                    userlist[userIndex].punkte = data[i].punkte;
+                    userlist[userIndex].streak = data[i].streak;
+                    userlist[userIndex].rank = i+1;
+                    supabaseUpdate('spieler', ['rang'], [i+1], 'eq', 'id', data[i].id);
+                    if(data[i].avotes==true) {
+                        avotes = avotes+1;
+                        // userlist[userIndex].afk = 0;
+                    } else {
+                        if(data[i].bvotes==true) {
+                            bvotes = bvotes+1;
+                            // userlist[userIndex].afk = 0;
+                        } else {
+                            if(data[i].cvotes==true) {
+                                cvotes = cvotes+1;
+                                // userlist[userIndex].afk = 0;
+                            } // else {
+                                        // Wird aufgerufen, wenn user nicht abgestimmt hat
+                                 //   userlist[userIndex].afk = 1;
+                                 //   if (userlist[userIndex].afk>=2) {
+                                 //       supabaseUpdate('spieler', ['punkte', 'blocked'], [-1, ], 'eq', 'id', data[i].id);
+                                 //       userlist[userIndex].banned = true;
+                                 //   }
+                                // }
+                            }
+                        }
+                    }
+                    if(i==data.length-1) {
+                        userlist.sort(function (a, b) {return a.rank - b.rank});
+                        xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
+                        yValues = [avotes, bvotes, cvotes];
+                        barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor];
+                        borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor];
+                        nchart();
+                    }
                 }
             }
-        });
+        );
         } else {
             // Vier Antwortmöglichkeiten (Normalfall)
             
@@ -333,6 +386,7 @@ function auswertung() {
                                         dvotes = dvotes+1;
                                         // userlist[userIndex].afk = 0;
                                     }// else {
+                                        // Wird aufgerufen, wenn user nicht abgestimmt hat
                                      //   userlist[userIndex].afk = 1;
                                      //   if (userlist[userIndex].afk>=2) {
                                      //       supabaseUpdate('spieler', ['punkte', 'blocked'], [-1, ], 'eq', 'id', data[i].id);
