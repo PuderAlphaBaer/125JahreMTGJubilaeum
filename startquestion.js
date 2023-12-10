@@ -46,10 +46,12 @@ let futureTime;
 let begonnen = [];
 let gestartet = [];
 let beendet = [];
+let auswertung = [];
 for (let i = 0; i < questions.length; i++) {
   begonnen.push(questions[i].beginn);
   gestartet.push(questions[i].start);
   beendet.push(questions[i].ende);
+  auswertung.push(questions[i].auswertung);
 }
 let currentQuestionCounter = 0;
 
@@ -81,6 +83,14 @@ function checkStarting() {
         questionEnd();
         }
       }
+      if (questions[i].auswertung == true) {
+        if (spätstart==true) {
+        } else {
+        currentQuestionCounter = i;
+        auswertung[i] = true;
+        }
+      }
+
     }
 }
 }

@@ -37,7 +37,7 @@ bt2.addEventListener('click', weiter);
 
 function startgame() {
     console.log('beginne spiel')
-    beforegamebox.style.display = "none";
+    beforegamebox.style.display = "none";y
     startpreQuestion();
 }
 
@@ -121,6 +121,7 @@ let timestart;
 
 
 function weiter() {
+    supabaseUpdate('fragen', ['auswertung'], [true], 'eq', 'id', fragennumber)
     qnumber.style.display = "none";
     rangliste.style.display = "flex";
     fragenbox.style.display = "none";
@@ -187,6 +188,7 @@ function countDownTimer() {
     if(remainingTime > 1000) {
         timer.innerHTML = remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
     } else {
+
         timer.innerHTML = "0"+remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
     }
 
@@ -238,8 +240,8 @@ function timerend() {
         d.style.opacity = "0.5";
         d.style.border = "transparent";
     }
-    bt2.style.display = "block";
     auswertung();
+    bt2.style.display = "block";
 }
 
 
@@ -556,7 +558,7 @@ function checkStarting () {
 
 for (let i = 0; i <= questions.length; i++) {
     console.log('%c resete frage' + i, 'background: #222; color: #bada55')
-    supabaseUpdate('fragen', ['beginn', 'start', 'ende'], [false, false, false], 'eq', 'id', i)
+    supabaseUpdate('fragen', ['beginn', 'start', 'ende', 'auswertung'], [false, false, false, false], 'eq', 'id', i)
 }
 
 supabaseDeleteAll('spieler');

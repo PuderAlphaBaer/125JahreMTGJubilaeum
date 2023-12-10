@@ -39,14 +39,7 @@ async function login() {
     }
 
 
-    //wenn sonderzeichen (inklusive leerzeichen) enthalten sind, wird geblockt
-    if (nickname.match(/[^a-zA-Z0-9]/g)) {
-        console.log("nickname enthält sonderzeichen");
-        tb1.classList.add('error');
-        unerror.style.color = "red";
-        unerror.innerHTML = "Benutzername darf nur Buchstaben und Zahlen enthalten";
-        return;
-    }
+    //wenn benutzername sonderzeichen enthält, wird er nicht zugelassen
 
     // profanity list fluch.txt, woerter sind mit nur mit leerzeichen getrennt, wenn nutzername ein wort aus der liste enthaelt, wird er nicht zugelassen, browser javascript, kein node.js oder module
     let fluch = await fetch('fluch.txt');
