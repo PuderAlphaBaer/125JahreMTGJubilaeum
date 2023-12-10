@@ -31,7 +31,7 @@ const pretime = 6000;
     
     new Frage("a", "a", "a", "a", "a", "a", 0),
 
-    new Frage("Wer war der erste Mensch im Weltraum?", "Alexander Gerst", "Yuri Gagarin", "Neil Armstrong", "Herr Eschrich", "b", 20),
+    new Frage("Wer war der erste Mensch im Weltraum?", "Alexander Gerst", "Yuri Gagarin", "Neil Armstrong", "Herr Eschrich", "b", 8),
 
     new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 10),
 

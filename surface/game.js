@@ -136,9 +136,9 @@ function weiter() {
             <th class="udata">Punktzahl</th>
         </tr>
     </table>`;
+    fetchRangliste();
     bt1.innerHTML = "Starte Frage "+(fragennumber+1)+" von "+(questions.length-1);
     supabaseUpdate('spieler', ['avotes', 'bvotes', 'cvotes', 'dvotes'], [false, false, false, false], 'gt', 'id', '-2');
-    fetchRangliste();
 }
 
   
@@ -301,32 +301,62 @@ function auswertung() {
         });
         } else {
             // Vier Antwortmöglichkeiten (Normalfall)
-            supabaseFetch('spieler', 'avotes, bvotes, cvotes, dvotes', '', '', "", 'avotes', false).then((data) => {
+            
+            supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes, cvotes, dvotes', '', '', '', 'punkte', false).then((data) => {
                 for (let i = 0; i < data.length; i++) {
-                    if(data[i].avotes==true) {
-                        avotes = avotes+1;
+                    userIndex = userlist.findIndex((obj => obj.id == data[i].id));
+                    if (userIndex==-1) {
+                        userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false, 0));
+                        userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                     }
-                    if(data[i].bvotes==true) {
-                        bvotes = bvotes+1;
-                    }
-                    if(data[i].cvotes==true) {
-                        cvotes = cvotes+1;
-                    }
-                    if(data[i].dvotes==true) {
-                        dvotes = dvotes+1;
-                    }
-                    if(i==data.length-1) {
-                        xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
-                        yValues = [avotes, bvotes, cvotes, dvotes];
-                        barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor, d.style.backgroundColor];
-                        borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
-                        nchart();
+                    if(data[i].punkte<0) {
+                        userlist[userIndex].punkte = -1;
+                        userlist[userIndex].banned = true;
+                    } else {
+                        userlist[userIndex].punkte = data[i].punkte;
+                        userlist[userIndex].streak = data[i].streak;
+                        userlist[userIndex].rank = i+1;
+                        supabaseUpdate('spieler', ['rang'], [i+1], 'eq', 'id', data[i].id);
+                        if(data[i].avotes==true) {
+                            avotes = avotes+1;
+                            // userlist[userIndex].afk = 0;
+                        } else {
+                            if(data[i].bvotes==true) {
+                                bvotes = bvotes+1;
+                                // userlist[userIndex].afk = 0;
+                            } else {
+                                if(data[i].cvotes==true) {
+                                    cvotes = cvotes+1;
+                                    // userlist[userIndex].afk = 0;
+                                } else {
+                                    if(data[i].dvotes==true) {
+                                        dvotes = dvotes+1;
+                                        // userlist[userIndex].afk = 0;
+                                    }// else {
+                                     //   userlist[userIndex].afk = 1;
+                                     //   if (userlist[userIndex].afk>=2) {
+                                     //       supabaseUpdate('spieler', ['punkte', 'blocked'], [-1, ], 'eq', 'id', data[i].id);
+                                     //       userlist[userIndex].banned = true;
+                                     //   }
+                                    // }
+                                }
+                            }
+                        }
+                        if(i==data.length-1) {
+                            userlist.sort(function (a, b) {return a.rank - b.rank});
+                            xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
+                            yValues = [avotes, bvotes, cvotes, dvotes];
+                            barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor, d.style.backgroundColor];
+                            borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
+                            nchart();
+                        }
                     }
                 }
             });
         }
     }
 }
+
 
 // Erstellt Diagramm, greift zurück auf "auswertung();"
 function nchart() {
@@ -401,8 +431,19 @@ const tablebox = document.getElementById('tablebox');
 // Erzeugt eine neue Spalte in Rangliste mit eingegebenen Daten
 // row hat als class "rank1", "rank2", "rank4", "rakn5" usw.
 // einzelnes feld hat als class "row", ist noch änderbar
+
+function fetchRangliste() {
+    for (let i = 0; i < userlist.length; i++) {
+        if (userlist[i].blocked==false) {
+        userupdate(userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak);
+        }
+    }
+}
+
+
+
 function userupdate(rank, uname, score, streak) {
-    supabaseUpdate("spieler", ["rang"], [rank], "eq", "name", uname);
+    console.log('userupdate')
     if (streak==0) {
         sbox = "";
     } else {
@@ -419,19 +460,6 @@ function userupdate(rank, uname, score, streak) {
 }
 
 
-
-
-
-// Ruft "userupdate()" für jeden User auf und füllt so Ranglistentabelle
-function fetchRangliste() {
-    
-supabaseFetch('spieler', 'id, name, punkte, streak', 'gt', 'punkte', -1, 'punkte', false).then((data) => {
-            console.log(data)
-     for (let i = 0; i < data.length; i++) {
-        userupdate(i + 1, data[i].name, data[i].punkte, data[i].streak)
-     }
-    });
-}
 
 
 
