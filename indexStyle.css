@@ -268,7 +268,7 @@ body {
     position: absolute;
 }
 
-.tbox {
+.barContainer {
     background-color: blue;
     width: 80%;
     height: 4%;
@@ -277,14 +277,12 @@ body {
     left: 10%;
 }
 
-.tbox2 {
+.bar {
     background-color: white;
     width: 0%;
-    height: 4%;
+    height: 100%;
+    left: 0;
     position: absolute;
-    top: 55%;
-    left: 10%;
-    transition: linear 6s;
 }
 
 .phase2box {
@@ -328,7 +326,7 @@ body {
 
 .pregamebox {
     position: absolute;
-    display: flex;
+    display: none;
     height: 100%;
     width: 100%;
     background-color: cadetblue;
@@ -410,6 +408,7 @@ body {
     position: absolute;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100%;
     width: 100%;
     background-color: gray;

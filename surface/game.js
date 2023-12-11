@@ -157,7 +157,7 @@ let futureTime;
 
 // startet Timer
 function startTimer() { 
-  timerLoop = setInterval(countDownTimer, 60);
+  timerLoop = setInterval(countDownTimer, 10);
   setTime = questions[fragennumber].zeit*1000;
   timer.innerHTML = questions[fragennumber].zeit+".00";
   futureTime = Date.now() + setTime;

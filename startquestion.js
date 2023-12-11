@@ -4,7 +4,7 @@ const pregamebox = document.getElementById('pregamebox');
 
 
 const phase1box = document.getElementById('phase1box');
-    const tbox2 = document.getElementById('tbox2');
+    const bar = document.getElementById('bar');
     const frage1 = document.getElementById('frage1');
 
 
@@ -32,7 +32,7 @@ const phase3box = document.getElementById('phase3box');
 const phase4box = document.getElementById('phase4box');
     const gespunkte = document.getElementById('gespunkte');
     const rang = document.getElementById('rang');
-
+    const brang = document.getElementById('brang');
 
 
 
@@ -122,68 +122,81 @@ function checkStarting() {
 // 5s vor Fragen beginn
 function phase1(qid) {
   console.log("%cPhase 1", "color: red; font-size: 20px; font-weight: bold;");
+
   pregamebox.style.display = "none";
   phase1box.style.display = "flex";
   phase2box.style.display = "none";
   phase25box.style.display = "none";
   phase3box.style.display = "none";
   phase4box.style.display = "none";
-  //Bann Ding
-    supabaseFetch("spieler", "blocked", "eq", "name", nickname, "id", true).then((data) => {
-      if(data[0].blocked!=null) {
-        alert("Du wurdest gesperrt. Grund dafür: "+data[0].blocked);
-        window.location.href = "index.html";
-      }
-    })
+
 
   // html stuff und balken
-  pregamebox.style.display = "none";
-  spätbox.style.display = "none";
   frage1.innerHTML = questions[qid].frage;
-  tbox2.style.width = "80%";
 
+  prefut = Date.now() + pretime;
+  preloop = setInterval(preTimer, 10);
 };
+
+
+
+function preTimer() {
+  prerem = prefut - Date.now();
+  preangle = (prerem / pretime);
+  bar.style.width = (preangle*100)+"%";
+}
 
 
 // Wird nach pre5s aufgerufen, starte die eigentliche Frage mit votebox
 function phase2(id) {
   console.log("%cPhase 2", "color: red; font-size: 20px; font-weight: bold;");
+
+  clearInterval(preloop);
   pregamebox.style.display = "none";
   phase1box.style.display = "none";
   phase2box.style.display = "flex";
   phase25box.style.display = "none";
   phase3box.style.display = "none";
   phase4box.style.display = "none";
-    tbox2.style.width = "0%";
-    questionid = id;
-    // html stuff box
-    frage2.innerHTML = questions[questionid].frage;
-    a.style.display = "flex";
-    b.style.display = "flex";
-    c.style.display = "flex";
-    d.style.display = "flex";
-    a.style.backgroundColor = "#D11031";
-    b.style.backgroundColor = "#F99306";
-    a.innerHTML = questions[questionid].a;
-    b.innerHTML = questions[questionid].b;
-    if (questions[questionid].c=="") {
-        c.style.display = "none";
-        d.style.display = "none";
-        a.style.backgroundColor = "#0B52C1";
-        b.style.backgroundColor = "#D11031";
-    } else {
-    c.innerHTML = questions[questionid].c;
-        if (questions[questionid].d==""){
-                d.style.display = "none"
-            } else {
-                d.innerHTML = questions[questionid].d;
-        }
-    }
+  bar.style.width = "0%";
+  questionid = id;
 
-    questionStart = Date.now();
-    ergebnis = "offen";
-    puregenius.innerHTML = zwischenworte[Math.floor(Math.random() * zwischenworte.length)];
-    startTimer();
+  //Bann Ding
+  supabaseFetch("spieler", "blocked", "eq", "name", nickname, "id", true).then((data) => {
+    if(data[0].blocked!=null) {
+      alert("Du wurdest gesperrt. Grund dafür: "+data[0].blocked);
+      window.location.href = "index.html";
+    }
+  })
+
+  // html stuff box
+  frage2.innerHTML = questions[questionid].frage;
+  a.style.display = "flex";
+  b.style.display = "flex";
+  c.style.display = "flex";
+  d.style.display = "flex";
+  a.style.backgroundColor = "#D11031";
+  b.style.backgroundColor = "#F99306";
+  a.innerHTML = questions[questionid].a;
+  b.innerHTML = questions[questionid].b;
+  if (questions[questionid].c=="") {
+      c.style.display = "none";
+      d.style.display = "none";
+      a.style.backgroundColor = "#0B52C1";
+      b.style.backgroundColor = "#D11031";
+  } else {
+  c.innerHTML = questions[questionid].c;
+      if (questions[questionid].d==""){
+              d.style.display = "none"
+          } else {
+              d.innerHTML = questions[questionid].d;
+      }
+  }
+
+  questionStart = Date.now();
+  ergebnis = "offen";
+  puregenius.innerHTML = zwischenworte[Math.floor(Math.random() * zwischenworte.length)];
+  startTimer();
 }
 
 
@@ -191,6 +204,7 @@ function phase2(id) {
 // Wird nach Ende einer Frage aufgerufen
 function phase3() {
   console.log("%cPhase 3", "color: red; font-size: 20px; font-weight: bold;");
+
   pregamebox.style.display = "none";
   phase1box.style.display = "none";
   phase2box.style.display = "none";
@@ -237,8 +251,11 @@ function phase3() {
 
 
 
+let vorrang;
+
 function phase4() {
   console.log("%cPhase 4", "color: red; font-size: 20px; font-weight: bold;");
+
   pregamebox.style.display = "none";
   phase1box.style.display = "none";
   phase2box.style.display = "none";
@@ -248,12 +265,14 @@ function phase4() {
   supabaseFetch('spieler', 'punkte, rang', 'eq', 'name', nickname, 'punkte', true).then((data) => {
     gespunkte.innerHTML = "Deine Punktzahl: "+data[0].punkte;
     rang.innerHTML = "Dein Rang: "+data[0].rang;
+    vorrang = data[0].rang-1;
+    if (rang>1) {
+      supabaseFetch('spieler', 'name, punkte', 'gt', 'rang', vorrang, 'punkte', true).then((data2) => {
+        diff = data2[0].punkte-data[0].punkte;
+        brang.innerHTML = diff+" Punkte vor dir auf Rang "+vorrang+" befindet sich "+data2[0].name;
+      })
+    }
   });
-
-
-
-
-
 }
 
 
@@ -399,27 +418,10 @@ function dClicked() {
 
 
 
-
-function getRank() {
-  supabaseFetch('spieler', 'rang', 'eq', 'name', nickname, 'id', true).then((data) => {
-    if (data[0].rang<11) {
-    vorspieler = data[0].rang-1;
-    supabaseFetch('spieler', 'punkte, name', 'eq', 'rang', vorspieler, 'id', true).then((data2) => {
-      rang.innerHTML = "Dein Rang: "+data[0].rang;
-      brang.innerHTML = data2.punkte+" Punkte vor dir bfeindet sich "+ data2[0].name;
-    });
-    } else {
-      rang.innerHTML = "Du bist unter den Top 10!";
-    }
-    })
-}
-
-
-
 function startTimer() { 
   setTime = questions[questionid].zeit*1000;
   timer.innerHTML = questions[questionid].zeit+".00";
-  timerLoop = setInterval(countDownTimer, 30);
+  timerLoop = setInterval(countDownTimer, 15);
   futureTime = Date.now() + setTime;
   s1.style.display = "block";
   s2.style.display = "block";

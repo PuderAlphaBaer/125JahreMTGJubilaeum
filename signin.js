@@ -77,6 +77,7 @@ const unbox = document.getElementById('unbox');
 function startGame() {
     biginputbox.style.display = "none";
     bigbox.style.display = "flex";
+    pregamebox.style.display = "flex";
     unbox.innerHTML = 'Du bist '+nickname;
     if (spätstart==true) {
         spätbox.style.display = "flex";
