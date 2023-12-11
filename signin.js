@@ -42,19 +42,19 @@ async function login() {
     //wenn benutzername sonderzeichen enthält, wird er nicht zugelassen
 
     // profanity list fluch.txt, woerter sind mit nur mit leerzeichen getrennt, wenn nutzername ein wort aus der liste enthaelt, wird er nicht zugelassen, browser javascript, kein node.js oder module
-    let fluch = await fetch('fluch.txt');
-    let fluchtext = await fluch.text();
-    let fluchliste = fluchtext.split(' ');
-    console.log(fluchliste);
-    for (let i = 0; i < fluchliste.length; i++) {
-        if (nickname.toLowerCase().includes(fluchliste[i].toLowerCase())) {
-            console.log("nickname enthält fluchwort");
-            tb1.classList.add('error');
-            unerror.style.color = "red";
-            unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
-            return;
-        }
-    }
+    // let fluch = await fetch('fluch.txt');
+    // let fluchtext = await fluch.text();
+    // let fluchliste = fluchtext.split(' ');
+    // console.log(fluchliste);
+    // for (let i = 0; i < fluchliste.length; i++) {
+    //     if (nickname.toLowerCase().includes(fluchliste[i].toLowerCase())) {
+    //         console.log("nickname enthält fluchwort");
+    //         tb1.classList.add('error');
+    //         unerror.style.color = "red";
+    //         unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
+    //         return;
+    //     }
+    // }
 
 
     console.log("nickname ok");

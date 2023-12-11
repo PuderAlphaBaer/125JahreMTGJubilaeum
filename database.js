@@ -186,7 +186,8 @@ const fragenUpdates = database.channel('fragenUpdates')
             questions[payload.new.id].beginn = payload.new.beginn;
             questions[payload.new.id].start = payload.new.start;
             questions[payload.new.id].ende = payload.new.ende;
-            
+            questions[payload.new.id].auswertung = payload.new.auswertung;
+
             console.log(questions[payload.new.id])
         
             checkStarting();

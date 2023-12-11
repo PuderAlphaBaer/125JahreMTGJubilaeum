@@ -237,7 +237,7 @@ body {
     height: 100%;
 }
 
-.zwischenbox4 {
+.phase3box {
     display: none;
     flex-direction: column;
     justify-content: space-between;
@@ -248,8 +248,8 @@ body {
     position: absolute;
 }
 
-.zwischenbox2 {
-    display: flex;
+.phase1box {
+    display: none;
     position: absolute;
     justify-content: center;
     align-items: start;
@@ -258,7 +258,7 @@ body {
     background-color: black;
 }
 
-.zwischenbox3 {
+.phase25box {
     display: none;
     justify-content: center;
     align-items: center;
@@ -287,7 +287,7 @@ body {
     transition: linear 6s;
 }
 
-.quizbox {
+.phase2box {
     justify-content: center;
     align-items: start;
     position: absolute;
@@ -326,7 +326,7 @@ body {
     right: 0;
 }
 
-.zwischenbox1 {
+.pregamebox {
     position: absolute;
     display: flex;
     height: 100%;
@@ -403,4 +403,14 @@ body {
 
 .tbox1text {
     font-size: 6vh;
+}
+
+.phase4box {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: gray;
 }
