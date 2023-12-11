@@ -1,5 +1,3 @@
-// Tilman Todo: ❌✅🔥
-
 const pregamebox = document.getElementById('pregamebox');
 
 
@@ -21,7 +19,7 @@ const phase25box = document.getElementById('phase25box');
 
 
 const phase3box = document.getElementById('phase3box');
-    const imgr = document.getElementById('imgr');
+    // const imgr = document.getElementById('imgr');
     const imgf = document.getElementById('imgf');
     const worte = document.getElementById('worte');
     const streaktext = document.getElementById('streak');
