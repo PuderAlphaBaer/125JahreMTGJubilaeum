@@ -419,7 +419,7 @@ function getRank() {
 function startTimer() { 
   setTime = questions[questionid].zeit*1000;
   timer.innerHTML = questions[questionid].zeit+".00";
-  timerLoop = setInterval(countDownTimer, 60);
+  timerLoop = setInterval(countDownTimer, 30);
   futureTime = Date.now() + setTime;
   s1.style.display = "block";
   s2.style.display = "block";
