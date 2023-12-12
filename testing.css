@@ -1,0 +1,198 @@
+.buttonSurContainer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    height: 50vh;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+}  
+.buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    height: 50%;
+    width: 100vw;
+    justify-content: center;
+}
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 47vw;
+    border-radius: 2vw;
+}
+.subButton {
+    font-size: 10vmin;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+.buttonA {
+    background-color: #D11031;
+    color: white;
+    margin-left: 2vw;
+    margin-right: 1vw;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+}
+.buttonB {
+    background-color: #F99306;
+    color: white;
+    margin-left: 1vw;
+    margin-right: 2vw;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+}
+.buttonC {
+    background-color: #1B7A08;
+    color: white;
+    margin-left: 2vw;
+    margin-right: 1vw;;
+    margin-top: 1vw;
+    margin-bottom: 2vw;
+}
+.buttonD {
+    background-color: #0B52C1;
+    color: white;
+    margin-left: 1vw;
+    margin-right: 2vw;
+    margin-top: 1vw;
+    margin-bottom: 2vw;
+}
+.buttonA:hover {background-color: #E21B3C;}
+.buttonB:hover {background-color: #FFA602;}
+.buttonC:hover {background-color: #26890C;}
+.buttonD:hover {background-color: #1368CE;}
+
+.buttonA:active {background-color: #AB0018;}
+.buttonB:active {background-color: #C97900;}
+.buttonC:active {background-color: #005D00;}
+.buttonD:active {background-color: #00419F;}
+
+.buttonStyle {
+    background-color: gray;
+    width: fit-content;
+    color: lightgray;
+    padding: 0.5vw 1vw;
+    margin: 0.5vw 1vw;
+    border: lightgray solid 0.5vw;
+    border-radius: 1vw;
+}
+.buttonStyle:hover {
+    background-color: darkgray;
+    color: white;
+    border: white solid 0.5vw;
+}
+.buttonStyle:active {
+    background-color: black;
+    color: gray;
+    border: gray solid 0.5vw;
+}
+.timerContainer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    height: 50vmin;
+    width: 100vw;
+    position: absolute;
+    pointer-events: none;
+}
+
+/* Timerzeug*/
+.timerbox {
+    position: absolute;
+    background-color: rgb(63, 63, 63);
+    width: 30vmin;
+    height: 30vmin;
+    border-radius: 50%;
+    z-index: 1;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.s1 {
+    background-color: gray;
+    z-index: 2;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: right center;
+}
+
+.s2 {
+    background-color: gray;
+    z-index: 3;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: right center;
+}
+
+.s3 {
+    background-color: rgb(63, 63, 63);
+    z-index: 4 ;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: right center;
+    border: rgb(63, 63, 63) solid;
+}
+
+.bigcircle {
+    width: 80%;
+    height: 80%;
+    background-color: black;
+    border-radius: 50%;
+    z-index: 5;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.timertext {
+    font-size: 5vh;
+    color: gray;
+}
+
+
+.tb1b {
+    display: block;
+    width: 50vw;
+    height: 5vw;
+}
+
+.tb1 {
+    width: 100%;
+    height: 60%;
+    background-color: rgb(63, 63, 63);
+    padding-left: 1%;
+    color: white;
+    border: none;
+    outline: gray solid;
+
+    &.error
+    {
+      animation: shake 0.2s ease-in-out 0s 2;
+    }
+
+}
+
+@keyframes shake {
+    0% { margin-left: 0rem; }
+    25% { margin-left: 0.5rem; }
+    75% { margin-left: -0.5rem; }
+    100% { margin-left: 0rem; }
+  }
