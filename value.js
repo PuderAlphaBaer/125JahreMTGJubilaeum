@@ -100,10 +100,7 @@ const pretime = 6000;
   const zwischenworte = [
     "pure genius",
     "schlau?",
-    "so gut wie Tilman?",
-    "PURE GENIUS",
-    "GENIUS PURE?",
-    "PUUUUUUUUUURE GEEEEEENIUS"
+    "so gut wie Tilman?"
   ]
   
 

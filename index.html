@@ -9,104 +9,93 @@
     <link rel="shortcut icon" href="Data/logo.png" type="image/png">
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
 </head>
-<body oncontextmenu="return false">
+<body>
 
-    <!-- Box für alles was nicht Signin ist-->
-    <div id="bigbox" class="bigbox">
+    <div class="userBox" id="userBox"></div>
 
-        <!-- Phase 1: Balken Ding -->
-        <div id="phase1box" class="phase1box"><!-- Ablaufende Bar mit Frage  WICHTIG! display property der Box darf nicht verändert werden, sonst funktioniert transition nicht mehr-->
-            <div>
-                <p id="frage1" class="frage1"></p>
-            </div>
-            <div class="barContainer">
-                <div class="bar" id="bar"></div>
-            </div>
+    <!-- Pregame Box -->
+    <div id="pregamebox" class="phase">
+        <div class="tbox1text">
+                Bald gehts los!
         </div>
-
-
-                <!-- Phase 2: Frage Button Click -->
-        <div id="phase2box" class="phase2box"> <!-- Box für Quizentscheidung und Timer-->
-            <div>
-                <p id="frage2" class="frage2"></p>
-            </div>
-            <div class="buttonSurContainer" id="buttonBox">
-                <div class="buttonContainer">
-                    <div id="bta" class="button buttonA"><div class="subButton">A</div></div>
-                    <div id="btb" class="button buttonB"><div class="subButton">B</div></div>
-                </div>
-                <div class="timerContainer"> <!-- Timer-->
-                    <div class="timerbox">
-                            <div class="s1" id="s1"></div>
-                            <div class="s2" id="s2"></div>
-                            <div class="s3" id="s3"></div>
-                        <div class="bigcircle">
-                            <div class="timertext" id="timertext"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="buttonContainer">
-                    <div id="btc" class="button buttonC"><div class="subButton">C</div></div>
-                    <div id="btd" class="button buttonD"><div class="subButton">D</div></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Phase 2.5 puregenius? -->
-        <div id="phase25box" class="phase25box"> <!-- Box nach click eines buttons während Frage noch aktiv ist-->
-            <div id="puregenius" class="puregenius"></div>
-        </div>
-
-        <!-- Phase 3: Richtig oder Falsche Antwort, Hinzugefügte Punkte und evt Funfact -->
-        <div id="phase3box" class="phase3box"> <!-- Box zwischen bzw nach Fragen-->
-            <div class="box1">
-                <div class="img imgr" id="imgr">✅</div>
-                <div class="img imgf" id="imgf">❌</div>
-                <div class="worte" id="worte"></div>
-            </div>
-            <div class="box2">
-                <div class="punkte" id="punkte"></div>
-                <div class="sbox">
-                    <div class="img ims" id="ims"></div> 
-                    <div class="streak" id="streak"></div>
-                </div>
-            </div> 
-        </div>
-
-
-        <!-- Phase 4: Rang und Punktzahl -->
-        <div id="phase4box" class="phase4box"> <!-- Box nach letzter Frage-->
-            <div id="gespunkte" class="gespunkte"></div>
-            <div id="rang" class="rang"></div>
-            <div id="brang" class="brang"></div>
-        </div>
-
-        <div id="pregamebox" class="pregamebox"> <!-- Box nach Signin vor erster Frage-->
-            	<div class="tbox1text">
-                    Bald gehts los!
-                </div>
-        </div>
-        <div id="spätbox" class="spätbox"> 
-            	<div>
-                    Das Spiel hat schon begonnen, du wirst bei der nächsten Frage mit einsteigen!
-                </div>
-        </div>
-        <div class="unbox" id="unbox"></div> <!-- Box für Username oben rechts-->
     </div>
     
-
-    <!-- Box für Singin -->
+    <!-- Login -->
     <div id="biginputbox" class="biginputbox">
         <div id="inputBox" class="inputbox">
             <div class="tb1b" id="tb1b">
                 <input type="text" id="tb1" class="tb1" placeholder="Nickname eingeben">
-                <p class="unerror" id="unerror"></p> <!-- Zeigt ob Username verwendet werden kann-->
+                <p class="unerror" id="unerror"></p>
             </div>
             <div>
                 <div id="submit" class="submit buttonStyle">Beitreten</div>
             </div>
         </div>
     </div>
+
+
+    <!-- Phase 2: Frage Button Click -->
+    <div id="phase2box" class="phase2box phasebox">
+
+
+        <p id="frage2" class="frage2"></p>
+
+        <div class="buttonSurContainer" id="buttonBox">
+            <div class="buttonContainer">
+                <div id="bta" class="button buttonA"><div class="subButton">A</div></div>
+                <div id="btb" class="button buttonB"><div class="subButton">B</div></div>
+            </div>
+            <div class="timerContainer">
+                <div class="timerbox">
+                        <div class="s1" id="s1"></div>
+                        <div class="s2" id="s2"></div>
+                        <div class="s3" id="s3"></div>
+                    <div class="bigcircle">
+                        <div class="timertext" id="timertext"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttonContainer">
+                <div id="btc" class="button buttonC"><div class="subButton">C</div></div>
+                <div id="btd" class="button buttonD"><div class="subButton">D</div></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Phase 2.5 puregenius? -->
+    <div id="phase25box" class="phase25box">
+        <div id="puregenius" class="puregenius"></div>
+    </div>
+
+    <!-- Phase 3: Richtig oder Falsche Antwort, Hinzugefügte Punkte und evt Funfact -->
+    <div id="phase3box" class="phase3box">
+
+        <div class="box1">
+            <div class ="emoji" id="emoji"></div>
+            <div class="worte" id="worte"></div>
+        </div>
+
+        <div class="box2">
+            <div class="punkte" id="punkte"></div>
+            <div class="sbox">
+                <div class="img ims" id="ims"></div> 
+                <div class="streak" id="streak"></div>
+            </div>
+        </div> 
+
+    </div>
+
+
+    <!-- Phase 4: Rang und Punktzahl -->
+    <div id="phase4box" class="phase4box">
+        <div id="gespunkte" class="gespunkte"></div>
+        <div id="rang" class="rang"></div>
+        <div id="brang" class="brang"></div>
+    </div>
+
+
 
     <script src="database.js"></script>
     <script src="test/snippets.js"></script>

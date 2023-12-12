@@ -33,7 +33,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 47vw;
+    width: 44vw;
     border-radius: 2vw;
 }
 .subButton {
@@ -46,34 +46,34 @@ body {
 .buttonA {
     background-color: #D11031;
     color: white;
-    margin-left: 2vw;
-    margin-right: 1vw;
-    margin-top: 2vw;
-    margin-bottom: 1vw;
+    margin-left: 4vmin;
+    margin-right: 2vmin;
+    margin-top: 4vmin;
+    margin-bottom: 2vmin;
 }
 .buttonB {
     background-color: #F99306;
     color: white;
-    margin-left: 1vw;
-    margin-right: 2vw;
-    margin-top: 2vw;
-    margin-bottom: 1vw;
+    margin-left: 2vmin;
+    margin-right: 4vmin;
+    margin-top: 4vmin;
+    margin-bottom: 2vmin;
 }
 .buttonC {
     background-color: #1B7A08;
     color: white;
-    margin-left: 2vw;
-    margin-right: 1vw;;
-    margin-top: 1vw;
-    margin-bottom: 2vw;
+    margin-left: 4vmin;
+    margin-right: 2vmin;;
+    margin-top: 2vmin;
+    margin-bottom: 4vmin;
 }
 .buttonD {
     background-color: #0B52C1;
     color: white;
-    margin-left: 1vw;
-    margin-right: 2vw;
-    margin-top: 1vw;
-    margin-bottom: 2vw;
+    margin-left: 2vmin;
+    margin-right: 4vmin;
+    margin-top: 2vmin;
+    margin-bottom: 4vmin;
 }
 .buttonA:hover {background-color: #E21B3C;}
 .buttonB:hover {background-color: #FFA602;}
@@ -120,8 +120,8 @@ body {
 .timerbox {
     position: absolute;
     background-color: rgb(63, 63, 63);
-    width: 30vmin;
-    height: 30vmin;
+    width: 40vmin;
+    height: 40vmin;
     border-radius: 50%;
     z-index: 1;
     display: flex;
@@ -238,36 +238,11 @@ body {
     height: 100%;
 }
 
-.phase3box {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    background-color: gray;
-    position: absolute;
+
+.phasebox {
+    display: block;
 }
 
-.phase1box {
-    display: none;
-    position: absolute;
-    justify-content: center;
-    align-items: start;
-    height: 100%;
-    width: 100%;
-    background-color: black;
-}
-
-.phase25box {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    background-color: blue;
-    position: absolute;
-}
 
 .barContainer {
     background-color: blue;
@@ -286,15 +261,7 @@ body {
     position: absolute;
 }
 
-.phase2box {
-    justify-content: center;
-    align-items: start;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    display: none;
-    background-color: black;
-}
+
 
 .sQbt {
     position: absolute;
@@ -318,50 +285,9 @@ body {
     display: flex;
 }
 
-.unbox {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
 
-.pregamebox {
-    position: absolute;
-    display: none;
-    height: 100%;
-    width: 100%;
-    background-color: cadetblue;
-    align-items: center;
-    justify-content: center;
-}
-
-.spätbox {
-    position: absolute;
-    display: flex;
-    height: 100%;
-    width: 100%;
-    background-color: goldenrod;
-}
-
-.img {
-    display: flex;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-/* https://www.bing.com/images/search?view=detailV2&ccid=oM%2Fpk81r&id=8A1469D3F13C9002C610363C911937E0B94DD93D&thid=OIP.oM_pk81rLlQqteN5tUKxugAAAA&mediaurl=https%3A%2F%2Fsourceenergy.com.au%2Fwp-content%2Fthemes%2Fsource%2Fassets%2Fimg%2Fgreen-checkw.png&cdnurl=https%3A%2F%2Fth.bing.com%2Fth%2Fid%2FR.a0cfe993cd6b2e542ab5e379b542b1ba%3Frik%3DPdlNueA3GZE8Ng%26pid%3DImgRaw%26r%3D0&exph=300&expw=300&q=richtig+symbol&simid=608003645550638670&form=IRPRST&ck=8C0165EA5D9ACC848F1FEC27D00DA65A&selectedindex=141&ajaxhist=0&ajaxserp=0&vt=0&sim=11 */
-.imgr {
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
-}
-
-/* https://www.bing.com/images/search?view=detailV2&ccid=GmsJfFpG&id=7E1D0275AE49F3466E747329950973DBAD8FDB80&thid=OIP.GmsJfFpGWMjYACtDsuqvVQHaHa&mediaurl=https%3A%2F%2Fillust8.com%2Fwp-content%2Fuploads%2F2018%2F08%2Fmark_batsu_illust_899-768x768.png&cdnurl=https%3A%2F%2Fth.bing.com%2Fth%2Fid%2FR.1a6b097c5a4658c8d8002b43b2eaaf55%3Frik%3DgNuPrdtzCZUpcw%26pid%3DImgRaw%26r%3D0&exph=768&expw=768&q=falsch+symbol&simid=608048008266133631&form=IRPRST&ck=16877369DF3FBDFB4004B74A1590471C&selectedindex=11&ajaxhist=0&ajaxserp=0&pivotparams=insightsToken%3Dccid_jxOkPutK*cp_B99351C1912DC33C12560952D5A9548F*mid_490AD07D61BA5B86795F33C5E6EE94BD901B48BD*simid_608013691479864762*thid_OIP.jxOkPutK5i93qQI1ndr6EQHaHa&vt=0&sim=11&iss=VSI&ajaxhist=0&ajaxserp=0 */
-.imgf {
-    display: block;
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
+.emoji {
+    font-size: 50vmin;
 }
 
 /* https://www.bing.com/images/search?view=detailV2&ccid=D2Ko1S%2bk&id=2B2D8CA5CE6A12D60CA92FBAD29FF83BAF3C979E&thid=OIP.D2Ko1S-kMMJ5VQAPi8YI8gHaHE&mediaurl=https%3a%2f%2fclipground.com%2fimages%2ffire-symbol-png-1.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.0f62a8d52fa430c27955000f8bc608f2%3frik%3dnpc8rzv4n9K6Lw%26pid%3dImgRaw%26r%3d0&exph=860&expw=900&q=flame+icon&simid=607998173773985400&FORM=IRPRST&ck=E3B15025DBF2D705CFF17661DCD228F2&selectedIndex=21&ajaxhist=0&ajaxserp=0 */
@@ -404,13 +330,4 @@ body {
     font-size: 6vh;
 }
 
-.phase4box {
-    display: none;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    background-color: gray;
-}
+
