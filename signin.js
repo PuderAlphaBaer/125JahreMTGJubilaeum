@@ -116,5 +116,5 @@ const userBox = document.getElementById('userBox');
 function startGame() {
     userBox.innerHTML = 'Du bist '+nickname;
     toggleInterphase(pregamebox);
-    console.log("püntklich");S
+    console.log("püntklich");
 }
