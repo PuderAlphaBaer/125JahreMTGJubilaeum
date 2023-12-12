@@ -44,7 +44,7 @@ body {
     align-items: center;
 }
 .buttonA {
-    background-color: #D11031;
+    background-color: rgb(240, 141, 9);
     color: white;
     margin-left: 4vmin;
     margin-right: 2vmin;
@@ -52,7 +52,7 @@ body {
     margin-bottom: 2vmin;
 }
 .buttonB {
-    background-color: #F99306;
+    background-color: rgb(87, 165, 26);
     color: white;
     margin-left: 2vmin;
     margin-right: 4vmin;
@@ -60,7 +60,7 @@ body {
     margin-bottom: 2vmin;
 }
 .buttonC {
-    background-color: #1B7A08;
+    background-color: rgb(10, 85, 164);
     color: white;
     margin-left: 4vmin;
     margin-right: 2vmin;;
@@ -68,7 +68,7 @@ body {
     margin-bottom: 4vmin;
 }
 .buttonD {
-    background-color: #0B52C1;
+    background-color: rgb(168, 90, 229);
     color: white;
     margin-left: 2vmin;
     margin-right: 4vmin;
