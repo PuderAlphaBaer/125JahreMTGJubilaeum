@@ -115,9 +115,6 @@ const userBox = document.getElementById('userBox');
 
 function startGame() {
     userBox.innerHTML = 'Du bist '+nickname;
-    if (spätstart==true) {
-        spätbox.style.display = "flex";
-    } else {
-        console.log("püntklich");
-        spätbox.style.display = "none";
-}}
+    toggleInterphase(pregamebox);
+    console.log("püntklich");S
+}

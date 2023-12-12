@@ -36,42 +36,29 @@ function checkStarting() {
   if (angemeldet==true) {
     for (let i = 0; i < questions.length; i++) {
       if (questions[i].beginn == true &&  begonnen[i] == false) {
-        if (spätstart==true) {
-        } else {
         currentQuestionCounter = i;
         begonnen[i] = true;
         phase1(i);
-        }
       }
       if (questions[i].start == true && gestartet[i] == false) {
-        if (spätstart==true) {
-        } else {
         currentQuestionCounter = i;
         gestartet[i] = true;
         phase2(i);
-        }
       }
       if (questions[i].ende == true && beendet[i] == false) {
-        if (spätstart==true) {
-        } else {
         currentQuestionCounter = i;
         beendet[i] = true;
         phase3();
-        }
       }
       if (questions[i].auswertung == true) {
-        if (spätstart==true) {
-          spätstart = false;
-        } else {
         console.log("Auswertung");
         currentQuestionCounter = i;
         auswertung[i] = true;
         phase4();
-        }
+      
       }
-
     }
-}
+  }
 }
 
 
