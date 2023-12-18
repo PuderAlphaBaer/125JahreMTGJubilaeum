@@ -265,7 +265,7 @@ function auswertung() {
             for (let i = 0; i < data.length; i++) {
                 userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                 if (userIndex==-1) {
-                    userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false, 0));
+                    userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false, 0, false));
                     userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                 }
                 if(data[i].punkte<0) {

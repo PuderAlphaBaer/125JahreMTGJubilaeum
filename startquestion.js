@@ -107,7 +107,6 @@ function checkStarting() {
         if (spätstart==true) {
           spätstart = false;
         } else {
-        console.log("Auswertung");
         currentQuestionCounter = i;
         auswertung[i] = true;
         phase4();

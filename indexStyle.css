@@ -269,7 +269,7 @@ body {
 }
 
 .barContainer {
-    background-color: blue;
+    background-color: white;
     width: 80%;
     height: 4%;
     position: absolute;
@@ -278,10 +278,10 @@ body {
 }
 
 .bar {
-    background-color: white;
+    background-color: blue;
     width: 0%;
     height: 100%;
-    left: 0;
+    right: 0;
     position: absolute;
 }
 

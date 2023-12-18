@@ -1,5 +1,5 @@
 class User {
-    constructor(id, name, punkte, streak, rank, blocked, afk) {
+    constructor(id, name, punkte, streak, rank, blocked, afk, podium) {
         this.id = id;
         this.name = name;
         this.punkte = punkte;
@@ -7,6 +7,7 @@ class User {
         this.rank = rank;
         this.blocked = blocked;
         this.afk = afk;
+        this.podium = podium;
     }
 }
 
