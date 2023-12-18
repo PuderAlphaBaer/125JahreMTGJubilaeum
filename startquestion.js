@@ -23,15 +23,15 @@ let futureTime;
 let begonnen = [];
 let gestartet = [];
 let beendet = [];
-let auswertung = [];
+let ausgewerted = [];
 for (let i = 0; i < questions.length; i++) {
   begonnen.push(questions[i].beginn);
   gestartet.push(questions[i].start);
   beendet.push(questions[i].ende);
-  auswertung.push(questions[i].auswertung);
+  ausgewerted.push(questions[i].auswertung);
 }
 let currentQuestionCounter = 0;
-
+console.log(begonnen, gestartet, beendet, ausgewerted);
 function checkStarting() {
   if (angemeldet==true) {
     for (let i = 0; i < questions.length; i++) {
@@ -50,9 +50,9 @@ function checkStarting() {
         beendet[i] = true;
         phase3();
       }
-      if (questions[i].auswertung == true) {
+      if (questions[i].auswertung == true && ausgewerted[i] == false) {
         currentQuestionCounter = i;
-        auswertung[i] = true;
+        ausgewerted[i] = true;
         phase4();
       
       }
