@@ -51,13 +51,6 @@ function checkStarting() {
         phase3();
       }
       if (questions[i].auswertung == true) {
-<<<<<<< HEAD
-        if (spätstart==true) {
-          spätstart = false;
-        } else {
-=======
-        console.log("Auswertung");
->>>>>>> ec905f6ffbd300f682eb881260358df5bf5c4e58
         currentQuestionCounter = i;
         auswertung[i] = true;
         phase4();

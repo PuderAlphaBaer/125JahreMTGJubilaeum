@@ -84,7 +84,7 @@ async function login() {
     }
 
 
-    let fluch = await fetch('fluch.txt');
+    let fluch = await fetch('/Data/fluch.txt');
     let fluchtext = await fluch.text();
     let fluchliste = fluchtext.split(' ');
     console.log(fluchliste);
