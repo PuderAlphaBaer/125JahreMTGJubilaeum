@@ -1,16 +1,50 @@
+const pregamebox = document.getElementById('pregamebox');
+
+const phase1box = document.getElementById('phase1box');
+  const bar = document.getElementById('bar');
+  const frage1 = document.getElementById('frage1');
+
+const phase2box = document.getElementById('phase2box');
+  const frage2 = document.getElementById('frage2');
+  const a = document.getElementById('bta')
+  const b = document.getElementById('btb')
+  const c = document.getElementById('btc')
+  const d = document.getElementById('btd')
+
+const phase25box = document.getElementById('phase25box');
+  const puregenius = document.getElementById('puregenius');
+
+const phase3box = document.getElementById('phase3box');
+  const emoji = document.getElementById('emoji')
+  const worte = document.getElementById('worte');
+  const streaktext = document.getElementById('streak');
+  const punkte = document.getElementById('punkte');
+  const ims = document.getElementById('ims');
+
+const phase4box = document.getElementById('phase4box');
+  const gespunkte = document.getElementById('gespunkte');
+  const rang = document.getElementById('rang');
+  const brang = document.getElementById('brang');
+
+
 const submitbutton = document.getElementById('submit');
-console.log('submitbutton: ' + submitbutton);
 let unerror = document.getElementById('unerror');
-console.log('unerror:' + unerror);
 const tb1 = document.getElementById('tb1');
-console.log('tb1: ' + tb1);
 const biginputbox = document.getElementById('biginputbox');
-console.log('biginputbox: ' + biginputbox);
 let nickname = "";
-console.log('nickname: ' + nickname);
 let angemeldet = false;
-spätstart = false;
-const spätbox = document.getElementById('spätbox');
+
+function toggleInterface(phase){
+    biginputbox.style.display = "none";
+    phase1box.style.display = "none";
+    phase2box.style.display = "none";
+    phase25box.style.display = "none";
+    phase3box.style.display = "none";
+    phase4box.style.display = "none";
+    pregamebox.style.display = "none";
+    phase.style.display = "block";
+}
+toggleInterface(biginputbox);
 
 async function login() {
     tb1.classList.remove('error');
@@ -39,22 +73,29 @@ async function login() {
     }
 
 
-    //wenn benutzername sonderzeichen enthält, wird er nicht zugelassen
+    // if nickname includes special characters or space, throw error
+    let special = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    if (special.test(nickname)) {
+        console.log("nickname enthält Sonderzeichen");
+        tb1.classList.add('error');
+        unerror.style.color = "red";
+        unerror.innerHTML = "Benutzername darf keine Sonderzeichen enthalten";
+        return;
+    }
 
-    // profanity list fluch.txt, woerter sind mit nur mit leerzeichen getrennt, wenn nutzername ein wort aus der liste enthaelt, wird er nicht zugelassen, browser javascript, kein node.js oder module
-    // let fluch = await fetch('fluch.txt');
-    // let fluchtext = await fluch.text();
-    // let fluchliste = fluchtext.split(' ');
-    // console.log(fluchliste);
-    // for (let i = 0; i < fluchliste.length; i++) {
-    //     if (nickname.toLowerCase().includes(fluchliste[i].toLowerCase())) {
-    //         console.log("nickname enthält fluchwort");
-    //         tb1.classList.add('error');
-    //         unerror.style.color = "red";
-    //         unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
-    //         return;
-    //     }
-    // }
+
+    let fluch = await fetch('fluch.txt');
+    let fluchtext = await fluch.text();
+    let fluchliste = fluchtext.split(' ');
+    console.log(fluchliste);
+    for (let i = 0; i < fluchliste.length; i++) {
+        if (nickname.toLowerCase().includes(fluchliste[i].toLowerCase())) {
+            tb1.classList.add('error');
+            unerror.style.color = "red";
+            unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
+            return;
+        }
+    }
 
 
     console.log("nickname ok");
@@ -69,19 +110,11 @@ async function login() {
 submitbutton.addEventListener('click', login);
 
 
-
-const bigbox = document.getElementById('bigbox');
-const unbox = document.getElementById('unbox');
+const userBox = document.getElementById('userBox');
 
 
 function startGame() {
-    biginputbox.style.display = "none";
-    bigbox.style.display = "flex";
-    pregamebox.style.display = "flex";
-    unbox.innerHTML = 'Du bist '+nickname;
-    if (spätstart==true) {
-        spätbox.style.display = "flex";
-    } else {
-        console.log("püntklich gejoined");
-        spätbox.style.display = "none";
-}}
+    userBox.innerHTML = 'Du bist '+nickname;
+    toggleInterface(pregamebox);
+    console.log("püntklich");
+}

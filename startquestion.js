@@ -1,46 +1,3 @@
-// Tilman Todo: ❌✅🔥
-
-const pregamebox = document.getElementById('pregamebox');
-
-
-const phase1box = document.getElementById('phase1box');
-    const bar = document.getElementById('bar');
-    const frage1 = document.getElementById('frage1');
-
-
-const phase2box = document.getElementById('phase2box');
-    const frage2 = document.getElementById('frage2');
-    const a = document.getElementById('bta')
-    const b = document.getElementById('btb')
-    const c = document.getElementById('btc')
-    const d = document.getElementById('btd')
-
-
-const phase25box = document.getElementById('phase25box');
-    const puregenius = document.getElementById('puregenius');
-
-
-const phase3box = document.getElementById('phase3box');
-    const imgr = document.getElementById('imgr');
-    const imgf = document.getElementById('imgf');
-    const worte = document.getElementById('worte');
-    const streaktext = document.getElementById('streak');
-    const punkte = document.getElementById('punkte');
-    const ims = document.getElementById('ims');
-
-
-const phase4box = document.getElementById('phase4box');
-    const gespunkte = document.getElementById('gespunkte');
-    const rang = document.getElementById('rang');
-    const brang = document.getElementById('brang');
-
-
-
-
-
-
-
-
 let timestartquestion;
 let questionid = 1;
 let addPoints = 0;
@@ -54,7 +11,6 @@ let rank;
 let waituntilquestion;
 let ergebnis;
 
-const toggleTimer = document.getElementById('toggleTimer');
 const timer = document.getElementById('timertext');
 const s1 = document.getElementById('s1');
 const s2 = document.getElementById('s2');
@@ -80,54 +36,45 @@ function checkStarting() {
   if (angemeldet==true) {
     for (let i = 0; i < questions.length; i++) {
       if (questions[i].beginn == true &&  begonnen[i] == false) {
-        if (spätstart==true) {
-        } else {
         currentQuestionCounter = i;
         begonnen[i] = true;
         phase1(i);
-        }
       }
       if (questions[i].start == true && gestartet[i] == false) {
-        if (spätstart==true) {
-        } else {
         currentQuestionCounter = i;
         gestartet[i] = true;
         phase2(i);
-        }
       }
       if (questions[i].ende == true && beendet[i] == false) {
-        if (spätstart==true) {
-        } else {
         currentQuestionCounter = i;
         beendet[i] = true;
         phase3();
-        }
       }
       if (questions[i].auswertung == true) {
+<<<<<<< HEAD
         if (spätstart==true) {
           spätstart = false;
         } else {
+=======
+        console.log("Auswertung");
+>>>>>>> ec905f6ffbd300f682eb881260358df5bf5c4e58
         currentQuestionCounter = i;
         auswertung[i] = true;
         phase4();
-        }
+      
       }
-
     }
+  }
 }
-}
+
+
 
 
 // 5s vor Fragen beginn
 function phase1(qid) {
-  console.log("%cPhase 1", "color: red; font-size: 20px; font-weight: bold;");
+  console.log("%cPhase 1", "color: red");
 
-  pregamebox.style.display = "none";
-  phase1box.style.display = "flex";
-  phase2box.style.display = "none";
-  phase25box.style.display = "none";
-  phase3box.style.display = "none";
-  phase4box.style.display = "none";
+  // richtige oberflaeche
 
 
   // html stuff und balken
@@ -135,6 +82,7 @@ function phase1(qid) {
 
   prefut = Date.now() + pretime;
   preloop = setInterval(preTimer, 10);
+
 };
 
 
@@ -222,12 +170,10 @@ function phase3() {
   }
 
   if(ergebnis=="richtig") {
-    imgr.style.display = "flex";
-    imgf.style.display = "none";
+    emoji.innerHTML = '✅'
     worte.innerHTML = rworte[Math.floor(Math.random() * rworte.length)];
   } else {
-    imgf.style.display = "flex";
-    imgr.style.display = "none";
+    emoji.innerHTML = '❌'
     worte.innerHTML = fworte[Math.floor(Math.random() * fworte.length)];
   }
 
