@@ -15,7 +15,8 @@ const phase25box = document.getElementById('phase25box');
   const puregenius = document.getElementById('puregenius');
 
 const phase3box = document.getElementById('phase3box');
-  const emoji = document.getElementById('emoji')
+  const r = document.getElementById('r');
+  const f = document.getElementById('f');
   const worte = document.getElementById('worte');
   const streaktext = document.getElementById('streak');
   const punkte = document.getElementById('punkte');

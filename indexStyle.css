@@ -290,10 +290,9 @@ body {
     font-size: 50vmin;
 }
 
-/* https://www.bing.com/images/search?view=detailV2&ccid=D2Ko1S%2bk&id=2B2D8CA5CE6A12D60CA92FBAD29FF83BAF3C979E&thid=OIP.D2Ko1S-kMMJ5VQAPi8YI8gHaHE&mediaurl=https%3a%2f%2fclipground.com%2fimages%2ffire-symbol-png-1.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.0f62a8d52fa430c27955000f8bc608f2%3frik%3dnpc8rzv4n9K6Lw%26pid%3dImgRaw%26r%3d0&exph=860&expw=900&q=flame+icon&simid=607998173773985400&FORM=IRPRST&ck=E3B15025DBF2D705CFF17661DCD228F2&selectedIndex=21&ajaxhist=0&ajaxserp=0 */
 .ims {
     display: block;
-    background-image: url(Data/streak.png);
+    background-image: url(Data/streak.svg);
     width: 15%;
     height: 0;
     padding-bottom: 15%;

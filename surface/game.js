@@ -503,7 +503,8 @@ function userupdate(rank, uname, score, streak) {
     if (streak==0) {
         sbox = "";
     } else {
-        sbox = `        <div class="simg img"></div>
+        sbox = `
+        <img src="img/streak.svg" class="streakimg">
         <div>${streak}</div>`
     }
     document.getElementById('table').innerHTML += `

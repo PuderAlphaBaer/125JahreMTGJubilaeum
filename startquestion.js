@@ -65,9 +65,15 @@ function checkStarting() {
 
 // 5s vor Fragen beginn
 function phase1(qid) {
-  console.log("%cPhase 1", "color: red");
+  console.log("%cPhase 1", "color: red; font-size: 20px; font-weight: bold;");
 
   // richtige oberflaeche
+  pregamebox.style.display = "none";
+  phase1box.style.display = "flex";
+  phase2box.style.display = "none";
+  phase25box.style.display = "none";
+  phase3box.style.display = "none";
+  phase4box.style.display = "none";
 
 
   // html stuff und balken
@@ -163,10 +169,12 @@ function phase3() {
   }
 
   if(ergebnis=="richtig") {
-    emoji.innerHTML = '✅'
+    r.style.display = "flex";
+    f.style.display = "none";
     worte.innerHTML = rworte[Math.floor(Math.random() * rworte.length)];
   } else {
-    emoji.innerHTML = '❌'
+    r.style.display = "none";
+    f.style.display = "flex";
     worte.innerHTML = fworte[Math.floor(Math.random() * fworte.length)];
   }
 
