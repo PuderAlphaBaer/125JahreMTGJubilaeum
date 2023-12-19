@@ -140,7 +140,8 @@ function phase2(id) {
 }
 
 
-
+const richtig = document.getElementById('r');
+const falsch = document.getElementById('f');
 // Wird nach Ende einer Frage aufgerufen
 function phase3() {
   console.log("%cPhase 3", "color: red; font-size: 20px; font-weight: bold;");
@@ -163,10 +164,12 @@ function phase3() {
   }
 
   if(ergebnis=="richtig") {
-    emoji.innerHTML = '✅'
+    richtig.style.display = 'block';
+    falsch.style.display = 'none';
     worte.innerHTML = rworte[Math.floor(Math.random() * rworte.length)];
   } else {
-    emoji.innerHTML = '❌'
+    richtig.style.display = 'none';
+    falsch.style.display = 'block';
     worte.innerHTML = fworte[Math.floor(Math.random() * fworte.length)];
   }
 
