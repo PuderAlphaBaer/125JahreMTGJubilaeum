@@ -30,7 +30,8 @@ const questions = [
   // ----------------------- NICHT ANRÜHREN -----------------------
   // ----------------------- NICHT ANRÜHREN -----------------------
   
-  new Frage("a", "a", "a", "a", "a", "a", 0, false),
+  new Frage("a", "a", "a", "a", "a", "a", 0, false
+  ),
   
   new Frage ('Welche verkaufspsychologische Maßnahme steckt besonders hinter diesem Bild?', 'Decoy-Effekt', 'Priming', 'Produktplazierung', 'Verknappung', 'a', 15, "img/2.png"),
 
