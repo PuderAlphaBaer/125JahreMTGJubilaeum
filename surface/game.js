@@ -453,39 +453,40 @@ function nchart() {
                     // Würde Titel des Diagramms Antzeigen
                 display: false,
                 },
-            tooltips: {
-                mode: 'single',
-            },
-            plugins: { // Lies alles nach unter https://v0_7_0--chartjs-plugin-datalabels.netlify.app/guide/positioning.html#anchoring
-                legend: {
-                    // Würde oben noch mal zu jeder Column den Wert anzeigen, wird aber weiter unten im Code schon mit Plugin "Datalabels" geregelt
-                display: false,
+                tooltips: {
+                    mode: 'single',
                 },
-                datalabels: {
-                    // Style von den Werten der Columns
-                    color: "white",
-                    font: {
-                        size: 30,
-                        weight: 'bold'
-                    },
-                    // Positionierung
-                    anchor: 'end',
-                    align: 'top',
-                    clamp: true     
-            }},
-            scales: {
-                x: [{
-                    // Würde xAchse und Beschriftung der Columns (A, B, C, D) anzeigen lassen
-                    display: false
-                }],
-                y: [{
-                    // Würde yAchse mit Beschriftung (also 100, 150, 200, 250, etc) anzeigen Lassen
+                plugins: { // Lies alles nach unter https://v0_7_0--chartjs-plugin-datalabels.netlify.app/guide/positioning.html#anchoring
+                    legend: {
+                        // Würde oben noch mal zu jeder Column den Wert anzeigen, wird aber weiter unten im Code schon mit Plugin "Datalabels" geregelt
                     display: false,
-                    ticks: {
-                        beginAtZero: true
-                      }
-                }],
-            }
+                    },
+                    datalabels: {
+                        // Style von den Werten der Columns
+                        color: "white",
+                        font: {
+                            size: 30,
+                            weight: 'bold'
+                        },
+                        // Positionierung
+                        anchor: 'end',
+                        align: 'top',
+                        clamp: true     
+                }},
+                scales: {
+                    x: {
+                        // Würde xAchse und Beschriftung der Columns (A, B, C, D) anzeigen lassen
+                        display: false
+                    },
+                    y: {
+                        // Würde yAchse mit Beschriftung (also 100, 150, 200, 250, etc) anzeigen Lassen
+                        display: false,
+                        ticks: {
+                            beginAtZero: true,
+                            display: false
+                        }
+                    },
+                }
             }
         });
 }
