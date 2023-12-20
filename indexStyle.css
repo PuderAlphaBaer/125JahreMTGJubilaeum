@@ -49,6 +49,7 @@ body {
     margin-top: 4vmin;
     margin-bottom: 2vmin;
     align-items: top;
+    padding-top: 2vmin;
 }
 .buttonB {
     background-color: rgb(87, 165, 26);

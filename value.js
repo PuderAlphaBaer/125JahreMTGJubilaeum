@@ -31,6 +31,7 @@ const questions = [
   // ----------------------- NICHT ANRÜHREN -----------------------
   
   new Frage("a", "a", "a", "a", "a", "a", 0),
+  new Frage ('Welche verkaufspsychologische Maßnahme steckt besonders hinter diesem Bild?', 'Decoy-Effekt', 'Priming', 'Produktplazierung', 'Verknappung', 'a', 15, "img/2.png"),
 
   new Frage ("Bei einer Kosten-Nutzen-Analyse sollte was überwiegen, sodass man sich für die Alternative entscheiden würde?", "Nutzen", "Bargeld", "Kosten", "Freizeit", "a", 15, false),
 
@@ -46,7 +47,7 @@ const questions = [
 
   new Frage ('Wie sollte (als verkaufspsychologische Maßnahme) eine Verknappung bzw. ein Sonderangebot auf den Käufer wirken?', 'Beschleunigen der Kaufentscheidung', 'Nehmen gar keinen Einfluss', 'Lösen Angstzustände aus', 'Geben ein nachhaltiges Bild ab', 'a', 15, false),
 
-  new Frage ('Welche verkaufspsychologische Maßnahme steckt besonders hinter diesem Bild?', 'Decoy-Effekt', 'Priming', 'Produktplazierung', 'Verknappung', 'a', 15, "img/2.png"),
+  // new Frage ('Welche verkaufspsychologische Maßnahme steckt besonders hinter diesem Bild?', 'Decoy-Effekt', 'Priming', 'Produktplazierung', 'Verknappung', 'a', 15, "img/2.png"),
 
   new Frage ('Was ist keine Zahlungsart?', 'Mobile Payment', 'Überweisung', 'Kartenzahlung', 'Schenkung', 'd', 15, false),
 
