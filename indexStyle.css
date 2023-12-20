@@ -240,7 +240,12 @@ body {
 
 
 .phasebox {
-    display: block;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
 }
 
 
@@ -275,7 +280,7 @@ body {
 
 .frage2 {
     font-size: 4vh;
-    padding-top: 35%;
+    padding-top: 70%;
 }
 
 .biginputbox {
@@ -292,8 +297,7 @@ body {
 
 .ims {
     display: block;
-    width: 15%;
-    height: 0;
+    width: 10%;
     padding-bottom: 15%;
 }
 
@@ -329,12 +333,16 @@ body {
 }
 
 .imgbox {
-    display: flex;
+    display: none;
+    position: absolute;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 40%;
-    height: 50%;
+}
+
+.nimg {
+    width: 100%;
 }
 
 .r {

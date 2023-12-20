@@ -65,7 +65,7 @@ function checkStarting() {
 
 // 5s vor Fragen beginn
 function phase1(qid) {
-  console.log("%cPhase 1", "color: red");
+  console.log("%cPhase 1", "color: red; font-size: 20px; font-weight: bold;");
 
   // richtige oberflaeche
   toggleInterface(phase1box);
@@ -406,5 +406,9 @@ function countDownTimer() {
   //     s2.style.backgroundColor = "rgba(0, 255, 0, 0.8)";
   //     timer.style.color = "rgba(55, 0, 255, 0.8)";
   // }
+
+  if(remainingTime <= 0) {
+      clearInterval(timerLoop);
+  }
 
 }
