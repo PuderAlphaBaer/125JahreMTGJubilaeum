@@ -282,7 +282,7 @@ body {
 
 .frage2 {
     font-size: 4vh;
-    padding-top: 70%;
+    padding-top: 5%;
 }
 
 .biginputbox {
@@ -341,6 +341,7 @@ body {
     align-items: center;
     flex-direction: column;
     width: 40%;
+    padding-top: 20%;
 }
 
 .nimg {
