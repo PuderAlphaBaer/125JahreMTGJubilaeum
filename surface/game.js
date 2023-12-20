@@ -453,9 +453,6 @@ function nchart() {
                     // Würde Titel des Diagramms Antzeigen
                 display: false,
                 },
-                tooltips: {
-                    mode: 'single',
-                },
                 plugins: { // Lies alles nach unter https://v0_7_0--chartjs-plugin-datalabels.netlify.app/guide/positioning.html#anchoring
                     legend: {
                         // Würde oben noch mal zu jeder Column den Wert anzeigen, wird aber weiter unten im Code schon mit Plugin "Datalabels" geregelt
@@ -463,15 +460,14 @@ function nchart() {
                     },
                     datalabels: {
                         // Style von den Werten der Columns
-                        color: "white",
-                        font: {
-                            size: 30,
-                            weight: 'bold'
-                        },
-                        // Positionierung
+                        display: true,
                         anchor: 'end',
-                        align: 'top',
-                        clamp: true     
+                        align: 'end',
+                        labels: {
+                          value: {
+                            color: 'white'
+                          }
+                        }
                 }},
                 scales: {
                     x: {
