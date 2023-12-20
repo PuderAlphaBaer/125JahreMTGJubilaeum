@@ -32,7 +32,7 @@ const questions = [
   
   new Frage("a", "a", "a", "a", "a", "a", 0),
 
-  new Frage ("Bei einer Kosten-Nutzen-Analyse sollte was überwiegen, sodass man sich für die Alternative entscheiden würde?", "Nutzen", "Bargeld", "Kosten", "Freizeit", "a", 11111115, false),
+  new Frage ("Bei einer Kosten-Nutzen-Analyse sollte was überwiegen, sodass man sich für die Alternative entscheiden würde?", "Nutzen", "Bargeld", "Kosten", "Freizeit", "a", 15, false),
 
   new Frage ("Was steht im Konflikt, sodass der Mensch (ständig) wirtschaftliche Entscheidungen treffen muss?", "Begrenzte Bedürfnisse und Begrenzte Güter", "Unbegrenzte Bedürfnisse und Unbegrenzte Güter", "Unbegrenzte Bedürfnisse und Begrenzte Güter", "Begrenzte Bedürfnisse und Unbegrenzte Güter", "c", 15, false),
 
