@@ -6,7 +6,6 @@
     font-family: 'Roboto', sans-serif;
     color: white;
     text-decoration: none;
-    line-height: 3vmax;
     box-sizing: border-box;
     user-select: none;
 }
@@ -32,7 +31,6 @@ body {
 .button {
     display: flex;
     justify-content: center;
-    align-items: center;
     width: 44vw;
     border-radius: 2vw;
 }
@@ -50,6 +48,7 @@ body {
     margin-right: 2vmin;
     margin-top: 4vmin;
     margin-bottom: 2vmin;
+    align-items: top;
 }
 .buttonB {
     background-color: rgb(87, 165, 26);
@@ -58,6 +57,7 @@ body {
     margin-right: 4vmin;
     margin-top: 4vmin;
     margin-bottom: 2vmin;
+    align-items: top;
 }
 .buttonC {
     background-color: rgb(10, 85, 164);
@@ -66,6 +66,7 @@ body {
     margin-right: 2vmin;;
     margin-top: 2vmin;
     margin-bottom: 4vmin;
+    align-items: end;
 }
 .buttonD {
     background-color: rgb(168, 90, 229);
@@ -74,6 +75,7 @@ body {
     margin-right: 4vmin;
     margin-top: 2vmin;
     margin-bottom: 4vmin;
+    align-items: end;
 }
 .buttonA:hover {background-color: #E21B3C;}
 .buttonB:hover {background-color: #FFA602;}

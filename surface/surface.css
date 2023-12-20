@@ -10,7 +10,6 @@ body {
     font-family: 'Roboto', sans-serif;
     color: white;
     text-decoration: none;
-    line-height: 3vh;
     box-sizing: border-box;
     user-select: none;
 }
@@ -26,6 +25,8 @@ body {
     border: lightgray solid 0.5vw;
     border-radius: 1vw;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 
 .buttonStyle:hover {
@@ -123,6 +124,7 @@ td {
 .button {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 47vw;
     border-radius: 2vw;
 }
@@ -191,8 +193,8 @@ td {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    height: 50vmin;
-    width: 100vw;
+    height: 25vmin;
+    width: 500vw;
     position: absolute;
     pointer-events: none;
     justify-self: right;
@@ -203,8 +205,9 @@ td {
 .timerbox {
     position: absolute;
     background-color: yellow;
-    width: 40vmin;
-    height: 40vmin;
+    top: 0;
+    width: 20vmin;
+    height: 20vmin;
     border-radius: 50%;
     z-index: 1;
     display: flex;
@@ -298,7 +301,7 @@ td {
     width: 80%;
     height: 4%;
     position: absolute;
-    top: 55%;
+    bottom: 5%;
     left: 10%;
 }
 
@@ -402,4 +405,17 @@ td {
 
 #resetUsers {
     display: none;
+}
+
+.imgbox {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+}
+
+.nimg {
+    width: 100%;
 }

@@ -135,6 +135,7 @@ function weiter() {
     rangliste.style.display = "flex";
     fragenbox.style.display = "none";
     bt2.style.display = "none";
+    frage2.style.display = "flex";
     votebox.style.display = "none";
     votebox.removeChild(document.getElementById('vote'));
     votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
@@ -267,6 +268,7 @@ function auswertung() {
     bvotes = 0;
     cvotes = 0;
     dvotes = 0;
+    frage2.style.display = "none";
     // Entscheidet, welches Diagramm verwendet werden soll, je nach Fragentyp
     if (questions[fragennumber].c=="") {
         // Zwei Antwortmöglichkeiten
