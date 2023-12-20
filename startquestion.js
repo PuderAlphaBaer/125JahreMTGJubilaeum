@@ -215,7 +215,7 @@ function phase4() {
     gespunkte.innerHTML = "Deine Punktzahl: "+data[0].punkte;
     rang.innerHTML = "Dein Rang: "+data[0].rang;
     vorrang = data[0].rang-1;
-    if (rang>1) {
+    if (data[0].rang>1) {
       supabaseFetch('spieler', 'name, punkte', 'gt', 'rang', vorrang, 'punkte', true).then((data2) => {
         diff = data2[0].punkte-data[0].punkte;
         brang.innerHTML = diff+" Punkte vor dir auf Rang "+vorrang+" befindet sich "+data2[0].name;
