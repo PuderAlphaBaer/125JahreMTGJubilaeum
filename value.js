@@ -21,56 +21,48 @@ class Frage {
 const pretime = 6000;
 
 
-  const questions = [
-    // Hier alle Fragen in richtiger Reinfolge auflisten
+const questions = [
+  // Hier alle Fragen in richtiger Reinfolge auflisten
 
-    // ----------------------- NICHT ANRÜHREN -----------------------
-    // ----------------------- NICHT ANRÜHREN -----------------------
-    // ----------------------- NICHT ANRÜHREN -----------------------
-    // ----------------------- NICHT ANRÜHREN -----------------------
-    // ----------------------- NICHT ANRÜHREN -----------------------
-    
-    new Frage("a", "a", "a", "a", "a", "a", 0),
+  // ----------------------- NICHT ANRÜHREN -----------------------
+  // ----------------------- NICHT ANRÜHREN -----------------------
+  // ----------------------- NICHT ANRÜHREN -----------------------
+  // ----------------------- NICHT ANRÜHREN -----------------------
+  // ----------------------- NICHT ANRÜHREN -----------------------
+  
+  new Frage("a", "a", "a", "a", "a", "a", 0),
 
-    new Frage("Wer war der erste Mensch im Weltraum?", "Alexander Gerst", "Yuri Gagarin", "Neil Armstrong", "Herr Eschrich", "b", 8, "img/1.jpeg"),
+  new Frage ("Bei einer Kosten-Nutzen-Analyse sollte was überwiegen, sodass man sich für die Alternative entscheiden würde?", "Nutzen", "Bargeld", "Kosten", "Freizeit", "a", 15, false),
 
-    new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 10, false),
+  new Frage ("Was steht im Konflikt, sodass der Mensch (ständig) wirtschaftliche Entscheidungen treffen muss?", "Begrenzte Bedürfnisse und Begrenzte Güter", "Unbegrenzte Bedürfnisse und Unbegrenzte Güter", "Unbegrenzte Bedürfnisse und Begrenzte Güter", "Begrenzte Bedürfnisse und Unbegrenzte Güter", "c", 15, false),
 
-    new Frage ("Olivia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 10, false),
+  new Frage ('Welche Dimension der Nachhaltigkeit ist beim folgenden Beispiel am meisten vertreten: „Um ein besseres Image nach außen zu tragen, bezahlt Firma XY seine Mitarbeiter 2€ mehr Stundenlohn“', "ökologisch", "ökonomisch", "sozial", "ethisch", "b", 15, false),
 
-    new Frage ('Wann begann die Französische Revolution?', '1789', '1788', '1787', '1786', 'a', 10, false),
+  new Frage ('„Mit einem vorgegebenen Mitteleinsatz, z.B. 1000 €, soll ein qualitativ-hochwertiges Handy gekauft werden“, ist ein Beispiel für das…', 'Extremumsprinzip', 'Minimalprinzip', 'Maximalprinzip', 'Min-Max-Prinzip', 'c', 15, false),
 
-    new Frage ('Was heisst Sklave auf Latein?', 'Sklave', 'Sklavus', 'Servus', '', 'c', 10, false),
+  new Frage ('Was ist ein Beispiel für ein "Werbeträger"?', 'Familie', 'McDonalds', 'Zeitung', 'Schule', 'c', 15, false),
 
-    new Frage ('Wann wurde die Bundesrepublik Deutschland gegründet?', '1945', '1946', '1947', '1948', 'd', 10, false),
+  new Frage ('Was wäre wahrscheinlich kein gutes Werbeziel für ein Unternehmen?', 'Kundenbingung stärken', 'Vorstandswechsel', 'Imageverbesserung', 'Umsatzsteigerung', 'b', 15, false),
 
-    new Frage ('Wann wurde die DDR gegründet?', '1945', '1946', '1947', '1948', 'b', 10, false),
+  new Frage ('Wie sollte (als verkaufspsychologische Maßnahme) eine Verknappung bzw. ein Sonderangebot auf den Käufer wirken?', 'Beschleunigen der Kaufentscheidung', 'Nehmen gar keinen Einfluss', 'Lösen Angstzustände aus', 'Geben ein nachhaltiges Bild ab', 'a', 15, false),
 
-    new Frage ('Wann begann der 2. Weltkrieg?', '1938', '1939', '1940', '1941', 'b', 10, false),
+  new Frage ('Welche verkaufspsychologische Maßnahme steckt besonders hinter diesem Bild?', 'Decoy-Effekt', 'Priming', 'Produktplazierung', 'Verknappung', 'a', 15, "img/2.png"),
 
-    new Frage ('Wer war der erste Bundeskanzler der BRD?', 'Konrad Adenauer', 'Helmut Kohl', 'Angela Merkel', 'Otto von Bismarck', 'a', 10, false),
+  new Frage ('Was ist keine Zahlungsart?', 'Mobile Payment', 'Überweisung', 'Kartenzahlung', 'Schenkung', 'd', 15, false),
 
-    new Frage ('Wer war der erste Reichskanzler des Deutschen Reiches?', 'Otfried Biscuits', 'Alice Weidel', 'Otto von Bismarck', '', 'c', 10, false),
+  new Frage ('Was ist keine Dimension des magischen Dreiecks einer Geldanlage?', 'Liquidität', 'Sicherheit', 'Rentabilität', 'Nachhaltigkeit', 'd', 15, false),
 
-    new Frage ('Wie viele Bytes sind in einem Kibibyte?', '1000', '1024', '1032', '1048', 'b', 20, false),
+  new Frage ('Welchen Aspekt des magischen Dreiecks einer Geldanlage erfüllt eine Gamestop Aktie nicht bis wenig?', 'Liquidität', 'Sicherheit', 'Rentabilität', 'Nachhaltigkeit', 'b', 15, false),
 
-    new Frage ('Was ist die Wurzel aus 196?', '14', '13', '15', '35/2', 'a', 20, false),
+  new Frage ('Wie hoch ist die aktuelle Inflationsrate (Stand: 11/2023) in Deutschland?', '-3,2%', '+3,2%', '+3,1%', '-3,1%', 'b', 15, false),
 
-    new Frage("Sind Tilman und Christian toll?", "Ja", "Nein", "", "", "a", 10, false),
+  new Frage ("Von einem Kaufkraftverlust spricht man, wenn man...", "Für das gleiche Gehalt mehr Güter kaufen kann", "Für weniger Gehalt weniger Güter kaufen kann", "Für das gleiche Gehalt weniger Güter kaufen kann", "Für mehr Gehalt mehr Güter kaufen kann", "c", 15, false),
 
-    new Frage ('Wie viele Bundesländer hat Deutschland?', '15', '16', '17', '19', 'b', 10, false),
+  new Frage ('Unter einer Lastschrift versteht man...', 'Die Ermächtigung vom Kontoinhaber an den Gläubiger das Geld einzuziehen', 'Die überweisung des Kontoinhabers auf das Konto des Gläubigers', 'Die Überschuldung des Kontoinhabers', 'Die Verschuldung beim Gläubiger', 'a', 15, false),
 
-    new Frage ("Wohin gehe ich wenn ich Streit habe?", "Sanitäter", "Frau Bertram", "Umweltscouts", "Mediatoren", "d", 20, false),
-
-    new Frage ('Was ist die Wurzel aus 196?', '14', '13', '15', '35/2', 'a', 20, false),
-
-    new Frage("Sind Tilman und Christian toll?", "Ja", "Nein", "", "", "a", 10, false),
-
-    new Frage ('Wie viele Bundesländer hat Deutschland?', '15', '16', '17', '19', 'b', 10, false),
-
-    new Frage ("Wohin gehe ich wenn ich Streit habe?", "Sanitäter", "Frau Bertram", "Umweltscouts", "Mediatoren", "d", 20, false),
-
-  ];
+  new Frage ("Unter einer Anleihe versteht man...", "Anteile am Unternehmen mit Gewinnbeteiligung", "Ansammlung von Aktien", "Anteil an einem bestimmten ETF", "Die Kreditvergabe des Gläubigers mit Garantie auf Rückzahlung mit Zinsen des Unternehmens", "d", 15, false),
+  
+];
 
   // Sprüche wenn Antwort richtig ist
   const rworte = [
