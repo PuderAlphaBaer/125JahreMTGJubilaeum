@@ -30,8 +30,9 @@ const questions = [
   // ----------------------- NICHT ANRÜHREN -----------------------
   // ----------------------- NICHT ANRÜHREN -----------------------
   
-  new Frage("a", "a", "a", "a", "a", "a", 0),
-  new Frage ('Welche verkaufspsychologische Maßnahme steckt besonders hinter diesem Bild?', 'Decoy-Effekt', 'Priming', 'Produktplazierung', 'Verknappung', 'a', 15, "img/2.png"),
+  new Frage("a", "a", "a", "a", "a", "a", 0, false),
+
+  new Frage ('Welche verkaufspsychologische Maßnahme steckt besonders hinter diesem Bild?', 'Decoy-Effekt', 'Priming', 'Produktplazierung', 'Verknappung', 'a', 15, "img/2.jpeg"),
 
   new Frage ("Bei einer Kosten-Nutzen-Analyse sollte was überwiegen, sodass man sich für die Alternative entscheiden würde?", "Nutzen", "Bargeld", "Kosten", "Freizeit", "a", 15, false),
 
