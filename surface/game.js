@@ -114,7 +114,7 @@ function startpreQuestion() {
 
         if(questions[fragennumber].img!=false) {
             imgbox.style.display = "block";
-            img.src = questions[fragennumber].img;
+            img.src = "../"+questions[fragennumber].img;
         } else {
             imgbox.style.display = "none";
         }
