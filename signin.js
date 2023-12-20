@@ -21,6 +21,8 @@ const phase3box = document.getElementById('phase3box');
   const streaktext = document.getElementById('streak');
   const punkte = document.getElementById('punkte');
   const ims = document.getElementById('ims');
+  const imgbox = document.getElementById('imgbox');
+  const img = document.getElementById('img');
 
 const phase4box = document.getElementById('phase4box');
   const gespunkte = document.getElementById('gespunkte');

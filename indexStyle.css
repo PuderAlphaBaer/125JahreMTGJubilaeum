@@ -292,7 +292,6 @@ body {
 
 .ims {
     display: block;
-    background-image: url(Data/streak.svg);
     width: 15%;
     height: 0;
     padding-bottom: 15%;
@@ -329,4 +328,11 @@ body {
     font-size: 6vh;
 }
 
-
+.imgbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+    height: 50%;
+}

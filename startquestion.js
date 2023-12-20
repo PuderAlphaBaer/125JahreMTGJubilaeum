@@ -139,6 +139,14 @@ function phase2(id) {
       }
   }
 
+  if(questions[questionid].img!=false) {
+    imgbox.style.display = "block";
+    img.src = questions[questionid].img;
+  } else {
+    imgbox.style.display = "none";
+  }
+
+
   questionStart = Date.now();
   ergebnis = "offen";
   puregenius.innerHTML = zwischenworte[Math.floor(Math.random() * zwischenworte.length)];
