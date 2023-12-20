@@ -27,7 +27,8 @@ const bt2 = document.getElementById('bt2');
 const bt1 = document.getElementById('bt1');
 const startgamebt = document.getElementById('startgamebt');
 const resettu = document.getElementById('resetUsers');
-
+const imgbox = document.getElementById('imgbox');
+const img = document.getElementById('img');
 
 let fragennumber = 0;
 
@@ -112,6 +113,14 @@ function startpreQuestion() {
     
     // Timer starten
     startTimer();
+
+    if(questions[fragennumber].img!=false) {
+        imgbox.style.display = "block";
+        img.src = questions[fragennumber].img;
+    } else {
+        imgbox.style.display = "none";
+    }
+
     }
 
 
