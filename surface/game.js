@@ -265,7 +265,7 @@ function auswertung() {
             for (let i = 0; i < data.length; i++) {
                 userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                 if (userIndex==-1) {
-                    userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false, 0, false));
+                    userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false, 0));
                     userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                 }
                 if(data[i].punkte<0) {
@@ -503,8 +503,7 @@ function userupdate(rank, uname, score, streak) {
     if (streak==0) {
         sbox = "";
     } else {
-        sbox = `
-        <img src="img/streak.svg" class="streakimg">
+        sbox = `        <div class="simg img"></div>
         <div>${streak}</div>`
     }
     document.getElementById('table').innerHTML += `

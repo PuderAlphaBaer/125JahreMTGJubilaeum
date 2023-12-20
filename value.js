@@ -32,11 +32,11 @@ const pretime = 6000;
     
     new Frage("a", "a", "a", "a", "a", "a", 0),
 
-    new Frage("Wer war der erste Mensch im Weltraum?", "Alexander Gerst", "Yuri Gagarin", "Neil Armstrong", "Herr Eschrich", "b", 8, "img/1.jpeg"),
+    new Frage("Wer war der erste Mensch im Weltraum?", "Alexander Gerst", "Yuri Gagarin", "Neil Armstrong", "Herr Eschrich", "b", 10, "img/1.jpeg"),
 
-    new Frage("Carlotta ist die BESTE Testerin", "ist ja normal", "RICHTIG", "natuerlich", "ne", ['a', 'b', 'c'], 10, false),
+    new Frage("Wer ist der Imposter", "Tilman", "Christian", "Fabiola", "Mio", "c", 5, false),
 
-    new Frage ("Olivia ist auch eine sehr tolle Testerin", "Ja", "Nein", "", "", "a", 10, false),
+    new Frage ("Wer kann die cleansten Liegestütze?", "Tilman", "Christian", "Fabiola", "David", ["c", "d"], 10, false),
 
     new Frage ('Wann begann die Französische Revolution?', '1789', '1788', '1787', '1786', 'a', 10, false),
 
@@ -44,7 +44,7 @@ const pretime = 6000;
 
     new Frage ('Wann wurde die Bundesrepublik Deutschland gegründet?', '1945', '1946', '1947', '1948', 'd', 10, false),
 
-    new Frage ('Wann wurde die DDR gegründet?', '1945', '1946', '1947', '1948', 'b', 10, false),
+    new Frage ('Wie viele Ecken hat ein Würfel?', '6', '8', '10', '12', 'b', 10, false),
 
     new Frage ('Wann begann der 2. Weltkrieg?', '1938', '1939', '1940', '1941', 'b', 10, false),
 
@@ -64,7 +64,7 @@ const pretime = 6000;
 
     new Frage ('Was ist die Wurzel aus 196?', '14', '13', '15', '35/2', 'a', 20, false),
 
-    new Frage("Sind Tilman und Christian toll?", "Ja", "Nein", "", "", "a", 10, false),
+    new Frage('Wie viele Kanten hat ein Würfel?', '6', '8', '10', '12', 'd', 10, false),
 
     new Frage ('Wie viele Bundesländer hat Deutschland?', '15', '16', '17', '19', 'b', 10, false),
 

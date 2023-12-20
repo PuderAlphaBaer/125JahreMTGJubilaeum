@@ -23,15 +23,15 @@ let futureTime;
 let begonnen = [];
 let gestartet = [];
 let beendet = [];
-let ausgewerted = [];
+let auswertung = [];
 for (let i = 0; i < questions.length; i++) {
   begonnen.push(questions[i].beginn);
   gestartet.push(questions[i].start);
   beendet.push(questions[i].ende);
-  ausgewerted.push(questions[i].auswertung);
+  auswertung.push(questions[i].auswertung);
 }
 let currentQuestionCounter = 0;
-console.log(begonnen, gestartet, beendet, ausgewerted);
+
 function checkStarting() {
   if (angemeldet==true) {
     for (let i = 0; i < questions.length; i++) {
@@ -50,9 +50,9 @@ function checkStarting() {
         beendet[i] = true;
         phase3();
       }
-      if (questions[i].auswertung == true && ausgewerted[i] == false) {
+      if (questions[i].auswertung == true && auswertung[i] == false) {
         currentQuestionCounter = i;
-        ausgewerted[i] = true;
+        auswertung[i] = true;
         phase4();
       
       }
@@ -65,16 +65,10 @@ function checkStarting() {
 
 // 5s vor Fragen beginn
 function phase1(qid) {
-  console.log("%cPhase 1", "color: red; font-size: 20px; font-weight: bold;");
+  console.log("%cPhase 1", "color: red");
 
   // richtige oberflaeche
-  pregamebox.style.display = "none";
-  phase1box.style.display = "flex";
-  phase2box.style.display = "none";
-  phase25box.style.display = "none";
-  phase3box.style.display = "none";
-  phase4box.style.display = "none";
-
+  toggleInterface(phase1box);
 
   // html stuff und balken
   frage1.innerHTML = questions[qid].frage;
@@ -154,7 +148,8 @@ function phase2(id) {
 }
 
 
-
+const richtig = document.getElementById('r');
+const falsch = document.getElementById('f');
 // Wird nach Ende einer Frage aufgerufen
 function phase3() {
   console.log("%cPhase 3", "color: red; font-size: 20px; font-weight: bold;");
@@ -177,12 +172,12 @@ function phase3() {
   }
 
   if(ergebnis=="richtig") {
-    r.style.display = "flex";
-    f.style.display = "none";
+    richtig.style.display = 'block';
+    falsch.style.display = 'none';
     worte.innerHTML = rworte[Math.floor(Math.random() * rworte.length)];
   } else {
-    r.style.display = "none";
-    f.style.display = "flex";
+    richtig.style.display = 'none';
+    falsch.style.display = 'block';
     worte.innerHTML = fworte[Math.floor(Math.random() * fworte.length)];
   }
 

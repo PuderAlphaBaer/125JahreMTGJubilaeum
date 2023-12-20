@@ -15,8 +15,7 @@ const phase25box = document.getElementById('phase25box');
   const puregenius = document.getElementById('puregenius');
 
 const phase3box = document.getElementById('phase3box');
-  const r = document.getElementById('r');
-  const f = document.getElementById('f');
+  const emoji = document.getElementById('emoji')
   const worte = document.getElementById('worte');
   const streaktext = document.getElementById('streak');
   const punkte = document.getElementById('punkte');
@@ -85,9 +84,15 @@ async function login() {
         unerror.innerHTML = "Benutzername darf keine Sonderzeichen enthalten";
         return;
     }
+    if (nickname.includes(' ')) {
+        console.log("nickname enthält Leerzeichen");
+        tb1.classList.add('error');
+        unerror.style.color = "red";
+        unerror.innerHTML = "Benutzername darf keine Leerzeichen enthalten";
+        return;
+    }
 
-
-    let fluch = await fetch('/Data/fluch.txt');
+    let fluch = await fetch('Data/fluch.txt');
     let fluchtext = await fluch.text();
     let fluchliste = fluchtext.split(' ');
     console.log(fluchliste);
