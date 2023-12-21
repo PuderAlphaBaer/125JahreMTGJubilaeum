@@ -44,7 +44,7 @@ function toggleInterface(phase){
     phase3box.style.display = "none";
     phase4box.style.display = "none";
     pregamebox.style.display = "none";
-    phase.style.display = "block";
+    phase.style.display = "flex";
 }
 toggleInterface(biginputbox);
 
@@ -58,11 +58,11 @@ async function login() {
         unerror.innerHTML = "Bitte gib einen Benutzernamen ein";
         return;
     }
-    if (nickname.length>50) {
+    if (nickname.length>40) {
         console.log("nickname zu lang");
         tb1.classList.add('error');
         unerror.style.color = "red";
-        unerror.innerHTML = "Benutzername darf maximal 20 Zeichen lang sein";
+        unerror.innerHTML = "Benutzername darf maximal 40 Zeichen lang sein";
         return;
     }
     let exists = await supabaseExists('spieler', 'eq', 'name', nickname);

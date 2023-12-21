@@ -41,7 +41,7 @@ bt2.addEventListener('click', weiter);
 
 function startgame() {
     console.log('beginne spiel')
-    beforegamebox.style.display = "none";y
+    beforegamebox.style.display = "none";
     startpreQuestion();
 }
 

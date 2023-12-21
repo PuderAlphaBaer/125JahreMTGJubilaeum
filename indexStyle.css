@@ -9,6 +9,11 @@
     user-select: none;
 }
 
+body {
+    background-image: url(/Data/bakka.png);
+    background-repeat: repeat;
+}
+
 .buttonSurContainer {
     display: flex;
     flex-flow: column wrap;
@@ -97,7 +102,6 @@
     width: fit-content;
     color: lightgray;
     padding: 0.5vw 1vw;
-    margin: 0.5vw 1vw;
     border: lightgray solid 0.5vw;
     border-radius: 1vw;
 }
@@ -191,68 +195,69 @@
 }
 
 
-.tb1b {
-    display: block;
-    width: 50vw;
-    height: 5vw;
-}
 
-.tb1 {
-    width: 100%;
-    height: 60%;
-    background-color: rgb(63, 63, 63);
-    padding-left: 1%;
-    color: black;
-    border: none;
-    outline: gray solid;
 
-    &.error
-    {
-      animation: shake 0.2s ease-in-out 0s 2;
-    }
-
-}
 
 @keyframes shake {
     0% { margin-left: 0rem; }
     25% { margin-left: 0.5rem; }
     75% { margin-left: -0.5rem; }
     100% { margin-left: 0rem; }
-  }
-
-.tb1:hover {
-    outline: white solid;
-    background-color: rgb(45, 45, 45);
-}
-
-.tb1:focus {
-    background-color: white;
-    color: black;
 }
 
 .unerror {
-    width: 100%;
-    height: 40%;
+    font-size: 1.5vh;
+    width: 70%;
+    height: fit-content;
     color: red;
 }
 
+.inputWrapper {
+    display: flex;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .inputbox {
+    position: absolute;
+    top: 40vh;
+    height: fit-content;
+    width: 100vw; 
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    display: inherit;
-    background-color: black;
-    width: 100%;
-    height: 100%;
+}
+.tb1 {
+    display: flex;
+    font-size: 2.5vh;
+    height: 5vh;
+    padding: 1vmax;
+    width: 60%;
+    &.error
+    {
+      animation: shake 0.2s ease-in-out 0s 2;
+    }
+}
+.submit {
+    display: flex;
+    font-size: 2.5vh;
+    height: 5vh;
+    padding: 1vmax;
+    width: fit-content;
+}
+
+.biginputbox {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
 }
 
 
 .phasebox {
     display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-
 }
 
 
@@ -288,13 +293,6 @@
 .frage2 {
     font-size: 4vh;
     padding-top: 5%;
-}
-
-.biginputbox {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    display: flex;
 }
 
 
