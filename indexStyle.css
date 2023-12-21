@@ -1,4 +1,3 @@
-/* basic style */
 * {
     margin: 0;
     padding: 0;
@@ -9,9 +8,7 @@
     box-sizing: border-box;
     user-select: none;
 }
-body {
-    background-color: black;
-}
+
 .buttonSurContainer {
     display: flex;
     flex-flow: column wrap;
@@ -50,8 +47,7 @@ body {
     margin-right: 2vmin;
     margin-top: 4vmin;
     margin-bottom: 2vmin;
-    align-items: top;
-    padding-top: 2vmin;
+    align-items: center;
 }
 .buttonB {
     background-color: rgb(86, 165, 26);
@@ -62,8 +58,7 @@ body {
     margin-right: 4vmin;
     margin-top: 4vmin;
     margin-bottom: 2vmin;
-    align-items: top;
-    padding-top: 2vmin;
+    align-items: center;
 }
 .buttonC {
     background-color: rgb(9, 85, 164);
@@ -74,8 +69,7 @@ body {
     margin-right: 2vmin;;
     margin-top: 2vmin;
     margin-bottom: 4vmin;
-    align-items: end;
-    padding-bottom: 2vmin;
+    align-items: center;
 }
 .buttonD {
     background-color: rgb(169, 90, 229);
@@ -86,8 +80,7 @@ body {
     margin-right: 4vmin;
     margin-top: 2vmin;
     margin-bottom: 4vmin;
-    align-items: end;
-    padding-bottom: 2vmin;
+    align-items: center;
 }
 .buttonA:hover {background-color: rgb(255, 183, 10);}
 .buttonB:hover {background-color: rgb(125, 241, 38);}
