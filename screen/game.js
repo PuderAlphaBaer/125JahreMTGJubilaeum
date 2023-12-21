@@ -1,9 +1,9 @@
 const anzeigefrage1 = document.getElementById('anzeigefrage1');
 const anzeigefrage2 = document.getElementById('anzeigefrage2');
-const a = document.getElementById('a');
-const b = document.getElementById('b');
-const c = document.getElementById('c');
-const d = document.getElementById('d');
+const a = document.getElementById('bta');
+const b = document.getElementById('btb');
+const c = document.getElementById('btc');
+const d = document.getElementById('btd');
 const y = document.getElementById('y');
 const n = document.getElementById('n');
 const zwischenbox = document.getElementById('zwischenbox');
@@ -89,10 +89,6 @@ function startpreQuestion() {
     b.style.border = "none";
     c.style.border = "none";
     d.style.border = "none";
-    a.style.backgroundColor = "#D11031";
-    b.style.backgroundColor = "#F99306";
-    c.style.backgroundColor = "#1B7A08";
-    d.style.backgroundColor = "#0B52C1";
     anzeigefrage2.innerHTML = questions[fragennumber].frage;
     // Multiple Choice Frage
         a.innerHTML = questions[fragennumber].a;

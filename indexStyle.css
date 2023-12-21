@@ -1,4 +1,3 @@
-/* basic style */
 * {
     margin: 0;
     padding: 0;
@@ -9,9 +8,7 @@
     box-sizing: border-box;
     user-select: none;
 }
-body {
-    background-color: black;
-}
+
 .buttonSurContainer {
     display: flex;
     flex-flow: column wrap;
@@ -42,7 +39,7 @@ body {
     align-items: center;
 }
 .buttonA {
-    background-color: rgb(240, 141, 9);
+    background-color: rgb(239, 141, 10);
     color: white;
     font-size: large;
     font-weight: bolder;
@@ -50,11 +47,10 @@ body {
     margin-right: 2vmin;
     margin-top: 4vmin;
     margin-bottom: 2vmin;
-    align-items: top;
-    padding-top: 2vmin;
+    align-items: center;
 }
 .buttonB {
-    background-color: rgb(87, 165, 26);
+    background-color: rgb(86, 165, 26);
     color: white;
     font-size: large;
     font-weight: bolder;
@@ -62,11 +58,10 @@ body {
     margin-right: 4vmin;
     margin-top: 4vmin;
     margin-bottom: 2vmin;
-    align-items: top;
-    padding-top: 2vmin;
+    align-items: center;
 }
 .buttonC {
-    background-color: rgb(10, 85, 164);
+    background-color: rgb(9, 85, 164);
     color: white;
     font-size: large;
     font-weight: bolder;
@@ -74,11 +69,10 @@ body {
     margin-right: 2vmin;;
     margin-top: 2vmin;
     margin-bottom: 4vmin;
-    align-items: end;
-    padding-bottom: 2vmin;
+    align-items: center;
 }
 .buttonD {
-    background-color: rgb(168, 90, 229);
+    background-color: rgb(169, 90, 229);
     color: white;
     font-size: large;
     font-weight: bolder;
@@ -86,18 +80,17 @@ body {
     margin-right: 4vmin;
     margin-top: 2vmin;
     margin-bottom: 4vmin;
-    align-items: end;
-    padding-bottom: 2vmin;
+    align-items: center;
 }
-.buttonA:hover {background-color: #E21B3C;}
-.buttonB:hover {background-color: #FFA602;}
-.buttonC:hover {background-color: #26890C;}
-.buttonD:hover {background-color: #1368CE;}
+.buttonA:hover {background-color: rgb(255, 183, 10);}
+.buttonB:hover {background-color: rgb(125, 241, 38);}
+.buttonC:hover {background-color: rgb(13, 124, 240);}
+.buttonD:hover {background-color: rgb(209, 100, 255);}
 
-.buttonA:active {background-color: #AB0018;}
-.buttonB:active {background-color: #C97900;}
-.buttonC:active {background-color: #005D00;}
-.buttonD:active {background-color: #00419F;}
+.buttonA:active {background-color: rgb(162, 95, 6);}
+.buttonB:active {background-color: rgb(46, 88, 13);}
+.buttonC:active {background-color: rgb(4, 45, 87);}
+.buttonD:active {background-color: rgb(113, 59, 152);}
 
 .buttonStyle {
     background-color: gray;
