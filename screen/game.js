@@ -29,6 +29,9 @@ const startgamebt = document.getElementById('startgamebt');
 const resettu = document.getElementById('resetUsers');
 const imgbox = document.getElementById('imgbox');
 const img = document.getElementById('img');
+const zweiterContainer = document.getElementById('ersterContainer');
+
+
 
 let fragennumber = 0;
 
@@ -94,10 +97,7 @@ function startpreQuestion() {
         a.innerHTML = questions[fragennumber].a;
         b.innerHTML = questions[fragennumber].b;
         if (questions[fragennumber].c=="") {
-            c.style.display = "none";
-            d.style.display = "none";
-            a.style.backgroundColor = "#0B52C1";
-            b.style.backgroundColor = "#D11031";
+            zweiterContainer.style.display = "none";
         } else {
         c.innerHTML = questions[fragennumber].c;
             if (questions[fragennumber].d==""){
@@ -411,7 +411,7 @@ function auswertung() {
                             userlist.sort(function (a, b) {return a.rank - b.rank});
                             xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
                             yValues = [avotes, bvotes, cvotes, dvotes];
-                            barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor, d.style.backgroundColor];
+                            barColors = ["red", b.style.backgroundColor, c.style.backgroundColor, d.style.backgroundColor];
                             borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
                             nchart();
                         }
