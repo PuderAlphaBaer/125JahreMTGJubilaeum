@@ -111,8 +111,6 @@ function phase2(id) {
   b.style.display = "flex";
   c.style.display = "flex";
   d.style.display = "flex";
-  a.style.backgroundColor = "#D11031";
-  b.style.backgroundColor = "#F99306";
   a.innerHTML = questions[questionid].a;
   b.innerHTML = questions[questionid].b;
   if (questions[questionid].c=="") {
@@ -212,7 +210,7 @@ function phase4() {
     rang.innerHTML = "Dein Rang: "+data[0].rang;
     vorrang = data[0].rang-1;
     if (data[0].rang>1) {
-      supabaseFetch('spieler', 'name, punkte', 'gt', 'rang', vorrang, 'punkte', true).then((data2) => {
+      supabaseFetch('spieler', 'name, punkte', 'eq', 'rang', vorrang, 'punkte', true).then((data2) => {
         diff = data2[0].punkte-data[0].punkte;
         brang.innerHTML = diff+" Punkte vor dir auf Rang "+vorrang+" befindet sich "+data2[0].name;
       })
