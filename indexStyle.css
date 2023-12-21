@@ -3,7 +3,7 @@
     padding: 0;
     font-size: 2vmax;
     font-family: 'Roboto', sans-serif;
-    color: black;
+    color: white;
     text-decoration: none;
     box-sizing: border-box;
     user-select: none;
@@ -235,6 +235,7 @@ body {
     height: 5vh;
     padding: 1vmax;
     width: 60%;
+    color: black;
     &.error
     {
       animation: shake 0.2s ease-in-out 0s 2;
@@ -258,6 +259,12 @@ body {
 
 .phasebox {
     display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 
@@ -285,14 +292,14 @@ body {
 }
 
 .frage1 {
-    padding-top: 15%;
-    font-size: 4vh;
+    font-size: 5vh;
+    padding-bottom: 25%;
 }
 
 
 .frage2 {
-    font-size: 4vh;
-    padding-top: 5%;
+    font-size: 5vh;
+    padding-bottom: 25%;
 }
 
 
@@ -323,9 +330,10 @@ body {
 
 .box2 {
     display: flex;
+    padding-top: 10%;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .devtext {
@@ -353,14 +361,15 @@ body {
 
 .r {
     display: block;
+    width: 100%;
 }
 .f {
     display: block;
+    width: 100%;
 }
 
-.ph4 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+
+
+.puregenius {
+    font-size: 5vh;
 }

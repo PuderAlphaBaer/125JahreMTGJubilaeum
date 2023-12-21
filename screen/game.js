@@ -53,17 +53,13 @@ function toggleInterface(phase) {
     phase.style.display = "flex";
 }
 
-
+let qnumberinsg;
 
 function interphase1() {
     activequestionid++;
-    // if operator checkt, ob noch fragen da sind
-    if(activequestionid>=questions.length) {
-        alert("Quiz fertig, keine fragen mehr da");
-        return;
-    } else {
     qnumber.style.display = "block";
-    qnumber.innerHTML = "Frage "+activequestionid+" von "+questions.length;
+    qnumberinsg = questions.length-1;
+    qnumber.innerHTML = "Frage "+activequestionid+" von "+qnumberinsg;
 
     console.log('%c beginne' + activequestionid, 'background: #222; color: #bada55')
     supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid)
@@ -76,7 +72,7 @@ function interphase1() {
         interphase2();
     }, pretime);
     // }, 1000);
-}};
+};
 
 
 
@@ -150,7 +146,6 @@ function weiter() {
     toggleInterface(rangliste);
     bt2.style.display = "none";
     votebox.style.display = "none";
-    anzeigefrage2.style.display = "flex";
     votebox.removeChild(document.getElementById('vote'));
     votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
     table.innerHTML = 
@@ -164,6 +159,10 @@ function weiter() {
     fetchRangliste();
     bt1.innerHTML = "Starte Frage "+(activequestionid+1)+" von "+(questions.length-1);
     supabaseUpdate('spieler', ['avotes', 'bvotes', 'cvotes', 'dvotes'], [false, false, false, false], 'gt', 'id', '-2');
+    if (activequestionid==questions.length-1) {
+        bt1.style.display = "none";
+        alert("ENDEGELÄNDE");
+    }
 }
 
   
@@ -282,7 +281,6 @@ function auswertung() {
     bvotes = 0;
     cvotes = 0;
     dvotes = 0;
-    anzeigefrage2.style.display = "none";
     // Entscheidet, welches Diagramm verwendet werden soll, je nach Fragentyp
     if (questions[activequestionid].c=="") {
         // Zwei Antwortmöglichkeiten
@@ -295,7 +293,8 @@ function auswertung() {
                 }
                 if(data[i].punkte<0) {
                     userlist[userIndex].punkte = -1;
-                    userlist[userIndex].banned = true;
+                    userlist[userIndex].blocked = true;
+                    userlist[userIndex].rank = -1;
                 } else {
                     userlist[userIndex].punkte = data[i].punkte;
                     userlist[userIndex].streak = data[i].streak;
@@ -332,7 +331,7 @@ function auswertung() {
                 }
                 if(data[i].punkte<0) {
                     userlist[userIndex].punkte = -1;
-                    userlist[userIndex].banned = true;
+                    userlist[userIndex].blocked = true;
                 } else {
                     userlist[userIndex].punkte = data[i].punkte;
                     userlist[userIndex].streak = data[i].streak;
@@ -375,7 +374,7 @@ function auswertung() {
                     }
                     if(data[i].punkte<0) {
                         userlist[userIndex].punkte = -1;
-                        userlist[userIndex].banned = true;
+                        userlist[userIndex].blocked = true;
                     } else {
                         userlist[userIndex].punkte = data[i].punkte;
                         userlist[userIndex].streak = data[i].streak;
@@ -536,3 +535,22 @@ for (let i = 0; i <= questions.length; i++) {
 }
 
 supabaseDeleteAll('spieler');
+
+
+
+
+
+const charttool = document.getElementById('charttool');
+
+charttool.addEventListener('click', function() {
+
+    votebox.removeChild(document.getElementById('vote'));
+    votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
+
+                            xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
+                            yValues = [avotes, bvotes, cvotes, dvotes];
+                            barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)", "rgb(169, 90, 229)"];
+                            borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
+                            nchart();
+}
+)
