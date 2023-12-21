@@ -111,9 +111,9 @@ function interface1bar() {
     d.style.border = "none";
     anzeigefrage2.innerHTML = questions[activequestionid].frage;
     // Multiple Choice Frage
-        a.innerHTML = questions[fragennumber].a;
-        b.innerHTML = questions[fragennumber].b;
-        if (questions[fragennumber].c=="") {
+        a.innerHTML = questions[activequestionid].a;
+        b.innerHTML = questions[activequestionid].b;
+        if (questions[activequestionid].c=="") {
             zweiterContainer.style.display = "none";
         } else {
         c.innerHTML = questions[activequestionid].c;
