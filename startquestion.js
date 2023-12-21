@@ -100,6 +100,7 @@ function phase2(id) {
   phase4box.style.display = "none";
   bar.style.width = "0%";
   questionid = id;
+  addPoints = 0;
 
   //Bann Ding
   supabaseFetch("spieler", "blocked", "eq", "name", nickname, "id", true).then((data) => {

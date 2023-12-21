@@ -371,6 +371,7 @@ function auswertung() {
             // Vier Antwortmöglichkeiten (Normalfall)
             
             supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes, cvotes, dvotes', '', '', '', 'punkte', false).then((data) => {
+                console.log("fetch abstimmung und rest")
                 for (let i = 0; i < data.length; i++) {
                     userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                     if (userIndex==-1) {
