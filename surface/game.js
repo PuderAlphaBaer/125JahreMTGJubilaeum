@@ -89,10 +89,6 @@ function startpreQuestion() {
     b.style.border = "none";
     c.style.border = "none";
     d.style.border = "none";
-    a.style.backgroundColor = "#D11031";
-    b.style.backgroundColor = "#F99306";
-    c.style.backgroundColor = "#1B7A08";
-    d.style.backgroundColor = "#0B52C1";
     anzeigefrage2.innerHTML = questions[fragennumber].frage;
     // Multiple Choice Frage
         a.innerHTML = questions[fragennumber].a;
