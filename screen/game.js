@@ -9,8 +9,8 @@ const n = document.getElementById('n');
 const zwischenbox = document.getElementById('zwischenbox');
 const gamebox = document.getElementById('gamebox');
 const beforegamebox = document.getElementById('beforegamebox');
-const tbox1 = document.getElementById('tbox1');
-const tbox2 = document.getElementById('tbox2');
+const balkenbox = document.getElementById('balkenbox');
+const balken = document.getElementById('balken');
 const fragenbox = document.getElementById('fragenbox');
 const rangliste = document.getElementById('rangliste');
 const btbox = document.getElementById('btbox');
@@ -30,52 +30,70 @@ const resettu = document.getElementById('resetUsers');
 const imgbox = document.getElementById('imgbox');
 const img = document.getElementById('img');
 
-let fragennumber = 0;
+let activequestionid = 0;
 
 startgamebt.addEventListener('click', startgame);
-bt1.addEventListener('click', startpreQuestion);
+bt1.addEventListener('click', interphase1);
 bt2.addEventListener('click', weiter);
 
 function startgame() {
     console.log('beginne spiel')
     beforegamebox.style.display = "none";y
-    startpreQuestion();
+    interphase1();
+}
+
+function toggleInterface(phase) {
+    rangliste.style.display = "none";
+    fragenbox.style.display = "none";
+    zwischenbox.style.display = "none";
+
+    phase.style.display = "flex";
 }
 
 
-function startpreQuestion() {
-    fragennumber++;
+
+function interphase1() {
+    activequestionid++;
     // if operator checkt, ob noch fragen da sind
-    if(fragennumber>=questions.length) {
+    if(activequestionid>=questions.length) {
         alert("Quiz fertig, keine fragen mehr da");
         return;
     } else {
     qnumber.style.display = "block";
-    qnumber.innerHTML = "Frage "+fragennumber+" von "+questions.length;
+    qnumber.innerHTML = "Frage "+activequestionid+" von "+questions.length;
 
-    console.log('%c beginne' + fragennumber, 'background: #222; color: #bada55')
-    supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', fragennumber)
-
-
-    rangliste.style.display = "none";
-    tbox2.style.width = "80%";
-    anzeigefrage1.innerHTML = questions[fragennumber].frage;
+    console.log('%c beginne' + activequestionid, 'background: #222; color: #bada55')
+    supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid)
+    toggleInterface(zwischenbox);
+    prefut = Date.now() + pretime;
+    preloop = setInterval(interface1bar, 10);
+    anzeigefrage1.innerHTML = questions[activequestionid].frage;
 
     setTimeout(() => {
-        tbox2.style.width = "0";
-        startQuestion();
+        interphase2();
     }, pretime);
     // }, 1000);
 }};
 
 
-// wird nach ablaufen der ersten 5s aufgerufen
-  function startQuestion() {
-    console.log('%c starte frage' + fragennumber, 'background: #222; color: #bada55')
-    supabaseUpdate('fragen', ['start'], [true], 'eq', 'id', fragennumber)
 
-    fragenbox.style.display = "flex";
-    rangliste.style.display = "none";
+function interface1bar() {
+    prerem = prefut - Date.now();
+    preangle = (prerem / pretime);
+    balken.style.width = (preangle*100)+"%";
+  }
+
+
+
+// wird nach ablaufen der ersten 5s aufgerufen
+  function interphase2() {
+    console.log('%c starte frage' + activequestionid, 'background: #222; color: #bada55')
+    supabaseUpdate('fragen', ['start'], [true], 'eq', 'id', activequestionid)
+
+    balken.style.width = "0";
+    clearInterval(preloop);
+
+    toggleInterface(fragenbox);
     // reset der letzten Frage
     timerContainer.style.display = "flex";
     c.style.display = "flex";
@@ -88,28 +106,28 @@ function startpreQuestion() {
     b.style.border = "none";
     c.style.border = "none";
     d.style.border = "none";
-    anzeigefrage2.innerHTML = questions[fragennumber].frage;
+    anzeigefrage2.innerHTML = questions[activequestionid].frage;
     // Multiple Choice Frage
-        a.innerHTML = questions[fragennumber].a;
-        b.innerHTML = questions[fragennumber].b;
-        if (questions[fragennumber].c=="") {
+        a.innerHTML = questions[activequestionid].a;
+        b.innerHTML = questions[activequestionid].b;
+        if (questions[activequestionid].c=="") {
             c.style.display = "none";
             d.style.display = "none";
             a.style.backgroundColor = "#0B52C1";
             b.style.backgroundColor = "#D11031";
         } else {
-        c.innerHTML = questions[fragennumber].c;
-            if (questions[fragennumber].d==""){
+        c.innerHTML = questions[activequestionid].c;
+            if (questions[activequestionid].d==""){
                     d.style.display = "none"
                 } else {
-                    d.innerHTML = questions[fragennumber].d;
+                    d.innerHTML = questions[activequestionid].d;
             }
         }
     
 
-        if(questions[fragennumber].img!=false) {
+        if(questions[activequestionid].img!=false) {
             imgbox.style.display = "block";
-            img.src = "../"+questions[fragennumber].img;
+            img.src = "../"+questions[activequestionid].img;
         } else {
             imgbox.style.display = "none";
         }
@@ -127,13 +145,12 @@ let timestart;
 
 
 function weiter() {
-    supabaseUpdate('fragen', ['auswertung'], [true], 'eq', 'id', fragennumber)
+    supabaseUpdate('fragen', ['auswertung'], [true], 'eq', 'id', activequestionid)
     qnumber.style.display = "none";
-    rangliste.style.display = "flex";
-    fragenbox.style.display = "none";
+    toggleInterface(rangliste);
     bt2.style.display = "none";
-    anzeigefrage2.style.display = "flex";
     votebox.style.display = "none";
+    anzeigefrage2.style.display = "flex";
     votebox.removeChild(document.getElementById('vote'));
     votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
     table.innerHTML = 
@@ -145,7 +162,7 @@ function weiter() {
         </tr>
     </table>`;
     fetchRangliste();
-    bt1.innerHTML = "Starte Frage "+(fragennumber+1)+" von "+(questions.length-1);
+    bt1.innerHTML = "Starte Frage "+(activequestionid+1)+" von "+(questions.length-1);
     supabaseUpdate('spieler', ['avotes', 'bvotes', 'cvotes', 'dvotes'], [false, false, false, false], 'gt', 'id', '-2');
 }
 
@@ -165,8 +182,8 @@ let futureTime;
 // startet Timer
 function startTimer() { 
   timerLoop = setInterval(countDownTimer, 10);
-  setTime = questions[fragennumber].zeit*1000;
-  timer.innerHTML = questions[fragennumber].zeit+".00";
+  setTime = questions[activequestionid].zeit*1000;
+  timer.innerHTML = questions[activequestionid].zeit+".00";
   futureTime = Date.now() + setTime;
   s1.style.display = "block";
   s2.style.display = "block";
@@ -219,29 +236,29 @@ function countDownTimer() {
 function timerend() {
     clearInterval(timerLoop);
     // ende auf true setzen
-    console.log('%c beende frage' + fragennumber, 'background: #222; color: #bada55')
-    supabaseUpdate('fragen', ['ende'], [true], 'eq', 'id', fragennumber)
+    console.log('%c beende frage' + activequestionid, 'background: #222; color: #bada55')
+    supabaseUpdate('fragen', ['ende'], [true], 'eq', 'id', activequestionid)
     timerContainer.style.display = "none";
     // Verwendet "includes()", um mehrere Lösungen zu ermöglichen -- ACHTUNG includes() wird von Internetexplorer 11 oder weniger nicht unterstützt, sollte kein Problem darstellen, da es nur für surface.html verwendet wird
-    if(questions[fragennumber].loesung.includes("a")==true) {
+    if(questions[activequestionid].loesung.includes("a")==true) {
         a.style.border = "white solid 5px";
     } else {
         a.style.opacity = "0.5";
         a.style.border = "transparent";
     }
-    if(questions[fragennumber].loesung.includes("b")==true) {
+    if(questions[activequestionid].loesung.includes("b")==true) {
         b.style.border = "white solid 5px"
     } else {
         b.style.opacity = "0.5";
         b.style.border = "transparent";
     }
-    if(questions[fragennumber].loesung.includes("c")==true) {
+    if(questions[activequestionid].loesung.includes("c")==true) {
         c.style.border = "white solid 5px"
     } else {
         c.style.opacity = "0.5";
         c.style.border = "transparent";
     }
-    if(questions[fragennumber].loesung.includes("d")==true) {
+    if(questions[activequestionid].loesung.includes("d")==true) {
         d.style.border = "white solid 5px"
     } else {
         d.style.opacity = "0.5";
@@ -267,7 +284,7 @@ function auswertung() {
     dvotes = 0;
     anzeigefrage2.style.display = "none";
     // Entscheidet, welches Diagramm verwendet werden soll, je nach Fragentyp
-    if (questions[fragennumber].c=="") {
+    if (questions[activequestionid].c=="") {
         // Zwei Antwortmöglichkeiten
         supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes', '', '', '', 'punkte', false).then((data) => {
             for (let i = 0; i < data.length; i++) {
@@ -286,23 +303,15 @@ function auswertung() {
                     supabaseUpdate('spieler', ['rang'], [i+1], 'eq', 'id', data[i].id);
                     if(data[i].avotes==true) {
                         avotes = avotes+1;
-                        // userlist[userIndex].afk = 0;
                     } else {
                         if(data[i].bvotes==true) {
                             bvotes = bvotes+1;
-                            // userlist[userIndex].afk = 0;
                         } 
-                                }// else {
-                                    // Wird aufgerufen, wenn user nicht abgestimmt hat
-                                 //   userlist[userIndex].afk = 1;
-                                 //   if (userlist[userIndex].afk>=2) {
-                                 //       supabaseUpdate('spieler', ['punkte', 'blocked'], [-1, ], 'eq', 'id', data[i].id);
-                                 //       userlist[userIndex].banned = true;
-                                 //   }
-                                // }
+                            }
                         }
                     }
                     if(i==data.length-1) {
+                        // Sortiert den Array userlist nach Rang, rang 1 ist userlist[0], rang 2 userlist[1] usw.
                         userlist.sort(function (a, b) {return a.rank - b.rank});
                         xValues = [a.innerHTML, b.innerHTML];
                         yValues = [avotes, bvotes];
@@ -312,7 +321,7 @@ function auswertung() {
                     } 
         });
     } else {
-         if(questions[fragennumber].d=="") {
+         if(questions[activequestionid].d=="") {
         // Drei Antwortmöglichkeiten
         supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes, cvotes', '', '', '', 'punkte', false).then((data) => {
             for (let i = 0; i < data.length; i++) {
@@ -331,27 +340,18 @@ function auswertung() {
                     supabaseUpdate('spieler', ['rang'], [i+1], 'eq', 'id', data[i].id);
                     if(data[i].avotes==true) {
                         avotes = avotes+1;
-                        // userlist[userIndex].afk = 0;
                     } else {
                         if(data[i].bvotes==true) {
                             bvotes = bvotes+1;
-                            // userlist[userIndex].afk = 0;
                         } else {
                             if(data[i].cvotes==true) {
                                 cvotes = cvotes+1;
-                                // userlist[userIndex].afk = 0;
-                            } // else {
-                                        // Wird aufgerufen, wenn user nicht abgestimmt hat
-                                 //   userlist[userIndex].afk = 1;
-                                 //   if (userlist[userIndex].afk>=2) {
-                                 //       supabaseUpdate('spieler', ['punkte', 'blocked'], [-1, ], 'eq', 'id', data[i].id);
-                                 //       userlist[userIndex].banned = true;
-                                 //   }
-                                // }
+                            }
                             }
                         }
                     }
                     if(i==data.length-1) {
+                        // Sortiert den Array userlist nach Rang, rang 1 ist userlist[0], rang 2 userlist[1] usw.
                         userlist.sort(function (a, b) {return a.rank - b.rank});
                         xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
                         yValues = [avotes, bvotes, cvotes];
@@ -383,31 +383,21 @@ function auswertung() {
                         supabaseUpdate('spieler', ['rang'], [i+1], 'eq', 'id', data[i].id);
                         if(data[i].avotes==true) {
                             avotes = avotes+1;
-                            // userlist[userIndex].afk = 0;
                         } else {
                             if(data[i].bvotes==true) {
                                 bvotes = bvotes+1;
-                                // userlist[userIndex].afk = 0;
                             } else {
                                 if(data[i].cvotes==true) {
                                     cvotes = cvotes+1;
-                                    // userlist[userIndex].afk = 0;
                                 } else {
                                     if(data[i].dvotes==true) {
                                         dvotes = dvotes+1;
-                                        // userlist[userIndex].afk = 0;
-                                    }// else {
-                                        // Wird aufgerufen, wenn user nicht abgestimmt hat
-                                     //   userlist[userIndex].afk = 1;
-                                     //   if (userlist[userIndex].afk>=2) {
-                                     //       supabaseUpdate('spieler', ['punkte', 'blocked'], [-1, ], 'eq', 'id', data[i].id);
-                                     //       userlist[userIndex].banned = true;
-                                     //   }
-                                    // }
+                                    }
                                 }
                             }
                         }
                         if(i==data.length-1) {
+                            // Sortiert den Array userlist nach Rang, rang 1 ist userlist[0], rang 2 userlist[1] usw.
                             userlist.sort(function (a, b) {return a.rank - b.rank});
                             xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
                             yValues = [avotes, bvotes, cvotes, dvotes];
@@ -522,30 +512,6 @@ function userupdate(rank, uname, score, streak) {
         <td class="rowstreak">${sbox}</th>
     </tr>`;
 }
-
-
-
-
-
-
-// Muss ich noch machen, is damit abhängig von Bereich entsprechender btn bei Enter gedrückt wird
-// document.addEventListener("keypress", function(event) {
-//     if (event.key === 'Enter') {
-//         event.preventDefault()
-
-//             if(bt2.style.display === 'block'){
-//                 bt2.click();
-//                 console.log("bt2c")
-//             } else {
-//                 if(bt1.style.display === 'block'){
-//                     bt1.click();
-//                     console.log("bt1c")
-//                 } else {
-//                     console.log("notbt1")
-//                 }
-//             }
-//     }
-// });
 
 
 // const reseto = document.getElementById('resetFragen');
