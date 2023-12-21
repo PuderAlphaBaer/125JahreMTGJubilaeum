@@ -46,7 +46,6 @@ function startgame() {
 }
 
 
-//  tbox2.style.transition = "linear " + pretime;  
 function startpreQuestion() {
     fragennumber++;
     // if operator checkt, ob noch fragen da sind
@@ -307,7 +306,7 @@ function auswertung() {
                         userlist.sort(function (a, b) {return a.rank - b.rank});
                         xValues = [a.innerHTML, b.innerHTML];
                         yValues = [avotes, bvotes];
-                        barColors = [a.style.backgroundColor, b.style.backgroundColor];
+                        barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)"];
                         borderColors = [a.style.borderColor, b.style.borderColor];
                         nchart();
                     } 
@@ -356,7 +355,7 @@ function auswertung() {
                         userlist.sort(function (a, b) {return a.rank - b.rank});
                         xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
                         yValues = [avotes, bvotes, cvotes];
-                        barColors = [a.style.backgroundColor, b.style.backgroundColor, c.style.backgroundColor];
+                        barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)"];
                         borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor];
                         nchart();
                     }
@@ -367,6 +366,7 @@ function auswertung() {
             // Vier Antwortmöglichkeiten (Normalfall)
             
             supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes, cvotes, dvotes', '', '', '', 'punkte', false).then((data) => {
+                console.log("fetch abstimmung und rest")
                 for (let i = 0; i < data.length; i++) {
                     userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                     if (userIndex==-1) {
@@ -411,7 +411,7 @@ function auswertung() {
                             userlist.sort(function (a, b) {return a.rank - b.rank});
                             xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
                             yValues = [avotes, bvotes, cvotes, dvotes];
-                            barColors = ["red", b.style.backgroundColor, c.style.backgroundColor, d.style.backgroundColor];
+                            barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)", "rgb(169, 90, 229)"];
                             borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
                             nchart();
                         }

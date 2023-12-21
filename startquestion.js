@@ -92,14 +92,10 @@ function phase2(id) {
   console.log("%cPhase 2", "color: red; font-size: 20px; font-weight: bold;");
 
   clearInterval(preloop);
-  pregamebox.style.display = "none";
-  phase1box.style.display = "none";
-  phase2box.style.display = "flex";
-  phase25box.style.display = "none";
-  phase3box.style.display = "none";
-  phase4box.style.display = "none";
+  toggleInterface(phase2box);
   bar.style.width = "0%";
   questionid = id;
+  addPoints = 0;
 
   //Bann Ding
   supabaseFetch("spieler", "blocked", "eq", "name", nickname, "id", true).then((data) => {

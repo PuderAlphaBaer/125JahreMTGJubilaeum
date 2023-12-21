@@ -3,7 +3,7 @@
     padding: 0;
     font-size: 2vmax;
     font-family: 'Roboto', sans-serif;
-    color: white;
+    color: black;
     text-decoration: none;
     box-sizing: border-box;
     user-select: none;
@@ -202,7 +202,7 @@
     height: 60%;
     background-color: rgb(63, 63, 63);
     padding-left: 1%;
-    color: white;
+    color: black;
     border: none;
     outline: gray solid;
 
