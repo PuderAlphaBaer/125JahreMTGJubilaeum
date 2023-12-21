@@ -44,6 +44,8 @@ body {
 .buttonA {
     background-color: rgb(240, 141, 9);
     color: white;
+    font-size: large;
+    font-weight: bolder;
     margin-left: 4vmin;
     margin-right: 2vmin;
     margin-top: 4vmin;
@@ -54,29 +56,38 @@ body {
 .buttonB {
     background-color: rgb(87, 165, 26);
     color: white;
+    font-size: large;
+    font-weight: bolder;
     margin-left: 2vmin;
     margin-right: 4vmin;
     margin-top: 4vmin;
     margin-bottom: 2vmin;
     align-items: top;
+    padding-top: 2vmin;
 }
 .buttonC {
     background-color: rgb(10, 85, 164);
     color: white;
+    font-size: large;
+    font-weight: bolder;
     margin-left: 4vmin;
     margin-right: 2vmin;;
     margin-top: 2vmin;
     margin-bottom: 4vmin;
     align-items: end;
+    padding-bottom: 2vmin;
 }
 .buttonD {
     background-color: rgb(168, 90, 229);
     color: white;
+    font-size: large;
+    font-weight: bolder;
     margin-left: 2vmin;
     margin-right: 4vmin;
     margin-top: 2vmin;
     margin-bottom: 4vmin;
     align-items: end;
+    padding-bottom: 2vmin;
 }
 .buttonA:hover {background-color: #E21B3C;}
 .buttonB:hover {background-color: #FFA602;}
@@ -342,7 +353,7 @@ body {
     align-items: center;
     flex-direction: column;
     width: 30%;
-    padding-top: 70%;
+    padding-top: 75%;
 }
 
 .nimg {

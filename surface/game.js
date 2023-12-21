@@ -460,14 +460,14 @@ function nchart() {
                     },
                     datalabels: {
                         // Style von den Werten der Columns
-                        display: true,
+                        color: "white",
+                        font: {
+                            size: 30,
+                        },
+                        // Positionierung
                         anchor: 'end',
-                        align: 'end',
-                        labels: {
-                          value: {
-                            color: 'white'
-                          }
-                        }
+                        align: 'top',
+                        clamp: true     
                 }},
                 scales: {
                     x: {
@@ -483,7 +483,8 @@ function nchart() {
                         }
                     },
                 }
-            }
+            },
+            plugins: [ChartDataLabels]
         });
 }
 
