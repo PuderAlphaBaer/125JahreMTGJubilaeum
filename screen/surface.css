@@ -1,0 +1,317 @@
+canvas {
+    background-color: gray;
+}
+
+
+table { border-collapse: collapse; }
+tr {
+    border: white solid 2px;
+}
+td {
+  border-top: solid 2px white; 
+  border-bottom: solid 2px white;
+}
+
+.table {
+    position: absolute;
+    width: 80%;
+    height: 60%;
+    left: 0;
+}
+
+.surface {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.bt1 {
+    display: block;
+    right: 0;
+    position: absolute;
+    top: 0;
+}
+
+.bt2 {
+    display: none;
+    right: 0;
+    position: absolute;
+    top: 0;
+}
+
+.rangliste {
+    display: flex;
+    background-color: darkviolet;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.fragenbox {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+.frage1sur {
+    color: white;
+    font-size: 5vw;
+}
+
+.frage2sur {
+    width: 100%;
+    height: 20%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    word-break: break-all;
+    align-items: center;
+    font-size: 5vmin;
+    margin-bottom: 8%;
+}
+
+
+
+
+/* Timer */
+
+.timerContainer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    height: 50vmin;
+    width: 500vw;
+    top: 2vw;
+    position: absolute;
+    pointer-events: none;
+    justify-self: right;
+    align-self: baseline;
+}
+
+/* Timerzeug*/
+.timerbox {
+    position: absolute;
+    background-color: yellow;
+    top: 0;
+    width: 40vmin;
+    height: 40vmin;
+    border-radius: 50%;
+    z-index: 1;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.s1 {
+    background-color: orangered;
+    z-index: 2;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: right center;
+}
+
+.s2 {
+    background-color: orangered;
+    z-index: 3;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: right center;
+}
+
+.s3 {
+    background-color: yellow;
+    z-index: 4 ;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: right center;
+    border: yellow solid;
+}
+
+.bigcircle {
+    width: 80%;
+    height: 80%;
+    background-color: gray;
+    border-radius: 50%;
+    z-index: 5;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.timertext {
+    font-size: 3vh;
+    color: yellow;
+}
+
+.votebox {
+    display: none;
+    position: absolute;
+    border: none;
+    width: 50%;
+    height: 30%;
+    top: 0;
+    left: 25%;
+}
+
+.vote {
+    width: 50vw;
+    height: 30vw;
+}
+
+
+
+.zwischenbox {
+    background-color: gray;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.balkenbox {
+    background-color: white;
+    width: 80%;
+    height: 4%;
+    position: absolute;
+    bottom: 15%;
+    left: 10%;
+}
+
+.balken {
+    background-color: blue;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+}
+
+
+.gamebox {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+.beforegamebox {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text {
+    display: flex;
+    justify-content: center;
+    align-items: bottom;
+    flex-direction: row;
+    color: white;
+}
+
+.is {
+    color: red;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.start {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.qr {
+    width: 60vmin;
+    height: 60vmin;
+    padding-bottom: 20%;
+    background-image: url("../Data/qr-code.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.qnumber {
+    top: 0;
+    left: 0;
+    position: absolute;
+    color: white;
+}
+
+.simg {
+    display: flex;
+    background-image: url(../Data/streak.png);
+    width: 60%;
+    height: 0;
+    padding-bottom: 60%;
+}
+
+.img {
+    display: flex;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.rowstreak {
+    flex-direction: row;
+}
+
+#resetFragen {
+    display: none;
+}
+
+#resetUsers {
+    display: none;
+}
+
+.imgbox {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 15%;
+    padding-top: 0%;
+}
+
+.nimg {
+    width: 100%;
+}
+
+.charttool {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 5px;
+    width: 5px;
+    background-color: transparent;
+}
