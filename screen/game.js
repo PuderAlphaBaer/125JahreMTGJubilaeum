@@ -284,17 +284,15 @@ function auswertung() {
     // Entscheidet, welches Diagramm verwendet werden soll, je nach Fragentyp
     if (questions[activequestionid].c=="") {
         // Zwei Antwortmöglichkeiten
-        supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes', '', '', '', 'punkte', false).then((data) => {
+        supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes, blocked', '', '', '', 'punkte', false).then((data) => {
             for (let i = 0; i < data.length; i++) {
                 userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                 if (userIndex==-1) {
-                    userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false, 0));
+                    userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false));
                     userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                 }
-                if(data[i].punkte<0) {
-                    userlist[userIndex].punkte = -1;
-                    userlist[userIndex].blocked = true;
-                    userlist[userIndex].rank = -1;
+                if(data[i].blocked==true) {
+                    userlist.splice(userIndex, 1);
                 } else {
                     userlist[userIndex].punkte = data[i].punkte;
                     userlist[userIndex].streak = data[i].streak;
@@ -326,12 +324,11 @@ function auswertung() {
             for (let i = 0; i < data.length; i++) {
                 userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                 if (userIndex==-1) {
-                    userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false, 0));
+                    userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false));
                     userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                 }
-                if(data[i].punkte<0) {
-                    userlist[userIndex].punkte = -1;
-                    userlist[userIndex].blocked = true;
+                if(data[i].blocked==true) {
+                    userlist.splice(userIndex, 1);
                 } else {
                     userlist[userIndex].punkte = data[i].punkte;
                     userlist[userIndex].streak = data[i].streak;
@@ -364,17 +361,17 @@ function auswertung() {
         } else {
             // Vier Antwortmöglichkeiten (Normalfall)
             
-            supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes, cvotes, dvotes', '', '', '', 'punkte', false).then((data) => {
+            supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes, cvotes, dvotes, blocked', '', '', '', 'punkte', false).then((data) => {
                 console.log("fetch abstimmung und rest")
                 for (let i = 0; i < data.length; i++) {
                     userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                     if (userIndex==-1) {
-                        userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false, 0));
+                        userlist.push(new User(data[i].id, data[i].name, 0, 0, false));
                         userIndex = userlist.findIndex((obj => obj.id == data[i].id));
+                        console.log("neuer user")
                     }
-                    if(data[i].punkte<0) {
-                        userlist[userIndex].punkte = -1;
-                        userlist[userIndex].blocked = true;
+                    if(data[i].blocked=true) {
+                        userlist.splice(userIndex, 1);
                     } else {
                         userlist[userIndex].punkte = data[i].punkte;
                         userlist[userIndex].streak = data[i].streak;
@@ -395,17 +392,15 @@ function auswertung() {
                                 }
                             }
                         }
-                        if(i==data.length-1) {
-                            // Sortiert den Array userlist nach Rang, rang 1 ist userlist[0], rang 2 userlist[1] usw.
-                            userlist.sort(function (a, b) {return a.rank - b.rank});
-                            xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
-                            yValues = [avotes, bvotes, cvotes, dvotes];
-                            barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)", "rgb(169, 90, 229)"];
-                            borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
-                            nchart();
-                        }
                     }
                 }
+                console.log("end auswertung")
+                userlist.sort(function (a, b) {return a.rank - b.rank});
+                xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
+                yValues = [avotes, bvotes, cvotes, dvotes];
+                barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)", "rgb(169, 90, 229)"];
+                borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
+                nchart();
             });
         }
     }
@@ -487,9 +482,7 @@ const tablebox = document.getElementById('tablebox');
 
 function fetchRangliste() {
     for (let i = 0; i < userlist.length; i++) {
-        if (userlist[i].blocked==false) {
         userupdate(userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak);
-        }
     }
 }
 
