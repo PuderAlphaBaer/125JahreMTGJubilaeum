@@ -35,7 +35,6 @@ const questions = [
 
 
   new Frage("Wer hat die Relativitätstheorie formuliert?", "Isaac Newton", "Albert Einstein", "Nikola Tesla", "Marie Curie", "b", 15, false),
-  new Frage("Die Protosynthese ist ein Prozess, ...", "bei dem Pflanzen Licht in Energie umwandeln", "bei dem Affen Licht in Energie umwandeln", "bei dem Protonen synthetisiert werden", "dem Prototypen von einem Modell hergestellt werden", "a", 20, false),
   new Frage("Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?", "Willy Brandt", "Helmut Kohl", "Konrad Adenauer", "Gerhard Schröder", "c", 15, false),
   new Frage("Was ist die Quadratwurzel von 144?", "12", "14", "16", "18", "a", 5, false),
   new Frage("Wer hat 'Faust' geschrieben?", "Friedrich Schiller", "Thomas Mann", "Johann Wolfgang von Goethe", "Bertolt Brecht", "c", 15, false),
