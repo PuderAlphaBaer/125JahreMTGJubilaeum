@@ -547,3 +547,20 @@ charttool.addEventListener('click', function() {
                             nchart();
 }
 )
+
+
+
+
+
+
+
+
+
+
+supabaseFetch('fragen', 'id', '', '', '', 'id', false).then((data) => {
+if (data.length!=questions.length) {
+    if (confirm("Die Fragenanzahl lokal beträgt "+questions.length+", die Fragenanzahl in der Datenbank beträgt "+data.length+"!\nEs wird nun zu supabase gewechselt.") == true) {
+        window.location.href = "https://supabase.com/dashboard/project/cqlueytrxqlhdvhqqyse/editor/28630?sort=id%3Aasc";
+    }
+    }
+});
