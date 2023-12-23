@@ -122,11 +122,24 @@ async function getQuestions() {
   let fragenData = await supabaseFetch('fragen', 'beginn, start, ende, auswertung')
   console.log(fragenData.length)
   console.log(questions.length)
+  if(fragenData.length != questions.length) {
+    if (confirm("Die Fragenanzahl lokal beträgt "+questions.length+", die Fragenanzahl in der Datenbank beträgt "+fragenData.length+"!\nEs wird nun zu supabase gewechselt.") == true) {
+      for (let i = 0; i < fragenData.length; i++) {
+        questions[i].beginn = fragenData[i].beginn;
+        questions[i].start = fragenData[i].start;
+        questions[i].ende = fragenData[i].ende;
+        questions[i].auswertung = fragenData[i].auswertung;
+      }
+    } else {
+      window.location.href = "https://supabase.com/dashboard/project/cqlueytrxqlhdvhqqyse/editor/28630?sort=id%3Aasc";
+    }
+  } else {
   for (let i = 0; i < fragenData.length; i++) {
     questions[i].beginn = fragenData[i].beginn;
     questions[i].start = fragenData[i].start;
     questions[i].ende = fragenData[i].ende;
     questions[i].auswertung = fragenData[i].auswertung;
+  }
   }
 }
 getQuestions();

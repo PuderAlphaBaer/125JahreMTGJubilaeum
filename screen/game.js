@@ -291,7 +291,7 @@ function auswertung() {
                     userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false));
                     userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                 }
-                if(data[i].blocked==true) {
+                if(data[i].blocked!=null) {
                     userlist.splice(userIndex, 1);
                 } else {
                     userlist[userIndex].punkte = data[i].punkte;
@@ -327,7 +327,7 @@ function auswertung() {
                     userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false));
                     userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                 }
-                if(data[i].blocked==true) {
+                if(data[i].blocked!=null) {
                     userlist.splice(userIndex, 1);
                 } else {
                     userlist[userIndex].punkte = data[i].punkte;
@@ -370,7 +370,7 @@ function auswertung() {
                         userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                         console.log("neuer user")
                     }
-                    if(data[i].blocked=true) {
+                    if(data[i].blocked!=null) {
                         userlist.splice(userIndex, 1);
                     } else {
                         userlist[userIndex].punkte = data[i].punkte;
