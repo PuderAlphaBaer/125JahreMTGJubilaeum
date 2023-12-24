@@ -158,7 +158,7 @@ function weiter() {
     </table>`;
     fetchRangliste();
     bt1.innerHTML = "Starte Frage "+(activequestionid+1)+" von "+(questions.length-1);
-    supabaseUpdate('spieler', ['vote'], [null], '', '', '');
+    supabaseUpdate('spieler', ['vote'], [null], 'gt', 'id', '-1');
     if (activequestionid==questions.length-1) {
         bt1.style.display = "none";
         alert("ENDEGELÄNDE");
