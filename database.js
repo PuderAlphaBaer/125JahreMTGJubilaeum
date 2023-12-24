@@ -40,7 +40,7 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
 
         const { data, error } = await query
         if (data) {
-            console .log(data)
+            console .log("Fetch "+table, data)
             return data
         }
 
@@ -111,7 +111,7 @@ const supabaseUpdate = async (table, columns, values, conditionType, conditionCo
         const {data, error} = await query
             .select()
         if (data) {
-            console.log(data)
+            console.log("Update "+table, data)
             return data;
         }
         if (error) {
