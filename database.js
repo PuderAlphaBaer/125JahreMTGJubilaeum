@@ -19,6 +19,7 @@ function ifing(conditionType, conditionColumn, conditionValue, query) {
     }
 }
 
+
 const supabaseFetch = async (table, columns, conditionType, conditionColumn, conditionValue, orderColumn, AscTrue) => {
     try {
         if (columns == undefined) {
@@ -51,6 +52,13 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
         console.log(error)
     }
 }
+
+
+
+// const { data, error } = await database
+//   .rpc('ranking')
+
+  
 
 //a function that returns true or false if a dataset exists
 const supabaseExists =  async (table, conditionType, conditionColumn, conditionValue) => {
