@@ -265,11 +265,11 @@ function aClicked() {
       addPoints = Math.floor(addPoints / questions[questionid].zeit);
       streak = streak+1;
       points = points+addPoints;
-      supabaseUpdate('spieler', ['avotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
+      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], ["a", streak, points], 'eq', 'name', nickname);
     } else {
       ergebnis = "falsch";
       streak = 0;
-      supabaseUpdate('spieler', ['avotes','streak'], [true, streak], 'eq', 'name', nickname);
+      supabaseUpdate('spieler', ['vote','streak'], ["a", streak], 'eq', 'name', nickname);
     }
     phase2box.style.display = "none";
     phase25box.style.display = "flex";
@@ -296,11 +296,11 @@ function bClicked() {
       addPoints = Math.floor(addPoints / questions[questionid].zeit);
       streak = streak+1;
       points = points+addPoints;
-      supabaseUpdate('spieler', ['bvotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
+      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], ["b", streak, points], 'eq', 'name', nickname);
     } else {
       ergebnis = "falsch";
       streak = 0;
-      supabaseUpdate('spieler', ['bvotes','streak'], [true, streak], 'eq', 'name', nickname);
+      supabaseUpdate('spieler', ['vote','streak'], ["b", streak], 'eq', 'name', nickname);
     }
     phase2box.style.display = "none";
     phase25box.style.display = "flex";
@@ -321,11 +321,11 @@ function cClicked() {
       addPoints = Math.floor(addPoints / questions[questionid].zeit);
       streak = streak+1;
       points = points+addPoints;
-      supabaseUpdate('spieler', ['cvotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
+      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], ["c", streak, points], 'eq', 'name', nickname);
     } else {
       ergebnis = "falsch";
       streak = 0;
-      supabaseUpdate('spieler', ['cvotes','streak'], [true, streak], 'eq', 'name', nickname);
+      supabaseUpdate('spieler', ['vote','streak'], ["c", streak], 'eq', 'name', nickname);
     }
     phase2box.style.display = "none";
     phase25box.style.display = "flex";
@@ -347,11 +347,11 @@ function dClicked() {
       addPoints = Math.floor(addPoints / questions[questionid].zeit);
       streak = streak+1;
       points = points+addPoints;
-      supabaseUpdate('spieler', ['dvotes', 'streak', 'punkte'], [true, streak, points], 'eq', 'name', nickname);
+      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], ["d", streak, points], 'eq', 'name', nickname);
     } else {
       ergebnis = "falsch";
       streak = 0;
-      supabaseUpdate('spieler', ['dvotes','streak'], [true, streak], 'eq', 'name', nickname);
+      supabaseUpdate('spieler', ['vote','streak'], ["d", streak], 'eq', 'name', nickname);
     }
     phase2box.style.display = "none";
     phase25box.style.display = "flex";

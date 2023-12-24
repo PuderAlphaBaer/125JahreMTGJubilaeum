@@ -158,7 +158,7 @@ function weiter() {
     </table>`;
     fetchRangliste();
     bt1.innerHTML = "Starte Frage "+(activequestionid+1)+" von "+(questions.length-1);
-    supabaseUpdate('spieler', ['avotes', 'bvotes', 'cvotes', 'dvotes'], [false, false, false, false], 'gt', 'id', '-2');
+    supabaseUpdate('spieler', ['vote'], [null], '', '', '');
     if (activequestionid==questions.length-1) {
         bt1.style.display = "none";
         alert("ENDEGELÄNDE");
@@ -281,87 +281,8 @@ function auswertung() {
     bvotes = 0;
     cvotes = 0;
     dvotes = 0;
-    // Entscheidet, welches Diagramm verwendet werden soll, je nach Fragentyp
-    if (questions[activequestionid].c=="") {
-        // Zwei Antwortmöglichkeiten
-        supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes, blocked', '', '', '', 'punkte', false).then((data) => {
-            for (let i = 0; i < data.length; i++) {
-                userIndex = userlist.findIndex((obj => obj.id == data[i].id));
-                if (userIndex==-1) {
-                    userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false));
-                    userIndex = userlist.findIndex((obj => obj.id == data[i].id));
-                }
-                if(data[i].blocked!=null) {
-                    userlist.splice(userIndex, 1);
-                } else {
-                    userlist[userIndex].punkte = data[i].punkte;
-                    userlist[userIndex].streak = data[i].streak;
-                    userlist[userIndex].rank = i+1;
-                    supabaseUpdate('spieler', ['rang'], [i+1], 'eq', 'id', data[i].id);
-                    if(data[i].avotes==true) {
-                        avotes = avotes+1;
-                    } else {
-                        if(data[i].bvotes==true) {
-                            bvotes = bvotes+1;
-                        } 
-                            }
-                        }
-                    }
-                    if(i==data.length-1) {
-                        // Sortiert den Array userlist nach Rang, rang 1 ist userlist[0], rang 2 userlist[1] usw.
-                        userlist.sort(function (a, b) {return a.rank - b.rank});
-                        xValues = [a.innerHTML, b.innerHTML];
-                        yValues = [avotes, bvotes];
-                        barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)"];
-                        borderColors = [a.style.borderColor, b.style.borderColor];
-                        nchart();
-                    } 
-        });
-    } else {
-         if(questions[activequestionid].d=="") {
-        // Drei Antwortmöglichkeiten
-        supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes, cvotes', '', '', '', 'punkte', false).then((data) => {
-            for (let i = 0; i < data.length; i++) {
-                userIndex = userlist.findIndex((obj => obj.id == data[i].id));
-                if (userIndex==-1) {
-                    userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, false));
-                    userIndex = userlist.findIndex((obj => obj.id == data[i].id));
-                }
-                if(data[i].blocked!=null) {
-                    userlist.splice(userIndex, 1);
-                } else {
-                    userlist[userIndex].punkte = data[i].punkte;
-                    userlist[userIndex].streak = data[i].streak;
-                    userlist[userIndex].rank = i+1;
-                    supabaseUpdate('spieler', ['rang'], [i+1], 'eq', 'id', data[i].id);
-                    if(data[i].avotes==true) {
-                        avotes = avotes+1;
-                    } else {
-                        if(data[i].bvotes==true) {
-                            bvotes = bvotes+1;
-                        } else {
-                            if(data[i].cvotes==true) {
-                                cvotes = cvotes+1;
-                            }
-                            }
-                        }
-                    }
-                    if(i==data.length-1) {
-                        // Sortiert den Array userlist nach Rang, rang 1 ist userlist[0], rang 2 userlist[1] usw.
-                        userlist.sort(function (a, b) {return a.rank - b.rank});
-                        xValues = [a.innerHTML, b.innerHTML, c.innerHTML];
-                        yValues = [avotes, bvotes, cvotes];
-                        barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)"];
-                        borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor];
-                        nchart();
-                    }
-                }
-            }
-        );
-        } else {
-            // Vier Antwortmöglichkeiten (Normalfall)
-            
-            supabaseFetch('spieler', 'id, name, punkte, streak, avotes, bvotes, cvotes, dvotes, blocked', '', '', '', 'punkte', false).then((data) => {
+    
+            supabaseFetch('spieler', 'id, name, punkte, streak, vote, blocked', '', '', '', 'punkte', false).then((data) => {
                 console.log("fetch abstimmung und rest")
                 for (let i = 0; i < data.length; i++) {
                     userIndex = userlist.findIndex((obj => obj.id == data[i].id));
@@ -377,16 +298,16 @@ function auswertung() {
                         userlist[userIndex].streak = data[i].streak;
                         userlist[userIndex].rank = i+1;
                         supabaseUpdate('spieler', ['rang'], [i+1], 'eq', 'id', data[i].id);
-                        if(data[i].avotes==true) {
+                        if(data[i].vote=="a") {
                             avotes = avotes+1;
                         } else {
-                            if(data[i].bvotes==true) {
+                            if(data[i].vote=="b") {
                                 bvotes = bvotes+1;
                             } else {
-                                if(data[i].cvotes==true) {
+                                if(data[i].vote=="c") {
                                     cvotes = cvotes+1;
                                 } else {
-                                    if(data[i].dvotes==true) {
+                                    if(data[i].vote=="d") {
                                         dvotes = dvotes+1;
                                     }
                                 }
@@ -396,15 +317,21 @@ function auswertung() {
                 }
                 console.log("end auswertung")
                 userlist.sort(function (a, b) {return a.rank - b.rank});
+                if (questions[activequestionid].c=="") {
+                    xValues = [a.innerHTML, b.innerHTML];
+                    yValues = [avotes, bvotes];
+                    barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)"];
+                    borderColors = [a.style.borderColor, b.style.borderColor];
+                } else {
                 xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
                 yValues = [avotes, bvotes, cvotes, dvotes];
                 barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)", "rgb(169, 90, 229)"];
                 borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
+                }
                 nchart();
             });
         }
-    }
-}
+
 
 
 // Erstellt Diagramm, greift zurück auf "auswertung();"
