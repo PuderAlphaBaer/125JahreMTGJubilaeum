@@ -486,15 +486,16 @@ charttool.addEventListener('click', function() {
 
 supabaseFetch('fragen', 'id', '', '', '', 'id', false).then((data) => {
 
+        ql = questions.length-1;
 
-        if(data.length!=questions.length) {
-            if(data.length<questions.length) {
-                for (let i = data.length; i < questions.length; ) {
+        if(data.length!=ql) {
+            if(data.length<ql) {
+                for (let i = data.length; i < ql; ) {
                     i++;
                     supabaseInsert("fragen", ["id"], [i])
                 }
             } else {
-                for (let i = data.length; i > questions.length; i--) {
+                for (let i = data.length; i > ql; i--) {
                     supabaseDelete("fragen", "eq", "id", i)
                 }
             }
