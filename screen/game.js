@@ -449,71 +449,15 @@ function checkStarting () {
     console.log('nix')
 }
 
-for (let i = 0; i <= questions.length; i++) {
-    console.log('%c resete frage' + i, 'background: #222; color: #bada55')
-    supabaseUpdate('fragen', ['beginn', 'start', 'ende', 'auswertung'], [false, false, false, false], 'eq', 'id', i)
-}
+
+
+
 
 supabaseDeleteAll('spieler');
-
-
-
-
-
-const charttool = document.getElementById('charttool');
-
-charttool.addEventListener('click', function() {
-
-    votebox.removeChild(document.getElementById('vote'));
-    votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
-
-                            xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
-                            yValues = [avotes, bvotes, cvotes, dvotes];
-                            barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)", "rgb(169, 90, 229)"];
-                            borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
-                            nchart();
+supabaseDeleteAll('fragen');
+setTimeout(() => { 
+for (let i = 0; i < questions.length; i++) {
+    supabaseInsert("fragen", ["id"], [i])
 }
-)
+}, 100);
 
-
-
-
-
-
-
-
-
-
-supabaseFetch('fragen', 'id', '', '', '', 'id', false).then((data) => {
-
-        ql = questions.length-1;
-
-        if(data.length!=ql) {
-            if(data.length<ql) {
-                for (let i = data.length; i < ql; ) {
-                    i++;
-                    supabaseInsert("fragen", ["id"], [i])
-                }
-            } else {
-                for (let i = data.length; i > ql; i--) {
-                    supabaseDelete("fragen", "eq", "id", i)
-                }
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-// if (data.length!=questions.length) {
-//     if (confirm("Die Fragenanzahl lokal beträgt "+questions.length+", die Fragenanzahl in der Datenbank beträgt "+data.length+"!\nEs wird nun zu supabase gewechselt.") == true) {
-//         window.location.href = "https://supabase.com/dashboard/project/cqlueytrxqlhdvhqqyse/editor/28630?sort=id%3Aasc";
-//     }
-//     }
-});

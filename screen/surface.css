@@ -307,11 +307,3 @@ td {
     width: 100%;
 }
 
-.charttool {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: 5px;
-    width: 5px;
-    background-color: transparent;
-}
