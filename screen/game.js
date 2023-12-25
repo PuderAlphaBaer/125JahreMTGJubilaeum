@@ -453,11 +453,23 @@ function checkStarting () {
 
 
 
-supabaseDeleteAll('spieler');
-supabaseDeleteAll('fragen');
-setTimeout(() => { 
-for (let i = 0; i < questions.length; i++) {
-    supabaseInsert("fragen", ["id"], [i])
-}
-}, 100);
 
+
+
+
+
+
+
+
+supabaseDeleteAll('spieler');
+
+async function resetFragen() {
+
+    await supabaseDeleteAll('fragen');
+
+    for (let i = 0; i < questions.length; i++) {
+        supabaseInsert("fragen", ["id"], [i])
+    }
+}
+
+resetFragen();
