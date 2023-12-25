@@ -485,9 +485,34 @@ charttool.addEventListener('click', function() {
 
 
 supabaseFetch('fragen', 'id', '', '', '', 'id', false).then((data) => {
-if (data.length!=questions.length) {
-    if (confirm("Die Fragenanzahl lokal beträgt "+questions.length+", die Fragenanzahl in der Datenbank beträgt "+data.length+"!\nEs wird nun zu supabase gewechselt.") == true) {
-        window.location.href = "https://supabase.com/dashboard/project/cqlueytrxqlhdvhqqyse/editor/28630?sort=id%3Aasc";
-    }
-    }
+
+
+        if(data.length!=questions.length) {
+            if(data.length<questions.length) {
+                for (let i = data.length; i < questions.length; ) {
+                    i++;
+                    supabaseInsert("fragen", ["id"], [i])
+                }
+            } else {
+                for (let i = data.length; i > questions.length; i--) {
+                    supabaseDelete("fragen", "eq", "id", i)
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+// if (data.length!=questions.length) {
+//     if (confirm("Die Fragenanzahl lokal beträgt "+questions.length+", die Fragenanzahl in der Datenbank beträgt "+data.length+"!\nEs wird nun zu supabase gewechselt.") == true) {
+//         window.location.href = "https://supabase.com/dashboard/project/cqlueytrxqlhdvhqqyse/editor/28630?sort=id%3Aasc";
+//     }
+//     }
 });
