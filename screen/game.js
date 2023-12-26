@@ -444,8 +444,10 @@ function fetchRangliste() {
             userupdate(userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
         } else {
             if (utype=="podium") {
-                if(userlist[i-1].podium==false || i-1>2) {
-                    emptycolumn();
+                if(i-1>2) {
+                    if(userlist[i-1].podium==false) {
+                        emptycolumn();
+                    }
                 }
                 userupdate(userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
             }
