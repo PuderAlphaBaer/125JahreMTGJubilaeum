@@ -263,13 +263,30 @@ function timerend() {
         d.style.opacity = "0.5";
         d.style.border = "transparent";
     }
-    auswertung();
+    
     bt2.style.display = "block";
+    auswertung();
 }
 
 
 
+class User {
+    constructor(id, name, punkte, streak, rank, vote, podium) {
+        this.id = id;
+        this.name = name;
+        this.punkte = punkte;
+        this.streak = streak;
+        this.rank = rank;
+        this.vote = vote;
+        this.podium = podium;
+    }
+}
 
+
+
+userlist = [
+
+];
 
 
 // Diagramm wer für was gestimmt hat
@@ -283,11 +300,11 @@ function auswertung() {
     dvotes = 0;
     
             supabaseFetch('spieler', 'id, name, punkte, streak, vote, blocked', '', '', '', 'punkte', false).then((data) => {
-                console.log("fetch abstimmung und rest")
+                console.log("Beginne Auswertung")
                 for (let i = 0; i < data.length; i++) {
                     userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                     if (userIndex==-1) {
-                        userlist.push(new User(data[i].id, data[i].name, 0, 0, false));
+                        userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, null, false));
                         userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                         console.log("neuer user")
                     }
@@ -300,17 +317,23 @@ function auswertung() {
                         supabaseUpdate('spieler', ['rang'], [i+1], 'eq', 'id', data[i].id);
                         if(data[i].vote=="a") {
                             avotes = avotes+1;
+                            userlist[userIndex].vote = "a";
                         } else {
                             if(data[i].vote=="b") {
                                 bvotes = bvotes+1;
+                                userlist[userIndex].vote = "b";
                             } else {
                                 if(data[i].vote=="c") {
                                     cvotes = cvotes+1;
+                                    userlist[userIndex].vote = "c";
                                 } else {
                                     if(data[i].vote=="d") {
                                         dvotes = dvotes+1;
+                                        userlist[userIndex].vote = "d";
+                                    } else {
+                                        userlist[userIndex].vote = null;
                                     }
-                                }
+                                } 
                             }
                         }
                     }
@@ -409,13 +432,31 @@ const tablebox = document.getElementById('tablebox');
 
 function fetchRangliste() {
     for (let i = 0; i < userlist.length; i++) {
-        userupdate(userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak);
+
+        if (userlist[i].podium==true) {
+            utype = "podium";
+        } else {
+            utype = "normaluser";
+        }
+
+
+        if(i<3) {
+            userupdate(userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
+        } else {
+            if (utype=="podium") {
+                if(userlist[i-1].podium==false || i-1>2) {
+                    emptycolumn();
+                }
+                userupdate(userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
+            }
+        }
+
     }
 }
 
 
 
-function userupdate(rank, uname, score, streak) {
+function userupdate(rank, uname, score, streak, type) {
     console.log('userupdate')
     if (streak==0) {
         sbox = "";
@@ -424,7 +465,7 @@ function userupdate(rank, uname, score, streak) {
         <div>${streak}</div>`
     }
     document.getElementById('table').innerHTML += `
-    <tr class="rank${rank}">
+    <tr class="${type}">
         <td class="row">${rank}</th>
         <td class="row">${uname}</th>
         <td class="row">${score}</th>
@@ -432,6 +473,13 @@ function userupdate(rank, uname, score, streak) {
     </tr>`;
 }
 
+
+function emptycolumn() {
+    document.getElementById('table').innerHTML += `
+    <tr class="emptycolumn">
+        <td>...</td>
+    </tr>`;
+}
 
 // const reseto = document.getElementById('resetFragen');
 // reseto.addEventListener('click', function() {

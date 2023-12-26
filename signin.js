@@ -129,3 +129,13 @@ function startGame() {
     toggleInterface(pregamebox);
     console.log("püntklich");
 }
+
+
+
+
+tb1.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      submitbutton.click();
+    }
+  }); 
