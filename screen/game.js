@@ -293,6 +293,7 @@ userlist = [
 ];
 
 
+
 function addUser(id, name) {
     userlist.push(new User(id, name, 0, 0, 0, null, false));
     console.log("%c Neuer User hinzugefügt", "color: red")
@@ -309,7 +310,7 @@ function auswertung() {
     dvotes = 0;
     updateRanking();
     
-    supabaseFetch('spieler', 'id, name, punkte, streak, vote, blocked', '', '', '', 'punkte', false).then((data) => {
+    supabaseFetch('spieler', 'id, name, punkte, streak, vote', '', '', '', 'punkte', false).then((data) => {
         console.log("Beginne Auswertung")
         for (let i = 0; i < data.length; i++) {
             userIndex = userlist.findIndex((obj => obj.id == data[i].id));
@@ -317,34 +318,30 @@ function auswertung() {
                 addUser(data[i].id, data[i].name);
                 userIndex = userlist.findIndex((obj => obj.id == data[i].id));
             }
-            if(data[i].blocked!=null) {
-                userlist.splice(userIndex, 1);
-            } else {
                 userlist[userIndex].punkte = data[i].punkte;
                 userlist[userIndex].streak = data[i].streak;
                 userlist[userIndex].rank = i+1;
-                if(data[i].vote=="a") {
-                    avotes = avotes+1;
-                    userlist[userIndex].vote = "a";
-                } else {
-                    if(data[i].vote=="b") {
-                        bvotes = bvotes+1;
-                        userlist[userIndex].vote = "b";
-                    } else {
-                        if(data[i].vote=="c") {
-                            cvotes = cvotes+1;
-                            userlist[userIndex].vote = "c";
-                        } else {
-                            if(data[i].vote=="d") {
-                                dvotes = dvotes+1;
-                                userlist[userIndex].vote = "d";
-                            } else {
-                                userlist[userIndex].vote = null;
-                            }
-                        } 
-                    }
+
+                userlist[userIndex].vote = data[i].vote;
+                
+                switch (data[i].vote) {
+                    case 'a':
+                        avotes++;
+                        break;
+                    case 'b':
+                        bvotes++;
+                        break;
+                    case 'c':
+                        cvotes++;
+                        break;
+                    case 'd':
+                        dvotes++;
+                        break;
+                    default:
+                        userlist[userIndex].vote = null;
+                        break;
                 }
-            }
+            
         }
         console.log("end auswertung")
 
