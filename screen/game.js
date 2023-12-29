@@ -30,7 +30,7 @@ const resettu = document.getElementById('resetUsers');
 const imgbox = document.getElementById('imgbox');
 const img = document.getElementById('img');
 const zweiterContainer = document.getElementById('ersterContainer');
-
+const subbutton = document.getElementById('subButton');
 
 
 let activequestionid = 0;
@@ -616,6 +616,8 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
     beforegamebox.style.display = "none";
     toggleInterface(fragenbox);
     votebox.style.display = "block";
+    timerContainer.style.display = "none";
+
 
     if (avotes==null) {
         avotes = 6;
@@ -631,6 +633,33 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
     }
     if (richtigeanwort==null) {
         richtigeanwort = "c";
+    }
+
+
+    
+    if(richtigeanwort=="a") {
+        a.style.border = "white solid 5px";
+    } else {
+        a.style.opacity = "0.5";
+        a.style.border = "transparent";
+    }
+    if(richtigeanwort=="b") {
+        b.style.border = "white solid 5px"
+    } else {
+        b.style.opacity = "0.5";
+        b.style.border = "transparent";
+    }
+    if(richtigeanwort=="c") {
+        c.style.border = "white solid 5px"
+    } else {
+        c.style.opacity = "0.5";
+        c.style.border = "transparent";
+    }
+    if(richtigeanwort=="d") {
+        d.style.border = "white solid 5px"
+    } else {
+        d.style.opacity = "0.5";
+        d.style.border = "transparent";
     }
     xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
     yValues = [avotes, bvotes, cvotes, dvotes];
