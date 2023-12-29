@@ -307,3 +307,22 @@ td {
     width: 100%;
 }
 
+.normaluser {
+    background-color: gray;
+}
+
+.podium {
+    background-color: orange;
+}
+
+.row {
+    color: white;
+}
+
+.emptycoulumn {
+    background-color: gray;
+}
+
+.spacecol {
+    background-color: red;
+}

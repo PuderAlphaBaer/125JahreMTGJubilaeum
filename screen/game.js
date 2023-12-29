@@ -289,6 +289,11 @@ userlist = [
 ];
 
 
+function addUser(id, name) {
+    userlist.push(new User(id, name, 0, 0, 0, null, false));
+    console.log("%c Neuer User hinzugefügt", "color: red")
+}
+
 // Diagramm wer für was gestimmt hat
 // Musst du nicht verstehen, hab versucht so gut wie möglich zu kommentieren, damit für Style einfacher ist
 // Im Fall der Fälle kannst du unter https://www.chartjs.org/docs/latest/ alles nachlesen
@@ -304,9 +309,8 @@ function auswertung() {
                 for (let i = 0; i < data.length; i++) {
                     userIndex = userlist.findIndex((obj => obj.id == data[i].id));
                     if (userIndex==-1) {
-                        userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, null, false));
+                        addUser(data[i].id, data[i].name);
                         userIndex = userlist.findIndex((obj => obj.id == data[i].id));
-                        console.log("neuer user")
                     }
                     if(data[i].blocked!=null) {
                         userlist.splice(userIndex, 1);
@@ -439,6 +443,15 @@ function fetchRangliste() {
             utype = "normaluser";
         }
 
+        if(i==3) {
+            document.getElementById('table').innerHTML += `
+    <tr class="emptycolumn">
+        <td class="spacecol"</td>
+        <td class="spacecol"></td>
+        <td class="spacecol"></td>
+        <td class="spacecol"></td>
+    </tr>`;
+        }
 
         if(i<3) {
             userupdate(userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
@@ -465,11 +478,11 @@ function userupdate(rank, uname, score, streak, type) {
         <div>${streak}</div>`
     }
     document.getElementById('table').innerHTML += `
-    <tr class="${type}">
-        <td class="row">${rank}</th>
-        <td class="row">${uname}</th>
-        <td class="row">${score}</th>
-        <td class="rowstreak">${sbox}</th>
+    <tr class="${type} row">
+        <td class="${type} rank">${rank}</th>
+        <td class="${type} uname">${uname}</th>
+        <td class="${type} score">${score}</th>
+        <td class="${type} streak">${sbox}</th>
     </tr>`;
 }
 
@@ -477,7 +490,10 @@ function userupdate(rank, uname, score, streak, type) {
 function emptycolumn() {
     document.getElementById('table').innerHTML += `
     <tr class="emptycolumn">
-        <td>...</td>
+        <td class="normaluser">...</td>
+        <td class="normaluser"></td>
+        <td class="normaluser"></td>
+        <td class="normaluser"></td>
     </tr>`;
 }
 
@@ -521,3 +537,68 @@ async function resetFragen() {
 }
 
 resetFragen();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Entwicklertool
+
+function addDummys() {
+
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [1, "Dummy1", 90, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [2, "Dummy2", 18, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [3, "Dummy3", 17, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [4, "Dummy4", 100, 3]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [5, "Dummy5", 0, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [6, "Dummy6", 19, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [7, "Dummy7", 20, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [8, "Dummy8", 0, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [9, "Dummy9", 70, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [10, "Dummy10", 10, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [11, "Dummy11", 0, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [12, "Dummy12", 0, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [13, "Dummy13", 80, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [14, "Dummy14", 0, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [15, "Dummy15", 0, 0]);
+
+    addUser(1, "Dummy1");
+    addUser(2, "Dummy2");
+    addUser(3, "Dummy3");
+    addUser(4, "Dummy4");
+    addUser(5, "Dummy5");
+    addUser(6, "Dummy6");
+    addUser(7, "Dummy7");
+    addUser(8, "Dummy8");
+    addUser(9, "Dummy9");
+    addUser(10, "Dummy10");
+    addUser(11, "Dummy11");
+    addUser(12, "Dummy12");
+    addUser(13, "Dummy13");
+    addUser(14, "Dummy14");
+    addUser(15, "Dummy15");
+
+    userlist[2].podium = true;
+    userlist[5].podium = true;
+    userlist[6].podium = true;
+    userlist[0].podium = true;
+}
