@@ -49,6 +49,7 @@ td {
 }
 
 .fragenbox {
+    position: absolute;
     display: none;
     justify-content: center;
     align-items: center;

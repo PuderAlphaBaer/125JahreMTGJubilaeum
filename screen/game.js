@@ -561,7 +561,7 @@ resetFragen();
 
 
 
-// Entwicklertool
+// Entwicklertools
 
 function addDummys() {
 
@@ -601,4 +601,35 @@ function addDummys() {
     userlist[5].podium = true;
     userlist[6].podium = true;
     userlist[0].podium = true;
+}
+
+
+
+
+function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
+    beforegamebox.style.display = "none";
+    toggleInterface(fragenbox);
+    votebox.style.display = "block";
+
+    if (avotes==null) {
+        avotes = 6;
+    }
+    if (bvotes==null) {
+        bvotes = 42;
+    }
+    if (cvotes==null) {
+        cvotes = 53;
+    }
+    if (dvotes==null) {
+        dvotes = 23;
+    }
+    if (richtigeanwort==null) {
+        richtigeanwort = "c";
+    }
+    xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
+    yValues = [avotes, bvotes, cvotes, dvotes];
+    barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)", "rgb(169, 90, 229)"];
+    borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
+
+    nchart();
 }
