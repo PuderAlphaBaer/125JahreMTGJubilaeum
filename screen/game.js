@@ -320,9 +320,8 @@ function auswertung() {
             }
                 userlist[userIndex].punkte = data[i].punkte;
                 userlist[userIndex].streak = data[i].streak;
-                userlist[userIndex].rank = i+1;
-
                 userlist[userIndex].vote = data[i].vote;
+                userlist[userIndex].rank = i+1;
                 
                 switch (data[i].vote) {
                     case 'a':

@@ -9,9 +9,10 @@
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
 </head>
 <body>
-
-    <div class="suchbox">
-        <input type="text" id="suchfeld" placeholder="Suche nach User">
+    <div id="podiumbox" class="podiumbox">
+        <div class="searchbox">
+            <input type="text" id="search" class="search" placeholder="Suche nach User">
+        </div>
     </div>
     
     <div class="rangliste" id="rangliste">
@@ -25,7 +26,7 @@
         </table>
     </div>
 
-
+    <div id="togglebtn" class="togglebtn buttonStyle">Zum Podium wechseln</div>
 
     <script src="../database.js"></script>
     <script src="../test/snippets.js"></script>
