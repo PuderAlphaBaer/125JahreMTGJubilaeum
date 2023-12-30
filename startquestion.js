@@ -113,18 +113,16 @@ function phase2(id) {
   d.style.display = "flex";
   a.innerHTML = questions[questionid].a;
   b.innerHTML = questions[questionid].b;
+  let topButtonContainer = document.getElementById('topButtonContainer');
+  let bottomButtonContainer = document.getElementById('bottomButtonContainer');
+  bottomButtonContainer.style.display = "flex";
+  topButtonContainer.style.height = "50%";
   if (questions[questionid].c=="") {
-      c.style.display = "none";
-      d.style.display = "none";
-      a.style.backgroundColor = "#0B52C1";
-      b.style.backgroundColor = "#D11031";
+    bottomButtonContainer.style.display = "none";
+    topButtonContainer.style.height = "100%";
   } else {
-  c.innerHTML = questions[questionid].c;
-      if (questions[questionid].d==""){
-              d.style.display = "none"
-          } else {
-              d.innerHTML = questions[questionid].d;
-      }
+    c.innerHTML = questions[questionid].c;
+    d.innerHTML = questions[questionid].d;
   }
 
   if(questions[questionid].img!=false) {

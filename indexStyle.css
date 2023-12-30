@@ -27,31 +27,25 @@ body {
     display: flex;
     flex-wrap: wrap;
     height: 50%;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
 }
 .button {
     display: flex;
     justify-content: center;
-    width: 44vw;
-    border-radius: 2vw;
+    width: 44%;
+    border-radius: 2vi;
 }
-.subButton {
-    font-size: 10vmin;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-}
+
 .buttonA {
     background-color: rgb(239, 141, 10);
     color: white;
     font-size: large;
     font-weight: bolder;
-    margin-left: 4vmin;
-    margin-right: 2vmin;
-    margin-top: 4vmin;
-    margin-bottom: 2vmin;
+    margin-left: 4vi;
+    margin-right: 2vi;
+    margin-top: 4vi;
+    margin-bottom: 2vi;
     align-items: center;
 }
 .buttonB {
@@ -59,10 +53,10 @@ body {
     color: white;
     font-size: large;
     font-weight: bolder;
-    margin-left: 2vmin;
-    margin-right: 4vmin;
-    margin-top: 4vmin;
-    margin-bottom: 2vmin;
+    margin-left: 2vi;
+    margin-right: 4vi;
+    margin-top: 4vi;
+    margin-bottom: 2vi;
     align-items: center;
 }
 .buttonC {
@@ -70,10 +64,10 @@ body {
     color: white;
     font-size: large;
     font-weight: bolder;
-    margin-left: 4vmin;
-    margin-right: 2vmin;;
-    margin-top: 2vmin;
-    margin-bottom: 4vmin;
+    margin-left: 4vi;
+    margin-right: 2vi;
+    margin-top: 2vi;
+    margin-bottom: 4vi;
     align-items: center;
 }
 .buttonD {
@@ -81,10 +75,10 @@ body {
     color: white;
     font-size: large;
     font-weight: bolder;
-    margin-left: 2vmin;
-    margin-right: 4vmin;
-    margin-top: 2vmin;
-    margin-bottom: 4vmin;
+    margin-left: 2vi;
+    margin-right: 4vi;
+    margin-top: 2vi;
+    margin-bottom: 4vi;
     align-items: center;
 }
 .buttonA:hover {background-color: rgb(255, 183, 10);}
