@@ -49,7 +49,7 @@ function toggleInterface(phase) {
     rangliste.style.display = "none";
     fragenbox.style.display = "none";
     zwischenbox.style.display = "none";
-
+    beforegamebox.style.display = "none";
     phase.style.display = "flex";
 }
 
@@ -107,18 +107,19 @@ function interface1bar() {
     d.style.border = "none";
     anzeigefrage2.innerHTML = questions[activequestionid].frage;
     // Multiple Choice Frage
-        a.innerHTML = questions[activequestionid].a;
-        b.innerHTML = questions[activequestionid].b;
-        if (questions[activequestionid].c=="") {
-            zweiterContainer.style.display = "none";
-        } else {
-        c.innerHTML = questions[activequestionid].c;
-            if (questions[activequestionid].d==""){
-                    d.style.display = "none"
-                } else {
-                    d.innerHTML = questions[activequestionid].d;
-            }
-        }
+    a.innerHTML = questions[activequestionid].a;
+    b.innerHTML = questions[activequestionid].b;
+    let topButtonContainer = document.getElementById('topButtonContainer');
+    let bottomButtonContainer = document.getElementById('bottomButtonContainer');
+    bottomButtonContainer.style.display = "flex";
+    topButtonContainer.style.height = "50%";
+    if (questions[activequestionid].c=="") {
+      bottomButtonContainer.style.display = "none";
+      topButtonContainer.style.height = "100%";
+    } else {
+      c.innerHTML = questions[activequestionid].c;
+      d.innerHTML = questions[activequestionid].d;
+    }
     
 
         if(questions[activequestionid].img!=false) {
