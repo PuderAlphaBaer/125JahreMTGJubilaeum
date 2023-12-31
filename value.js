@@ -118,6 +118,12 @@ const questions = [
   
 
 
+
+
+
+
+
+  
 async function getQuestions() {
   let fragenData = await supabaseFetch('fragen', 'beginn, start, ende, auswertung')
   console.log(fragenData.length)

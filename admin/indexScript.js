@@ -3,6 +3,7 @@ const podiumbox = document.getElementById('podiumbox');
 const ubox = document.getElementById('ubox');
 const togglebt = document.getElementById('togglebtn');
 const pbox = document.getElementById('pbox');
+const body = document.getElementById('body');
 let repbox = "";
 
 
@@ -29,7 +30,7 @@ function addUser(data) {
         userlistad.push(new User(data[i].name, data[i].blocked));
         console.log("%c Neuer User hinzugefügt", "color: red")
     }
-    createTable();
+    refreshPodiumbox();
 }
 
 
@@ -49,7 +50,7 @@ function report(uname) {
                 supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "name", uname)
                 userlistad[userIndex].blocked = ban;
                 userlistad[userIndex].podium = false;
-                createTable();
+                refreshPodiumbox();
         }
         } else {
             console.log("bann abgebrochen");
@@ -62,7 +63,7 @@ function report(uname) {
                 supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "name", uname)
                 userlistad[userIndex].blocked = ban;
                 userlistad[userIndex].podium = false;
-                refreshTable();
+                refreshPodiumbox();
         }
     }
 };
@@ -72,7 +73,9 @@ const search = document.getElementById("search");
 
 search.addEventListener('input', refreshTable)
 
-function refreshTable() {
+async function refreshTable() {
+    console.log("add");
+    body.classList.add('wating');
     check = search.value;
     specificUser = userlistad.filter(user => user.name.toLowerCase().startsWith(check, 0) == true);
     if (specificUser == "") {
@@ -123,25 +126,30 @@ function refreshTable() {
                                 </tr>`
         }
     }
+    test();
+
+}
+
+function test() {
+    console.log("test");
+    body.classList.remove('wating');
 }
 
 
 
-
-
 function toggle(name, cb) {
-    document.body.classList.add('waiting');
+    body.classList.add('waiting');
     userIndex = userlistad.findIndex((obj => obj.name == name));
     if(cb.checked == true) {
         userlistad[userIndex].podium = true;
         supabaseInsert("podium", ["name"], [name]).then(() => {
-            document.body.classList.remove('waiting');
+            body.classList.remove('waiting');
             refreshPodiumbox();
         })
     } else {
         userlistad[userIndex].podium = false;
         supabaseDelete("podium", "eq", "name", name).then(() => {
-            document.body.classList.remove('waiting');
+            body.classList.remove('waiting');
             refreshPodiumbox();
         })
     }
@@ -455,18 +463,14 @@ userlistad.push(new User("Christian", null));
 }
 
 
-async function start() {
-    await supabaseFetch("podium", "name", "", "", "", "name", true).then((data) => {
-        console.log(data);
-        for (let i = 0; i < data.length; i++) {
-            userIndex = userlistad.findIndex((obj => obj.name == data[i].name));
-            userlistad[userIndex].podium = true;
-        }
-    });
+supabaseFetch("podium", "name", "", "", "", "name", true).then((data) => {
+    console.log(data);
+    for (let i = 0; i < data.length; i++) {
+        userIndex = userlistad.findIndex((obj => obj.name == data[i].name));
+        userlistad[userIndex].podium = true;
+    }
     refreshPodiumbox();
-}
+});
+
+
 createDummies();
-start();
-
-
-

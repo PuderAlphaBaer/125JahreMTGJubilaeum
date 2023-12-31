@@ -167,7 +167,6 @@ table, th, td {
     transform: translateX(26px);
   }
 
-
 .search {
     color: black;
     border: none;
@@ -181,5 +180,9 @@ table, th, td {
 }
 
 body.waiting * {
+    cursor: progress;
+}
+
+body.wating * {
     cursor: progress;
 }
