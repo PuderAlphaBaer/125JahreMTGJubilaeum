@@ -62,7 +62,7 @@ function report(uname) {
                 supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "name", uname)
                 userlistad[userIndex].blocked = ban;
                 userlistad[userIndex].podium = false;
-                createTable();
+                refreshTable();
         }
     }
 };
@@ -70,10 +70,9 @@ function report(uname) {
 
 const search = document.getElementById("search");
 
-search.addEventListener('input', createTable)
+search.addEventListener('input', refreshTable)
 
-function createTable() {
-    console.log("createTable");
+function refreshTable() {
     check = search.value;
     specificUser = userlistad.filter(user => user.name.toLowerCase().startsWith(check, 0) == true);
     if (specificUser == "") {
@@ -106,7 +105,7 @@ function createTable() {
                 repbox = `
                                     <td class="udata">
                                         <label class="switch">
-                                            <input class="switchinput" type="checkbox" onchange="toggleSwitch('${specificUser[i].name}', this)" ${checked}>
+                                            <input class="switchinput" type="checkbox" onchange="toggle('${specificUser[i].name}', this)" ${checked}>
                                             <area class="switch slider"></area>
                                         </label>
                                     </td>
@@ -130,63 +129,67 @@ function createTable() {
 
 
 
-function toggleSwitch(name, cb) {
-    console.log("toggleSwitch");
+function toggle(name, cb) {
+    document.body.classList.add('waiting');
     userIndex = userlistad.findIndex((obj => obj.name == name));
     if(cb.checked == true) {
         userlistad[userIndex].podium = true;
         supabaseInsert("podium", ["name"], [name]).then(() => {
-            document.body.style.cursor = "default";
+            document.body.classList.remove('waiting');
             refreshPodiumbox();
         })
     } else {
         userlistad[userIndex].podium = false;
         supabaseDelete("podium", "eq", "name", name).then(() => {
-            document.body.style.cursor = "default";
+            document.body.classList.remove('waiting');
             refreshPodiumbox();
         })
     }
-    document.body.style.cursor = "wait";
 }
 
 
 
 function refreshPodiumbox() {
-    console.log("refreshpodiumbox");
-    pbox.innerHTML = `  <tr>
-                            <th>Podium-User</th>
-                        </tr>`;
 
     podiumList = userlistad.filter(user => user.podium == true);
-    podiumList.sort((a, b) => {
-        let fa = a.name.toLowerCase(),
-            fb = b.name.toLowerCase();
-    
-        if (fa < fb) {
-            return -1;
+    if (podiumList == "") {
+        pbox.innerHTML = "<p>Es befindet sich noch kein User auf dem Podium.</p>"
+    } else {
+        
+        pbox.innerHTML = `  <tr>
+                                <th>Podium-User</th>
+                            </tr>`;
+
+        podiumList.sort((a, b) => {
+            let fa = a.name.toLowerCase(),
+                fb = b.name.toLowerCase();
+        
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        });
+        for(i=0; i<podiumList.length; i++) {
+            if(podiumList[i].podium == true) {
+                checked = "checked"
+            } else {
+                checked = ""
+            }
+            pbox.innerHTML += `<tr>
+                                    <td>${podiumList[i].name}</td>
+                                    <td>
+                                        <label class="switch">
+                                            <input class="switchinput" type="checkbox" onchange="toggle('${podiumList[i].name}', this)" ${checked}>
+                                            <area class="switch slider"></area>
+                                        </label>
+                                    </td>
+                                </tr>`
         }
-        if (fa > fb) {
-            return 1;
-        }
-        return 0;
-    });
-    for(i=0; i<podiumList.length; i++) {
-        if(podiumList[i].podium == true) {
-            checked = "checked"
-        } else {
-            checked = ""
-        }
-        pbox.innerHTML += `<tr>
-                                <td>${podiumList[i].name}</td>
-                                <td>
-                                    <label class="switch">
-                                        <input class="switchinput" type="checkbox" onchange="toggleSwitch('${podiumList[i].name}', this)" ${checked}>
-                                        <area class="switch slider"></area>
-                                    </label>
-                                </td>
-                            </tr>`
     }
-    createTable();
+    refreshTable();
 }
 
 function createDummies() {
