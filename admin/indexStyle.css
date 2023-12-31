@@ -173,3 +173,9 @@ table, th, td {
     border: none;
     outline: none;
 }
+
+.pbox {
+    left: 0;
+    top: 20%;
+    position: absolute;
+}

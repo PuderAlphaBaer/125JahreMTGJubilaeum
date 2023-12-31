@@ -22,6 +22,7 @@ userlistad = [
 ];
 
 
+
 // addUser() ist die Funktion die mit data als value gecallt werden muss bei changes, der Rest klappt
 function addUser(data) {
     for (let i = 0; i < data.length; i++) {
@@ -37,19 +38,31 @@ function addUser(data) {
 let ban;
 
 function report(uname) {
-    ban = prompt(`Wofür wollen Sie den User "${uname}" sperren?`,  "Anstößiger Benutzername");
-    if ((ban )== null || ban == "") {
-        console.log("bann abgebrochen");
-    } else {
-        podban = confirm(`Der User "${uname}" befindet sich auf dem Podium, wollen Sie ihn trotzdem sperren?`);
+    userIndex = userlistad.findIndex((obj => obj.name == uname));
+    if(userlistad[userIndex].podium == true) {
+        podban = confirm(`Der User "${uname}" befindet sich auf dem Podium, wollen Sie ihn trotzdem sperren und vom Podium entfernen?`);
         if (podban == true) {
-            supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "name", uname)
-            userIndex = userlistad.findIndex((obj => obj.name == uname));
-            userlistad[userIndex].blocked = ban;
-            userlistad[userIndex].podium = false;
-            createTable();
+            ban = prompt(`Wofür wollen Sie den User "${uname}" sperren?`,  "Anstößiger Benutzername");
+            if ((ban )== null || ban == "") {
+                console.log("bann abgebrochen");
+            } else {
+                supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "name", uname)
+                userlistad[userIndex].blocked = ban;
+                userlistad[userIndex].podium = false;
+                createTable();
+        }
         } else {
             console.log("bann abgebrochen");
+        }
+    } else {
+        ban = prompt(`Wofür wollen Sie den User "${uname}" sperren?`,  "Anstößiger Benutzername");
+        if ((ban )== null || ban == "") {
+            console.log("bann abgebrochen");
+        } else {
+                supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "name", uname)
+                userlistad[userIndex].blocked = ban;
+                userlistad[userIndex].podium = false;
+                createTable();
         }
     }
 };
@@ -60,9 +73,92 @@ const search = document.getElementById("search");
 search.addEventListener('input', createTable)
 
 function createTable() {
+    console.log("createTable");
     check = search.value;
     specificUser = userlistad.filter(user => user.name.toLowerCase().startsWith(check, 0) == true);
-    specificUser.sort((a, b) => {
+    if (specificUser == "") {
+        ubox.innerHTML = "<p>Es wurde kein User mit einem Ihrer Suche entsprechenden Namen gefunden.</p>"
+    } else {
+        specificUser.sort((a, b) => {
+            let fa = a.name.toLowerCase(),
+                fb = b.name.toLowerCase();
+        
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        });
+
+        ubox.innerHTML = `  <tr>
+                                <th>Name</th>
+                                <th>Podium</th>
+                            </tr>`
+        for(let i=0; i<specificUser.length; i++) {
+            if(specificUser[i].podium == true) {
+                checked = "checked"
+            } else {
+                checked = ""
+            }
+            if (specificUser[i].blocked == null) {
+                repbox = `
+                                    <td class="udata">
+                                        <label class="switch">
+                                            <input class="switchinput" type="checkbox" onchange="toggleSwitch('${specificUser[i].name}', this)" ${checked}>
+                                            <area class="switch slider"></area>
+                                        </label>
+                                    </td>
+                                    <td class="ureport">
+                                        <div class="report" onclick="report('${specificUser[i].name}')">Sperren</div>
+                                    </td>`
+                clas = "udata";
+            } else {
+                repbox = "";
+                clas = "banned";
+            }
+            ubox.innerHTML += ` <tr>
+                                    <td class="${clas}">${specificUser[i].name}</td>
+                                    ${repbox}
+                                </tr>`
+        }
+    }
+}
+
+
+
+
+
+function toggleSwitch(name, cb) {
+    console.log("toggleSwitch");
+    userIndex = userlistad.findIndex((obj => obj.name == name));
+    if(cb.checked == true) {
+        userlistad[userIndex].podium = true;
+        supabaseInsert("podium", ["name"], [name]).then(() => {
+            document.body.style.cursor = "default";
+            refreshPodiumbox();
+        })
+    } else {
+        userlistad[userIndex].podium = false;
+        supabaseDelete("podium", "eq", "name", name).then(() => {
+            document.body.style.cursor = "default";
+            refreshPodiumbox();
+        })
+    }
+    document.body.style.cursor = "wait";
+}
+
+
+
+function refreshPodiumbox() {
+    console.log("refreshpodiumbox");
+    pbox.innerHTML = `  <tr>
+                            <th>Podium-User</th>
+                        </tr>`;
+
+    podiumList = userlistad.filter(user => user.podium == true);
+    podiumList.sort((a, b) => {
         let fa = a.name.toLowerCase(),
             fb = b.name.toLowerCase();
     
@@ -74,55 +170,24 @@ function createTable() {
         }
         return 0;
     });
-
-    ubox.innerHTML = `  <tr>
-                            <th>Name</th>
-                            <th>Podium</th>
-                        </tr>`
-    for(let i=0; i<specificUser.length; i++) {
-        if(specificUser[i].podium == true) {
+    for(i=0; i<podiumList.length; i++) {
+        if(podiumList[i].podium == true) {
             checked = "checked"
         } else {
             checked = ""
         }
-        if (specificUser[i].blocked == null) {
-            repbox = `
-            <td class="udata">
+        pbox.innerHTML += `<tr>
+                                <td>${podiumList[i].name}</td>
+                                <td>
                                     <label class="switch">
-                                        <input class="switchinput" type="checkbox" onchange="toggleSwitch('${specificUser[i].name}')" ${checked}>
+                                        <input class="switchinput" type="checkbox" onchange="toggleSwitch('${podiumList[i].name}', this)" ${checked}>
                                         <area class="switch slider"></area>
+                                    </label>
                                 </td>
-            <td class="ureport"><div class="report" onclick="report('${specificUser[i].name}')">Sperren</div></td>`
-            clas = "udata";
-        } else {
-            repbox = "";
-            clas = "banned";
-        }
-        ubox.innerHTML += ` <tr>
-                                <td class="${clas}">${specificUser[i].name}</td>
-                                ${repbox}
                             </tr>`
     }
+    createTable();
 }
-
-
-
-
-
-function toggleSwitch(name) {
-    userIndex = userlistad.findIndex((obj => obj.name == name));
-    if(userlistad[userIndex].podium == false) {
-        userlistad[userIndex].podium = true;
-        supabaseInsert("podium", ["name"], [name])
-    } else {
-        userlistad[userIndex].podium = false;
-        supabaseDelete("podium", "name", name)
-    }
-}
-
-
-
-
 
 function createDummies() {
 userlistad.push(new User("Emilia", null));
@@ -353,7 +418,7 @@ userlistad.push(new User("Otis", null));
 userlistad.push(new User("Rocco", null));
 userlistad.push(new User("Taavi", null));
 userlistad.push(new User("Wim", null));
-userlistad.push(new User("Alexandru", null));
+userlistad.push(new User("Alexandru", "Anstößiger Benutzername"));
 userlistad.push(new User("Ansgar", null));
 userlistad.push(new User("Aslan", null));
 userlistad.push(new User("Aurel", null));
@@ -365,7 +430,7 @@ userlistad.push(new User("Maurice", null));
 userlistad.push(new User("Nikodem", null));
 userlistad.push(new User("Nikola", null));
 userlistad.push(new User("Ricardo", null));
-userlistad.push(new User("Tillmann", null));
+userlistad.push(new User("Tilman", null));
 userlistad.push(new User("Alexandros", null));
 userlistad.push(new User("Ammar", null));
 userlistad.push(new User("Andrej", null));
@@ -382,7 +447,23 @@ userlistad.push(new User("Angelo", null));
 userlistad.push(new User("Bent", null));
 userlistad.push(new User("Cosmo", null));
 userlistad.push(new User("Emmanuel", null));
+userlistad.push(new User("Christian", null));
+
 }
 
+
+async function start() {
+    await supabaseFetch("podium", "name", "", "", "", "name", true).then((data) => {
+        console.log(data);
+        for (let i = 0; i < data.length; i++) {
+            userIndex = userlistad.findIndex((obj => obj.name == data[i].name));
+            userlistad[userIndex].podium = true;
+        }
+    });
+    refreshPodiumbox();
+}
 createDummies();
-createTable();
+start();
+
+
+
