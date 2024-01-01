@@ -84,42 +84,44 @@ const questions = [
 
 ];
 
-  // Sprüche wenn Antwort richtig ist
-  const rworte = [
-    "Mach weiter so",
-    "Tilman hätte sich auch so entschieden",
-    "Weise Entscheidung",
-    "Tilman ist stolz auf dich",
-    "INTELLIGENZ",
-    "Bene bene bene",
-    "Ouich  ~Frau Fendt, immer",
-    "Gute Spieleinstellung"
-  ]
-  
-  // Sprüche wenn Antwort falsch ist
-  const fworte = [
-    "Tilman hätte das besser gemacht",
-    "Tilman ist entäuscht von dir",
-    "Da ist noch Luft nach oben",
-    "Da gibt es noch Ausbaupotenzial",
-    "Wenn Frau Reiter das erfährt...",
-    "Du vergeudest dein Potenzial",
-    "Schlau ist etwas anderes",
-    "Mio weint bei deiner Antwort",
-    "Ein Stich in mein Lateinerherz  ~Frau Wächter 2018, oft genug",
-    "Cicero in sarcophago rotat"
-  ]
 
-  const zwischenworte = [
-    "pure genius",
-    "schlau?",
-    "so gut wie Tilman?"
-  ]
-  
+// Sprüche wenn Antwort richtig ist
+const rworte = [
+  "Mach weiter so",
+  "Tilman hätte sich auch so entschieden",
+  "Weise Entscheidung",
+  "Tilman ist stolz auf dich",
+  "INTELLIGENZ",
+  "Bene bene bene",
+  "Ouich  ~Frau Fendt, immer",
+  "Gute Spieleinstellung"
+]
 
+// Sprüche wenn Antwort falsch ist
+const fworte = [
+  "Tilman hätte das besser gemacht",
+  "Tilman ist entäuscht von dir",
+  "Da ist noch Luft nach oben",
+  "Da gibt es noch Ausbaupotenzial",
+  "Wenn Frau Reiter das erfährt...",
+  "Du vergeudest dein Potenzial",
+  "Schlau ist etwas anderes",
+  "Mio weint bei deiner Antwort",
+  "Ein Stich in mein Lateinerherz  ~Frau Wächter 2018, oft genug",
+  "Cicero in sarcophago rotat"
+]
+const zwischenworte = [
+  "pure genius",
+  "schlau?",
+  "so gut wie Tilman?"
+]
 
 
+// Bei welcher Frage das Podium durchgewechselt werden soll
+const nextPodium = 3;
 
+// Wär die Mitte
+//const nextPodium = (questions.length - 1)/2;
 
 
 

@@ -9,8 +9,9 @@ let repbox = "";
 
 
 
-class User {
-    constructor(name, blocked, podium) {
+class Userad {
+    constructor(id, name, blocked, podium) {
+        this.id = id;
         this.name = name;
         this.blocked = blocked;
         this.podium = podium;
@@ -28,7 +29,7 @@ userlistad = [
 function addUser(data) {
     console.log(data)
    
-        userlistad.push(new User(data.name, data.blocked, data.podium));
+        userlistad.push(new Userad(data.id, data.name, data.blocked, data.podium));
         console.log("%c Neuer User hinzugefügt", "color: red")
 
     refreshPodiumbox();
@@ -39,7 +40,7 @@ function addUser(data) {
 
 let ban;
 
-function report(uname) {
+function report(uname, uid) {
     userIndex = userlistad.findIndex((obj => obj.name == uname));
     if(userlistad[userIndex].podium == true) {
         podban = confirm(`Der User "${uname}" befindet sich auf dem Podium, wollen Sie ihn trotzdem sperren und vom Podium entfernen?`);
@@ -48,7 +49,7 @@ function report(uname) {
             if ((ban )== null || ban == "") {
                 console.log("bann abgebrochen");
             } else {
-                supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "name", uname)
+                supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "id", uid)
                 userlistad[userIndex].blocked = ban;
                 userlistad[userIndex].podium = false;
                 refreshPodiumbox();
@@ -61,7 +62,7 @@ function report(uname) {
         if ((ban )== null || ban == "") {
             console.log("bann abgebrochen");
         } else {
-                supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "name", uname)
+                supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "id", uid)
                 userlistad[userIndex].blocked = ban;
                 userlistad[userIndex].podium = false;
                 refreshPodiumbox();
@@ -122,12 +123,12 @@ async function refreshTable() {
                 repbox = `
                                     <td class="udata">
                                         <label class="switch">
-                                            <input class="switchinput" type="checkbox" onchange="toggle('${specificUser[i].name}', this)" ${checked}>
+                                            <input class="switchinput" type="checkbox" onchange="toggle('${specificUser[i].id}', this)" ${checked}>
                                             <area class="switch slider"></area>
                                         </label>
                                     </td>
                                     <td class="ureport">
-                                        <div class="report" onclick="report('${specificUser[i].name}')">Sperren</div>
+                                        <div class="report" onclick="report('${specificUser[i].id}')">Sperren</div>
                                     </td>`
                 clas = "udata";
             } else {
@@ -148,20 +149,20 @@ async function refreshTable() {
 
 
 
-async function toggle(name, cb) {
+async function toggle(id, cb) {
     await addWaitingClass();     
     // refresh UI
     await new Promise(resolve => requestAnimationFrame(resolve));
-    userIndex = userlistad.findIndex((obj => obj.name == name));
+    userIndex = userlistad.findIndex((obj => obj.id == id));
     if(cb.checked == true) {
         userlistad[userIndex].podium = true;
-        supabaseUpdate('spieler', 'podium', true, 'eq', 'name', name).then(() => {
+        supabaseUpdate('spieler', ['podium'], [true], 'eq', 'id', id).then(() => {
             body.classList.remove('waiting');
             refreshPodiumbox();
         })
     } else {
         userlistad[userIndex].podium = false;
-        supabaseUpdate('spieler', 'podium', false, 'eq', 'name', name).then(() => {
+        supabaseUpdate('spieler', ['podium'], [false], 'eq', 'id', id).then(() => {
             body.classList.remove('waiting');
             refreshPodiumbox();
         })
@@ -203,7 +204,7 @@ function refreshPodiumbox() {
                                     <td>${podiumList[i].name}</td>
                                     <td>
                                         <label class="switch">
-                                            <input class="switchinput" type="checkbox" onchange="toggle('${podiumList[i].name}', this)" ${checked}>
+                                            <input class="switchinput" type="checkbox" onchange="toggle('${podiumList[i].id}', this)" ${checked}>
                                             <area class="switch slider"></area>
                                         </label>
                                     </td>
@@ -213,92 +214,11 @@ function refreshPodiumbox() {
     refreshTable();
 }
 
-function createDummies() {
-userlistad.push(new User("Emilia", null));
-userlistad.push(new User("Hannah", null));
-userlistad.push(new User("Mia", null));
-userlistad.push(new User("Emma", null));
-userlistad.push(new User("Sophia", null));
-userlistad.push(new User("Mila", null));
-userlistad.push(new User("Lina", null));
-userlistad.push(new User("Ella", null));
-userlistad.push(new User("Lea", null));
-userlistad.push(new User("Marie", null));
-userlistad.push(new User("Clara", null));
-userlistad.push(new User("Leni", null));
-userlistad.push(new User("Lia", null));
-userlistad.push(new User("Leonie", null));
-userlistad.push(new User("Emily", null));
-userlistad.push(new User("Mathilda", null));
-userlistad.push(new User("Ida", null));
-userlistad.push(new User("Anna", null));
-userlistad.push(new User("Frieda", null));
-userlistad.push(new User("Amelie", null));
-userlistad.push(new User("Luisa", null));
-userlistad.push(new User("Lilly", null));
-userlistad.push(new User("Maja", null));
-userlistad.push(new User("Charlotte", null));
-userlistad.push(new User("Lena", null));
-userlistad.push(new User("Sophie", null));
-userlistad.push(new User("Johanna", null));
-userlistad.push(new User("Lara", null));
-userlistad.push(new User("Nele", null));
-userlistad.push(new User("Nora", null));
-userlistad.push(new User("Mira", null));
-userlistad.push(new User("Sarah", null));
-userlistad.push(new User("Lotta", null));
-userlistad.push(new User("Juna", null));
-userlistad.push(new User("Laura", null));
-userlistad.push(new User("Elisa", null));
-userlistad.push(new User("Paula", null));
-userlistad.push(new User("Tilda", null));
-userlistad.push(new User("Malia", null));
-userlistad.push(new User("Thea", null));
-userlistad.push(new User("Maria", null));
-userlistad.push(new User("Romy", null));
-userlistad.push(new User("Melina", null));
-userlistad.push(new User("Alina", null));
-userlistad.push(new User("Marlene", null));
-userlistad.push(new User("Mara", null));
-userlistad.push(new User("Elena", null));
-userlistad.push(new User("Helena", null));
-userlistad.push(new User("Victoria", null));
-userlistad.push(new User("Carla", null));
-userlistad.push(new User("Luna", null));
-userlistad.push(new User("Antonia", null));
-userlistad.push(new User("Isabella", null));
-userlistad.push(new User("Merle", null));
-userlistad.push(new User("Elina", null));
-userlistad.push(new User("Zoe", null));
-userlistad.push(new User("Eva", null));
-userlistad.push(new User("Amira", null));
-userlistad.push(new User("Julia", null));
-userlistad.push(new User("Fiona", null));
-userlistad.push(new User("Luise", null));
-userlistad.push(new User("Hailey", null));
-userlistad.push(new User("Paulina", null));
-userlistad.push(new User("Martha", null));
-userlistad.push(new User("Finja", null));
-userlistad.push(new User("Josephine", null));
-userlistad.push(new User("Lisa", null));
-userlistad.push(new User("Pia", null));
-userlistad.push(new User("Elli", null));
-userlistad.push(new User("Olivia", null));
-userlistad.push(new User("Amalia", null));
-userlistad.push(new User("Valentina", null));
-userlistad.push(new User("Jana", null));
-userlistad.push(new User("Anni", null));
 
-}
-
-
-supabaseFetch('spieler', 'name, blocked, podium', "", "", "", 'name', false).then((data) => {
+supabaseFetch('spieler', 'id, name, blocked, podium', "", "", "", 'name', false).then((data) => {
     for (let i = 0; i < data.length; i++) {
-        userlistad.push(new User(data[i].name, data[i].blocked, data[i].podium));
+        userlistad.push(new Userad(data[i].id, data[i].name, data[i].blocked, data[i].podium));
     }
     refreshPodiumbox();
 });
 
-
-
-createDummies();

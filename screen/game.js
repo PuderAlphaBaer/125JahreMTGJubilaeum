@@ -266,7 +266,7 @@ function timerend() {
     }
     
     bt2.style.display = "block";
-    // add a 5 sec before auswertung() is called
+    document.body.classList.add('waiting');
     setTimeout(() => {
         auswertung();
     }, 1000);
@@ -424,6 +424,7 @@ function nchart() {
             },
             plugins: [ChartDataLabels]
         });
+    document.body.classList.remove('waiting');
 }
 
 
@@ -481,12 +482,24 @@ function userupdate(rank, uname, score, streak, type) {
         sbox = `        <div class="simg img"></div>
         <div>${streak}</div>`
     }
+    if (activequestionid==nextPodium) {
+        cb = `     
+    <td>
+        <label class="switch">
+            <input class="switchinput" type="checkbox" onchange="toggle('${podiumList[i].name}', this)" ${checked}>
+            <area class="switch slider"></area>
+        </label>
+    </td>`
+    } else {
+        cb = "";
+    }
     document.getElementById('table').innerHTML += `
     <tr class="${type} row">
         <td class="${type} rank">${rank}</th>
         <td class="${type} uname">${uname}</th>
         <td class="${type} score">${score}</th>
         <td class="${type} streak">${sbox}</th>
+        ${cb}
     </tr>`;
 }
 
