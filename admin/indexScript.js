@@ -26,10 +26,11 @@ userlistad = [
 
 // addUser() ist die Funktion die mit data als value gecallt werden muss bei changes, der Rest klappt
 function addUser(data) {
-    for (let i = 0; i < data.length; i++) {
-        userlistad.push(new User(data[i].name, data[i].blocked, data[i].podium));
+    console.log(data)
+   
+        userlistad.push(new User(data.name, data.blocked, data.podium));
         console.log("%c Neuer User hinzugefügt", "color: red")
-    }
+
     refreshPodiumbox();
 }
 
@@ -287,192 +288,17 @@ userlistad.push(new User("Amalia", null));
 userlistad.push(new User("Valentina", null));
 userlistad.push(new User("Jana", null));
 userlistad.push(new User("Anni", null));
-userlistad.push(new User("Pauline", null));
-userlistad.push(new User("Rosalie", null));
-userlistad.push(new User("Carlotta", null));
-userlistad.push(new User("Theresa", null));
-userlistad.push(new User("Mina", null));
-userlistad.push(new User("Liya", null));
-userlistad.push(new User("Maila", null));
-userlistad.push(new User("Ronja", null));
-userlistad.push(new User("Isabell", null));
-userlistad.push(new User("Aaliyah", null));
-userlistad.push(new User("Chiara", null));
-userlistad.push(new User("Lotte", null));
-userlistad.push(new User("Leyla", null));
-userlistad.push(new User("Malea", null));
-userlistad.push(new User("Malina", null));
-userlistad.push(new User("Aurelia", null));
-userlistad.push(new User("Elisabeth", null));
-userlistad.push(new User("Amelia", null));
-userlistad.push(new User("Alma", null));
-userlistad.push(new User("Jasmin", null));
-userlistad.push(new User("Lucy", null));
-userlistad.push(new User("Linda", null));
-userlistad.push(new User("Katharina", null));
-userlistad.push(new User("Liana", null));
-userlistad.push(new User("Magdalena", null));
-userlistad.push(new User("Ayla", null));
-userlistad.push(new User("Milena", null));
-userlistad.push(new User("Emmi", null));
-userlistad.push(new User("Nina", null));
-userlistad.push(new User("Malou", null));
-userlistad.push(new User("Ela", null));
-userlistad.push(new User("Ava", null));
-userlistad.push(new User("Luana", null));
-userlistad.push(new User("Stella", null));
-userlistad.push(new User("Melissa", null));
-userlistad.push(new User("Annika", null));
-userlistad.push(new User("Emely", null));
-userlistad.push(new User("Jule", null));
-userlistad.push(new User("Freya", null));
-userlistad.push(new User("Anastasia", null));
-userlistad.push(new User("Marla", null));
-userlistad.push(new User("Liv", null));
-userlistad.push(new User("Amy", null));
-userlistad.push(new User("Rosa", null));
-userlistad.push(new User("Miriam", null));
-userlistad.push(new User("Yara", null));
-userlistad.push(new User("Arya", null));
-userlistad.push(new User("Diana", null));
-userlistad.push(new User("Zoey", null));
-userlistad.push(new User("Lene", null));
-userlistad.push(new User("Livia", null));
-userlistad.push(new User("Lynn", null));
-userlistad.push(new User("Alya", null));
-userlistad.push(new User("Kaja", null));
-userlistad.push(new User("Alea", null));
-userlistad.push(new User("Mariella", null));
-userlistad.push(new User("Edda", null));
-userlistad.push(new User("Kira", null));
-userlistad.push(new User("Layla", null));
-userlistad.push(new User("Mariam", null));
-userlistad.push(new User("Annabell", null));
-userlistad.push(new User("Ylvie", null));
-userlistad.push(new User("Elif", null));
-userlistad.push(new User("Helene", null));
-userlistad.push(new User("Amina", null));
-userlistad.push(new User("Lucia", null));
-userlistad.push(new User("Milana", null));
-userlistad.push(new User("Ariana", null));
-userlistad.push(new User("Aylin", null));
-userlistad.push(new User("Elise", null));
-userlistad.push(new User("Cleo", null));
-userlistad.push(new User("Jette", null));
-userlistad.push(new User("Elea", null));
-userlistad.push(new User("Alessia", null));
-userlistad.push(new User("Zeynep", null));
-userlistad.push(new User("Linnea", null));
-userlistad.push(new User("Marleen", null));
-userlistad.push(new User("Mathea", null));
-userlistad.push(new User("Milla", null));
-userlistad.push(new User("Aurora", null));
-userlistad.push(new User("Selina", null));
-userlistad.push(new User("Ruby", null));
-userlistad.push(new User("Alicia", null));
-userlistad.push(new User("Mona", null));
-userlistad.push(new User("Elin", null));
-userlistad.push(new User("Eliana", null));
-userlistad.push(new User("Evelyn", null));
-userlistad.push(new User("Medina", null));
-userlistad.push(new User("Nika", null));
-userlistad.push(new User("Dalia", null));
-userlistad.push(new User("Nela", null));
-userlistad.push(new User("Alisa", null));
-userlistad.push(new User("Liliana", null));
-userlistad.push(new User("Aleyna", null));
-userlistad.push(new User("Alexandra", null));
-userlistad.push(new User("Franziska", null));
-userlistad.push(new User("Lou", null));
-userlistad.push(new User("Alice", null));
-userlistad.push(new User("Alissa", null));
-userlistad.push(new User("Lana", null));
-userlistad.push(new User("Cataleya", null));
-userlistad.push(new User("Tessa", null));
-userlistad.push(new User("Azra", null));
-userlistad.push(new User("Carolina", null));
-userlistad.push(new User("Daria", null));
-userlistad.push(new User("Enna", null));
-userlistad.push(new User("Sina", null));
-userlistad.push(new User("Jonna", null));
-userlistad.push(new User("Hilda", null));
-userlistad.push(new User("Leana", null));
-userlistad.push(new User("Nala", null));
-userlistad.push(new User("Rebecca", null));
-userlistad.push(new User("Thalia", null));
-userlistad.push(new User("Bella", null));
-userlistad.push(new User("Noemi", null));
-userlistad.push(new User("Vivien", null));
-userlistad.push(new User("Alva", null));
-userlistad.push(new User("Meryem", null));
-userlistad.push(new User("Nisa", null));
-userlistad.push(new User("Amilia", null));
-userlistad.push(new User("Valeria", null));
-userlistad.push(new User("Lorena", null));
-userlistad.push(new User("Flora", null));
-userlistad.push(new User("Jesse", null));
-userlistad.push(new User("Keanu", null));
-userlistad.push(new User("Kuno", null));
-userlistad.push(new User("Rune", null));
-userlistad.push(new User("Semih", null));
-userlistad.push(new User("Tamino", null));
-userlistad.push(new User("Arik", null));
-userlistad.push(new User("Damien", null));
-userlistad.push(new User("Giuliano", null));
-userlistad.push(new User("Giuseppe", null));
-userlistad.push(new User("Jordan", null));
-userlistad.push(new User("Leno", null));
-userlistad.push(new User("Levian", null));
-userlistad.push(new User("Mete", null));
-userlistad.push(new User("Taylan", null));
-userlistad.push(new User("Taylor", null));
-userlistad.push(new User("Veit", null));
-userlistad.push(new User("Zeyd", null));
-userlistad.push(new User("Abel", null));
-userlistad.push(new User("Adnan", null));
-userlistad.push(new User("Berkay", null));
-userlistad.push(new User("Caleb", null));
-userlistad.push(new User("Edwin", null));
-userlistad.push(new User("Eray", null));
-userlistad.push(new User("Evan", null));
-userlistad.push(new User("Konstantinos", null));
-userlistad.push(new User("Mikael", null));
-userlistad.push(new User("Otis", null));
-userlistad.push(new User("Rocco", null));
-userlistad.push(new User("Taavi", null));
-userlistad.push(new User("Wim", null));
-userlistad.push(new User("Alexandru", "Anstößiger Benutzername"));
-userlistad.push(new User("Ansgar", null));
-userlistad.push(new User("Aslan", null));
-userlistad.push(new User("Aurel", null));
-userlistad.push(new User("Davin", null));
-userlistad.push(new User("Dian", null));
-userlistad.push(new User("Edis", null));
-userlistad.push(new User("Ianis", null));
-userlistad.push(new User("Maurice", null));
-userlistad.push(new User("Nikodem", null));
-userlistad.push(new User("Nikola", null));
-userlistad.push(new User("Ricardo", null));
-userlistad.push(new User("Tilman", null));
-userlistad.push(new User("Alexandros", null));
-userlistad.push(new User("Ammar", null));
-userlistad.push(new User("Andrej", null));
-userlistad.push(new User("Arda", null));
-userlistad.push(new User("Johnny", null));
-userlistad.push(new User("Kerim", null));
-userlistad.push(new User("Logan", null));
-userlistad.push(new User("Marek", null));
-userlistad.push(new User("Marinus", null));
-userlistad.push(new User("Nathaniel", null));
-userlistad.push(new User("Willem", null));
-userlistad.push(new User("Zain", null));
-userlistad.push(new User("Angelo", null));
-userlistad.push(new User("Bent", null));
-userlistad.push(new User("Cosmo", null));
-userlistad.push(new User("Emmanuel", null));
-userlistad.push(new User("Christian", null));
 
 }
 
+
+supabaseFetch('spieler', 'name, blocked, podium', "", "", "", 'name', false).then((data) => {
+    for (let i = 0; i < data.length; i++) {
+        userlistad.push(new User(data[i].name, data[i].blocked, data[i].podium));
+    }
+    refreshPodiumbox();
+});
+
+
+
 createDummies();
-refreshTable();
