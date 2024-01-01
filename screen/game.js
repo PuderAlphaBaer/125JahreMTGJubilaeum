@@ -440,6 +440,7 @@ const tablebox = document.getElementById('tablebox');
 // einzelnes feld hat als class "row", ist noch änderbar
 
 function fetchRangliste() {
+    trennung = 0;
     for (let i = 0; i < userlist.length; i++) {
 
         if (userlist[i].podium==true) {
@@ -448,24 +449,26 @@ function fetchRangliste() {
             utype = "normaluser";
         }
 
-        if(i==10) {
-            document.getElementById('table').innerHTML += `
-    <tr class="emptycolumn">
-        <td class="spacecol"</td>
-        <td class="spacecol"></td>
-        <td class="spacecol"></td>
-        <td class="spacecol"></td>
-    </tr>`;
-        }
 
-        if(i<11) {
-            userupdate(userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
+        if(i<ranglistenlimit) {
+            userupdate(userlist[i].id, userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
         } else {
             if (utype=="podium") {
-                if(i-1>10 && userlist[i-1].podium==false) {
+                // Falls nach normaler Rangliste noch Podiumsuser kommen wird ein Trennstrich eingefügt, musst du schauen wie du das noch änderst vom Style her, ob du das lässt oder nicht
+                if(trennung==0) {
+                    document.getElementById('table').innerHTML += `
+                    <tr class="emptycolumn">
+                        <td class="spacecol"</td>
+                        <td class="spacecol"></td>
+                        <td class="spacecol"></td>
+                        <td class="spacecol"></td>
+                    </tr>`;
+                    trennung = 1;
+                }
+                if(i-1>ranglistenlimit && userlist[i-1].podium==false) {
                     emptycolumn();
                 }
-                userupdate(userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
+                userupdate(userlist[i].id, userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
             }
         }
 
@@ -474,7 +477,7 @@ function fetchRangliste() {
 
 
 
-function userupdate(rank, uname, score, streak, type) {
+function userupdate(id, rank, uname, score, streak, type) {
     console.log('userupdate')
     if (streak==0) {
         sbox = "";
@@ -482,11 +485,16 @@ function userupdate(rank, uname, score, streak, type) {
         sbox = `        <div class="simg img"></div>
         <div>${streak}</div>`
     }
+    if(type == "podium") {
+        checked = "checked"
+    } else {
+        checked = ""
+    }
     if (activequestionid==nextPodium) {
         cb = `     
     <td>
         <label class="switch">
-            <input class="switchinput" type="checkbox" onchange="toggle('${podiumList[i].name}', this)" ${checked}>
+            <input class="switchinput" type="checkbox" onchange="toggle('${id}', this)" ${checked}>
             <area class="switch slider"></area>
         </label>
     </td>`
@@ -524,7 +532,16 @@ function checkStarting () {
 
 
 
-
+function toggle(id, cb) {
+    userIndex = userlist.findIndex((obj => obj.id == id));
+    if(cb.checked == true) {
+        userlist[userIndex].podium = true;
+        supabaseUpdate('spieler', ['podium'], [true], 'eq', 'id', id)
+    } else {
+        userlist[userIndex].podium = false;
+        supabaseUpdate('spieler', ['podium'], [false], 'eq', 'id', id)
+    }
+}
 
 
 

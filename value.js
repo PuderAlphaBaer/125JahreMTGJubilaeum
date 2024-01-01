@@ -116,6 +116,9 @@ const zwischenworte = [
   "so gut wie Tilman?"
 ]
 
+// Bis zu welchem PLatz die Rangliste gehen soll
+const ranglistenlimit = 10;
+
 
 // Bei welcher Frage das Podium durchgewechselt werden soll
 const nextPodium = 3;

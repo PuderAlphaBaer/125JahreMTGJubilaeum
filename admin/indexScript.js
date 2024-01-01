@@ -222,3 +222,9 @@ supabaseFetch('spieler', 'id, name, blocked, podium', "", "", "", 'name', false)
     refreshPodiumbox();
 });
 
+
+// Dummys
+for (let i = 0; i < 20; i++) {
+    // id=i+5000 damit die id nicht gleich einer id der "echten" in supabase von screen kreierten user ist
+    userlistad.push(new Userad(i+5000, "DummyTEST"+i, null, false));
+}
