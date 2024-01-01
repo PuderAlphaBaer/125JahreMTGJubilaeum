@@ -13,7 +13,7 @@ class User {
     constructor(name, blocked, podium) {
         this.name = name;
         this.blocked = blocked;
-        this.podium = false;
+        this.podium = podium;
     }
 }
 
@@ -27,7 +27,7 @@ userlistad = [
 // addUser() ist die Funktion die mit data als value gecallt werden muss bei changes, der Rest klappt
 function addUser(data) {
     for (let i = 0; i < data.length; i++) {
-        userlistad.push(new User(data[i].name, data[i].blocked));
+        userlistad.push(new User(data[i].name, data[i].blocked, data[i].podium));
         console.log("%c Neuer User hinzugefügt", "color: red")
     }
     refreshPodiumbox();
@@ -73,13 +73,20 @@ const search = document.getElementById("search");
 
 search.addEventListener('input', refreshTable)
 
+function addWaitingClass() {
+    return new Promise((resolve) => {
+        document.body.classList.add('waiting');
+        resolve();
+    });
+}
+
 async function refreshTable() {
-    console.log("add");
-    body.classList.add('wating');
-    check = search.value;
+    await addWaitingClass();
+    check = search.value.toLowerCase();
     specificUser = userlistad.filter(user => user.name.toLowerCase().startsWith(check, 0) == true);
-    if (specificUser == "") {
-        ubox.innerHTML = "<p>Es wurde kein User mit einem Ihrer Suche entsprechenden Namen gefunden.</p>"
+    
+    if (specificUser.length === 0) {
+        ubox.innerHTML = "<p>Es wurde kein User mit einem Ihrer Suche entsprechenden Namen gefunden.</p>";
     } else {
         specificUser.sort((a, b) => {
             let fa = a.name.toLowerCase(),
@@ -94,11 +101,17 @@ async function refreshTable() {
             return 0;
         });
 
-        ubox.innerHTML = `  <tr>
-                                <th>Name</th>
-                                <th>Podium</th>
-                            </tr>`
-        for(let i=0; i<specificUser.length; i++) {
+        ubox.innerHTML = `
+            <tr>
+                <th>Name</th>
+                <th>Podium</th>
+            </tr>`;
+
+
+        // refresh UI
+        await new Promise(resolve => requestAnimationFrame(resolve));
+
+        for (let i = 0; i < specificUser.length; i++) {
             if(specificUser[i].podium == true) {
                 checked = "checked"
             } else {
@@ -126,29 +139,28 @@ async function refreshTable() {
                                 </tr>`
         }
     }
-    test();
-
-}
-
-function test() {
-    console.log("test");
-    body.classList.remove('wating');
+    
+    document.body.classList.remove('waiting');
 }
 
 
 
-function toggle(name, cb) {
-    body.classList.add('waiting');
+
+
+async function toggle(name, cb) {
+    await addWaitingClass();     
+    // refresh UI
+    await new Promise(resolve => requestAnimationFrame(resolve));
     userIndex = userlistad.findIndex((obj => obj.name == name));
     if(cb.checked == true) {
         userlistad[userIndex].podium = true;
-        supabaseInsert("podium", ["name"], [name]).then(() => {
+        supabaseUpdate('spieler', 'podium', true, 'eq', 'name', name).then(() => {
             body.classList.remove('waiting');
             refreshPodiumbox();
         })
     } else {
         userlistad[userIndex].podium = false;
-        supabaseDelete("podium", "eq", "name", name).then(() => {
+        supabaseUpdate('spieler', 'podium', false, 'eq', 'name', name).then(() => {
             body.classList.remove('waiting');
             refreshPodiumbox();
         })
@@ -462,15 +474,5 @@ userlistad.push(new User("Christian", null));
 
 }
 
-
-supabaseFetch("podium", "name", "", "", "", "name", true).then((data) => {
-    console.log(data);
-    for (let i = 0; i < data.length; i++) {
-        userIndex = userlistad.findIndex((obj => obj.name == data[i].name));
-        userlistad[userIndex].podium = true;
-    }
-    refreshPodiumbox();
-});
-
-
 createDummies();
+refreshTable();

@@ -211,3 +211,21 @@ const fragenUpdates = database.channel('fragenUpdates')
         }
     )
     .subscribe()
+
+
+
+
+
+const spielerUpdates = database.channel('fragenUpdates')
+    .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'spieler', columns: ['name', 'blocked', 'podium']},
+        (payload) => {
+            console.log('spieleradmin', payload)
+            console.log(payload.new)
+
+            addUser(payload);
+            return payload;
+        }
+    )
+    .subscribe()

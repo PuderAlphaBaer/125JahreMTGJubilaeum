@@ -295,11 +295,6 @@ userlist = [
 
 
 
-function addUser(id, name) {
-    userlist.push(new User(id, name, 0, 0, 0, null, false));
-    console.log("%c Neuer User hinzugefügt", "color: red")
-}
-
 // Diagramm wer für was gestimmt hat
 // Musst du nicht verstehen, hab versucht so gut wie möglich zu kommentieren, damit für Style einfacher ist
 // Im Fall der Fälle kannst du unter https://www.chartjs.org/docs/latest/ alles nachlesen
@@ -311,17 +306,19 @@ function auswertung() {
     dvotes = 0;
     updateRanking();
     
-    supabaseFetch('spieler', 'id, name, punkte, streak, vote', '', '', '', 'punkte', false).then((data) => {
+    supabaseFetch('spieler', 'id, name, punkte, streak, vote, podium', '', '', '', 'punkte', false).then((data) => {
         console.log("Beginne Auswertung")
         for (let i = 0; i < data.length; i++) {
             userIndex = userlist.findIndex((obj => obj.id == data[i].id));
-            if (userIndex==-1) {
-                addUser(data[i].id, data[i].name);
+            if (userIndex<0) {
+                userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, null, false));
+                console.log("%c Neuer User hinzugefügt", "color: red")
                 userIndex = userlist.findIndex((obj => obj.id == data[i].id));
             }
                 userlist[userIndex].punkte = data[i].punkte;
                 userlist[userIndex].streak = data[i].streak;
                 userlist[userIndex].vote = data[i].vote;
+                userlist[userIndex].podium = data[i].podium;
                 userlist[userIndex].rank = i+1;
                 
                 switch (data[i].vote) {
@@ -343,6 +340,7 @@ function auswertung() {
                 }
             
         }
+
         console.log("end auswertung")
 
 
@@ -449,7 +447,7 @@ function fetchRangliste() {
             utype = "normaluser";
         }
 
-        if(i==3) {
+        if(i==10) {
             document.getElementById('table').innerHTML += `
     <tr class="emptycolumn">
         <td class="spacecol"</td>
@@ -459,11 +457,11 @@ function fetchRangliste() {
     </tr>`;
         }
 
-        if(i<3) {
+        if(i<11) {
             userupdate(userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
         } else {
             if (utype=="podium") {
-                if(i-1>2 && userlist[i-1].podium==false) {
+                if(i-1>10 && userlist[i-1].podium==false) {
                     emptycolumn();
                 }
                 userupdate(userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
@@ -503,17 +501,6 @@ function emptycolumn() {
     </tr>`;
 }
 
-// const reseto = document.getElementById('resetFragen');
-// reseto.addEventListener('click', function() {
-//     for (let i = 0; i < questions.length; i++) {
-//         console.log('%c resete frage' + i, 'background: #222; color: #bada55')
-//         supabaseUpdate('fragen', ['beginn', 'start', 'ende'], [false, false, false], 'eq', 'id', i)
-//     }
-// })
-// resettu.addEventListener('click', function() {
-//     supabaseDeleteAll('spieler');
-// })
-
 
 function checkStarting () {
     console.log('nix')
@@ -528,55 +515,16 @@ function checkStarting () {
 
 
 
-
-
-
-supabaseDeleteAll('spieler');
-
-async function resetFragen() {
-
-    await supabaseDeleteAll('fragen');
-
-    for (let i = 0; i < questions.length; i++) {
-        supabaseInsert("fragen", ["id"], [i])
-    }
-}
-
-resetFragen();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Entwicklertools
 
 function addDummys() {
 
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [1, "Dummy1", 90, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak", "podium"], [1, "Dummy1", 90, 0, true]);
     supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [2, "Dummy2", 18, 0]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [3, "Dummy3", 17, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak", "podium"], [3, "Dummy3", 17, 0, true]);
     supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [4, "Dummy4", 100, 3]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [5, "Dummy5", 0, 0]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [6, "Dummy6", 19, 0]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak", "podium"], [5, "Dummy5", 0, 0, true]);
+    supabaseInsert("spieler", ["id", "name", "punkte", "streak", "podium"], [6, "Dummy6", 19, 0, true]);
     supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [7, "Dummy7", 20, 0]);
     supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [8, "Dummy8", 0, 0]);
     supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [9, "Dummy9", 70, 0]);
@@ -587,28 +535,7 @@ function addDummys() {
     supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [14, "Dummy14", 0, 0]);
     supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [15, "Dummy15", 0, 0]);
 
-    addUser(1, "Dummy1");
-    addUser(2, "Dummy2");
-    addUser(3, "Dummy3");
-    addUser(4, "Dummy4");
-    addUser(5, "Dummy5");
-    addUser(6, "Dummy6");
-    addUser(7, "Dummy7");
-    addUser(8, "Dummy8");
-    addUser(9, "Dummy9");
-    addUser(10, "Dummy10");
-    addUser(11, "Dummy11");
-    addUser(12, "Dummy12");
-    addUser(13, "Dummy13");
-    addUser(14, "Dummy14");
-    addUser(15, "Dummy15");
-
-    userlist[2].podium = true;
-    userlist[5].podium = true;
-    userlist[6].podium = true;
-    userlist[0].podium = true;
 }
-
 
 
 
@@ -668,3 +595,28 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
 
     nchart();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function resetFragen() {
+      
+    await supabaseDeleteAll('spieler');
+    await supabaseDeleteAll('fragen');
+
+    for (let i = 0; i < questions.length; i++) {
+        supabaseInsert("fragen", ["id"], [i])
+    }
+    addDummys();
+}
+
+resetFragen();
