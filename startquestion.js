@@ -148,6 +148,7 @@ function phase3() {
   btclick("b");
   console.log("%cPhase 3", "color: red; font-size: 20px; font-weight: bold;");
 
+  toggleInterface(phase3box);
   clearInterval(timerLoop);
   s1.style.display = "none";
   s2.style.display = "none";
@@ -211,6 +212,27 @@ function phase4() {
     }
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
