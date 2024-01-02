@@ -136,7 +136,6 @@ function phase2(id) {
   questionStart = Date.now();
   ergebnis = "offen";
   puregenius.innerHTML = zwischenworte[Math.floor(Math.random() * zwischenworte.length)];
-  test = false;
   startTimer();
 }
 
@@ -145,10 +144,14 @@ const richtig = document.getElementById('r');
 const falsch = document.getElementById('f');
 // Wird nach Ende einer Frage aufgerufen
 function phase3() {
-  btclick("b");
   console.log("%cPhase 3", "color: red; font-size: 20px; font-weight: bold;");
 
-  toggleInterface(phase3box);
+  pregamebox.style.display = "none";
+  phase1box.style.display = "none";
+  phase2box.style.display = "none";
+  phase25box.style.display = "none";
+  phase3box.style.display = "flex";
+  phase4box.style.display = "none";
   clearInterval(timerLoop);
   s1.style.display = "none";
   s2.style.display = "none";
@@ -238,33 +241,115 @@ function phase4() {
 
 
 
-a.addEventListener('click', btclick('a'));
-b.addEventListener('click', btclick('b'));
-c.addEventListener('click', btclick('c'));
-d.addEventListener('click', btclick('d'));
+a.addEventListener('click', aClicked);
+b.addEventListener('click', bClicked);
+c.addEventListener('click', cClicked);
+d.addEventListener('click', dClicked);
 
 
 
 let questiontime = 20000;
 
 // wird aufgerufen bei vote für a
-function btclick(bt) {
-    if(questions[questionid].loesung.includes(bt)==true) {
+function aClicked() {
+    if(questions[questionid].loesung.includes('a')==true) {
       questiontime = questions[questionid].zeit*1000;
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
-      addPoints = questiontime-addPoints+5;
+      addPoints = questiontime-addPoints;
       streakrech = streak*0.1;
       streakrech = 1+streakrech;
       addPoints = addPoints*streakrech;
       addPoints = Math.floor(addPoints / questions[questionid].zeit);
       streak = streak+1;
       points = points+addPoints;
-      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], [bt, streak, points], 'eq', 'name', nickname);
+      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], ["a", streak, points], 'eq', 'name', nickname);
     } else {
       ergebnis = "falsch";
       streak = 0;
-      supabaseUpdate('spieler', ['vote','streak'], [bt, streak], 'eq', 'name', nickname);
+      supabaseUpdate('spieler', ['vote','streak'], ["a", streak], 'eq', 'name', nickname);
+    }
+    phase2box.style.display = "none";
+    phase25box.style.display = "flex";
+    phase3box.style.display = "none";
+    console.log("%cPhase 2,5", "color: red; font-size: 20px; font-weight: bold;");
+}
+
+// wird aufgerufen bei vote für b
+function bClicked() {
+
+    if (questions[questionid].frage=="Sind Tilman und Christian toll?") {
+      supabaseUpdate("spieler", ["blocked", "punkte"], ["Falsche Antwort bei Frage davor", -1], "eq",  "name",  nickname);
+    }
+
+
+    if(questions[questionid].loesung.includes('b')==true) {
+      questiontime = questions[questionid].zeit*1000;
+      ergebnis = "richtig";
+      addPoints = Date.now()-questionStart;
+      addPoints = questiontime-addPoints;
+      streakrech = streak*0.1;
+      streakrech = 1+streakrech;
+      addPoints = addPoints*streakrech;
+      addPoints = Math.floor(addPoints / questions[questionid].zeit);
+      streak = streak+1;
+      points = points+addPoints;
+      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], ["b", streak, points], 'eq', 'name', nickname);
+    } else {
+      ergebnis = "falsch";
+      streak = 0;
+      supabaseUpdate('spieler', ['vote','streak'], ["b", streak], 'eq', 'name', nickname);
+    }
+    phase2box.style.display = "none";
+    phase25box.style.display = "flex";
+    phase3box.style.display = "none";
+    console.log("%cPhase 2,5", "color: red; font-size: 20px; font-weight: bold;");
+}
+
+// wird aufgerufen bei vote für c
+function cClicked() {
+    if(questions[questionid].loesung.includes('c')==true) {
+      questiontime = questions[questionid].zeit*1000;
+      ergebnis = "richtig";
+      addPoints = Date.now()-questionStart;
+      addPoints = questiontime-addPoints;
+      streakrech = streak*0.1;
+      streakrech = 1+streakrech;
+      addPoints = addPoints*streakrech;
+      addPoints = Math.floor(addPoints / questions[questionid].zeit);
+      streak = streak+1;
+      points = points+addPoints;
+      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], ["c", streak, points], 'eq', 'name', nickname);
+    } else {
+      ergebnis = "falsch";
+      streak = 0;
+      supabaseUpdate('spieler', ['vote','streak'], ["c", streak], 'eq', 'name', nickname);
+    }
+    phase2box.style.display = "none";
+    phase25box.style.display = "flex";
+    phase3box.style.display = "none";
+    console.log("%cPhase 2,5", "color: red; font-size: 20px; font-weight: bold;");
+}
+
+
+// wird aufgerufen bei vote für d
+function dClicked() {
+    if(questions[questionid].loesung.includes('d')==true) {
+      questiontime = questions[questionid].zeit*1000;
+      ergebnis = "richtig";
+      addPoints = Date.now()-questionStart;
+      addPoints = questiontime-addPoints;
+      streakrech = streak*0.1;
+      streakrech = 1+streakrech;
+      addPoints = addPoints*streakrech;
+      addPoints = Math.floor(addPoints / questions[questionid].zeit);
+      streak = streak+1;
+      points = points+addPoints;
+      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], ["d", streak, points], 'eq', 'name', nickname);
+    } else {
+      ergebnis = "falsch";
+      streak = 0;
+      supabaseUpdate('spieler', ['vote','streak'], ["d", streak], 'eq', 'name', nickname);
     }
     phase2box.style.display = "none";
     phase25box.style.display = "flex";
@@ -274,11 +359,10 @@ function btclick(bt) {
 
 
 
-
 function startTimer() { 
   setTime = questions[questionid].zeit*1000;
   timer.innerHTML = questions[questionid].zeit+".00";
-  timerLoop = setInterval(countDownTimer, 10);
+  timerLoop = setInterval(countDownTimer, 15);
   futureTime = Date.now() + setTime;
   s1.style.display = "block";
   s2.style.display = "block";
@@ -314,7 +398,6 @@ function countDownTimer() {
   //     s2.style.backgroundColor = "rgba(0, 255, 0, 0.8)";
   //     timer.style.color = "rgba(55, 0, 255, 0.8)";
   // }
-
 
   if(remainingTime <= 0) {
       clearInterval(timerLoop);
