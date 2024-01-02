@@ -40,8 +40,8 @@ function addUser(data) {
 
 let ban;
 
-function report(uname, uid) {
-    userIndex = userlistad.findIndex((obj => obj.name == uname));
+function report(id, uname) {
+    userIndex = userlistad.findIndex((obj => obj.id == id));
     if(userlistad[userIndex].podium == true) {
         podban = confirm(`Der User "${uname}" befindet sich auf dem Podium, wollen Sie ihn trotzdem sperren und vom Podium entfernen?`);
         if (podban == true) {
@@ -49,7 +49,7 @@ function report(uname, uid) {
             if ((ban )== null || ban == "") {
                 console.log("bann abgebrochen");
             } else {
-                supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "id", uid)
+                supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "id", id)
                 userlistad[userIndex].blocked = ban;
                 userlistad[userIndex].podium = false;
                 refreshPodiumbox();
@@ -62,7 +62,7 @@ function report(uname, uid) {
         if ((ban )== null || ban == "") {
             console.log("bann abgebrochen");
         } else {
-                supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "id", uid)
+                supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "id", id)
                 userlistad[userIndex].blocked = ban;
                 userlistad[userIndex].podium = false;
                 refreshPodiumbox();
@@ -128,7 +128,7 @@ async function refreshTable() {
                                         </label>
                                     </td>
                                     <td class="ureport">
-                                        <div class="report" onclick="report('${specificUser[i].id}')">Sperren</div>
+                                        <div class="report" onclick="report('${specificUser[i].id}', '${specificUser[i].name}')">Sperren</div>
                                     </td>`
                 clas = "udata";
             } else {
@@ -144,7 +144,6 @@ async function refreshTable() {
     
     document.body.classList.remove('waiting');
 }
-
 
 
 
