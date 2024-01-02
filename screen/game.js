@@ -269,7 +269,7 @@ function timerend() {
     document.body.classList.add('waiting');
     setTimeout(() => {
         auswertung();
-    }, 1000);
+    }, 500);
 
 }
 
@@ -646,7 +646,6 @@ async function resetFragen() {
     for (let i = 0; i < questions.length; i++) {
         supabaseInsert("fragen", ["id"], [i])
     }
-    addDummys();
 }
 
 resetFragen();
