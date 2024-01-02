@@ -176,7 +176,7 @@ table, th, td {
 .pbox {
     left: 0;
     top: 20%;
-    position: absolute;
+    position: fixed;
 }
 
 body.waiting * {

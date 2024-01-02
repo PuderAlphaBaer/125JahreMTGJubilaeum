@@ -136,6 +136,7 @@ function phase2(id) {
   questionStart = Date.now();
   ergebnis = "offen";
   puregenius.innerHTML = zwischenworte[Math.floor(Math.random() * zwischenworte.length)];
+  test = false;
   startTimer();
 }
 
@@ -362,7 +363,7 @@ function dClicked() {
 function startTimer() { 
   setTime = questions[questionid].zeit*1000;
   timer.innerHTML = questions[questionid].zeit+".00";
-  timerLoop = setInterval(countDownTimer, 15);
+  timerLoop = setInterval(countDownTimer, 10);
   futureTime = Date.now() + setTime;
   s1.style.display = "block";
   s2.style.display = "block";
@@ -398,6 +399,11 @@ function countDownTimer() {
   //     s2.style.backgroundColor = "rgba(0, 255, 0, 0.8)";
   //     timer.style.color = "rgba(55, 0, 255, 0.8)";
   // }
+
+  if(remainingTime<=15 && test==false) {
+    a.click();
+    test = true;
+  }
 
   if(remainingTime <= 0) {
       clearInterval(timerLoop);
