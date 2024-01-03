@@ -16,7 +16,6 @@ class Frage {
     }
   }
 
-  // ID brauchen wir nicht, oder?
 
 const pretime = 1000;
 
