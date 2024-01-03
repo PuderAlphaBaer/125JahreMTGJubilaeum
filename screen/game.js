@@ -521,7 +521,7 @@ function userupdate(id, rank, uname, score, streak, type) {
         cb = "";
     }
     document.getElementById('table').innerHTML += `
-    <tr class="${type} row">
+    <tr class="${type} row" id="${id}row">
         <td class="${type} rank">${rank}</th>
         <td class="${type} uname">${uname}</th>
         <td class="${type} score">${score}</th>
@@ -555,10 +555,14 @@ function toggle(id, cb) {
     userIndex = userlist.findIndex((obj => obj.id == id));
     if(cb.checked == true) {
         userlist[userIndex].podium = true;
-        supabaseUpdate('spieler', ['podium'], [true], 'eq', 'id', id)
+        supabaseUpdate('spieler', ['podium'], [true], 'eq', 'id', id);
+        document.getElementById(id+"row").classList.remove('normaluser');
+        document.getElementById(id+"row").classList.add('podium');
     } else {
         userlist[userIndex].podium = false;
-        supabaseUpdate('spieler', ['podium'], [false], 'eq', 'id', id)
+        supabaseUpdate('spieler', ['podium'], [false], 'eq', 'id', id);
+        document.getElementById(id+"row").classList.remove('podium');
+        document.getElementById(id+"row").classList.add('normaluser');
     }
 }
 
@@ -668,10 +672,10 @@ async function reset() {
 }
 
 function noReset() {
-    supabaseFetch('fragen', 'start', '', '', '', 'id', false).then((data) => {
-
+    supabaseFetch('fragen', 'beginn, id', '', '', '', 'id', true).then((data) => {
+        console.log(data);
         for (let i = 0; i < data.length; i++) {
-            if (data[i].start==true) {
+            if (data[i].beginn==true) {
                 activequestionid = data[i].id;
                 console.log(activequestionid)
             }
@@ -680,4 +684,4 @@ function noReset() {
 }
 
 
-confirm("Die Spieler und Fragen werden jetzt zurückgesetzt") ? reset() : noReset();
+confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n Wenn sie Abbrechen drücken, wird das nächste Quiz forgesetzt.") ? reset() : noReset();
