@@ -128,6 +128,7 @@ function startGame() {
     document.body.style.backgroundColor = "gray";
     toggleInterface(pregamebox);
     console.log("püntklich");
+    window.addEventListener("beforeunload", beforeUnloadHandler);
 }
 
 

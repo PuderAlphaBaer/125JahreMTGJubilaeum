@@ -35,6 +35,25 @@ const subbutton = document.getElementById('subButton');
 
 let activequestionid = 0;
 
+
+
+
+
+
+const beforeUnloadHandler = (event) => {
+    // Recommended
+    event.preventDefault();
+  
+    // Included for legacy support, e.g. Chrome/Edge < 119
+    event.returnValue = "Wollen Sie die Seite wirklich verlassen? Die kann zu erheblichen Fehlern im laufenden Quiz führen";
+  };
+  
+
+  window.addEventListener("beforeunload", beforeUnloadHandler);
+
+
+
+
 startgamebt.addEventListener('click', startgame);
 bt1.addEventListener('click', interphase1);
 bt2.addEventListener('click', weiter);
@@ -638,7 +657,7 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
 
 
 
-async function resetFragen() {
+async function reset() {
       
     await supabaseDeleteAll('spieler');
     await supabaseDeleteAll('fragen');
@@ -648,4 +667,17 @@ async function resetFragen() {
     }
 }
 
-resetFragen();
+function noReset() {
+    supabaseFetch('fragen', 'start', '', '', '', 'id', false).then((data) => {
+
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].start==true) {
+                activequestionid = data[i].id;
+                console.log(activequestionid)
+            }
+        }
+    })
+}
+
+
+confirm("Die Spieler und Fragen werden jetzt zurückgesetzt") ? reset() : noReset();

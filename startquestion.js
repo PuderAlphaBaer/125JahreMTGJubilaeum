@@ -404,3 +404,12 @@ function countDownTimer() {
   }
 
 }
+
+const beforeUnloadHandler = (event) => {
+  // Recommended
+  event.preventDefault();
+
+  // Included for legacy support, e.g. Chrome/Edge < 119
+  event.returnValue = "Wollen Sie das Quiz wirklich verlassen? Ihr Account wird nicht gespeichert.";
+};
+
