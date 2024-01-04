@@ -298,7 +298,7 @@
 
 
 .barContainer {
-    background-color: white;
+    background-color: orange;
     width: 80%;
     height: 4%;
     position: absolute;
@@ -307,7 +307,7 @@
 }
 
 .bar {
-    background-color: blue;
+    background-color: gray;
     width: 0%;
     height: 100%;
     right: 0;
@@ -321,8 +321,16 @@
 }
 
 .frage1 {
-    font-size: 5vh;
-    padding-bottom: 25%;
+    border: black solid 0.5vmin;
+    position: absolute;
+    top: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 30vh;
+    font-size: 5vw;
+    text-align: justify;
 }
 
 

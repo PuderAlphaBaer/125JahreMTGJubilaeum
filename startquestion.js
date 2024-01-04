@@ -15,6 +15,9 @@ const timer = document.getElementById('timertext');
 const s1 = document.getElementById('s1');
 const s2 = document.getElementById('s2');
 const s3 = document.getElementById('s3');
+// HIERHEHRIHIEHIHIEHIHIEHIHEIHIEIIEHRIHEIRHI
+const punktZahl = document.getElementById('punktZahl');
+
 
 let setTime;
 let timerLoop;
