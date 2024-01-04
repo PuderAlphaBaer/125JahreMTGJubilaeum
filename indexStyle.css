@@ -3,8 +3,9 @@
     padding: 0;
     font-size: 2vmax;
     font-family: 'Roboto', sans-serif;
-    color: white;
     text-decoration: none;
+    box-sizing: border-box;
+    user-select: none;
 }
 
 
@@ -195,12 +196,18 @@
 }
 
 .unerror {
-    font-size: x-large;
+    font-size:3vw;
     width: 80%;
-    height: fit-content;
+    height: 3vh;
     color: red;
 }
-
+.hallo {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .inputWrapper {
     display: flex;
     width: 80%;
@@ -211,7 +218,7 @@
 .inputbox {
     position: absolute;
     top: 40vh;
-    height: fit-content;
+    height: 10vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -220,10 +227,10 @@
 }
 .tb1 {
     display: flex;
-    font-size: xx-large;
-    height: 5vh;
+    font-size: 5vw;
+    height: 7vh;
     padding: 1vmax;
-    width: 75%;
+    width: 70%;
     color: black;
     &.error
     {
@@ -231,15 +238,17 @@
     }
 }
 .spacer {
-    width: 5%;
+    width: 3%;
 }
 .submit {
-    width: 20%;
-    font-size: xx-large;
+    color: white;
+    width: 27%;
+    height: 7vh;
+    font-size: 4vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: white solid 0.5vh;
+    border: white solid 0.2vh;
     border-radius: 2vh;
     background: linear-gradient(to right, rgb(255, 183, 10), rgb(125, 241, 38), rgb(13, 124, 240), rgb(209, 100, 255));
 
