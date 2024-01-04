@@ -120,10 +120,15 @@ submitbutton.addEventListener('click', login);
 
 const userBox = document.getElementById('userBox');
 userBox.style.display = "none";
+const punkteBox = document.getElementById('punkteBox');
+punkteBox.style.display = "none";
+
 
 function startGame() {
   userBox.style.display = "block";
   userBox.innerHTML = 'Du bist '+nickname;
+  punkteBox.style.display = "block";
+
   toggleInterface(pregamebox);
   console.log("püntklich");
   window.addEventListener("beforeunload", beforeUnloadHandler);

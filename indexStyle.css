@@ -275,6 +275,18 @@
     border: black solid 0.5vmin;
     z-index: 1;
 }
+.punkteBox {
+    font-size: 4vw;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 1vmax;
+    padding: 1vmin;
+    border-radius: 1vmax;
+    background-color: white;
+    border: black solid 0.5vmin;
+    z-index: 1;
+}
 
 .phasebox {
     display: flex;
