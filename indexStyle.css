@@ -203,10 +203,8 @@
 }
 .hallo {
     color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    top: 10vh;
 }
 .inputWrapper {
     display: flex;

@@ -119,13 +119,14 @@ submitbutton.addEventListener('click', login);
 
 
 const userBox = document.getElementById('userBox');
-
+userBox.style.display = "none";
 
 function startGame() {
-    userBox.innerHTML = 'Du bist '+nickname;
-    toggleInterface(pregamebox);
-    console.log("püntklich");
-    window.addEventListener("beforeunload", beforeUnloadHandler);
+  userBox.style.display = "block";
+  userBox.innerHTML = 'Du bist '+nickname;
+  toggleInterface(pregamebox);
+  console.log("püntklich");
+  window.addEventListener("beforeunload", beforeUnloadHandler);
 }
 
 
