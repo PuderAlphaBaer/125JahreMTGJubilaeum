@@ -5,14 +5,9 @@
     font-family: 'Roboto', sans-serif;
     color: white;
     text-decoration: none;
-    box-sizing: border-box;
-    user-select: none;
 }
 
-body {
-    background-image: url(/Data/bakka.png);
-    background-repeat: repeat;
-}
+
 
 .buttonSurContainer {
     display: flex;
@@ -200,15 +195,15 @@ body {
 }
 
 .unerror {
-    font-size: 1.5vh;
-    width: 70%;
+    font-size: x-large;
+    width: 80%;
     height: fit-content;
     color: red;
 }
 
 .inputWrapper {
     display: flex;
-    width: 100vw;
+    width: 80%;
     flex-direction: row;
     justify-content: center;
 }
@@ -217,7 +212,7 @@ body {
     position: absolute;
     top: 40vh;
     height: fit-content;
-    width: 100vw; 
+    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -225,25 +220,37 @@ body {
 }
 .tb1 {
     display: flex;
-    font-size: 2.5vh;
+    font-size: xx-large;
     height: 5vh;
     padding: 1vmax;
-    width: 60%;
+    width: 75%;
     color: black;
     &.error
     {
       animation: shake 0.2s ease-in-out 0s 2;
     }
 }
+.spacer {
+    width: 5%;
+}
 .submit {
+    width: 20%;
+    font-size: xx-large;
     display: flex;
-    font-size: 2.5vh;
-    height: 5vh;
-    padding: 1vmax;
-    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    border: white solid 0.5vh;
+    border-radius: 2vh;
+    background: linear-gradient(to right, rgb(255, 183, 10), rgb(125, 241, 38), rgb(13, 124, 240), rgb(209, 100, 255));
+
+}
+.submit:active {
+    background: linear-gradient(to right, rgb(239, 141, 10), rgb(86, 165, 26), rgb(9, 85, 164), rgb(169, 90, 229));
 }
 
 .biginputbox {
+    background-image: url("Data/hinter.svg");
+    background-size: 100% 100%;
     display: flex;
     width: 100vw;
     height: 100vh;
