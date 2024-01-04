@@ -123,9 +123,6 @@ const userBox = document.getElementById('userBox');
 
 function startGame() {
     userBox.innerHTML = 'Du bist '+nickname;
-    // remove background image of body
-    document.body.style.backgroundImage = "none";
-    document.body.style.backgroundColor = "gray";
     toggleInterface(pregamebox);
     console.log("püntklich");
     window.addEventListener("beforeunload", beforeUnloadHandler);

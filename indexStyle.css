@@ -266,6 +266,17 @@
     flex-direction: column;
 }
 
+.userBox {
+    font-size: 4vw;
+    position: absolute;
+    bottom: 0;
+    margin: 1vmax;
+    padding: 1vmin;
+    border-radius: 1vmax;
+    background-color: white;
+    border: black solid 0.5vmin;
+    z-index: 1;
+}
 
 .phasebox {
     display: flex;
@@ -351,8 +362,13 @@
     display: block;
 }
 
+#pregamebox {
+    background-image: url("Data/hinter.svg");
+    background-size: 100% 100%;
+}
+
 .tbox1text {
-    font-size: 6vh;
+    font-size: 8vw;
 }
 
 .imgbox {
