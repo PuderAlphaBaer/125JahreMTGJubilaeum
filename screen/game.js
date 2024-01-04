@@ -31,7 +31,7 @@ const imgbox = document.getElementById('imgbox');
 const img = document.getElementById('img');
 const zweiterContainer = document.getElementById('ersterContainer');
 const subbutton = document.getElementById('subButton');
-
+const endbox = document.getElementById('endbox');
 
 let activequestionid = 0;
 
@@ -180,11 +180,17 @@ function weiter() {
     bt1.innerHTML = "Starte Frage "+(activequestionid+1)+" von "+(questions.length-1);
     supabaseUpdate('spieler', ['vote'], [null], 'gt', 'id', '-1');
     if (activequestionid==questions.length-1) {
-        bt1.style.display = "none";
-        alert("ENDEGELÄNDE");
+        theend();
     }
 }
 
+
+function theend() {
+    gamebox.style.display = "none";
+    endbox.style.display = "flex";
+
+
+}
   
 const timer = document.getElementById('timertext');
 const s1 = document.getElementById('s1');
@@ -662,10 +668,8 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
 
 
 async function reset() {
-      
     await supabaseDeleteAll('spieler');
     await supabaseDeleteAll('fragen');
-
     for (let i = 0; i < questions.length; i++) {
         supabaseInsert("fragen", ["id"], [i])
     }
@@ -680,8 +684,17 @@ function noReset() {
                 console.log(activequestionid)
             }
         }
+        // Wenn letzte Frage schon gespiel wurde
+        if(activequestionid==questions.length-1) {
+            ende();
+        }
     })
 }
 
+async function ende() {
+    await auswertung();
+    weiter();
+}
 
-confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n Wenn sie Abbrechen drücken, wird das nächste Quiz forgesetzt.") ? reset() : noReset();
+
+confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? reset() : noReset();
