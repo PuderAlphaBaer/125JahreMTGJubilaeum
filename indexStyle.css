@@ -267,7 +267,6 @@
 .userBox {
     font-size: 4vw;
     position: absolute;
-    bottom: 0;
     margin: 1vmax;
     padding: 1vmin;
     border-radius: 1vmax;
@@ -278,7 +277,6 @@
 .punkteBox {
     font-size: 4vw;
     position: absolute;
-    bottom: 0;
     right: 0;
     margin: 1vmax;
     padding: 1vmin;
