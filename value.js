@@ -37,22 +37,22 @@ const questions = [
   new Frage("Wer hat die Relativitätstheorie formuliert?", "Isaac Newton", "Albert Einstein", "", "", "b", 5, false),
   new Frage("Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?", "Willy Brandt", "Helmut Kohl", "Konrad Adenauer", "Gerhard Schröder", "c", 5, false),
   new Frage("Was ist die Quadratwurzel von 144?", "12", "14", "16", "18", "a", 5, false),
-  new Frage("Wer hat 'Faust' geschrieben?", "Friedrich Schiller", "Thomas Mann", "Johann Wolfgang von Goethe", "Bertolt Brecht", "c", 15, false),
-  new Frage("Wer war der erste Mensch im Weltraum?", "Herr Eschrich", "Yuri Gagarin", "Neil Armstrong", "Alexander Gerst",  "b", 15, false),
-  new Frage("Was ist der Sinus von 90 Grad?", "0", "1", "-1", "2", "b", 15, false),
-  new Frage("Welches der folgenden Bauten ist keines der sieben Weltwunder der Antike?", "Pyramiden von Gizeh", "Freiheitsstatue", "Koloss dvon Rhodos", "Zeusstatue", "b", 15, false),
-  new Frage("Wer hat die Mona Lisa gemalt?", "Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet", "c", 15, false),
-  new Frage("Was ist die Wurzel aus -1?", "es gibt keine Lösung", "1", "-1", "i", ["a","d"], 15, false),
-  new Frage("Was ist die Hauptstadt von Frankreich?", "Berlin", "London", "Madrid", "Paris", "d", 15, false),
-  new Frage("Was ist der längste Fluss der Welt?", "Amazonas", "Nil", "Jangtse", "Mississippi", "b", 15, false),
-  new Frage("Wer war der erste Mensch auf dem Mond?", "Yuri Gagarin", "Alexander Gerst", "Neil Armstrong", "Michael Collins", "c", 15, false),
-  new Frage("Was ist der größte Planet in unserem Sonnensystem?", "Erde", "Mars", "Jupiter", "Venus", "c", 15, false),
-  new Frage("Wer hat die Theorie der Evolution durch natürliche Selektion vorgeschlagen?", "Charles Darwin", "Gregor Mendel", "Louis Pasteur", "Alexander Fleming", "a", 15, false),
-  new Frage("Was ist die Hauptstadt von Australien?", "Sydney", "Melbourne", "Canberra", "Neuseeland", "c", 15, false)
+  new Frage("Wer hat 'Faust' geschrieben?", "Friedrich Schiller", "Thomas Mann", "Johann Wolfgang von Goethe", "Bertolt Brecht", "c", 5, false),
+  // new Frage("Wer war der erste Mensch im Weltraum?", "Herr Eschrich", "Yuri Gagarin", "Neil Armstrong", "Alexander Gerst",  "b", 15, false),
+  // new Frage("Was ist der Sinus von 90 Grad?", "0", "1", "-1", "2", "b", 15, false),
+  // new Frage("Welches der folgenden Bauten ist keines der sieben Weltwunder der Antike?", "Pyramiden von Gizeh", "Freiheitsstatue", "Koloss dvon Rhodos", "Zeusstatue", "b", 15, false),
+  // new Frage("Wer hat die Mona Lisa gemalt?", "Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet", "c", 15, false),
+  // new Frage("Was ist die Wurzel aus -1?", "es gibt keine Lösung", "1", "-1", "i", ["a","d"], 15, false),
+  // new Frage("Was ist die Hauptstadt von Frankreich?", "Berlin", "London", "Madrid", "Paris", "d", 15, false),
+  // new Frage("Was ist der längste Fluss der Welt?", "Amazonas", "Nil", "Jangtse", "Mississippi", "b", 15, false),
+  // new Frage("Wer war der erste Mensch auf dem Mond?", "Yuri Gagarin", "Alexander Gerst", "Neil Armstrong", "Michael Collins", "c", 15, false),
+  // new Frage("Was ist der größte Planet in unserem Sonnensystem?", "Erde", "Mars", "Jupiter", "Venus", "c", 15, false),
+  // new Frage("Wer hat die Theorie der Evolution durch natürliche Selektion vorgeschlagen?", "Charles Darwin", "Gregor Mendel", "Louis Pasteur", "Alexander Fleming", "a", 15, false),
+  // new Frage("Was ist die Hauptstadt von Australien?", "Sydney", "Melbourne", "Canberra", "Neuseeland", "c", 15, false)
 
 
 
-  // new Frage ("Bei einer Kosten-Nutzen-Analyse sollte was überwiegen, sodass man sich für die Alternative entscheiden würde?", "Nutzen", "Bargeld", "Kosten", "Freizeit", "a", 15, false),
+  // // new Frage ("Bei einer Kosten-Nutzen-Analyse sollte was überwiegen, sodass man sich für die Alternative entscheiden würde?", "Nutzen", "Bargeld", "Kosten", "Freizeit", "a", 15, false),
 
   // new Frage ("Was steht im Konflikt, sodass der Mensch (ständig) wirtschaftliche Entscheidungen treffen muss?", "Begrenzte Bedürfnisse und Begrenzte Güter", "Unbegrenzte Bedürfnisse und Unbegrenzte Güter", "Unbegrenzte Bedürfnisse und Begrenzte Güter", "Begrenzte Bedürfnisse und Unbegrenzte Güter", "c", 15, false),
 

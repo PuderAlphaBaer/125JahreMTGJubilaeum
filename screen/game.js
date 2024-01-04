@@ -181,7 +181,6 @@ function weiter() {
     supabaseUpdate('spieler', ['vote'], [null], 'gt', 'id', '-1');
     if (activequestionid==questions.length-1) {
         bt1.style.display = "none";
-        alert("ENDEGELÄNDE");
     }
 }
 
@@ -662,10 +661,8 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
 
 
 async function reset() {
-      
     await supabaseDeleteAll('spieler');
     await supabaseDeleteAll('fragen');
-
     for (let i = 0; i < questions.length; i++) {
         supabaseInsert("fragen", ["id"], [i])
     }
@@ -680,8 +677,17 @@ function noReset() {
                 console.log(activequestionid)
             }
         }
+        // Wenn letzte Frage schon gespiel wurde
+        if(activequestionid==questions.length-1) {
+            ende();
+        }
     })
 }
 
+async function ende() {
+    await auswertung();
+    weiter();
+}
 
-confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n Wenn sie Abbrechen drücken, wird das nächste Quiz forgesetzt.") ? reset() : noReset();
+
+confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? reset() : noReset();
