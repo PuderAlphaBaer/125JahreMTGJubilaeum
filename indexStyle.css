@@ -321,7 +321,6 @@
 }
 
 .frage1 {
-    border: black solid 0.5vmin;
     position: absolute;
     top: 10vh;
     display: flex;
@@ -329,15 +328,10 @@
     align-items: center;
     width: 80%;
     height: 30vh;
-    font-size: 5vw;
-    text-align: justify;
+    font-size: 6vw;
+    text-align: center;
 }
 
-
-.frage2 {
-    font-size: 5vh;
-    padding-bottom: 25%;
-}
 
 
 .emoji {

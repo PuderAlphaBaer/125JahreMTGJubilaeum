@@ -17,7 +17,7 @@ class Frage {
   }
 
 
-const pretime = 1000;
+const pretime = 5000;
 
 
 const questions = [
