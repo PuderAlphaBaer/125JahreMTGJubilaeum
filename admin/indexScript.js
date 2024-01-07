@@ -49,10 +49,16 @@ function report(id, uname) {
             if ((ban )== null || ban == "") {
                 console.log("bann abgebrochen");
             } else {
-                supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "id", id)
                 userlistad[userIndex].blocked = ban;
                 userlistad[userIndex].podium = false;
-                refreshPodiumbox();
+                supabaseUpdate("spieler", ["blocked", "punkte", "streak", "podium"], [ban, -1, 0, false], "eq",  "id", id).then((data) => {
+                    if(data.length == 0) {
+                        alert("Bei der Sperrung des Users ist ein Fehler aufgetreten. Bitte laden Sie die Seite neu.\n\nSollte das Problem weiterhin bestehen, kontaktieren Sie bitte den Support (DER TOLLE TILMAN).");
+                        userlistad[userIndex].blocked = null;
+                        userlistad[userIndex].podium = true;
+                    }
+                    refreshPodiumbox();
+                })
         }
         } else {
             console.log("bann abgebrochen");
@@ -62,10 +68,14 @@ function report(id, uname) {
         if ((ban )== null || ban == "") {
             console.log("bann abgebrochen");
         } else {
-                supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "id", id)
-                userlistad[userIndex].blocked = ban;
-                userlistad[userIndex].podium = false;
+            userlistad[userIndex].blocked = ban;
+            supabaseUpdate("spieler", ["blocked", "punkte", "streak"], [ban, -1, 0], "eq",  "id", id).then((data) => {
+                if(data.length == 0) {
+                    alert("Bei der Sperrung des Users ist ein Fehler aufgetreten. Bitte laden Sie die Seite neu.\n\nSollte das Problem weiterhin bestehen, kontaktieren Sie bitte den Support (DER TOLLE TILMAN).");
+                    userlistad[userIndex].blocked = null;
+                }
                 refreshPodiumbox();
+            })
         }
     }
 };
@@ -155,14 +165,24 @@ async function toggle(id, cb) {
     userIndex = userlistad.findIndex((obj => obj.id == id));
     if(cb.checked == true) {
         userlistad[userIndex].podium = true;
-        supabaseUpdate('spieler', ['podium'], [true], 'eq', 'id', id).then(() => {
+        supabaseUpdate('spieler', ['podium'], [true], 'eq', 'id', id).then((data) => {
             body.classList.remove('waiting');
+            if(data.length == 0) {
+                userlistad[userIndex].podium = false;
+                cb.checked = false;
+                alert("Bei der Aktualisierung der Podium-Daten des Users ist ein Fehler aufgetreten. Bitte laden Sie die Seite neu.\n\nSollte das Problem weiterhin bestehen, kontaktieren Sie bitte den Support (DER TOLLE TILMAN).")
+            }
             refreshPodiumbox();
         })
     } else {
         userlistad[userIndex].podium = false;
-        supabaseUpdate('spieler', ['podium'], [false], 'eq', 'id', id).then(() => {
+        supabaseUpdate('spieler', ['podium'], [false], 'eq', 'id', id).then((data) => {
             body.classList.remove('waiting');
+            if(data.length == 0) {
+                userlistad[userIndex].podium = true;
+                cb.checked = true;
+                alert("Bei der Aktualisierung der Podium-Daten des Users ist ein Fehler aufgetreten. Bitte laden Sie die Seite neu.\n\nSollte das Problem weiterhin bestehen, kontaktieren Sie bitte den Support (DER TOLLE TILMAN).")
+            }
             refreshPodiumbox();
         })
     }

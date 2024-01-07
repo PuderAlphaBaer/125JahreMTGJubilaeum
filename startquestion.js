@@ -188,7 +188,7 @@ function phase3() {
   } else {
     punkte.innerHTML = "Du hast keine Punkte erhalten";
   }
-
+  punktZahl.innerHTML = points;
 
   // funfact.innerHTML = questions[questionid].funfact;
 }
