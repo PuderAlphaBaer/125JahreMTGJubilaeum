@@ -100,18 +100,8 @@ async function refreshTable() {
     if (specificUser.length === 0) {
         ubox.innerHTML = "<p>Es wurde kein User mit einem Ihrer Suche entsprechenden Namen gefunden.</p>";
     } else {
-        specificUser.sort((a, b) => {
-            let fa = a.name.toLowerCase(),
-                fb = b.name.toLowerCase();
-        
-            if (fa < fb) {
-                return -1;
-            }
-            if (fa > fb) {
-                return 1;
-            }
-            return 0;
-        });
+        specificUser.sort(function (a, b) {return b.id - a.id});
+
 
         ubox.innerHTML = `
             <tr>
@@ -201,18 +191,8 @@ function refreshPodiumbox() {
                                 <th>Podium-User</th>
                             </tr>`;
 
-        podiumList.sort((a, b) => {
-            let fa = a.name.toLowerCase(),
-                fb = b.name.toLowerCase();
-        
-            if (fa < fb) {
-                return -1;
-            }
-            if (fa > fb) {
-                return 1;
-            }
-            return 0;
-        });
+        podiumList.sort(function (a, b) {return b.id - a.id});
+
         for(i=0; i<podiumList.length; i++) {
             if(podiumList[i].podium == true) {
                 checked = "checked"
@@ -234,7 +214,7 @@ function refreshPodiumbox() {
 }
 
 
-supabaseFetch('spieler', 'id, name, blocked, podium', "", "", "", 'name', false).then((data) => {
+supabaseFetch('spieler', 'id, name, blocked, podium', "", "", "", 'id', true).then((data) => {
     for (let i = 0; i < data.length; i++) {
         userlistad.push(new Userad(data[i].id, data[i].name, data[i].blocked, data[i].podium));
     }
@@ -243,7 +223,11 @@ supabaseFetch('spieler', 'id, name, blocked, podium', "", "", "", 'name', false)
 
 
 // Dummys
-for (let i = 0; i < 20; i++) {
-    // id=i+5000 damit die id nicht gleich einer id der "echten" in supabase von screen kreierten user ist
-    userlistad.push(new Userad(i+5000, "DummyTEST"+i, null, false));
+function createDummys(number) {
+
+    for (let i = 0; i < number; i++) {
+        // id=i+5000 damit die id nicht gleich einer id der "echten" in supabase von screen kreierten user ist
+        userlistad.push(new Userad(i+5000, "DummyTEST"+i, null, false));
+    }
+
 }
