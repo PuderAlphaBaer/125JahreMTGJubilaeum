@@ -103,7 +103,8 @@ function phase2(id) {
   //Bann Ding
   supabaseFetch("spieler", "blocked", "eq", "name", nickname, "id", true).then((data) => {
     if(data[0].blocked!=null) {
-      alert("Du wurdest gesperrt. Grund dafür: "+data[0].blocked);
+      alert("Du wurdest gesperrt. Grund dafür:\n\n"+data[0].blocked);
+      window.removeEventListener("beforeunload", beforeUnloadHandler);
       window.location.href = "index.html";
     }
   })
