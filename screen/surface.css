@@ -318,6 +318,8 @@ td {
 
 .row {
     color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 .emptycoulumn {

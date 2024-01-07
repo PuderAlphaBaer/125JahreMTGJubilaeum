@@ -121,7 +121,7 @@ async function refreshTable() {
             }
             if (specificUser[i].blocked == null) {
                 repbox = `
-                                    <td class="udata">
+                                    <td class="uswitch">
                                         <label class="switch">
                                             <input class="switchinput" type="checkbox" onchange="toggle('${specificUser[i].id}', this)" ${checked}>
                                             <area class="switch slider"></area>
@@ -227,7 +227,8 @@ function createDummys(number) {
 
     for (let i = 0; i < number; i++) {
         // id=i+5000 damit die id nicht gleich einer id der "echten" in supabase von screen kreierten user ist
-        userlistad.push(new Userad(i+5000, "DummyTEST"+i, null, false));
+        userlistad.push(new Userad(i+5000, "Dummy"+[i+1], null, false));
     }
 
 }
+

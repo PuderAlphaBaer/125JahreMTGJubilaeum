@@ -120,7 +120,7 @@ const ranglistenlimit = 10;
 
 
 // Bei welcher Frage das Podium durchgewechselt werden soll
-const nextPodium = 3;
+const nextPodium = 2;
 
 // Wär die Mitte
 //const nextPodium = (questions.length - 1)/2;

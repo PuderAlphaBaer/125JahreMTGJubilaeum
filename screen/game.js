@@ -340,30 +340,33 @@ function auswertung() {
                 console.log("%c Neuer User hinzugefügt", "color: red")
                 userIndex = userlist.findIndex((obj => obj.id == data[i].id));
             }
-                userlist[userIndex].punkte = data[i].punkte;
-                userlist[userIndex].streak = data[i].streak;
-                userlist[userIndex].vote = data[i].vote;
-                userlist[userIndex].podium = data[i].podium;
-                userlist[userIndex].rank = i+1;
-                
-                switch (data[i].vote) {
-                    case 'a':
-                        avotes++;
-                        break;
-                    case 'b':
-                        bvotes++;
-                        break;
-                    case 'c':
-                        cvotes++;
-                        break;
-                    case 'd':
-                        dvotes++;
-                        break;
-                    default:
-                        userlist[userIndex].vote = null;
-                        break;
-                }
-            
+            if (data[i].punkte<0) {
+                userlist.splice(userIndex, 1);
+            } else {
+                    userlist[userIndex].punkte = data[i].punkte;
+                    userlist[userIndex].streak = data[i].streak;
+                    userlist[userIndex].vote = data[i].vote;
+                    userlist[userIndex].podium = data[i].podium;
+                    userlist[userIndex].rank = i+1;
+                    
+                    switch (data[i].vote) {
+                        case 'a':
+                            avotes++;
+                            break;
+                        case 'b':
+                            bvotes++;
+                            break;
+                        case 'c':
+                            cvotes++;
+                            break;
+                        case 'd':
+                            dvotes++;
+                            break;
+                        default:
+                            userlist[userIndex].vote = null;
+                            break;
+                    }
+            }            
         }
 
         console.log("end auswertung")
@@ -474,7 +477,6 @@ function fetchRangliste() {
             utype = "normaluser";
         }
 
-
         if(i<ranglistenlimit) {
             userupdate(userlist[i].id, userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
         } else {
@@ -528,10 +530,10 @@ function userupdate(id, rank, uname, score, streak, type) {
     }
     document.getElementById('table').innerHTML += `
     <tr class="${type} row" id="${id}row">
-        <td class="${type} rank">${rank}</th>
-        <td class="${type} uname">${uname}</th>
-        <td class="${type} score">${score}</th>
-        <td class="${type} streak">${sbox}</th>
+        <td class="rank">${rank}</th>
+        <td class="uname">${uname}</th>
+        <td class="score">${score}</th>
+        <td class="streak">${sbox}</th>
         ${cb}
     </tr>`;
 }
@@ -576,25 +578,6 @@ function toggle(id, cb) {
 
 // Entwicklertools
 
-function addDummys() {
-
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak", "podium"], [1, "Dummy1", 90, 0, true]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [2, "Dummy2", 18, 0]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak", "podium"], [3, "Dummy3", 17, 0, true]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [4, "Dummy4", 100, 3]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak", "podium"], [5, "Dummy5", 0, 0, true]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak", "podium"], [6, "Dummy6", 19, 0, true]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [7, "Dummy7", 20, 0]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [8, "Dummy8", 0, 0]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [9, "Dummy9", 70, 0]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [10, "Dummy10", 10, 0]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [11, "Dummy11", 0, 0]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [12, "Dummy12", 0, 0]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [13, "Dummy13", 80, 0]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [14, "Dummy14", 0, 0]);
-    supabaseInsert("spieler", ["id", "name", "punkte", "streak"], [15, "Dummy15", 0, 0]);
-
-}
 
 
 
@@ -655,7 +638,12 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
     nchart();
 }
 
-
+function addDummies(number) {
+    for (let i = 0; i < number; i++) {
+        supabaseInsert("spieler", ["name"], ["Dummy"+[i+1]])
+        console.log("Insert Dummy")
+    }
+}
 
 
 
@@ -673,6 +661,7 @@ async function reset() {
     for (let i = 0; i < questions.length; i++) {
         supabaseInsert("fragen", ["id"], [i])
     }
+    addDummies(10);
 }
 
 function noReset() {

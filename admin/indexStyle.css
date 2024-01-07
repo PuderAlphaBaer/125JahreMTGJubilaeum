@@ -11,6 +11,7 @@ body {
     text-decoration: none;
     line-height: 3vh;
     box-sizing: border-box;
+    user-select: none;
 }
 
 .rangliste {
@@ -50,25 +51,37 @@ body {
 .udata{
     width: 20vw;
     text-align: center;
-    border-spacing: 0;
+    user-select: text;
 }
-.ureport{
+
+.report{
     background-color: gray;
-    width: fit-content;
     color: lightgray;
-    padding: 0vw 1vw;
-    margin: 0.5vw 1vw;
     border: red solid 0.5vw;
-    border-radius: 1vw;
+    border-radius: 21vw;
     width: 10vw;
     text-align: center;
     color: red;
     font-weight: bolder;
+    margin: 0.1vw;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
-.ureport:hover {
+
+.ureport {
+    border: none;
+}
+
+.uswitch {
+    width: fit-content;
+    text-align: center;
+}
+.report:hover {
     background-color: darkgray;
+    cursor: pointer;
+    color: white;
 }
-.ureport:active {
+.report:active {
     opacity: 0.7;
 }
 
@@ -78,16 +91,20 @@ body {
     text-align: center;
 }
 
-table, th, td {
-    border: white 2px solid;
-    margin: 0;
-    padding: 0;
-    border-spacing: 0;
 
+td {
+    border: white 2px solid;
+    border-collapse: collapse;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+
 .ubox {
-    height: 50%;
+    /* Height 0 lassen, sonst ist bei nur einem user als Suchergebnis die Box zu groß */
+    height: 0;
     overflow: auto;
 }
 
@@ -130,12 +147,15 @@ table, th, td {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #FF4500;
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 34px;
   }
   
+  .slider:hover {
+    opacity: 0.7;
+  }
   /* Kleiner interner Kreis Normalzustand*/
   .slider:before {
     position: absolute;
@@ -152,13 +172,15 @@ table, th, td {
   
   /* Große Box wenn eingeschalted*/
   .switchinput:checked + .slider {
-    background-color: #2196F3;
+    /*background-color: #2196F3;*/
+    background-color: #4CAF50;
   }
   
   /* Große Box wenn focus*/
   .switchinput:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
+    /* box-shadow: 0 0 1px #2196F3; */
+    box-shadow: 0 0 1px #4CAF50;
+}
 
   /* Kleiner interner Kreis wenn eingeschalted*/
   .switchinput:checked + .slider:before {
@@ -168,13 +190,15 @@ table, th, td {
   }
 
 .search {
+    left: 2vh;
     color: black;
     border: none;
     outline: none;
+    position: fixed;
 }
 
 .pbox {
-    left: 0;
+    left: 2vh;
     top: 20%;
     position: fixed;
 }
