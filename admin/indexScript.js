@@ -100,8 +100,22 @@ async function refreshTable() {
     if (specificUser.length === 0) {
         ubox.innerHTML = "<p>Es wurde kein User mit einem Ihrer Suche entsprechenden Namen gefunden.</p>";
     } else {
-        specificUser.sort(function (a, b) {return b.id - a.id});
-
+        if (check == "") {
+            specificUser.sort(function (a, b) {return b.id - a.id});
+        } else {
+            specificUser.sort((a, b) => {
+                let fa = a.name.toLowerCase(),
+                    fb = b.name.toLowerCase();
+    
+                if (fa < fb) {
+                    return -1;
+                }
+                if (fa > fb) {
+                    return 1;
+                }
+                return 0;
+            });
+        }
 
         ubox.innerHTML = `
             <tr>
@@ -220,15 +234,4 @@ supabaseFetch('spieler', 'id, name, blocked, podium', "", "", "", 'id', true).th
     }
     refreshPodiumbox();
 });
-
-
-// Dummys
-function createDummys(number) {
-
-    for (let i = 0; i < number; i++) {
-        // id=i+5000 damit die id nicht gleich einer id der "echten" in supabase von screen kreierten user ist
-        userlistad.push(new Userad(i+5000, "Dummy"+[i+1], null, false));
-    }
-
-}
 

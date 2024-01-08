@@ -148,14 +148,19 @@ table {
     right: 0;
     bottom: 0;
     background-color: #FF4500;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: .1s;
+    transition: .1s;
     border-radius: 34px;
   }
   
   .slider:hover {
     opacity: 0.7;
   }
+
+  .switchinput:active + .slider:before {
+    width: 30px;
+  }
+
   /* Kleiner interner Kreis Normalzustand*/
   .slider:before {
     position: absolute;
@@ -165,10 +170,12 @@ table {
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: .1s;
+    transition: .1s;
     border-radius: 50%;
   }
+
+
   
   /* Große Box wenn eingeschalted*/
   .switchinput:checked + .slider {
@@ -184,9 +191,9 @@ table {
 
   /* Kleiner interner Kreis wenn eingeschalted*/
   .switchinput:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
   }
 
 .search {
