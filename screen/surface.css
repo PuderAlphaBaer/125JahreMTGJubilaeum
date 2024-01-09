@@ -270,7 +270,7 @@ td {
 
 .simg {
     display: flex;
-    background-image: url(../Data/streak.png);
+    background-image: url(../Data/streak.svg);
     width: 60%;
     height: 0;
     padding-bottom: 60%;
