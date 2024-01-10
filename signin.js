@@ -112,7 +112,7 @@ async function login() {
         if (nickname.toLowerCase().includes(fluchliste[i].toLowerCase())) {
             tb1.classList.add('error');
             unerror.style.color = "red";
-            unerror.innerHTML = "Benutzername kann etwas unangemessen sein";
+            unerror.innerHTML = "Benutzername ist unangemessen";
             return;
         }
     }
