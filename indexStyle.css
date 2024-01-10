@@ -285,6 +285,9 @@
     border: black solid 0.5vmin;
     z-index: 1;
 }
+#punktZahl {
+    font-size: 4vw;
+}
 
 .phasebox {
     display: flex;
