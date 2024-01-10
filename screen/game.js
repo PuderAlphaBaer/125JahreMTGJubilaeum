@@ -673,7 +673,7 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
     nchart();
 }
 
-showCharts();
+//showCharts();
 
 function addDummies(number) {
     for (let i = 0; i < number; i++) {
@@ -723,4 +723,4 @@ async function ende() {
 }
 
 
-//confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? reset() : noReset();
+confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? reset() : noReset();
