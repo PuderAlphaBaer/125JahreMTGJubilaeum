@@ -75,22 +75,34 @@ async function login() {
     }
 
 
+
+    // only letters and numbers allowed and the german umlauts and the hard s
+    let letters = /^[A-Za-z0-9äöüÄÖÜß]+$/;
+    if (!nickname.match(letters)) {
+        tb1.classList.add('error');
+        unerror.style.color = "red";
+        unerror.innerHTML = "Benutzername darf nur deutsche Buchstaben und Zahlen enthalten";
+        return;
+    }
+
+
+
     // if nickname includes special characters or space, throw error
-    let special = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-    if (special.test(nickname)) {
-        console.log("nickname enthält Sonderzeichen");
-        tb1.classList.add('error');
-        unerror.style.color = "red";
-        unerror.innerHTML = "Benutzername darf keine Sonderzeichen enthalten";
-        return;
-    }
-    if (nickname.includes(' ')) {
-        console.log("nickname enthält Leerzeichen");
-        tb1.classList.add('error');
-        unerror.style.color = "red";
-        unerror.innerHTML = "Benutzername darf keine Leerzeichen enthalten";
-        return;
-    }
+    // let special = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    // if (special.test(nickname)) {
+    //     console.log("nickname enthält Sonderzeichen");
+    //     tb1.classList.add('error');
+    //     unerror.style.color = "red";
+    //     unerror.innerHTML = "Benutzername darf keine Sonderzeichen enthalten";
+    //     return;
+    // }
+    // if (nickname.includes(' ')) {
+    //     console.log("nickname enthält Leerzeichen");
+    //     tb1.classList.add('error');
+    //     unerror.style.color = "red";
+    //     unerror.innerHTML = "Benutzername darf keine Leerzeichen enthalten";
+    //     return;
+    // }
 
     let fluch = await fetch('Data/fluch.txt');
     let fluchtext = await fluch.text();
