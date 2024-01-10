@@ -369,46 +369,8 @@ function auswertung() {
             }            
         }
 
-        console.log("end auswertung")
-
-
         userlist.sort(function (a, b) {return a.rank - b.rank});
-
-
-
-        if (questions[activequestionid].c=="") {
-
-            apod = [];
-            bpod = [];
-            cpod = [];
-            dpod = [];
-    
-            podiumList = userlist.filter(user => user.podium == true);
-            for(let i = 0; i < podiumList.length; i++) {
-                switch (podiumList[i].vote) {
-                    case 'a':
-                        apod.push(podiumList[i].name);
-                        break;
-                    case 'b':
-                        bpod.push(podiumList[i].name);
-                        break;
-                    case 'c':
-                        cpod.push(podiumList[i].name);
-                        break;
-                    case 'd':
-                        dpod.push(podiumList[i].name);
-                        break;
-                    default:
-                        break;
-                }
-            }
-    
-            xValues = [apod, bpod, cpod, dpod]
-            yValues = [avotes, bvotes];
-            barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)"];
-            borderColors = [a.style.borderColor, b.style.borderColor];
-        } else {
-
+        
         apod = [];
         bpod = [];
         cpod = [];
@@ -434,10 +396,18 @@ function auswertung() {
             }
         }
 
-        xValues = [apod, bpod, cpod, dpod]
-        yValues = [avotes, bvotes, cvotes, dvotes];
-        barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)", "rgb(169, 90, 229)"];
-        borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
+        switch(questions[activequestionid].c) {
+            case "":
+                yValues = [avotes, bvotes];
+                barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)"];
+                borderColors = [a.style.borderColor, b.style.borderColor];
+                break;
+            default:
+                xValues = [apod, bpod, cpod, dpod]
+                yValues = [avotes, bvotes, cvotes, dvotes];
+                barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)", "rgb(169, 90, 229)"];
+                borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
+                break;
         }
         nchart();
     });
@@ -459,6 +429,7 @@ function nchart() {
             }]
         },
             options: {
+                
                 // Größe muss so, damit der Wert der größten Column nicht abgeschnitten wird
                 layout: {
                     padding: {
@@ -472,6 +443,9 @@ function nchart() {
                 display: false,
                 },
                 plugins: { // Lies alles nach unter https://v0_7_0--chartjs-plugin-datalabels.netlify.app/guide/positioning.html#anchoring
+                    tooltip: {
+                        enabled: false
+                    },
                     legend: {
                         // Würde oben noch mal zu jeder Column den Wert anzeigen, wird aber weiter unten im Code schon mit Plugin "Datalabels" geregelt
                     display: false,
@@ -489,8 +463,15 @@ function nchart() {
                 }},
                 scales: {
                     x: {
-                        // Würde xAchse und Beschriftung der Columns (A, B, C, D) anzeigen lassen
-                       // display: false
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: "white",
+                            font: {
+                                size: 20,
+                            },
+                        }
                     },
                     y: {
                         // Würde yAchse mit Beschriftung (also 100, 150, 200, 250, etc) anzeigen Lassen
@@ -533,8 +514,8 @@ function fetchRangliste() {
             userupdate(userlist[i].id, userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
         } else {
             if (utype=="podium") {
-                // Falls nach normaler Rangliste noch Podiumsuser kommen wird ein Trennstrich eingefügt, musst du schauen wie du das noch änderst vom Style her, ob du das lässt oder nicht
                 if(trennung==0) {
+                    // Roter trennstrich nach top 10 oder 15 
                     document.getElementById('table').innerHTML += `
                     <tr class="emptycolumn">
                         <td class="spacecol"</td>
@@ -580,6 +561,7 @@ function userupdate(id, rank, uname, score, streak, type) {
     } else {
         cb = "";
     }
+    // Hier gerne bearbeiten, der type ist "podium" oder "normaluser", er wird in zeile 507-511 festgelegt
     document.getElementById('table').innerHTML += `
     <tr class="${type} row" id="${id}row">
         <td class="rank">${rank}</th>
@@ -592,6 +574,7 @@ function userupdate(id, rank, uname, score, streak, type) {
 
 
 function emptycolumn() {
+    // Die "..." Row, änder was du willst
     document.getElementById('table').innerHTML += `
     <tr class="emptycolumn">
         <td class="normaluser">...</td>
@@ -682,13 +665,15 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
         d.style.opacity = "0.5";
         d.style.border = "transparent";
     }
-    xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
+    xValues = ["", "jürgen", ["walter", "tilman", "manfred", "lorentz", "bernd"], ["mario", "luigi"]];
     yValues = [avotes, bvotes, cvotes, dvotes];
     barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)", "rgb(169, 90, 229)"];
     borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
 
     nchart();
 }
+
+showCharts();
 
 function addDummies(number) {
     for (let i = 0; i < number; i++) {
@@ -738,4 +723,4 @@ async function ende() {
 }
 
 
-confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? reset() : noReset();
+//confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? reset() : noReset();
