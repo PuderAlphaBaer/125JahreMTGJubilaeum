@@ -377,12 +377,64 @@ function auswertung() {
 
 
         if (questions[activequestionid].c=="") {
-            xValues = [a.innerHTML, b.innerHTML];
+
+            apod = [];
+            bpod = [];
+            cpod = [];
+            dpod = [];
+    
+            podiumList = userlist.filter(user => user.podium == true);
+            for(let i = 0; i < podiumList.length; i++) {
+                switch (podiumList[i].vote) {
+                    case 'a':
+                        apod.push(podiumList[i].name);
+                        break;
+                    case 'b':
+                        bpod.push(podiumList[i].name);
+                        break;
+                    case 'c':
+                        cpod.push(podiumList[i].name);
+                        break;
+                    case 'd':
+                        dpod.push(podiumList[i].name);
+                        break;
+                    default:
+                        break;
+                }
+            }
+    
+            xValues = [apod, bpod, cpod, dpod]
             yValues = [avotes, bvotes];
             barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)"];
             borderColors = [a.style.borderColor, b.style.borderColor];
         } else {
-        xValues = [a.innerHTML, b.innerHTML, c.innerHTML, d.innerHTML];
+
+        apod = [];
+        bpod = [];
+        cpod = [];
+        dpod = [];
+
+        podiumList = userlist.filter(user => user.podium == true);
+        for(let i = 0; i < podiumList.length; i++) {
+            switch (podiumList[i].vote) {
+                case 'a':
+                    apod.push(podiumList[i].name);
+                    break;
+                case 'b':
+                    bpod.push(podiumList[i].name);
+                    break;
+                case 'c':
+                    cpod.push(podiumList[i].name);
+                    break;
+                case 'd':
+                    dpod.push(podiumList[i].name);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        xValues = [apod, bpod, cpod, dpod]
         yValues = [avotes, bvotes, cvotes, dvotes];
         barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)", "rgb(169, 90, 229)"];
         borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
@@ -438,7 +490,7 @@ function nchart() {
                 scales: {
                     x: {
                         // Würde xAchse und Beschriftung der Columns (A, B, C, D) anzeigen lassen
-                        display: false
+                       // display: false
                     },
                     y: {
                         // Würde yAchse mit Beschriftung (also 100, 150, 200, 250, etc) anzeigen Lassen
