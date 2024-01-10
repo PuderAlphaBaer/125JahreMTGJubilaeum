@@ -16,10 +16,6 @@ class Frage {
     }
   }
 
-
-const pretime = 5000;
-
-
 const questions = [
   // Hier alle Fragen in richtiger Reinfolge auflisten
 
@@ -33,9 +29,9 @@ const questions = [
 
 
 
-  new Frage("Wer hat die Relativitätstheorie formuliert?", "Isaac Newton", "Albert Einstein", "", "", "b", 5, false),
-  new Frage("Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?", "Willy Brandt", "Helmut Kohl", "Konrad Adenauer", "Gerhard Schröder", "c", 5, false),
-  new Frage("Was ist die Quadratwurzel von 144?", "12", "14", "16", "18", "a", 5, false),
+  new Frage("Wer hat die Relativitätstheorie formuliert?", "Isaac Newton", "Albert Einstein", "tilman", "ich", "c", 10, false),
+  new Frage("Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?", "Willy Brandt", "Helmut Kohl", "Konrad Adenauer", "Gerhard Schröder", "c", 10, false),
+  new Frage("Was ist die Quadratwurzel von 144?", "12", "14", "16", "18", "a", 10, false),
   new Frage("Wer hat 'Faust' geschrieben?", "Friedrich Schiller", "Thomas Mann", "Johann Wolfgang von Goethe", "Bertolt Brecht", "c", 5, false),
   // new Frage("Wer war der erste Mensch im Weltraum?", "Herr Eschrich", "Yuri Gagarin", "Neil Armstrong", "Alexander Gerst",  "b", 15, false),
   // new Frage("Was ist der Sinus von 90 Grad?", "0", "1", "-1", "2", "b", 15, false),
@@ -121,6 +117,8 @@ const ranglistenlimit = 10;
 
 // Bei welcher Frage das Podium durchgewechselt werden soll
 const nextPodium = 2;
+
+const pretime = 1000;
 
 // Wär die Mitte
 //const nextPodium = (questions.length - 1)/2;
