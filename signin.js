@@ -70,11 +70,17 @@ async function login() {
         console.log("nickname bereits vergeben");
         tb1.classList.add('error');
         unerror.style.color = "red";
-        unerror.innerHTML = "Benutzername bereits vergeben";
+        unerror.innerHTML = "Der gewählte Benutzername ist bereits vergeben";
         return;
     }
-
-
+  
+    if (nickname.toLowerCase().includes("tilman") == true) {
+        console.log("nickname ist tilman");
+        tb1.classList.add('error');
+        unerror.style.color = "red";
+        unerror.innerHTML = "Der gewählte wurde vom Serveradministrator gesperrt";
+        return;
+    }
 
     // only letters and numbers allowed and the german umlauts and the hard s
     let letters = /^[A-Za-z0-9äöüÄÖÜß]+$/;
@@ -112,7 +118,7 @@ async function login() {
         if (nickname.toLowerCase().includes(fluchliste[i].toLowerCase())) {
             tb1.classList.add('error');
             unerror.style.color = "red";
-            unerror.innerHTML = "Benutzername ist unangemessen";
+            unerror.innerHTML = "Der gewählte Benutzername kann unangemessen sein";
             return;
         }
     }
