@@ -29,7 +29,7 @@ const questions = [
 
 
 
-  new Frage("Wer hat die Relativitätstheorie formuliert?", "Isaac Newton", "Albert Einstein", "tilman", "ich", "c", 10, false),
+  new Frage("Wer hat die Relativitätstheorie formuliert?", "Isaac Newton", "Albert Einstein", "tilman", "ich", "c", 3, false),
   new Frage("Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?", "Willy Brandt", "Helmut Kohl", "Konrad Adenauer", "Gerhard Schröder", "c", 10, false),
   new Frage("Was ist die Quadratwurzel von 144?", "12", "14", "16", "18", "a", 10, false),
   new Frage("Wer hat 'Faust' geschrieben?", "Friedrich Schiller", "Thomas Mann", "Johann Wolfgang von Goethe", "Bertolt Brecht", "c", 5, false),
@@ -112,7 +112,7 @@ const zwischenworte = [
 ]
 
 // Bis zu welchem PLatz die Rangliste gehen soll
-const ranglistenlimit = 10;
+const ranglistenlimit = 15;
 
 
 // Bei welcher Frage das Podium durchgewechselt werden soll

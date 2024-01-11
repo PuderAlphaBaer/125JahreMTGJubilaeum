@@ -168,14 +168,6 @@ function weiter() {
     votebox.style.display = "none";
     votebox.removeChild(document.getElementById('vote'));
     votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
-    table.innerHTML = 
-    `<table class="table" id="table">
-        <tr class=""> 
-            <th class="udata">Platz</th>
-            <th class="udata">Benutzername</th>
-            <th class="udata">Punktzahl</th>
-        </tr>
-    </table>`;
     fetchRangliste();
     bt1.innerHTML = "Starte Frage "+(activequestionid+1)+" von "+(questions.length-1);
     supabaseUpdate('spieler', ['vote'], [null], 'gt', 'id', '-1');
@@ -501,6 +493,14 @@ const tablebox = document.getElementById('tablebox');
 // einzelnes feld hat als class "row", ist noch änderbar
 
 function fetchRangliste() {
+    table.innerHTML = 
+    `<tr class="headRow"> 
+        <td class="udata rank">Platz</td>
+        <td class="udata uname">Benutzername</td>
+        <td class="udata uscore">Punktzahl</td>
+        <td class="udata streak"></td>
+        
+    </tr>`;
     trennung = 0;
     for (let i = 0; i < userlist.length; i++) {
 
@@ -516,7 +516,7 @@ function fetchRangliste() {
             if (utype=="podium") {
                 if(trennung==0) {
                     // Roter trennstrich nach top 10 oder 15 
-                    document.getElementById('table').innerHTML += `
+                    table.innerHTML += `
                     <tr class="emptycolumn">
                         <td class="spacecol"</td>
                         <td class="spacecol"></td>
@@ -538,12 +538,11 @@ function fetchRangliste() {
 
 
 function userupdate(id, rank, uname, score, streak, type) {
-    console.log('userupdate')
     if (streak==0) {
         sbox = "";
     } else {
-        sbox = `        <div class="simg img"></div>
-        <div>${streak}</div>`
+        sbox = `
+        <div class="streakRecord">${streak}</div>`
     }
     if(type == "podium") {
         checked = "checked"
@@ -551,7 +550,7 @@ function userupdate(id, rank, uname, score, streak, type) {
         checked = ""
     }
     if (activequestionid==nextPodium) {
-        cb = `     
+        cb = `
     <td>
         <label class="switch">
             <input class="switchinput" type="checkbox" onchange="toggle('${id}', this)" ${checked}>
@@ -563,11 +562,11 @@ function userupdate(id, rank, uname, score, streak, type) {
     }
     // Hier gerne bearbeiten, der type ist "podium" oder "normaluser", er wird in zeile 507-511 festgelegt
     document.getElementById('table').innerHTML += `
-    <tr class="${type} row" id="${id}row">
-        <td class="rank">${rank}</th>
-        <td class="uname">${uname}</th>
-        <td class="score">${score}</th>
-        <td class="streak">${sbox}</th>
+    <tr class="${type} userRecord" id="${id}row">
+        <td class="rank dataCell">${rank}</td>
+        <td class="uname dataCell">${uname}</td>
+        <td class="score dataCell">${score}</td>
+        <td class="streak dataCell">${sbox}</td>
         ${cb}
     </tr>`;
 }
@@ -677,7 +676,8 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
 
 function addDummies(number) {
     for (let i = 0; i < number; i++) {
-        supabaseInsert("spieler", ["name"], ["Dummy"+[i+1]])
+        // insert dummies with name and random points and streak
+        supabaseInsert("spieler", ["name", "punkte", "streak"], ["DummyDummyDummy"+[i+1], Math.floor(Math.random() * 1000), Math.floor(Math.random() * 10)])
         console.log("Insert Dummy")
     }
 }
@@ -698,7 +698,7 @@ async function reset() {
     for (let i = 0; i < questions.length; i++) {
         supabaseInsert("fragen", ["id"], [i])
     }
-    addDummies(10);
+    addDummies(20);
 }
 
 function noReset() {

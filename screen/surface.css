@@ -1,7 +1,12 @@
 canvas {
-    background-color: gray;
 }
 
+/* set the background image of the body */
+body {
+    background-image: url("../Data/hinter.svg");
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
 
 table { border-collapse: collapse; }
 tr {
@@ -12,12 +17,7 @@ td {
   border-bottom: solid 2px white;
 }
 
-.table {
-    position: absolute;
-    width: 80%;
-    height: 60%;
-    left: 0;
-}
+
 
 .surface {
     display: flex;
@@ -27,7 +27,6 @@ td {
 }
 
 .bt1 {
-    display: block;
     right: 0;
     position: absolute;
     top: 0;
@@ -42,7 +41,6 @@ td {
 
 .rangliste {
     display: flex;
-    background-color: darkviolet;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -53,7 +51,6 @@ td {
     display: none;
     justify-content: center;
     align-items: center;
-    background-color: gray;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -65,14 +62,12 @@ td {
 
 
 .frage1sur {
-    color: white;
     font-size: 5vw;
 }
 
 .frage2sur {
     width: 100%;
     height: 20%;
-    color: white;
     display: flex;
     justify-content: center;
     word-break: break-all;
@@ -153,7 +148,6 @@ td {
 .bigcircle {
     width: 80%;
     height: 80%;
-    background-color: gray;
     border-radius: 50%;
     z-index: 5;
     position: absolute;
@@ -186,7 +180,6 @@ td {
 
 
 .zwischenbox {
-    background-color: gray;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -196,7 +189,7 @@ td {
 }
 
 .balkenbox {
-    background-color: white;
+    background-color: gray;
     width: 80%;
     height: 4%;
     position: absolute;
@@ -205,7 +198,7 @@ td {
 }
 
 .balken {
-    background-color: blue;
+    background-color: red;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -218,7 +211,6 @@ td {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: black;
 }
 
 .beforegamebox {
@@ -226,7 +218,6 @@ td {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: black;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -237,7 +228,6 @@ td {
     justify-content: center;
     align-items: bottom;
     flex-direction: row;
-    color: white;
 }
 
 .is {
@@ -265,15 +255,18 @@ td {
     top: 0;
     left: 0;
     position: absolute;
-    color: white;
 }
 
-.simg {
+
+.streakRecord {
+    /* center the text */
     display: flex;
+    justify-content: center;
     background-image: url(../Data/streak.svg);
-    width: 60%;
-    height: 0;
-    padding-bottom: 60%;
+    /* make only one image */
+    background-repeat: no-repeat;
+    /* center it */
+    background-position: center;
 }
 
 .img {
@@ -309,21 +302,61 @@ td {
 }
 
 .normaluser {
-    background-color: gray;
 }
 
 .podium {
     background-color: orange;
 }
 
-.row {
-    color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+.tablebox {
+    /* make it click through */
+    pointer-events: none;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
-.emptycoulumn {
+
+
+.table {
+    width: 75%;
+}
+
+.userRecord {
+    background-color: darkgray;
+}
+
+.rank {
+    width: 10%;
+}
+
+.uscore {
+    width: 10%;
+}
+
+.uname {
+    width: 40%;
+}
+
+.streak {
+    width: 5%;
+}
+
+.dataCell {
+    padding: 0.5vh 1vh;
+}
+
+.headRow {
     background-color: gray;
+}
+.udata {
+    padding: 0.5vh 1vh;
+}
+
+.emptycolumn {
 }
 
 .spacecol {
@@ -366,7 +399,6 @@ td {
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 50%;

@@ -58,11 +58,11 @@ async function login() {
         unerror.innerHTML = "Bitte gib einen Benutzernamen ein";
         return;
     }
-    if (nickname.length>40) {
+    if (nickname.length>30) {
         console.log("nickname zu lang");
         tb1.classList.add('error');
         unerror.style.color = "red";
-        unerror.innerHTML = "Benutzername darf maximal 40 Zeichen lang sein";
+        unerror.innerHTML = "Benutzername darf maximal 30 Zeichen lang sein";
         return;
     }
     let exists = await supabaseExists('spieler', 'eq', 'name', nickname);
