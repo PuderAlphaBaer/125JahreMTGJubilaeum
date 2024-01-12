@@ -49,7 +49,7 @@ const beforeUnloadHandler = (event) => {
   };
   
 
-  window.addEventListener("beforeunload", beforeUnloadHandler);
+  //window.addEventListener("beforeunload", beforeUnloadHandler);
 
 
 

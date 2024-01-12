@@ -58,11 +58,11 @@ async function login() {
         unerror.innerHTML = "Bitte gib einen Benutzernamen ein";
         return;
     }
-    if (nickname.length>30) {
+    if (nickname.length>20) {
         console.log("nickname zu lang");
         tb1.classList.add('error');
         unerror.style.color = "red";
-        unerror.innerHTML = "Benutzername darf maximal 30 Zeichen lang sein";
+        unerror.innerHTML = "Benutzername darf maximal 20 Zeichen lang sein";
         return;
     }
     let exists = await supabaseExists('spieler', 'eq', 'name', nickname);
@@ -78,7 +78,7 @@ async function login() {
         console.log("nickname ist tilman");
         tb1.classList.add('error');
         unerror.style.color = "red";
-        unerror.innerHTML = "Der gewählte wurde vom Serveradministrator gesperrt";
+        unerror.innerHTML = "Der gewählte Benutzername wurde vom Websiteadministrator gesperrt";
         return;
     }
 
@@ -149,7 +149,7 @@ function startGame() {
 
   toggleInterface(pregamebox);
   console.log("püntklich");
-  window.addEventListener("beforeunload", beforeUnloadHandler);
+  //window.addEventListener("beforeunload", beforeUnloadHandler);
 }
 
 
