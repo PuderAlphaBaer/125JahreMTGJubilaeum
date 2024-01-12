@@ -444,7 +444,7 @@ function nchart() {
                     },
                     datalabels: {
                         // Style von den Werten der Columns
-                        color: "white",
+                        color: "black",
                         font: {
                             size: 30,
                         },
@@ -455,23 +455,21 @@ function nchart() {
                 }},
                 scales: {
                     x: {
+
                         grid: {
-                            display: false
+                            display: false,
+                            drawBorder: false,
                         },
                         ticks: {
-                            color: "white",
+                            color: "black",
                             font: {
                                 size: 20,
-                            },
+                            }   
                         }
                     },
                     y: {
                         // Würde yAchse mit Beschriftung (also 100, 150, 200, 250, etc) anzeigen Lassen
                         display: false,
-                        ticks: {
-                            beginAtZero: true,
-                            display: false
-                        }
                     },
                 }
             },
@@ -688,13 +686,6 @@ function addDummies(number) {
 
 
 
-
-
-
-
-
-
-
 async function reset() {
     await supabaseDeleteAll('spieler');
     await supabaseDeleteAll('fragen');
@@ -726,4 +717,4 @@ async function ende() {
 }
 
 
-confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? reset() : noReset();
+//confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? reset() : noReset();

@@ -1,0 +1,16 @@
+.big {
+    opacity: 0;
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+.flashlight {
+    border-radius: 50%;
+    position: absolute;
+    background-color: white;
+    height: 10%;
+    width: 0;
+    padding: 10%;
+}
