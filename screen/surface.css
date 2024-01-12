@@ -27,6 +27,7 @@ td {
 }
 
 .bt1 {
+    z-index: 1;
     right: 0;
     position: absolute;
     top: 0;
@@ -258,16 +259,10 @@ td {
 }
 
 
-.streakRecord {
-    /* center the text */
-    display: flex;
-    justify-content: center;
-    background-image: url(../Data/streak.svg);
-    /* make only one image */
-    background-repeat: no-repeat;
-    /* center it */
-    background-position: center;
-}
+
+
+
+
 
 .img {
     display: flex;
@@ -306,11 +301,10 @@ td {
 
 .podium {
     background-color: orange;
+    transition: 0.4s;
 }
 
 .tablebox {
-    /* make it click through */
-    pointer-events: none;
     display: flex;
     position: absolute;
     width: 100%;
@@ -322,56 +316,90 @@ td {
 
 
 .table {
-    width: 75%;
+    z-index: 1;
+    position: absolute;
+    top: 10%;
 }
 
 .userRecord {
     background-color: darkgray;
+    transition: 0.4s;
 }
 
 .rank {
-    width: 10%;
+    width: 12vw;
 }
 
 .uscore {
-    width: 10%;
+    width: 15vw;
 }
 
 .uname {
-    width: 40%;
+    width: 40vw;
 }
 
 .streak {
-    width: 5%;
+    width: 7vw;
+}
+
+
+.podiumSwitch {
+    width: 7vw;
+}
+
+.streakRecord {
+    /* center the text */
+    font-size: 6vh;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    background-image: url(../Data/streak.svg);
+    /* make only one image */
+    background-repeat: no-repeat;
+    /* center it */
+    background-position: center;
+}
+
+
+.switchContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .dataCell {
-    padding: 0.5vh 1vh;
+    font-size: 6vh;
+    padding: 1vh 2vh;
 }
 
 .headRow {
     background-color: gray;
 }
 .udata {
-    padding: 0.5vh 1vh;
+    font-size: 6vh;
+    padding: 1vh 2vh;
 }
 
-.emptycolumn {
-}
+
 
 .spacecol {
     background-color: red;
 }
 
 .switch {
+    display: flex;
+    justify-content: center;
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
-  
+    width: 5vw;
+    height: 3vw;
   }
   
-  .switch .switchinput { 
+  .switch .switchinput {
+
     opacity: 0;
     width: 0;
     height: 0;
@@ -385,20 +413,21 @@ td {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: gray;
     -webkit-transition: .4s;
     transition: .4s;
-    border-radius: 34px;
+    border-radius: 3vw;
   }
   
   /* Kleiner interner Kreis Normalzustand*/
   .slider:before {
+    background-color: white;
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
+    height: 2vw;
+    width: 2vw;
+    left: 0.5vw;
+    bottom: 0.5vw;
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 50%;
@@ -416,9 +445,9 @@ td {
 
   /* Kleiner interner Kreis wenn eingeschalted*/
   .switchinput:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(2vw);
+    -ms-transform: translateX(2vw);
+    transform: translateX(2vw);
   }
 
   body.waiting * {

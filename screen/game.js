@@ -495,10 +495,11 @@ const tablebox = document.getElementById('tablebox');
 function fetchRangliste() {
     table.innerHTML = 
     `<tr class="headRow"> 
-        <td class="udata rank">Platz</td>
-        <td class="udata uname">Benutzername</td>
-        <td class="udata uscore">Punktzahl</td>
+        <td class="udata rank">Rang</td>
+        <td class="udata uname">Name</td>
+        <td class="udata uscore">Punkte</td>
         <td class="udata streak"></td>
+        <td class="udata podiumSwitch"></td>
         
     </tr>`;
     trennung = 0;
@@ -507,7 +508,7 @@ function fetchRangliste() {
         if (userlist[i].podium==true) {
             utype = "podium";
         } else {
-            utype = "normaluser";
+            utype = "userRecord";
         }
 
         if(i<ranglistenlimit) {
@@ -517,7 +518,7 @@ function fetchRangliste() {
                 if(trennung==0) {
                     // Roter trennstrich nach top 10 oder 15 
                     table.innerHTML += `
-                    <tr class="emptycolumn">
+                    <tr class="emptyRow">
                         <td class="spacecol"</td>
                         <td class="spacecol"></td>
                         <td class="spacecol"></td>
@@ -549,24 +550,26 @@ function userupdate(id, rank, uname, score, streak, type) {
     } else {
         checked = ""
     }
-    if (activequestionid==nextPodium) {
+    if (nextPodium.includes(activequestionid)) {
         cb = `
-    <td>
+    <td class="podiumSwitch dataCell">
+        <div class="switchContainer">
         <label class="switch">
             <input class="switchinput" type="checkbox" onchange="toggle('${id}', this)" ${checked}>
             <area class="switch slider"></area>
         </label>
+        </div>
     </td>`
     } else {
-        cb = "";
+        cb = `<td class="podiumSwitch dataCell"></td>`;
     }
     // Hier gerne bearbeiten, der type ist "podium" oder "normaluser", er wird in zeile 507-511 festgelegt
     document.getElementById('table').innerHTML += `
-    <tr class="${type} userRecord" id="${id}row">
+    <tr class="${type}" id="${id}row">
         <td class="rank dataCell">${rank}</td>
         <td class="uname dataCell">${uname}</td>
         <td class="score dataCell">${score}</td>
-        <td class="streak dataCell">${sbox}</td>
+        <td class="dataCell streak">${sbox}</td>
         ${cb}
     </tr>`;
 }
@@ -598,13 +601,13 @@ function toggle(id, cb) {
     if(cb.checked == true) {
         userlist[userIndex].podium = true;
         supabaseUpdate('spieler', ['podium'], [true], 'eq', 'id', id);
-        document.getElementById(id+"row").classList.remove('normaluser');
+        document.getElementById(id+"row").classList.remove('userRecord');
         document.getElementById(id+"row").classList.add('podium');
     } else {
         userlist[userIndex].podium = false;
         supabaseUpdate('spieler', ['podium'], [false], 'eq', 'id', id);
         document.getElementById(id+"row").classList.remove('podium');
-        document.getElementById(id+"row").classList.add('normaluser');
+        document.getElementById(id+"row").classList.add('userRecord');
     }
 }
 
@@ -677,7 +680,7 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
 function addDummies(number) {
     for (let i = 0; i < number; i++) {
         // insert dummies with name and random points and streak
-        supabaseInsert("spieler", ["name", "punkte", "streak"], ["DummyDummyDummy"+[i+1], Math.floor(Math.random() * 1000), Math.floor(Math.random() * 10)])
+        supabaseInsert("spieler", ["name", "punkte", "streak"], ["MMMMMMMMMMM"+[i+1], Math.floor(Math.random() * 1000), Math.floor(Math.random() * 10)])
         console.log("Insert Dummy")
     }
 }
@@ -698,7 +701,7 @@ async function reset() {
     for (let i = 0; i < questions.length; i++) {
         supabaseInsert("fragen", ["id"], [i])
     }
-    addDummies(20);
+    addDummies(25);
 }
 
 function noReset() {

@@ -30,9 +30,9 @@ const questions = [
 
 
   new Frage("Wer hat die Relativitätstheorie formuliert?", "Isaac Newton", "Albert Einstein", "tilman", "ich", "c", 3, false),
-  new Frage("Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?", "Willy Brandt", "Helmut Kohl", "Konrad Adenauer", "Gerhard Schröder", "c", 10, false),
+  new Frage("Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?", "Willy Brandt", "Helmut Kohl", "Konrad Adenauer", "Gerhard Schröder", "c", 2, false),
   new Frage("Was ist die Quadratwurzel von 144?", "12", "14", "16", "18", "a", 10, false),
-  new Frage("Wer hat 'Faust' geschrieben?", "Friedrich Schiller", "Thomas Mann", "Johann Wolfgang von Goethe", "Bertolt Brecht", "c", 5, false),
+  new Frage("Wer hat 'Faust' geschrieben?", "Friedrich Schiller", "Thomas Mann", "Johann Wolfgang von Goethe", "Bertolt Brecht", "c", 2, false),
   // new Frage("Wer war der erste Mensch im Weltraum?", "Herr Eschrich", "Yuri Gagarin", "Neil Armstrong", "Alexander Gerst",  "b", 15, false),
   // new Frage("Was ist der Sinus von 90 Grad?", "0", "1", "-1", "2", "b", 15, false),
   // new Frage("Welches der folgenden Bauten ist keines der sieben Weltwunder der Antike?", "Pyramiden von Gizeh", "Freiheitsstatue", "Koloss dvon Rhodos", "Zeusstatue", "b", 15, false),
@@ -112,11 +112,11 @@ const zwischenworte = [
 ]
 
 // Bis zu welchem PLatz die Rangliste gehen soll
-const ranglistenlimit = 15;
+const ranglistenlimit = 20;
 
 
 // Bei welcher Frage das Podium durchgewechselt werden soll
-const nextPodium = 2;
+const nextPodium = [1, 3];
 
 const pretime = 1000;
 

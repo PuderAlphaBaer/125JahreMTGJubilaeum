@@ -1,12 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-size: 2vmax;
-    font-family: 'Roboto', sans-serif;
-    text-decoration: none;
-    box-sizing: border-box;
-    user-select: none;
-}
+
 
 
 
@@ -411,4 +403,14 @@
 
 .puregenius {
     font-size: 5vh;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 2vmax;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    box-sizing: border-box;
+    user-select: none;
 }
