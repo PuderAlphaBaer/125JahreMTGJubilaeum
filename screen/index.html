@@ -13,81 +13,11 @@
     <link rel="icon" type="image/png" sizes="48x48" href="../Data/mtg48.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../Data/mtg192.png">
     <link rel="apple-touch-icon" type="image/png" sizes="167x167" href="/../Data/mtg167.png">
-    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/../Data/mtg180.png"></head>
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/../Data/mtg180.png">
+</head>
 <body>
     
-    <div id="endbox" class="endbox">
-        <div class="endpublikum" id="endpublikum"></div>
-        <div id="endpodium" class="endpodium">
-        </div>
-    </div>
-
-
-    <div id="gamebox" class="gamebox">
-
-        <div id="zwischenbox" class="zwischenbox">
-            <div>
-                <p class="frage1sur" id="anzeigefrage1"></p>
-            </div>
-            <div id="balkenbox" class="balkenbox">
-                <div id="balken" class="balken"></div>
-            </div>
-        </div>
-
-
-        <div id="rangliste" class="rangliste">
-            <div id="bt1" class="buttonStyle bt1"></div> <!--Startet nächste Frage-->
-            <div class="tablebox" id="tablebox">
-                <table class="table" id="table"> <!--Rangliste-->
-                </table>
-            </div>
-        
-        </div>
-
-
-        <div id="fragenbox" class="fragenbox">
-
-            <div class="imgbox" id="imgbox">
-                <img class="nimg" id="img">
-            </div>
-
-            <div>
-                <p class="frage2sur" id="anzeigefrage2"></p>
-            </div>
-            <div class="timerContainer" id="timerContainer">
-                <div class="timerbox">
-                        <div class="s1" id="s1"></div>
-                        <div class="s2" id="s2"></div>
-                        <div class="s3" id="s3"></div>
-                    <div class="bigcircle">
-                        <div class="timertext" id="timertext"></div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="buttonSurContainer" id="buttonBox">
-                <div class="buttonContainer" id="topButtonContainer">
-                    <div id="bta" class="button buttonA">A</div>
-                    <div id="btb" class="button buttonB">B</div>
-                </div>
-                <div class="buttonContainer" id="bottomButtonContainer">
-                    <div id="btc" class="button buttonC">C</div>
-                    <div id="btd" class="button buttonD">D</div>
-                </div>
-            </div>
-
-
-
-            <div id="bt2" class="buttonStyle bt2">Weiter</div> <!--Beendet letzte Frage und geht zur Rangliste-->
-            <div id="votebox" class="votebox">
-                <canvas id="vote" class="vote"></canvas>
-            </div>
-        </div>
-        <div class="qnumber" id="qnumber"></div>
-    </div>
-
-
+    <!-- Welcome Box -->
     <div id="beforegamebox" class="beforegamebox">
         <div class="logo" id="logo"></div>
         <div class="qr"></div>
@@ -97,20 +27,90 @@
         <div class="buttonStyle start" id="startgamebt">Start</div>
     </div>
 
+    <!-- Phase 1: Balken und Frage -->
+    <div id="zwischenbox" class="zwischenbox">
+        <div>
+            <p class="frage1sur" id="anzeigefrage1"></p>
+        </div>
+        <div id="balkenbox" class="balkenbox">
+            <div id="balken" class="balken"></div>
+        </div>
+    </div>
+
+    <!-- Phase 2: Frage Button Click -->
+    <div id="fragenbox" class="fragenbox">
+
+        <div id="bt2" class="buttonStyle bt2">Weiter</div> <!--Beendet letzte Frage und geht zur Rangliste-->
+
+        <div class="imgbox" id="imgbox">
+            <img class="nimg" id="img">
+        </div>
+
+        <div>
+            <p class="frage2sur" id="anzeigefrage2"></p>
+        </div>
+        <div class="timerContainer" id="timerContainer">
+            <div class="timerbox">
+                    <div class="s1" id="s1"></div>
+                    <div class="s2" id="s2"></div>
+                    <div class="s3" id="s3"></div>
+                <div class="bigcircle">
+                    <div class="timertext" id="timertext"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttonSurContainer" id="buttonBox">
+            <div class="buttonContainer" id="topButtonContainer">
+                <div id="bta" class="button buttonA">A</div>
+                <div id="btb" class="button buttonB">B</div>
+            </div>
+            <div class="buttonContainer" id="bottomButtonContainer">
+                <div id="btc" class="button buttonC">C</div>
+                <div id="btd" class="button buttonD">D</div>
+            </div>
+        </div>
+
+        <div id="votebox" class="votebox">
+            <canvas id="vote" class="vote"></canvas>
+        </div>
+
+    </div>
+
+    <!-- Phase 4: Rang und Punktzahl -->
+    <div id="rangliste" class="rangliste">
+        <div id="bt1" class="buttonStyle bt1"></div>
+        <div class="tablebox" id="tablebox">
+            <table class="table" id="table">
+            </table>
+        </div>
+    </div>
 
 
+
+    <div class="qnumber" id="qnumber"></div>
+
+
+
+    <div id="endbox" class="endbox">
+        <div class="endpublikum" id="endpublikum"></div>
+        <div id="endpodium" class="endpodium">
+        </div>
+    </div>
+
+    <script src="../password.js"></script>
+
+    <script src="../libraries/chart.min.js"></script>
+    <script src="../libraries/chartjs-plugin-datalabels@2.0.0"></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script> -->
+
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <script src="../database.js"></script>
+    <script src="../test/snippets.js"></script>
+    <script src="../value.js"></script>
+    <script src="game.js"></script>
 </body>
-<script src="../password.js"></script>
 
-<script src="../libraries/chart.min.js"></script>
-<script src="../libraries/chartjs-plugin-datalabels@2.0.0"></script>
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script> -->
-
-<script src="https://unpkg.com/@supabase/supabase-js"></script>
-<script src="../database.js"></script>
-<script src="../test/snippets.js"></script>
-<script src="../value.js"></script>
-<script src="game.js"></script>
 </html>

@@ -7,7 +7,6 @@ const d = document.getElementById('btd');
 const y = document.getElementById('y');
 const n = document.getElementById('n');
 const zwischenbox = document.getElementById('zwischenbox');
-const gamebox = document.getElementById('gamebox');
 const beforegamebox = document.getElementById('beforegamebox');
 const balkenbox = document.getElementById('balkenbox');
 const balken = document.getElementById('balken');
@@ -38,20 +37,15 @@ let activequestionid = 0;
 
 
 
-
-
 const beforeUnloadHandler = (event) => {
     // Recommended
     event.preventDefault();
-  
     // Included for legacy support, e.g. Chrome/Edge < 119
     event.returnValue = "Wollen Sie die Seite wirklich verlassen? Die kann zu erheblichen Fehlern im laufenden Quiz führen";
-  };
+};
   
 
-  //window.addEventListener("beforeunload", beforeUnloadHandler);
-
-
+//window.addEventListener("beforeunload", beforeUnloadHandler);
 
 
 startgamebt.addEventListener('click', startgame);
@@ -64,7 +58,7 @@ function startgame() {
     interphase1();
 }
 
-function toggleInterface(phase) {
+function togglePhase(phase) {
     rangliste.style.display = "none";
     fragenbox.style.display = "none";
     zwischenbox.style.display = "none";
@@ -82,7 +76,7 @@ function interphase1() {
 
     console.log('%c beginne' + activequestionid, 'background: #222; color: #bada55')
     supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid)
-    toggleInterface(zwischenbox);
+    togglePhase(zwischenbox);
     prefut = Date.now() + pretime;
     preloop = setInterval(interface1bar, 10);
     anzeigefrage1.innerHTML = questions[activequestionid].frage;
@@ -111,7 +105,7 @@ function interface1bar() {
     balken.style.width = "0";
     clearInterval(preloop);
 
-    toggleInterface(fragenbox);
+    togglePhase(fragenbox);
     // reset der letzten Frage
     timerContainer.style.display = "flex";
     c.style.display = "flex";
@@ -163,7 +157,7 @@ let timestart;
 function weiter() {
     supabaseUpdate('fragen', ['auswertung'], [true], 'eq', 'id', activequestionid)
     qnumber.style.display = "none";
-    toggleInterface(rangliste);
+    togglePhase(rangliste);
     bt2.style.display = "none";
     votebox.style.display = "none";
     votebox.removeChild(document.getElementById('vote'));
@@ -178,7 +172,7 @@ function weiter() {
 
 
 function theend() {
-    gamebox.style.display = "none";
+
     endbox.style.display = "flex";
 
 
@@ -618,7 +612,7 @@ function toggle(id, cb) {
 
 function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
     beforegamebox.style.display = "none";
-    toggleInterface(fragenbox);
+    togglePhase(fragenbox);
     votebox.style.display = "block";
     timerContainer.style.display = "none";
 
