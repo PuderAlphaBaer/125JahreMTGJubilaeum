@@ -1,22 +1,15 @@
-canvas {
-}
-
-/* set the background image of the body */
 body {
     background-image: url("../Data/hinter.svg");
     background-size: 100% 100%;
     background-attachment: fixed;
 }
 
-table { border-collapse: collapse; }
+table {
+    border-collapse: collapse;
+}
 tr {
-    border: white solid 2px;
+    border: 0.5vh solid white;
 }
-td {
-  border-top: solid 2px white; 
-  border-bottom: solid 2px white;
-}
-
 
 
 .surface {
