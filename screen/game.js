@@ -692,7 +692,7 @@ async function reset() {
     for (let i = 0; i < questions.length; i++) {
         supabaseInsert("fragen", ["id"], [i])
     }
-    addDummies(25);
+    addDummies(0);
 }
 
 function noReset() {
@@ -717,4 +717,4 @@ async function ende() {
 }
 
 
-//confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? reset() : noReset();
+confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? reset() : noReset();

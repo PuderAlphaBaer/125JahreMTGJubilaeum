@@ -29,10 +29,25 @@ const questions = [
 
 
 
-  new Frage("Wer hat die Relativitätstheorie formuliert?", "Isaac Newton", "Albert Einstein", "tilman", "ich", "c", 3, false),
-  new Frage("Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?", "Willy Brandt", "Helmut Kohl", "Konrad Adenauer", "Gerhard Schröder", "c", 2, false),
-  new Frage("Was ist die Quadratwurzel von 144?", "12", "14", "16", "18", "a", 10, false),
-  new Frage("Wer hat 'Faust' geschrieben?", "Friedrich Schiller", "Thomas Mann", "Johann Wolfgang von Goethe", "Bertolt Brecht", "c", 2, false),
+  // Chemie
+  new Frage("Was ist das chemische Symbol für Wasserstoff?", "H", "O", "N", "C", "a", 10, false),
+  new Frage("Was ist die Hauptkomponente von Erdgas?", "Methan", "Sauerstoff", "Stickstoff", "Helium", "a", 10, false),
+
+  // Biologie
+  new Frage("Was ist die kleinste Einheit des Lebens?", "Zelle", "Molekül", "Atom", "Elektron", "a", 10, false),
+  new Frage("Welches Organ produziert Insulin?", "Leber", "Bauchspeicheldrüse", "Niere", "Herz", "b", 10, false),
+
+  // Geographie
+  new Frage("Welcher ist der größte Kontinent der Erde?", "Asien", "Afrika", "Amerika", "Europa", "a", 10, false),
+  new Frage("Welcher Ozean ist der tiefste?", "Atlantik", "Indischer Ozean", "Pazifik", "Arktischer Ozean", "c", 10, false),
+
+  // Mischung
+  new Frage("Was ist die Hauptzutat in Glas?", "Sand", "Wasser", "Luft", "Erde", "a", 10, false),
+  new Frage("Welches Tier hat das größte Gehirn?", "Elefant", "Blauwal", "Mensch", "Delfin", "b", 10, false),
+  new Frage("Welcher ist der längste Fluss der Welt?", "Amazonas", "Nile", "Yangtze", "Mississippi", "b", 10, false),
+  new Frage("Welches Land hat die meisten Einwohner?", "China", "Indien", "USA", "Indonesien", "a", 10, false)  // new Frage("Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?", "Willy Brandt", "Helmut Kohl", "Konrad Adenauer", "Gerhard Schröder", "c", 2, false),
+  // new Frage("Was ist die Quadratwurzel von 144?", "12", "14", "16", "18", "a", 10, false),
+  // new Frage("Wer hat 'Faust' geschrieben?", "Friedrich Schiller", "Thomas Mann", "Johann Wolfgang von Goethe", "Bertolt Brecht", "c", 2, false),
   // new Frage("Wer war der erste Mensch im Weltraum?", "Herr Eschrich", "Yuri Gagarin", "Neil Armstrong", "Alexander Gerst",  "b", 15, false),
   // new Frage("Was ist der Sinus von 90 Grad?", "0", "1", "-1", "2", "b", 15, false),
   // new Frage("Welches der folgenden Bauten ist keines der sieben Weltwunder der Antike?", "Pyramiden von Gizeh", "Freiheitsstatue", "Koloss dvon Rhodos", "Zeusstatue", "b", 15, false),
@@ -44,6 +59,8 @@ const questions = [
   // new Frage("Was ist der größte Planet in unserem Sonnensystem?", "Erde", "Mars", "Jupiter", "Venus", "c", 15, false),
   // new Frage("Wer hat die Theorie der Evolution durch natürliche Selektion vorgeschlagen?", "Charles Darwin", "Gregor Mendel", "Louis Pasteur", "Alexander Fleming", "a", 15, false),
   // new Frage("Was ist die Hauptstadt von Australien?", "Sydney", "Melbourne", "Canberra", "Neuseeland", "c", 15, false)
+
+
 
 
 
