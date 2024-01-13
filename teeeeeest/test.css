@@ -1,16 +1,73 @@
-.big {
-    opacity: 0;
-    position: absolute;
-    background-color: black;
-    width: 100%;
-    height: 100%;
-}
 
-.flashlight {
+
+.fl {
+    display: none;
     border-radius: 50%;
     position: absolute;
-    background-color: white;
-    height: 10%;
+    width: 20%;
+    height: 0;
+    padding-top: 20%;
+    background-color: rgba(0, 0, 0, .6);
+    box-shadow: 0 0 0 99999px rgba(0, 0, 0, .6);
+    transition: 2s;
+    -webkit-transition: 2s;
+    right: 0;
+}
+
+
+.tee {
+    animation-name: entrance;
+    animation-duration: 2s;
+    right: 40%;
+}
+
+.tee2 {
+    transition: 0.8s!important;
+    -webkit-transition: 0.8s!important;
+    width: 100%;
+    padding-top: 100%;
+    opacity: 0;
+}
+
+@keyframes entrance {
+    0% {
+        right: 0;
+    }
+    85% {
+        right: 43%;
+    }
+    100% {
+        right: 40%;
+    }
+}
+
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+.dark {
+    box-shadow: 0 0 0 99999px rgba(0, 0, 0, .6);
+    transition: 1s;
+    -webkit-transition: 1s;
+    position: absolute;
     width: 0;
-    padding: 10%;
+    height: 0;
+    opacity: 0;
+    top: 0;
+    left: 0;
+}
+
+.txt {
+    color: white;
+}
+
+body {
+    background-color: gray;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
