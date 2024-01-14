@@ -55,7 +55,7 @@ body {
         right: 0;
     }
     85% {
-        right: 43%;
+        right: 42%;
     }
     100% {
         right: 40%;
@@ -109,7 +109,7 @@ body {
 .bar1 {
     display: flex;
     width: 100%;
-    background-color: green ;
+    background-color: rgb(86, 165, 26);
     height: 80%;
     align-items: flex-start;
     justify-content: center;
@@ -134,7 +134,7 @@ body {
 .bar2 {
     display: flex;
     width: 100%;
-    background-color: green ;
+    background-color: #ef8d0a;
     height: 80%;
     align-items: flex-start;
     justify-content: center;
@@ -168,7 +168,7 @@ body {
 .bar3 {
     display: flex;
     width: 100%;
-    background-color: green ;
+    background-color: rgb(9, 85, 164);
     height: 80%;
     align-items: flex-start;
     justify-content: center;
