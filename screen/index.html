@@ -18,7 +18,9 @@
 <body>
     
     <!-- Welcome Box -->
-    <div id="beforegamebox" class="beforegamebox">
+    <div id="boxWelcome" class="boxWelcome">
+
+
         <div class="logo" id="logo"></div>
         <div class="qr"></div>
         <p class="text">Bitte Scannen Sie den QR-Code oder rufen Sie die Internetseite</p>
@@ -28,7 +30,9 @@
     </div>
 
     <!-- Phase 1: Balken und Frage -->
-    <div id="zwischenbox" class="zwischenbox">
+    <div id="boxPhase1" class="boxPhase1">
+
+        <div class="qnumber" id="qnumber"></div>
         <div>
             <p class="frage1sur" id="anzeigefrage1"></p>
         </div>
@@ -38,14 +42,9 @@
     </div>
 
     <!-- Phase 2: Frage Button Click -->
-    <div id="fragenbox" class="fragenbox">
+    <div id="boxPhase2" class="boxPhase2">
 
-        <div id="bt2" class="buttonStyle bt2">Weiter</div> <!--Beendet letzte Frage und geht zur Rangliste-->
-
-        <div class="imgbox" id="imgbox">
-            <img class="nimg" id="img">
-        </div>
-
+        <div id="bt2" class="buttonStyle bt2">Weiter</div>
         <div>
             <p class="frage2sur" id="anzeigefrage2"></p>
         </div>
@@ -71,14 +70,16 @@
             </div>
         </div>
 
-        <div id="votebox" class="votebox">
-            <canvas id="vote" class="vote"></canvas>
+        <div id="boxPhase3" class="boxPhase3">
+            <div id="votebox" class="votebox">
+                <canvas id="vote" class="vote"></canvas>
+            </div>
         </div>
 
     </div>
 
     <!-- Phase 4: Rang und Punktzahl -->
-    <div id="rangliste" class="rangliste">
+    <div id="boxPhase4" class="boxPhase4">
         <div id="bt1" class="buttonStyle bt1"></div>
         <div class="tablebox" id="tablebox">
             <table class="table" id="table">
@@ -88,11 +89,12 @@
 
 
 
-    <div class="qnumber" id="qnumber"></div>
 
 
 
-    <div id="endbox" class="endbox">
+
+    <div id="boxPhase5" class="boxPhase5">
+
         <div class="endpublikum" id="endpublikum"></div>
         <div id="endpodium" class="endpodium">
         </div>

@@ -6,12 +6,12 @@ const c = document.getElementById('btc');
 const d = document.getElementById('btd');
 const y = document.getElementById('y');
 const n = document.getElementById('n');
-const zwischenbox = document.getElementById('zwischenbox');
-const beforegamebox = document.getElementById('beforegamebox');
+const boxPhase1 = document.getElementById('boxPhase1');
+const boxWelcome = document.getElementById('boxWelcome');
 const balkenbox = document.getElementById('balkenbox');
 const balken = document.getElementById('balken');
-const fragenbox = document.getElementById('fragenbox');
-const rangliste = document.getElementById('rangliste');
+const boxPhase2 = document.getElementById('boxPhase2');
+const boxPhase4 = document.getElementById('boxPhase4');
 const btbox = document.getElementById('btbox');
 const buttonBox = document.getElementById('buttonBox');
 const qnumber = document.getElementById('qnumber');
@@ -26,65 +26,64 @@ const bt2 = document.getElementById('bt2');
 const bt1 = document.getElementById('bt1');
 const startgamebt = document.getElementById('startgamebt');
 const resettu = document.getElementById('resetUsers');
-const imgbox = document.getElementById('imgbox');
-const img = document.getElementById('img');
 const zweiterContainer = document.getElementById('ersterContainer');
 const subbutton = document.getElementById('subButton');
-const endbox = document.getElementById('endbox');
-
+const boxPhase5 = document.getElementById('boxPhase5');
+const boxPhase3 = document.getElementById('boxPhase3');
 let activequestionid = 0;
 
 
-
+function togglePhase(phase) {
+    switch (phase) {
+        default:
+            boxWelcome.style.display = "none";
+            boxPhase1.style.display = "none";
+            boxPhase2.style.display = "none";
+            boxPhase3.style.display = "none";
+            boxPhase4.style.display = "none";
+            boxPhase5.style.display = "none";
+            phase.style.display = "flex";
+        case boxPhase2:
+            boxPhase3.style.display = "none";
+            break;
+        case boxPhase3:
+            boxPhase2.style.display = "flex"
+            break;
+    }
+}
+togglePhase(boxWelcome);
 
 const beforeUnloadHandler = (event) => {
-    // Recommended
     event.preventDefault();
-    // Included for legacy support, e.g. Chrome/Edge < 119
     event.returnValue = "Wollen Sie die Seite wirklich verlassen? Die kann zu erheblichen Fehlern im laufenden Quiz führen";
 };
-  
 
 //window.addEventListener("beforeunload", beforeUnloadHandler);
-
-
+ 
 startgamebt.addEventListener('click', startgame);
-bt1.addEventListener('click', interphase1);
-bt2.addEventListener('click', weiter);
+bt1.addEventListener('click', phase1);
+bt2.addEventListener('click', phase4);
 
 function startgame() {
-    console.log('beginne spiel')
-    beforegamebox.style.display = "none";
-    interphase1();
-}
-
-function togglePhase(phase) {
-    rangliste.style.display = "none";
-    fragenbox.style.display = "none";
-    zwischenbox.style.display = "none";
-    beforegamebox.style.display = "none";
-    phase.style.display = "flex";
+    console.log('%c starte spiel', 'background: #222; color: #bada55')
+    phase1();
 }
 
 let qnumberinsg;
 
-function interphase1() {
+function phase1() {
+    togglePhase(boxPhase1);
     activequestionid++;
-    qnumber.style.display = "block";
     qnumberinsg = questions.length-1;
     qnumber.innerHTML = "Frage "+activequestionid+" von "+qnumberinsg;
-
-    console.log('%c beginne' + activequestionid, 'background: #222; color: #bada55')
     supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid)
-    togglePhase(zwischenbox);
     prefut = Date.now() + pretime;
     preloop = setInterval(interface1bar, 10);
     anzeigefrage1.innerHTML = questions[activequestionid].frage;
-
+    console.log('%c beginne frage' + activequestionid, 'background: #222; color: #bada55')
     setTimeout(() => {
-        interphase2();
+        phase2();
     }, pretime);
-    // }, 1000);
 };
 
 
@@ -102,14 +101,11 @@ function interface1bar() {
 
 
 // wird nach ablaufen der ersten 5s aufgerufen
-  function interphase2() {
-    console.log('%c starte frage' + activequestionid, 'background: #222; color: #bada55')
+function phase2() {
+    togglePhase(boxPhase2);
     supabaseUpdate('fragen', ['start'], [true], 'eq', 'id', activequestionid)
-
-    balken.style.width = "0";
     clearInterval(preloop);
 
-    togglePhase(fragenbox);
     // reset der letzten Frage
     timerContainer.style.display = "flex";
     c.style.display = "flex";
@@ -123,6 +119,7 @@ function interface1bar() {
     c.style.border = "none";
     d.style.border = "none";
     anzeigefrage2.innerHTML = questions[activequestionid].frage;
+
     // Multiple Choice Frage
     a.innerHTML = questions[activequestionid].a;
     b.innerHTML = questions[activequestionid].b;
@@ -140,17 +137,16 @@ function interface1bar() {
     
 
         if(questions[activequestionid].img!=false) {
-            imgbox.style.display = "block";
-            img.src = "../"+questions[activequestionid].img;
+
         } else {
-            imgbox.style.display = "none";
+
         }
 
     // Timer starten
     startTimer();
 
 
-    }
+}
 
 
 let timestart;
@@ -158,17 +154,15 @@ let timestart;
 
 
 
-function weiter() {
+function phase4() {
+    togglePhase(boxPhase4);
     supabaseUpdate('fragen', ['auswertung'], [true], 'eq', 'id', activequestionid)
-    qnumber.style.display = "none";
-    togglePhase(rangliste);
-    bt2.style.display = "none";
-    votebox.style.display = "none";
     votebox.removeChild(document.getElementById('vote'));
     votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
     fetchRangliste();
     bt1.innerHTML = "Starte Frage "+(activequestionid+1)+" von "+(questions.length-1);
     supabaseUpdate('spieler', ['vote'], [null], 'gt', 'id', '-1');
+    console.log('%c beende frage' + activequestionid, 'background: #222; color: #bada55')
     if (activequestionid==questions.length-1) {
         theend();
     }
@@ -177,8 +171,7 @@ function weiter() {
 
 function theend() {
 
-    endbox.style.display = "flex";
-
+    togglePhase(boxPhase5);
 
 }
   
@@ -241,52 +234,38 @@ function countDownTimer() {
     // }
 
     if(remainingTime <= 0) {
-        timerend();
+        timerEnd();
         // Hier Funktion bei Ablauf des Timers callen
     }
 } 
 
 
 // Wird bei Ablaufen der Zeit aufgerufen
-function timerend() {
+function timerEnd() {
     clearInterval(timerLoop);
-    // ende auf true setzen
-    console.log('%c beende frage' + activequestionid, 'background: #222; color: #bada55')
     supabaseUpdate('fragen', ['ende'], [true], 'eq', 'id', activequestionid)
-    timerContainer.style.display = "none";
-    // Verwendet "includes()", um mehrere Lösungen zu ermöglichen -- ACHTUNG includes() wird von Internetexplorer 11 oder weniger nicht unterstützt, sollte kein Problem darstellen, da es nur für surface.html verwendet wird
-    if(questions[activequestionid].loesung.includes("a")==true) {
-        a.style.border = "white solid 5px";
-    } else {
-        a.style.opacity = "0.5";
-        a.style.border = "transparent";
-    }
-    if(questions[activequestionid].loesung.includes("b")==true) {
-        b.style.border = "white solid 5px"
-    } else {
-        b.style.opacity = "0.5";
-        b.style.border = "transparent";
-    }
-    if(questions[activequestionid].loesung.includes("c")==true) {
-        c.style.border = "white solid 5px"
-    } else {
-        c.style.opacity = "0.5";
-        c.style.border = "transparent";
-    }
-    if(questions[activequestionid].loesung.includes("d")==true) {
-        d.style.border = "white solid 5px"
-    } else {
-        d.style.opacity = "0.5";
-        d.style.border = "transparent";
-    }
     
-    bt2.style.display = "block";
-    document.body.classList.add('waiting');
-    setTimeout(() => {
-        auswertung();
-    }, 500);
+    let options = ['a', 'b', 'c', 'd'];
+    options.forEach(option => {
+        let element = document.getElementById(option);
+        switch (questions[activequestionid].loesung.includes(option)) {
+            case true:
+                element.style.border = "white solid 5px";
+                break;
+            default:
+                element.style.opacity = "0.5";
+                element.style.border = "transparent";
+        }
+    });
+        
+        document.body.classList.add('waiting');
 
-}
+        console.log('%c beende frage' + activequestionid, 'background: #222; color: #bada55')
+        setTimeout(() => {
+            phase3();
+        }, 500);
+
+    }
 
 
 
@@ -314,8 +293,8 @@ userlist = [
 // Diagramm wer für was gestimmt hat
 // Musst du nicht verstehen, hab versucht so gut wie möglich zu kommentieren, damit für Style einfacher ist
 // Im Fall der Fälle kannst du unter https://www.chartjs.org/docs/latest/ alles nachlesen
-function auswertung() {
-    votebox.style.display = "block";
+function phase3() {
+
     avotes = 0;
     bvotes = 0;
     cvotes = 0;
@@ -407,7 +386,7 @@ function auswertung() {
 
 
 
-// Erstellt Diagramm, greift zurück auf "auswertung();"
+// Erstellt Diagramm, greift zurück auf "phase3();"
 function nchart() {
     new Chart("vote", {
         type: "bar",
@@ -638,10 +617,8 @@ function toggle(id, cb) {
 
 
 function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
-    beforegamebox.style.display = "none";
-    togglePhase(fragenbox);
-    votebox.style.display = "block";
-    timerContainer.style.display = "none";
+    togglePhase(boxPhase2);
+
 
 
     if (avotes==null) {
@@ -699,7 +676,7 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
 function addDummies(number) {
     for (let i = 0; i < number; i++) {
         // insert dummies with name and random points and streak
-        supabaseInsert("spieler", ["name", "punkte", "streak"], ["MMMMMMMMMMM"+[i+1], Math.floor(Math.random() * 1000), Math.floor(Math.random() * 10)])
+        supabaseInsert("spieler", ["name", "punkte", "streak"], ["Dummy"+[i+1], Math.floor(Math.random() * 1000), Math.floor(Math.random() * 10)])
         console.log("Insert Dummy")
     }
 }
@@ -733,8 +710,8 @@ function noReset() {
 }
 
 async function ende() {
-    await auswertung();
-    weiter();
+    await phase3();
+    phase4();
 }
 
 
