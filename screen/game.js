@@ -133,6 +133,7 @@ function phase2() {
     c.style.border = "none";
     d.style.border = "none";
     anzeigefrage2.innerHTML = questions[activequestionid].frage;
+    bt2.style.display = "none";
 
     // Multiple Choice Frage
     a.innerHTML = questions[activequestionid].a;
@@ -305,6 +306,7 @@ function phase3() {
     bvotes = 0;
     cvotes = 0;
     dvotes = 0;
+    bt2.style.display = "felx";
     updateRanking();
     
     supabaseFetch('spieler', 'id, name, punkte, streak, vote, podium', '', '', '', 'punkte', false).then((data) => {
