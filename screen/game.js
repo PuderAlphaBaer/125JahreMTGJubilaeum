@@ -306,7 +306,6 @@ function phase3() {
     bvotes = 0;
     cvotes = 0;
     dvotes = 0;
-    bt2.style.display = "felx";
     updateRanking();
     
     supabaseFetch('spieler', 'id, name, punkte, streak, vote, podium', '', '', '', 'punkte', false).then((data) => {
@@ -388,6 +387,7 @@ function phase3() {
                 borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
                 break;
         }
+        bt2.style.display = "flex";
         nchart();
     });
 }
