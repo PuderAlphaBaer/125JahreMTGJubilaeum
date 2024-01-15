@@ -30,11 +30,11 @@ const questions = [
 
 
   // Chemie
-  new Frage("Was ist das chemische Symbol für Wasserstoff?", "H", "O", "N", "C", "a", 10, false),
-  new Frage("Was ist die Hauptkomponente von Erdgas?", "Methan", "Sauerstoff", "Stickstoff", "Helium", "a", 10, false),
+  new Frage("Was ist das chemische Symbol für Wasserstoff?", "H", "O", "N", "C", "a", 1, false),
+  new Frage("Was ist die Hauptkomponente von Erdgas?", "Methan", "Sauerstoff", "Stickstoff", "Helium", "a", 1, false),
 
   // Biologie
-  new Frage("Was ist die kleinste Einheit des Lebens?", "Zelle", "Molekül", "Atom", "Elektron", "a", 10, false),
+  new Frage("Was ist die kleinste Einheit des Lebens?", "Zelle", "Molekül", "Atom", "Elektron", "a", 1, false),
   new Frage("Welches Organ produziert Insulin?", "Leber", "Bauchspeicheldrüse", "Niere", "Herz", "b", 10, false),
 
   // Geographie
@@ -133,7 +133,7 @@ const ranglistenlimit = 20;
 
 
 // Bei welcher Frage das Podium durchgewechselt werden soll
-const nextPodium = [1, 3];
+const nextPodium = [3];
 
 const pretime = 1000;
 

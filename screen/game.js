@@ -93,6 +93,10 @@ function interface1bar() {
     prerem = prefut - Date.now();
     preangle = (prerem / pretime);
     balken.style.width = (preangle*100)+"%";
+
+    console.log("nur testweise in dieser zeile dann entfernen")
+    // userlist[userlist.length-1].punkte = userlist[0].punkte+1;
+    supabaseUpdate('spieler', ['punkte'], [userlist[0].punkte+1], 'eq', 'id', userlist[userlist.length-1].id);
   }
 
 
@@ -287,12 +291,13 @@ function timerend() {
 
 
 class User {
-    constructor(id, name, punkte, streak, rank, vote, podium) {
+    constructor(id, name, punkte, streak, rank, lastrank, vote, podium) {
         this.id = id;
         this.name = name;
         this.punkte = punkte;
         this.streak = streak;
         this.rank = rank;
+        this.lastrank = lastrank;
         this.vote = vote;
         this.podium = podium;
     }
@@ -322,13 +327,14 @@ function auswertung() {
         for (let i = 0; i < data.length; i++) {
             userIndex = userlist.findIndex((obj => obj.id == data[i].id));
             if (userIndex<0) {
-                userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, null, false));
+                userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, 0, null, false));
                 console.log("%c Neuer User hinzugefügt", "color: red")
                 userIndex = userlist.findIndex((obj => obj.id == data[i].id));
             }
             if (data[i].punkte<0) {
                 userlist.splice(userIndex, 1);
             } else {
+                    userlist[userIndex].lastrank = userlist[userIndex].rank;
                     userlist[userIndex].punkte = data[i].punkte;
                     userlist[userIndex].streak = data[i].streak;
                     userlist[userIndex].vote = data[i].vote;
@@ -486,25 +492,27 @@ const tablebox = document.getElementById('tablebox');
 
 function fetchRangliste() {
     table.innerHTML = 
-    `<tr class="headRow"> 
+    `<tr class="headRow">
+        <td class="udata updown"></td>
         <td class="udata rank">Rang</td>
         <td class="udata uname">Name</td>
         <td class="udata uscore">Punkte</td>
         <td class="udata streak"></td>
         <td class="udata podiumSwitch"></td>
-        
     </tr>`;
     trennung = 0;
     for (let i = 0; i < userlist.length; i++) {
 
-        if (userlist[i].podium==true) {
+        if (userlist[i].podium) {
             utype = "podium";
         } else {
             utype = "userRecord";
         }
 
+        console.log(utype)
+
         if(i<ranglistenlimit) {
-            userupdate(userlist[i].id, userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
+            userupdate(userlist[i].id, utype);
         } else {
             if (utype=="podium") {
                 if(trennung==0) {
@@ -521,7 +529,7 @@ function fetchRangliste() {
                 if(i-1>ranglistenlimit && userlist[i-1].podium==false) {
                     emptycolumn();
                 }
-                userupdate(userlist[i].id, userlist[i].rank, userlist[i].name, userlist[i].punkte, userlist[i].streak, utype);
+                userupdate(userlist[i].id, utype);
             }
         }
 
@@ -530,40 +538,59 @@ function fetchRangliste() {
 
 
 
-function userupdate(id, rank, uname, score, streak, type) {
-    if (streak==0) {
+function userupdate(uid, atype) {
+    console.log(atype)
+    id = userlist.findIndex((obj => obj.id == uid));
+    // Bei streak 0 wird keine flamme angezeigt
+    if (userlist[id].streak==0) {
         sbox = "";
     } else {
         sbox = `
-        <div class="streakRecord">${streak}</div>`
+        <div class="streakRecord">${userlist[id].streak}</div>`
     }
+
+    if (nextPodium.includes(activequestionid)) {
+
+    // Wenn der User sich auf dem Podium befindet ist der Schalter schon auf checked
     if(type == "podium") {
         checked = "checked"
     } else {
         checked = ""
     }
-    if (nextPodium.includes(activequestionid)) {
+
         cb = `
-    <td class="podiumSwitch dataCell">
         <div class="switchContainer">
         <label class="switch">
-            <input class="switchinput" type="checkbox" onchange="toggle('${id}', this)" ${checked}>
+            <input class="switchinput" type="checkbox" onchange="toggle('${userlist[id].id}', this)" ${checked}>
             <area class="switch slider"></area>
         </label>
-        </div>
-    </td>`
+        </div>`
     } else {
-        cb = `<td class="podiumSwitch dataCell"></td>`;
+        cb = "";
     }
     // Hier gerne bearbeiten, der type ist "podium" oder "normaluser", er wird in zeile 507-511 festgelegt
     document.getElementById('table').innerHTML += `
-    <tr class="${type}" id="${id}row">
-        <td class="rank dataCell">${rank}</td>
-        <td class="uname dataCell">${uname}</td>
-        <td class="score dataCell">${score}</td>
+    <tr class="${atype}" id="${userlist[id].id}row">
+        <td class="udata updown dataCell"><div id="updown${userlist[id].id}"></div></td>
+        <td class="rank dataCell">${userlist[id].rank}</td>
+        <td class="uname dataCell">${userlist[id].name}</td>
+        <td class="score dataCell">${userlist[id].punkte}</td>
         <td class="dataCell streak">${sbox}</td>
-        ${cb}
+        <td class="podiumSwitch dataCell">${cb}<td>
     </tr>`;
+
+
+        // Ob User abgestiegen oder aufgestiegen ist
+    if(activequestionid>1) {
+        if(userlist[id].lastrank != userlist[id].rank) {
+            if (userlist[id].lastrank < userlist[id].rank) {
+                document.getElementById("updown"+userlist[id].id).classList.add('down');
+            } 
+            if (userlist[id].lastrank > userlist[id].rank) {
+                document.getElementById("updown"+userlist[id].id).classList.add('up');
+            }
+        }
+    }
 }
 
 
@@ -686,7 +713,7 @@ async function reset() {
     for (let i = 0; i < questions.length; i++) {
         supabaseInsert("fragen", ["id"], [i])
     }
-    addDummies(0);
+    addDummies(10);
 }
 
 function noReset() {

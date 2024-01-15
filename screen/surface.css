@@ -446,3 +446,19 @@ tr {
   body.waiting * {
     cursor: progress;
 }
+
+.up {
+    background-image: url("../Data/up.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 30px;
+    width: 30px;
+}
+
+.down {
+    background-image: url("../Data/down.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 30px;
+    width: 30px;
+}
