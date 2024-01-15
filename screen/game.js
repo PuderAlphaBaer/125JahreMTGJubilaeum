@@ -523,8 +523,7 @@ function fetchRangliste() {
 
 
 
-function userupdate(uid, atype) {
-    console.log(atype)
+function userupdate(uid, type) {
     id = userlist.findIndex((obj => obj.id == uid));
     // Bei streak 0 wird keine flamme angezeigt
     if (userlist[id].streak==0) {
@@ -555,7 +554,7 @@ function userupdate(uid, atype) {
     }
     // Hier gerne bearbeiten, der type ist "podium" oder "normaluser", er wird in zeile 507-511 festgelegt
     document.getElementById('table').innerHTML += `
-    <tr class="${atype}" id="${userlist[id].id}row">
+    <tr class="${type}" id="${userlist[id].id}row">
         <td class="udata updown dataCell"><div id="updown${userlist[id].id}"></div></td>
         <td class="rank dataCell">${userlist[id].rank}</td>
         <td class="uname dataCell">${userlist[id].name}</td>
