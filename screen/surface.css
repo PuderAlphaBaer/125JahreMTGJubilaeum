@@ -71,22 +71,6 @@ tr {
 
 
 
-/* Timer */
-
-.timerContainer {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    height: 50vmin;
-    width: 500vw;
-    top: 2vw;
-    position: absolute;
-    pointer-events: none;
-    justify-self: right;
-    align-self: baseline;
-}
-
 /* Timerzeug*/
 .timerbox {
     position: absolute;
@@ -155,6 +139,7 @@ tr {
 }
 
 .votebox {
+    display: block;
     position: absolute;
     border: none;
     width: 50%;

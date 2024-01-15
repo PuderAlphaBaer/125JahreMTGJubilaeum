@@ -34,7 +34,26 @@ let activequestionid = 0;
 
 
 function togglePhase(phase) {
+    function nonePhase() {
+        boxWelcome.style.display = "none";
+        boxPhase1.style.display = "none";
+        boxPhase2.style.display = "none";
+        boxPhase3.style.display = "none";
+        boxPhase4.style.display = "none";
+        boxPhase5.style.display = "none";
+    }
     switch (phase) {
+        case boxPhase2:
+            nonePhase();
+            boxPhase2.style.display = "flex";
+            console.log('timer')
+            timerContainer.style.display = "flex";
+            break;
+        case boxPhase3:
+            nonePhase();
+            boxPhase2.style.display = "flex";
+            boxPhase3.style.display = "flex";
+            break;
         default:
             boxWelcome.style.display = "none";
             boxPhase1.style.display = "none";
@@ -43,12 +62,6 @@ function togglePhase(phase) {
             boxPhase4.style.display = "none";
             boxPhase5.style.display = "none";
             phase.style.display = "flex";
-        case boxPhase2:
-            boxPhase3.style.display = "none";
-            break;
-        case boxPhase3:
-            boxPhase2.style.display = "flex"
-            break;
     }
 }
 togglePhase(boxWelcome);
@@ -93,9 +106,9 @@ function interface1bar() {
     preangle = (prerem / pretime);
     balken.style.width = (preangle*100)+"%";
 
-    console.log("nur testweise in dieser zeile dann entfernen")
-    // userlist[userlist.length-1].punkte = userlist[0].punkte+1;
-    supabaseUpdate('spieler', ['punkte'], [userlist[0].punkte+1], 'eq', 'id', userlist[userlist.length-1].id);
+    // console.log("nur testweise in dieser zeile dann entfernen")
+    // // userlist[userlist.length-1].punkte = userlist[0].punkte+1;
+    // supabaseUpdate('spieler', ['punkte'], [userlist[0].punkte+1], 'eq', 'id', userlist[userlist.length-1].id);
   }
 
 
@@ -105,6 +118,7 @@ function phase2() {
     togglePhase(boxPhase2);
     supabaseUpdate('fragen', ['start'], [true], 'eq', 'id', activequestionid)
     clearInterval(preloop);
+    console.log('%c starte frage' + activequestionid, 'background: #222; color: #bada55')
 
     // reset der letzten Frage
     timerContainer.style.display = "flex";
@@ -136,12 +150,14 @@ function phase2() {
     }
     
 
-        if(questions[activequestionid].img!=false) {
+    if(questions[activequestionid].img!=false) {
 
-        } else {
+    } else {
 
-        }
+    }
 
+
+    
     // Timer starten
     startTimer();
 
@@ -242,22 +258,12 @@ function countDownTimer() {
 
 // Wird bei Ablaufen der Zeit aufgerufen
 function timerEnd() {
+    timerContainer.style.display = "none";
+
     clearInterval(timerLoop);
     supabaseUpdate('fragen', ['ende'], [true], 'eq', 'id', activequestionid)
     
-    let options = ['a', 'b', 'c', 'd'];
-    options.forEach(option => {
-        let element = document.getElementById(option);
-        switch (questions[activequestionid].loesung.includes(option)) {
-            case true:
-                element.style.border = "white solid 5px";
-                break;
-            default:
-                element.style.opacity = "0.5";
-                element.style.border = "transparent";
-        }
-    });
-        
+    if(questions[activequestionid].loesung.includes("a")==true) { a.style.border = "white solid 5px"; } else { a.style.opacity = "0.5"; a.style.border = "transparent"; } if(questions[activequestionid].loesung.includes("b")==true) { b.style.border = "white solid 5px" } else { b.style.opacity = "0.5"; b.style.border = "transparent"; } if(questions[activequestionid].loesung.includes("c")==true) { c.style.border = "white solid 5px" } else { c.style.opacity = "0.5"; c.style.border = "transparent"; } if(questions[activequestionid].loesung.includes("d")==true) { d.style.border = "white solid 5px" } else { d.style.opacity = "0.5"; d.style.border = "transparent"; }
         document.body.classList.add('waiting');
 
         console.log('%c beende frage' + activequestionid, 'background: #222; color: #bada55')
@@ -294,7 +300,7 @@ userlist = [
 // Musst du nicht verstehen, hab versucht so gut wie möglich zu kommentieren, damit für Style einfacher ist
 // Im Fall der Fälle kannst du unter https://www.chartjs.org/docs/latest/ alles nachlesen
 function phase3() {
-
+    togglePhase(boxPhase3);
     avotes = 0;
     bvotes = 0;
     cvotes = 0;
@@ -675,8 +681,9 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
 
 function addDummies(number) {
     for (let i = 0; i < number; i++) {
-        // insert dummies with name and random points and streak
-        supabaseInsert("spieler", ["name", "punkte", "streak"], ["Dummy"+[i+1], Math.floor(Math.random() * 1000), Math.floor(Math.random() * 10)])
+        // insert dummies with name and random points and streak and random votes a or b and random podium true or false
+        supabaseInsert("spieler", ["name", "punkte", "streak", "vote", "podium"], ["Dummus"+[i+1], Math.floor(Math.random() * 1000), Math.floor(Math.random() * 10), "a", true])
+
         console.log("Insert Dummy")
     }
 }
