@@ -187,12 +187,6 @@ function phase4() {
 }
 
 
-function theend() {
-
-    togglePhase(boxPhase5);
-
-}
-  
 const timer = document.getElementById('timertext');
 const s1 = document.getElementById('s1');
 const s2 = document.getElementById('s2');
@@ -679,4 +673,3 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
 
     nchart();
 }
-

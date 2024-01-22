@@ -1,8 +1,16 @@
 body {
     background-image: url("../Data/hinter.svg");
-    background-size: 100% 100%;
+    background-size: cover;
     background-attachment: fixed;
+    background-color: white;
 }
+/* 
+:fullscreen, ::backdrop {
+    background-image: url("../Data/hinter.svg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: white;
+} */
 
 table {
     border-collapse: collapse;

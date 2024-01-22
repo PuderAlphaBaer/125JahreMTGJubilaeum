@@ -30,8 +30,8 @@ const questions = [
 
 
 
-  new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine", "", "", ["a", "b"], 10, false),
-  new Frage("Wie viele Fenster hat unser Hauptschulgebäude?", "420", "690", "134", "208", "d", 10, false),
+  //new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine", "", "", ["a", "b"], 10, false),
+  new Frage("Wie viele Fenster hat unser Hauptschulgebäude?", "420", "690", "134", "208", "d", 1, false),
   // new Frage("Seit wann ist das MTG für Mädchen besuchbar?", "1899", "1978", "1990", "1902", "b", 10, false),
   // new Frage("In welchem Jahr wurde das Maria-Theresia-Gymnasium gegründet?", "1965", "1899", "1940", "2006", "a", 10, false),
   // new Frage("Was waren die letzten vier Direktoren in richtiger Reihenfolge?", "Frau Duschka, Herr Schairer, Frau Reiter, Herr Endres", "Frau Duschka, Frau Reiter, Herr Schairer, Herr Endres", "Frau Duschka, Frau Reiter, Herr Endres, Herr Schairer", "Frau Reiter, Herr Endres, Herr Schairer, Frau Duschka", "b", 10, false),
@@ -87,33 +87,56 @@ const questions = [
 
 // Sprüche wenn Antwort richtig ist
 const rworte = [
-  "Mach weiter so",
-  "Tilman hätte sich auch so entschieden",
-  "Weise Entscheidung",
-  "Tilman ist stolz auf dich",
-  "INTELLIGENZ",
-  "Bene bene bene",
-  "Ouich  ~Frau Fendt, immer",
-  "Gute Spieleinstellung"
+  // "Mach weiter so",
+  // "Tilman hätte sich auch so entschieden",
+  // "Weise Entscheidung",
+  // "Tilman ist stolz auf dich",
+  // "INTELLIGENZ",
+  // "Bene bene bene",
+  // "Ouich  ~Frau Fendt, immer",
+  // "Gute Spieleinstellung"
+
+  "Richtig! Ihr Wissen leuchtet heller als die Schulglocke am Morgen!",
+  "Treffer! Sie haben den Jackpot des Wissen geknackt. Feiern Sie diesen Triumph!",
+  "Korrekt! Ihre Antwort strahlt wie die Sonne über unserem Schulhof. Gut gemacht!",
+  "Wow, Sie sind sicher einer von den ganz Schlauen!",
+  "Wieso sind Sie nicht in unserem Hochbegabtenzweig?",
+  "Haben wir da einen Streber im Publikum?",
+  "Sie haben sicher schon die Festschrift gekauft!",
 ]
 
 // Sprüche wenn Antwort falsch ist
 const fworte = [
-  "Tilman hätte das besser gemacht",
-  "Tilman ist entäuscht von dir",
-  "Da ist noch Luft nach oben",
-  "Da gibt es noch Ausbaupotenzial",
-  "Wenn Frau Reiter das erfährt...",
-  "Du vergeudest dein Potenzial",
-  "Schlau ist etwas anderes",
-  "Mio weint bei deiner Antwort",
-  "Ein Stich in mein Lateinerherz  ~Frau Wächter 2018, oft genug",
-  "Cicero in sarcophago rotat"
+  // "Tilman hätte das besser gemacht",
+  // "Tilman ist entäuscht von dir",
+  // "Da ist noch Luft nach oben",
+  // "Da gibt es noch Ausbaupotenzial",
+  // "Wenn Frau Reiter das erfährt...",
+  // "Du vergeudest dein Potenzial",
+  // "Schlau ist etwas anderes",
+  // "Mio weint bei deiner Antwort",
+  // "Ein Stich in mein Lateinerherz  ~Frau Wächter 2018, oft genug",
+  // "Cicero in sarcophago rotat"
+
+    "Leider falsch. Aber keine Sorge, beim nächsten Quiz sind Sie wieder am Start!",
+  "Das war knapp daneben. Aber keine Sorge, in der Schule des Lebens gibt es immer eine zweite Chance!",
+  "Ups, das war falsch. Aber wie sagt man so schön: Übung macht den Meister!",
+  "Wir fragen uns, ob Sie in der Schule genauso falsche Antworten gegeben haben. Wahrscheinlich ja!",
+  "Hätten Sie doch die Festschrift gekauft!",
+  "Ab zum Nachsitzen!"
 ]
 const zwischenworte = [
-  "pure genius",
-  "schlau?",
-  "so gut wie Tilman?"
+  // "pure genius",
+  // "schlau?",
+  // "so gut wie Tilman?"
+
+  "Wir haben ihre Antwort. Bald erfahren Sie, ob Sie ein Quiz-Genie sind!",
+  "Ihre Antwort wird geprüft. Gleich wissen Sie, ob Sie auf der Gewinnerseite stehen!",
+  "Ihre Antwort wird von unseren klügsten Köpfen überprüft. Daumen drücken!",
+  "Ein Expertenteam aus Lehrern, Schülern und einem geheimen Superhelden prüft Ihre Antwort.",
+  "Während Ihre Antwort durch die Schulkorridore wandert, genießen wir einen Moment der Vorfreude.",
+  "Lehrer prüfen ihre Antwort mit wissenschaftlicher Präzision",
+  "Sicher nicht beim Nachbarn über die Schulter geäugt?"
 ]
 
 // Bis zu welchem PLatz die Rangliste gehen soll
@@ -121,9 +144,9 @@ const ranglistenlimit = 20;
 
 
 // Bei welcher Frage das Podium durchgewechselt werden soll
-const nextPodium = [3];
+const nextPodium = [5];
 
-const pretime = 5000;
+const pretime = 500;
 
 // Wär die Mitte
 //const nextPodium = (questions.length - 1)/2;

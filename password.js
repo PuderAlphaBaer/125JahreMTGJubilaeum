@@ -8,4 +8,4 @@ function pwd() {
     }
 }
 
-pwd();
+//pwd();
