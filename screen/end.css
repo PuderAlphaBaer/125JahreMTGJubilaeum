@@ -74,8 +74,8 @@ body {
 .flout {
     transition: 0.8s!important;
     -webkit-transition: 0.8s!important;
-    width: 100%;
-    padding-bottom: 100%;
+    width: 90%;
+    padding-bottom: 90%;
     opacity: 0;
     transform: translateY(-30%);
 }
@@ -92,7 +92,7 @@ body {
     }
 }
 
-.bbbox{
+.endpublikum {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -109,6 +109,7 @@ body {
     justify-content: space-evenly;
     height: 40%;
     width: 80%;
+    margin-top: 5%;
 }
 
 
@@ -193,8 +194,9 @@ body {
 
 .name {
     position: absolute;
-    font-size: 2vh;
+    font-size: 4vh;
     color: white;
+    margin-bottom: 1vw;
 }
 
 .container3 {
@@ -233,7 +235,7 @@ body {
     position: absolute;
 }
 
-.bbpox {
+.endpodium {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -260,8 +262,15 @@ body {
 }
 
 .podname {
-    font-size: 2vw;
-    
+    font-size: 6vw;
+}
+
+.endname {
+    display: none;
+    position: relative;
+    font-size: 4vh;
+    color: white;
+    margin-bottom: 1vw;
 }
 
 
@@ -271,8 +280,7 @@ body {
     top: 20%;
     animation-name: namein;
     animation-duration: 0.8s;
-    font-size: 4vh;
-
+    font-size: 6vh;
 }
 
 @keyframes namein {
@@ -280,12 +288,12 @@ body {
         font-size: 0;
     }
 
-    97% {
-        font-size: 4.5vh;
+    94% {
+        font-size: 6.5vh;
     }
 
     100% {
-        font-size: 4vh;
+        font-size: 6vh;
     }
     
 }
@@ -305,13 +313,13 @@ body {
     transform: translateX(-50%);
 }
 
-.bt1 {
+.bt3 {
     position: absolute;
     top: 0;
     right: 0;
 }
 
 .points {
-    font-size: 4vh;
+    font-size: 2.5vh;
     color: white;
 }

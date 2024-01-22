@@ -4,16 +4,60 @@ const name1 = document.getElementById('name1');
 const name2 = document.getElementById('name2');
 const name3 = document.getElementById('name3');
 const podname = document.getElementById('podname');
-const bbpox = document.getElementById('bbpox');
-const bbbox = document.getElementById('bbbox');
+const endpodium = document.getElementById('endpodium');
+const endpublikum = document.getElementById('endpublikum');
 const container1 = document.getElementById('container1');
 const container2 = document.getElementById('container2');
 const container3 = document.getElementById('container3');
 const rankreveal = document.getElementById('rankreveal');
-const bt1 = document.getElementById('bt1');
+const bt3 = document.getElementById('bt3');
 const points1 = document.getElementById('points1');
 const points2 = document.getElementById('points2');
 const points3 = document.getElementById('points3');
+const endname1 = document.getElementById('endname1');
+const endname2 = document.getElementById('endname2');
+const endname3 = document.getElementById('endname3');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function theend() {
+  togglePhase(boxPhase5);
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function rank1() {
@@ -36,7 +80,7 @@ function rank1() {
                   rankreveal.style.transition = "0.8s";
                   rankreveal.style.fontSize = 0;
                 }, 4000);
-            }, 1000);
+            }, 450);
         }, 3000);
     }, 2000);
     
@@ -48,31 +92,39 @@ async function revealRank(rank) {
   switch(rank) {
     case 1:
       rname = name1;
+      endrname = endname1;
       rpoints = points1;
       break;
     case 2:
       rname = name2;
+      endrname = endname2;
       rpoints = points2;
       break;
     case 3:
       rname = name3;
+      endrname = endname3;
       rpoints = points3;
       break;
     default:
       console.log("error");
   }
-  rname.innerHTML = "MMMMMMMMMMMMMMMMMMMM";
-  rpoints.innerHTML = "10402";
+  rname.innerHTML = userlist[rank-1].name;
+  rpoints.innerHTML = userlist[rank-1].punkte + " Punkte";
   rankreveal.innerHTML = "Rang " + rank;
   pos3 = await getPos(rname);
   rname.classList.add('namein')
   setTimeout(() => {
     rname.classList.remove('namein');
     rname.style.transition = "2s";
-    rname.style.fontSize = "2vh";
+    rname.style.fontSize = "4vh";
     rname.style.top = pos3.top + "px";
     rname.style.left = pos3.left + "px";
-  }, 5000);
+    setTimeout(() => {
+      endrname.innerHTML = userlist[rank-1].name;
+      rname.style.display = "none";
+      endrname.style.display = "flex";
+    }, 4000);
+  }, 3500);
 
 
 }
@@ -88,13 +140,13 @@ function getPos(element) {
 }
 
 function toggle() {
-  if(bbpox.style.display == "none") {
-    bbpox.style.display = "flex";
-    bbbox.style.display = "none";
+  if(endpodium.style.display == "none") {
+    endpodium.style.display = "flex";
+    endpublikum.style.display = "none";
   }
   else {
-    bbpox.style.display = "none";
-    bbbox.style.display = "flex";
+    endpodium.style.display = "none";
+    endpublikum.style.display = "flex";
   }
 }
 
@@ -117,7 +169,7 @@ activerank = 3;
 
 
 
-bt1.addEventListener('click', () => {
+bt3.addEventListener('click', () => {
   switch(activerank) {
     case 4:
       podrank();
@@ -134,6 +186,7 @@ bt1.addEventListener('click', () => {
     case 1:
       rank1();
       activerank--;
+      bt3.style.display = "none";
       break;
     default:
       console.log("error");

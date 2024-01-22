@@ -7,6 +7,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="../indexStyle.css">
     <link rel="stylesheet" href="surface.css">
+    <link rel="stylesheet" href="end.css">
     <!-- Icons -->
     <link rel="icon" type="image/png" sizes="32x32" href="../Data/mtg32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../Data/mtg16.png">
@@ -97,9 +98,71 @@
 
     <div id="boxPhase5" class="boxPhase5">
 
-        <div class="endpublikum" id="endpublikum"></div>
         <div id="endpodium" class="endpodium">
+
+            <div class="podtext">
+                <p class="podtext" id="podtext">Dies ist der diesjährige Gewinner der Bühnenteams:::::</p>
+            </div>
+            <div class="podcontainer" id="podcontainer">
+                <div class="podnamebox" id="podnamebox">
+                    <p class="podname" id="podname">Nassssssssssme</p>
+                </div>
+            </div>
+
         </div>
+
+        <div class="endpublikum" id="endpublikum">
+
+            <div class="bigbox">     
+                <div class="container2" id="container2">
+                    <div class="namebox2" id="namebox2">
+                        <div class="name" id="name2"></div>
+                        <div class="endname" id="endname2"></div>
+                    </div>
+                    <div class="bar2" id="bar2">
+                        <div id="points2" class="points"></div>
+                        <div class="brn">2</div>
+                    </div>
+                </div>
+    
+    
+                <div id="container1" class="container1">
+                    <div class="namebox1" id="namebox1">
+                            <div class="name" id="name1"></div>
+                            <div class="endname" id="endname1"></div>
+                    </div>
+                    <div class="bar1" id="bar1">
+                        <div id="points1" class="points"></div>
+                        <div class="brn">1</div>
+                    </div>
+                </div>
+    
+    
+                <div class="container3" id="container3">
+                    <div class="namebox3" id="namebox3">
+                        <div class="name" id="name3"></div>
+                        <div class="endname" id="endname3"></div>
+                    </div>
+                    <div class="bar3" id="bar3">
+                        <div id="points3" class="points"></div>
+                        <div class="brn">3</div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="rrbox" id="rrbox">
+                <p class="rankreveal" id="rankreveal"></p>
+            </div>
+    
+    
+    
+            <div class="fl" id="fl"></div>
+            <div id="dark" class="dark"></div>
+
+        </div>
+
+        <div id="bt3" class="buttonStyle bt3">Weiter</div>
+
     </div>
 
 
@@ -109,12 +172,15 @@
     <script src="reset.js"></script>
     <script src="../libraries/chart.min.js"></script>
     <script src="../libraries/chartjs-plugin-datalabels@2.0.0"></script>
-
+    <script src="../libraries/tsparticles.confetti.bundle.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script> -->
 
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <script src="../test/snippets.js"></script>
     <script src="../value.js"></script>
     <script src="game.js"></script>
+    <script src="end.js"></script>
 </body>
 
 </html>
