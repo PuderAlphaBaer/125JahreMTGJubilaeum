@@ -74,8 +74,8 @@ body {
 .flout {
     transition: 0.8s!important;
     -webkit-transition: 0.8s!important;
-    width: 90%;
-    padding-bottom: 90%;
+    width: 85%;
+    padding-bottom: 85%;
     opacity: 0;
     transform: translateY(-30%);
 }
@@ -138,7 +138,7 @@ body {
     font-size: 7vh;
     position: absolute;
 }
-/*  */
+
 .bar1 {
     display: flex;
     width: 100%;

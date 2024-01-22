@@ -80,7 +80,7 @@ function rank1() {
                   rankreveal.style.transition = "0.8s";
                   rankreveal.style.fontSize = 0;
                 }, 4000);
-            }, 450);
+            }, 380);
         }, 3000);
     }, 2000);
     
@@ -123,7 +123,8 @@ async function revealRank(rank) {
       endrname.innerHTML = userlist[rank-1].name;
       rname.style.display = "none";
       endrname.style.display = "flex";
-    }, 4000);
+      animationStop = false;
+    }, 1800);
   }, 3500);
 
 
@@ -162,36 +163,43 @@ function toggle() {
 
 
 activerank = 3;
+animationStop = false;
 
 
 
-
-
-
-
-bt3.addEventListener('click', () => {
-  switch(activerank) {
-    case 4:
-      podrank();
-      activerank--;
-      break;
-    case 3:
-      revealRank(3);
-      activerank--;
-      break;
-    case 2:
-      revealRank(2);
-      activerank--;
-      break;
-    case 1:
-      rank1();
-      activerank--;
-      bt3.style.display = "none";
-      break;
-    default:
-      console.log("error");
+function winneranimation() {
+  if (animationStop==false) {
+    switch(activerank) {
+      case 4:
+        podrank();
+        activerank--;
+        animationStop = true;
+        break;
+      case 3:
+        revealRank(3);
+        activerank--;
+        animationStop = true;
+        break;
+      case 2:
+        revealRank(2);
+        activerank--;
+        animationStop = true;
+        break;
+      case 1:
+        rank1();
+        activerank--;
+        bt3.style.display = "none";
+        animationStop = true;
+        break;
+      default:
+        console.log("error");
+    }
   }
-});
+}
+
+
+
+bt3.addEventListener('click', winneranimation);
 
 
 
@@ -202,7 +210,7 @@ function conf1() {
       startVelocity: 30,
       spread: 360, ticks: 60,
        zIndex: 0,
-       colors: ['#ef8d0a', '#56a51a', '#0955a4']
+       colors: ['#ef8d0a', '#56a51a', '#0d7cf0']
     };
 
   function randomInRange(min, max) {
@@ -240,30 +248,30 @@ function conf2() {
   const end = Date.now() + 7 * 1000;
 
 // go Buckeyes!
-const colors = ["#bb0000", "#ffffff"];
+const colors = ["#ffffff"];
 
 (function frame() {
   confetti({
-    gravity: 0.5,
-    particleCount: 20,
+    gravity: -1,
+    particleCount: 5,
     angle: 40,
-    spread: 35,
+    spread: 10,
     origin: { x: 0},
     colors: colors,
-    startVelocity: 450,
+    startVelocity: 60,
     ticks: 800,
     
   });
 
   confetti({
-    gravity: 0.5,
-    particleCount: 20,
+    gravity: -1,
+    particleCount: 5,
     angle: 140,
-    spread: 35,
+    spread: 10,
     origin: { x: 1 },
     colors: colors,
-    startVelocity: 450,
-    ticks: 800
+    startVelocity: 60,
+    ticks: 800,
   });
 
   if (Date.now() < end) {
