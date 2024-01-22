@@ -27,7 +27,7 @@ const questions = [
   
   new Frage("placeholder", "a", "a", "a", "a", "a", 0, false),
 
-  //new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine", "", "", ["a", "b"], 10, false),
+  new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine", "", "", ["a", "b"], 10, false),
   new Frage("Wie viele Fenster hat unser Hauptschulgebäude?", "420", "690", "134", "208", "d", 1, false),
   // new Frage("Seit wann ist das MTG für Mädchen besuchbar?", "1899", "1978", "1990", "1902", "b", 10, false),
   // new Frage("In welchem Jahr wurde das Maria-Theresia-Gymnasium gegründet?", "1965", "1899", "1940", "2006", "a", 10, false),
@@ -120,7 +120,7 @@ const ranglistenlimit = 20;
 // Bei welcher Frage das Podium durchgewechselt werden soll
 const nextPodium = [5];
 
-const pretime = 5000;
+const pretime = 6000;
 
 // Wär die Mitte
 //const nextPodium = (questions.length - 1)/2;
