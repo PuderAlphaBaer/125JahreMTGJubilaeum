@@ -172,6 +172,10 @@ let timestart;
 
 
 function phase4() {
+    if (activequestionid==questions.length-1) {
+        theend();
+        return;
+    }
     togglePhase(boxPhase4);
     supabaseUpdate('fragen', ['auswertung'], [true], 'eq', 'id', activequestionid)
     votebox.removeChild(document.getElementById('vote'));
@@ -180,9 +184,6 @@ function phase4() {
     bt1.innerHTML = "Starte Frage "+(activequestionid+1)+" von "+(questions.length-1);
     supabaseUpdate('spieler', ['vote'], [null], 'gt', 'id', '-1');
     console.log('%c beende frage' + activequestionid, 'background: #222; color: #bada55')
-    if (activequestionid==questions.length-1) {
-        theend();
-    }
 }
 
 
@@ -376,6 +377,7 @@ function phase3() {
 
         switch(questions[activequestionid].c) {
             case "":
+                xValues = [apod, bpod];
                 yValues = [avotes, bvotes];
                 barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)"];
                 borderColors = [a.style.borderColor, b.style.borderColor];
@@ -678,49 +680,3 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
     nchart();
 }
 
-//showCharts();
-
-function addDummies(number) {
-    for (let i = 0; i < number; i++) {
-        // insert dummies with name and random points and streak and random votes a or b and random podium true or false
-        supabaseInsert("spieler", ["name", "punkte", "streak", "vote", "podium"], ["Dummus"+[i+1], Math.floor(Math.random() * 1000), Math.floor(Math.random() * 10), "a", true])
-
-        console.log("Insert Dummy")
-    }
-}
-
-
-
-
-async function reset() {
-    await supabaseDeleteAll('spieler');
-    await supabaseDeleteAll('fragen');
-    for (let i = 0; i < questions.length; i++) {
-        supabaseInsert("fragen", ["id"], [i])
-    }
-    addDummies(10);
-}
-
-function noReset() {
-    supabaseFetch('fragen', 'beginn, id', '', '', '', 'id', true).then((data) => {
-        console.log(data);
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].beginn==true) {
-                activequestionid = data[i].id;
-                console.log(activequestionid)
-            }
-        }
-        // Wenn letzte Frage schon gespiel wurde
-        if(activequestionid==questions.length-1) {
-            ende();
-        }
-    })
-}
-
-async function ende() {
-    await phase3();
-    phase4();
-}
-
-
-confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? reset() : noReset();

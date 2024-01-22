@@ -209,14 +209,18 @@ function phase4() {
   supabaseFetch('spieler', 'punkte, rang', 'eq', 'name', nickname, 'punkte', true).then((data) => {
     gespunkte.innerHTML = "Deine Punktzahl: "+data[0].punkte;
     rang.innerHTML = "Dein Rang: "+data[0].rang;
-    vorrang = data[0].rang-1;
-    if (data[0].rang>1) {
-      supabaseFetch('spieler', 'name, punkte', 'eq', 'rang', vorrang, 'punkte', true).then((data2) => {
-        diff = data2[0].punkte-data[0].punkte;
-        brang.innerHTML = diff+" Punkte vor dir auf Rang "+vorrang+" befindet sich "+data2[0].name;
-      })
+    brang.innerHTML = "";
+    if(data[0].rang!=1) {
+      vorrang = data[0].rang-1;
+      if (data[0].rang>1) {
+        supabaseFetch('spieler', 'name, punkte', 'eq', 'rang', vorrang, 'punkte', true).then((data2) => {
+          diff = data2[0].punkte-data[0].punkte;
+          brang.innerHTML = diff+" Punkte vor dir auf Rang "+vorrang+" befindet sich "+data2[0].name;
+        })
+      }
     }
   });
+  
 }
 
 
@@ -250,9 +254,6 @@ c.addEventListener('click', cClicked);
 d.addEventListener('click', dClicked);
 
 
-
-let questiontime = 20000;
-
 // wird aufgerufen bei vote für a
 function aClicked() {
     if(questions[questionid].loesung.includes('a')==true) {
@@ -281,16 +282,11 @@ function aClicked() {
 // wird aufgerufen bei vote für b
 function bClicked() {
 
-    if (questions[questionid].frage=="Sind Tilman und Christian toll?") {
-      supabaseUpdate("spieler", ["blocked", "punkte"], ["Falsche Antwort bei Frage davor", -1], "eq",  "name",  nickname);
-    }
-
-
     if(questions[questionid].loesung.includes('b')==true) {
       questiontime = questions[questionid].zeit*1000;
       ergebnis = "richtig";
       addPoints = Date.now()-questionStart;
-      addPoints = questiontime-addPoints;
+      addPoints = questiontime-addPoints+20;
       streakrech = streak*0.1;
       streakrech = 1+streakrech;
       addPoints = addPoints*streakrech;

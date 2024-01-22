@@ -1,3 +1,4 @@
+
 function pwd() {
     pw = prompt("Passwort eingeben:",  "TilmanderKÖNNER");
     if (pw == "Jesus") {
@@ -7,4 +8,4 @@ function pwd() {
     }
 }
 
-//pwd();
+pwd();
