@@ -26,12 +26,6 @@ const endname3 = document.getElementById('endname3');
 
 
 
-
-
-
-
-
-
 function theend() {
   togglePhase(boxPhase5);
   
@@ -269,14 +263,6 @@ const colors = ["#ffffff"];
   }
 })();
 }
-
-
-
-
-toggle();
-
-
-
 
 
 

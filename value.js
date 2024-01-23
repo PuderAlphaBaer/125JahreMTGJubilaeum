@@ -84,33 +84,50 @@ const questions = [
 
 // Sprüche wenn Antwort richtig ist
 const rworte = [
-  "Mach weiter so",
-  "Tilman hätte sich auch so entschieden",
-  "Weise Entscheidung",
-  "Tilman ist stolz auf dich",
-  "INTELLIGENZ",
-  "Bene bene bene",
-  "Ouich  ~Frau Fendt, immer",
-  "Gute Spieleinstellung"
+  // "Mach weiter so",
+  // "Tilman hätte sich auch so entschieden",
+  // "Weise Entscheidung",
+  // "Tilman ist stolz auf dich",
+  // "INTELLIGENZ",
+  // "Bene bene bene",
+  // "Ouich  ~Frau Fendt, immer",
+  // "Gute Spieleinstellung",
+  "Richtig! Ihr Wissen leuchtet heller als die Schulglocke am Morgen!",
+  "Treffer! Sie haben den Jackpot des Wissen geknackt. Feiern Sie diesen Triumph!",
+  "Korrekt! Ihre Antwort strahlt wie die Sonne über unserem Schulhof. Gut gemacht!",
+  "Wow, Sie sind sicher einer von den ganz Schlauen!",
+  "Wieso sind Sie nicht in unserem Hochbegabtenzweig?",
+  "Haben wir da einen Streber im Publikum?",
+  "Sie haben sicher schon die Festschrift gekauft!"
 ]
 
 // Sprüche wenn Antwort falsch ist
 const fworte = [
-  "Tilman hätte das besser gemacht",
-  "Tilman ist entäuscht von dir",
-  "Da ist noch Luft nach oben",
-  "Da gibt es noch Ausbaupotenzial",
-  "Wenn Frau Reiter das erfährt...",
-  "Du vergeudest dein Potenzial",
-  "Schlau ist etwas anderes",
-  "Mio weint bei deiner Antwort",
-  "Ein Stich in mein Lateinerherz  ~Frau Wächter 2018, oft genug",
-  "Cicero in sarcophago rotat"
+  // "Tilman hätte das besser gemacht",
+  // "Tilman ist entäuscht von dir",
+  // "Da ist noch Luft nach oben",
+  // "Da gibt es noch Ausbaupotenzial",
+  // "Wenn Frau Reiter das erfährt...",
+  // "Du vergeudest dein Potenzial",
+  // "Schlau ist etwas anderes",
+  // "Mio weint bei deiner Antwort",
+  // "Ein Stich in mein Lateinerherz  ~Frau Wächter 2018, oft genug",
+  // "Cicero in sarcophago rotat",
+  "Oh leider nicht ganz richtig. Aber keine Sorge beim nächsten Quiz sind Sie wieder am Start!",
+  "Das war knapp daneben. Aber keine Sorge, in der Schule des Lebens gibt es immer eine zweite Chance!",
+  "Ups, das war falsch. Aber wie sagt man so schön: Übung macht den Meister!",
+  "Wir fragen uns, ob Sie in der Schule genauso falsche Antworten gegeben haben. Wahrscheinlich ja!",
+  "Hätten Sie doch die Festschrift gekauft!",
+  "Ab zum Nachsitzen"
 ]
 const zwischenworte = [
-  "pure genius",
-  "schlau?",
-  "so gut wie Tilman?"
+  "Wir haben ihre Antwort. Bald erfahren Sie, ob Sie ein Quiz-Genie sind!",
+  "Ihre Antwort wird geprüft. Gleich wissen Sie, ob Sie auf der Gewinnerseite stehen!",
+  "Ihre Antwort wird von unseren klügsten Köpfen überprüft. Daumen drücken!",
+  "Ein Expertenteam aus Lehrern, Schülern und einem geheimen Superhelden prüft Ihre Antwort.",
+  "Während Ihre Antwort durch die Schulkorridore wandert, genießen wir einen Moment der Vorfreude.",
+  "Lehrer prüfen ihre Antwort mit wissenschaftlicher Präzision",
+  "Sicher nicht beim Nachbarn über die Schulter geäugt?"
 ]
 
 // Bis zu welchem PLatz die Rangliste gehen soll
