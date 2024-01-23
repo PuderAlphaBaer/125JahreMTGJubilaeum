@@ -377,7 +377,7 @@ svg {
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    /* border: black solid 0.5vmin; */
+    border: black solid 0.5vmin;
 }
 
 .devtext {
