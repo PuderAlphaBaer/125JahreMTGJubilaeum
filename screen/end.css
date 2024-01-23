@@ -1,17 +1,10 @@
-
-body {
-    background-color: gray;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     user-select: none;
-}
+} */
 
 .buttonStyle {
     width: 20%;
@@ -75,7 +68,7 @@ body {
     transition: 0.8s!important;
     -webkit-transition: 0.8s!important;
     width: 85%;
-    padding-bottom: 85%;
+    padding-bottom: 80%;
     opacity: 0;
     transform: translateY(-30%);
 }
@@ -109,7 +102,7 @@ body {
     justify-content: space-evenly;
     height: 40%;
     width: 80%;
-    margin-top: 5%;
+    margin-top: 10%;
 }
 
 
@@ -132,11 +125,6 @@ body {
     background-color: transparent;
     justify-content: center;
     align-items: center;
-}
-
-.name1 {
-    font-size: 7vh;
-    position: absolute;
 }
 
 .bar1 {
@@ -176,7 +164,7 @@ body {
 .bar2 {
     display: flex;
     width: 100%;
-    background-color: rgb(185, 109, 9);
+    background-color: rgb(219, 129, 10);
     height: 80%;
     align-items: center;
     justify-content: space-around;
@@ -195,7 +183,7 @@ body {
 .name {
     position: absolute;
     font-size: 4vh;
-    color: white;
+    color: black;
     margin-bottom: 1vw;
 }
 
@@ -228,11 +216,6 @@ body {
     background-color: transparent;
     justify-content: center;
     align-items: center;
-}
-
-.name3 {
-    font-size: 7vh;
-    position: absolute;
 }
 
 .endpodium {
@@ -269,7 +252,7 @@ body {
     display: none;
     position: relative;
     font-size: 4vh;
-    color: white;
+    color: black;
     margin-bottom: 1vw;
 }
 
@@ -280,7 +263,7 @@ body {
     top: 20%;
     animation-name: namein;
     animation-duration: 0.8s;
-    font-size: 6vh;
+    font-size: 8vh;
 }
 
 @keyframes namein {
@@ -289,11 +272,11 @@ body {
     }
 
     94% {
-        font-size: 6.5vh;
+        font-size: 8.5vh;
     }
 
     100% {
-        font-size: 6vh;
+        font-size: 8vh;
     }
     
 }
@@ -307,7 +290,7 @@ body {
 .rankreveal {
     position: absolute;
     font-size: 8vh;
-    color: white;
+    color: black;
     bottom: 5%;
     left: 50%;
     transform: translateX(-50%);

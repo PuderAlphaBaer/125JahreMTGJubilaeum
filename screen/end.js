@@ -70,7 +70,6 @@ function rank1() {
         fl.classList.add('flin');
         setTimeout(() => {
             conf1();
-            name1.innerHTML = "Tilman";
             revealRank(1);
             fl.classList.remove('flin');
             fl.classList.add('flout');
@@ -80,7 +79,7 @@ function rank1() {
                   rankreveal.style.transition = "0.8s";
                   rankreveal.style.fontSize = 0;
                 }, 4000);
-            }, 380);
+            }, 350);
         }, 3000);
     }, 2000);
     
@@ -127,7 +126,6 @@ async function revealRank(rank) {
     }, 1800);
   }, 3500);
 
-
 }
 
 
@@ -138,17 +136,6 @@ function getPos(element) {
       top: rect.top - parentRect.top + window.scrollY,
       left: rect.left - parentRect.left + window.scrollX
   };
-}
-
-function toggle() {
-  if(endpodium.style.display == "none") {
-    endpodium.style.display = "flex";
-    endpublikum.style.display = "none";
-  }
-  else {
-    endpodium.style.display = "none";
-    endpublikum.style.display = "flex";
-  }
 }
 
 
@@ -204,13 +191,14 @@ bt3.addEventListener('click', winneranimation);
 
 
 function conf1() {
-  const duration = 15 * 1000,
+  const duration = 20 * 1000,
     animationEnd = Date.now() + duration,
     defaults = { 
       startVelocity: 30,
       spread: 360, ticks: 60,
-       zIndex: 0,
-       colors: ['#ef8d0a', '#56a51a', '#0d7cf0']
+      zIndex: 0,
+      colors: ['#a95ae5', '#ef8d0a', '#56a51a', '#0955a4'],
+      scalar: 3
     };
 
   function randomInRange(min, max) {
@@ -224,7 +212,7 @@ function conf1() {
       return clearInterval(interval);
     }
 
-    const particleCount = 50 * (timeLeft / duration);
+    const particleCount = 20 * (timeLeft / duration);
 
     // since particles fall down, start a bit higher than random
     confetti(
@@ -250,6 +238,7 @@ function conf2() {
 // go Buckeyes!
 const colors = ["#ffffff"];
 
+
 (function frame() {
   confetti({
     gravity: -1,
@@ -260,7 +249,7 @@ const colors = ["#ffffff"];
     colors: colors,
     startVelocity: 60,
     ticks: 800,
-    
+    scalar: 2
   });
 
   confetti({
@@ -272,6 +261,7 @@ const colors = ["#ffffff"];
     colors: colors,
     startVelocity: 60,
     ticks: 800,
+    scalar: 2
   });
 
   if (Date.now() < end) {

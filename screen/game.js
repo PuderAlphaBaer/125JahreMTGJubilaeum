@@ -1,3 +1,26 @@
+function startCountdown(time) {
+    
+    let i = 0;
+    let finalOffset = 440; // the length of strokedasharray ( pixel circumference of the circle -> css )
+    let step = finalOffset / time;
+    let timeCaption = document.querySelector('h2');
+    let circle = document.querySelector('.circle_animation').style;
+    let newTimer = document.querySelector('.newTimer').style;
+
+    newTimer.display = 'flex';
+    circle.strokeDashoffset = 0;
+    timeCaption.innerText = time;
+
+    var interval = setInterval(() => {
+        timeCaption.innerText = time - i;
+        if (i++ == time) {
+            clearInterval(interval);
+        } else {
+            circle.strokeDashoffset = step * i;
+        };
+    }, 1000);
+}
+
 const anzeigefrage1 = document.getElementById('anzeigefrage1');
 const anzeigefrage2 = document.getElementById('anzeigefrage2');
 const a = document.getElementById('bta');
@@ -76,6 +99,9 @@ const beforeUnloadHandler = (event) => {
 startgamebt.addEventListener('click', startgame);
 bt1.addEventListener('click', phase1);
 bt2.addEventListener('click', phase4);
+
+
+
 
 function startgame() {
     console.log('%c starte spiel', 'background: #222; color: #bada55')
