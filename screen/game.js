@@ -376,6 +376,7 @@ function phase3() {
         dpod = [];
 
         podiumList = userlist.filter(user => user.podium == true);
+        podiumList.sort(function (a, b) {return a.rank - b.rank});
         for(let i = 0; i < podiumList.length; i++) {
             switch (podiumList[i].vote) {
                 case 'a':
@@ -589,7 +590,7 @@ function userupdate(uid, type) {
 
 
         // Ob User abgestiegen oder aufgestiegen ist
-    if(activequestionid>1) {
+    if(userlist[id].lastrank != null) {
         if(userlist[id].lastrank != userlist[id].rank) {
             if (userlist[id].lastrank < userlist[id].rank) {
                 document.getElementById("updown"+userlist[id].id).classList.add('down');

@@ -350,7 +350,6 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    border: black solid 0.5vmin;
 }
 
 .box2 {
@@ -358,7 +357,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    border: black solid 0.5vmin;
 }
 
 .devtext {

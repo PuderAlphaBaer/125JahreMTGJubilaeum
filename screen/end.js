@@ -3,7 +3,6 @@ const dark = document.getElementById('dark');
 const name1 = document.getElementById('name1');
 const name2 = document.getElementById('name2');
 const name3 = document.getElementById('name3');
-const podname = document.getElementById('podname');
 const endpodium = document.getElementById('endpodium');
 const endpublikum = document.getElementById('endpublikum');
 const container1 = document.getElementById('container1');
@@ -17,8 +16,10 @@ const points3 = document.getElementById('points3');
 const endname1 = document.getElementById('endname1');
 const endname2 = document.getElementById('endname2');
 const endname3 = document.getElementById('endname3');
-
-
+const winner = document.getElementById('winner');
+const podname = document.getElementById('podname');
+const podpoints = document.getElementById('podpoints');
+const gesrank = document.getElementById('gesrank');
 
 
 
@@ -28,13 +29,23 @@ const endname3 = document.getElementById('endname3');
 
 function theend() {
   togglePhase(boxPhase5);
-  
-
 }
 
 
 
-
+function podrank() {
+  conf2();
+  setTimeout(() => {
+    podname.innerHTML = podiumList[0].name;
+    podname.classList.add('namein');
+    setTimeout(() => {
+      podpoints.innerHTML = podiumList[0].punkte + " Punkte";
+      gesrank.innerHTML = "Rang insgesamt beträgt " + podiumList[0].rank;
+      podpoints.style.opacity = 1;
+      gesrank.style.opacity = 1;
+    }, 3000);    
+  }, 3000);
+}
 
 
 
@@ -75,7 +86,7 @@ function rank1() {
                 }, 4000);
             }, 350);
         }, 3000);
-    }, 2000);
+    }, 2500);
     
     // schön async machen und dann nach scheinwerfer namen einfügen und dann fett konfetti
     // https://confetti.js.org/more.html
@@ -143,7 +154,7 @@ function getPos(element) {
 
 
 
-activerank = 3;
+activerank = 5;
 animationStop = false;
 
 
@@ -151,10 +162,15 @@ animationStop = false;
 function winneranimation() {
   if (animationStop==false) {
     switch(activerank) {
-      case 4:
+      case 5:
         podrank();
         activerank--;
-        animationStop = true;
+        //animationStop = true;
+        break;
+      case 4:
+        endpodium.style.display = "none";
+        endpublikum.style.display = "flex";
+        activerank--;
         break;
       case 3:
         revealRank(3);
@@ -192,7 +208,7 @@ function conf1() {
       spread: 360, ticks: 60,
       zIndex: 0,
       colors: ['#a95ae5', '#ef8d0a', '#56a51a', '#0955a4'],
-      scalar: 3
+      scalar: 2
     };
 
   function randomInRange(min, max) {
@@ -227,7 +243,7 @@ function conf1() {
 
 
 function conf2() {
-  const end = Date.now() + 7 * 1000;
+  const end = Date.now() + 5000;
 
 // go Buckeyes!
 const colors = ["#ffffff"];
@@ -274,47 +290,47 @@ const colors = ["#ffffff"];
 
 
 
-// function rank1(){
-//   var theLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZÖÄÜ1234567890"; //You can customize what letters it will cycle through
-//   var ctnt = "Tilmanofatz"; // Your text goes here
-//   var speed = 50; // ms per frame
-//   var increment = 8; // frames per step. Must be >2
+function letterthing(){
+  var theLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZÖÄÜ1234567890"; //You can customize what letters it will cycle through
+  var ctnt = "Tilmanofatz"; // Your text goes here
+  var speed = 50; // ms per frame
+  var increment = 4; // frames per step. Must be >2
   
       
-//   var clen = ctnt.length;       
-//   var si = 0;
-//   var stri = 0;
-//   var block = "";
-//   var fixed = "";
-//   //Call self x times, whole function wrapped in setTimeout
+  var clen = ctnt.length;       
+  var si = 0;
+  var stri = 0;
+  var block = "";
+  var fixed = "";
+  //Call self x times, whole function wrapped in setTimeout
   
-//   (function rustle (i) {          
-//   setTimeout(function () {
-//     if (--i){rustle(i);}
-//     nextFrame(i);
-//     si = si + 1;        
-//   }, speed);
-//   })(clen*increment+1); 
-//   function nextFrame(pos){
-//     for (var i=0; i<clen-stri; i++) {
-//       //Random number
-//       var num = Math.floor(theLetters.length * Math.random());
-//       //Get random letter
-//       var letter = theLetters.charAt(num);
-//       block = block + letter;
-//     }
-//     if (si == (increment-1)){
-//       stri++;
-//     }
-//     if (si == increment){
-//     // Add a letter; 
-//     // every speed*10 ms
-//     fixed = fixed +  ctnt.charAt(stri - 1);
-//     si = 0;
-//     }
-//     podname.innerHTML = (fixed + block);
-//     block = "";
-//   }
-//   };
+  (function rustle (i) {          
+  setTimeout(function () {
+    if (--i){rustle(i);}
+    nextFrame(i);
+    si = si + 1;        
+  }, speed);
+  })(clen*increment+1); 
+  function nextFrame(pos){
+    for (var i=0; i<clen-stri; i++) {
+      //Random number
+      var num = Math.floor(theLetters.length * Math.random());
+      //Get random letter
+      var letter = theLetters.charAt(num);
+      block = block + letter;
+    }
+    if (si == (increment-1)){
+      stri++;
+    }
+    if (si == increment){
+    // Add a letter; 
+    // every speed*10 ms
+    fixed = fixed +  ctnt.charAt(stri - 1);
+    si = 0;
+    }
+    podname.innerHTML = (fixed + block);
+    block = "";
+  }
+  };
 
 
