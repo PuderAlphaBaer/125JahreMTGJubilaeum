@@ -1,27 +1,3 @@
-.newTimer {
-	display: none;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-}
-.newTimer h2 {
-    font-size: 3em;
-	width: 160px;
-	position: absolute;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-svg {
-	transform: rotate(-90deg);
-}
-.circle_animation {
-    stroke-dasharray: 565; /* 2 * π * r */
-    stroke-dashoffset: 0;
-    transition: all 1s linear;
-}
-
-
 body {
     background-image: url("../Data/hinter.svg");
     background-size: cover;

@@ -27,10 +27,10 @@ const questions = [
   
   new Frage("placeholder", "a", "a", "a", "a", "a", 0, false),
 
-  new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine", "", "", ["a", "b"], 10, false),
-  new Frage("Wie viele Fenster hat unser Hauptschulgebäude?", "420", "690", "134", "208", "d", 1, false),
-  // new Frage("Seit wann ist das MTG für Mädchen besuchbar?", "1899", "1978", "1990", "1902", "b", 10, false),
-  // new Frage("In welchem Jahr wurde das Maria-Theresia-Gymnasium gegründet?", "1965", "1899", "1940", "2006", "a", 10, false),
+  new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine", "", "", ["a", "b"], 4, false),
+  new Frage("Wie viele Fenster hat unser Hauptschulgebäude?", "420", "690", "134", "208", "d", 4, false),
+  new Frage("Seit wann ist das MTG für Mädchen besuchbar?", "1899", "1978", "1990", "1902", "b", 10, false),
+  new Frage("In welchem Jahr wurde das Maria-Theresia-Gymnasium gegründet?", "1965", "1899", "1940", "2006", "a", 10, false),
   // new Frage("Was waren die letzten vier Direktoren in richtiger Reihenfolge?", "Frau Duschka, Herr Schairer, Frau Reiter, Herr Endres", "Frau Duschka, Frau Reiter, Herr Schairer, Herr Endres", "Frau Duschka, Frau Reiter, Herr Endres, Herr Schairer", "Frau Reiter, Herr Endres, Herr Schairer, Frau Duschka", "b", 10, false),
   // new Frage("Wie viele Liegestütze schafft Herr Markl?", "55", "21", "86", "201", "c", 10, false),
   // new Frage("Was war das profitabelste Unternehmen während der letzten Projekttage?", "Museumscafe", "Pizzabäckerei", "Talentshow", "3D Drucker", "a", 10, false),
@@ -137,7 +137,7 @@ const ranglistenlimit = 20;
 // Bei welcher Frage das Podium durchgewechselt werden soll
 const nextPodium = [5];
 
-const pretime = 6000;
+const pretime = 1000;
 
 // Wär die Mitte
 //const nextPodium = (questions.length - 1)/2;

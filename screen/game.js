@@ -7,18 +7,26 @@ function startCountdown(time) {
     let newTimer = document.querySelector('.newTimer').style;
 
     newTimer.display = 'flex';
-    circle.strokeDashoffset = 0;
+    newTimer.zIndex = '0';
     timeCaption.innerText = time;
+    var CountdownInterval = setInterval(countdown, 1000);
 
-    var CountdownInterval = setInterval(() => {
+    function countdown() {
         timeCaption.innerText = time - i;
-        if (i++ == time) {
+        if (i++ >= time) {
             clearInterval(CountdownInterval);
+            circle.strokeDashoffset = 0;
             newTimer.display = 'none';
         } else {
             circle.strokeDashoffset = step * i;
-        };
-    }, 1000);
+        }
+    }
+
+    setTimeout(() => {
+        circle.strokeDashoffset = 0;
+        countdown(); // Call the function once to start the countdown immediately
+         // Then set the interval
+    }, 10);
 }
 
 const anzeigefrage1 = document.getElementById('anzeigefrage1');
@@ -70,7 +78,7 @@ function togglePhase(phase) {
             nonePhase();
             boxPhase2.style.display = "flex";
             console.log('timer')
-            timerContainer.style.display = "flex";
+            // timerContainer.style.display = "flex";
             break;
         case boxPhase3:
             nonePhase();
@@ -147,7 +155,7 @@ function phase2() {
     console.log('%c starte frage' + activequestionid, 'background: #222; color: #bada55')
 
     // reset der letzten Frage
-    timerContainer.style.display = "flex";
+    // timerContainer.style.display = "flex";
     c.style.display = "flex";
     d.style.display = "flex";
     a.style.opacity = "1";
@@ -213,11 +221,11 @@ function phase4() {
 }
 
 
-const timer = document.getElementById('timertext');
-const s1 = document.getElementById('s1');
-const s2 = document.getElementById('s2');
-const s3 = document.getElementById('s3');
-const timerContainer = document.getElementById('timerContainer');
+// const timer = document.getElementById('timertext');
+// const s1 = document.getElementById('s1');
+// const s2 = document.getElementById('s2');
+// const s3 = document.getElementById('s3');
+// const timerContainer = document.getElementById('timerContainer');
 
 // Länge der Zeit für Fragen
 let setTime;
@@ -229,38 +237,39 @@ let futureTime;
 function startTimer() { 
   timerLoop = setInterval(countDownTimer, 10);
   setTime = questions[activequestionid].zeit*1000;
-  timer.innerHTML = questions[activequestionid].zeit+".00";
+//   timer.innerHTML = questions[activequestionid].zeit+".00";
   futureTime = Date.now() + setTime;
-  s1.style.display = "block";
-  s2.style.display = "block";
-  s1.style.backgroundColor = "orangered";
-  s2.style.backgroundColor = "orangered";
-  timer.style.color = "yellow";
-  timer.style.fontSize = "5vh";
+  startCountdown(questions[activequestionid].zeit);
+//   s1.style.display = "block";
+//   s2.style.display = "block";
+//   s1.style.backgroundColor = "orangered";
+//   s2.style.backgroundColor = "orangered";
+//   timer.style.color = "yellow";
+//   timer.style.fontSize = "5vh";
 }
 
 
 // Lässt Timer ablaufen, hinterfrags nicht, es funtioniert einfach
 function countDownTimer() {
     const remainingTime = futureTime - Date.now();
-    const angle = (remainingTime / setTime) * 360;
+    // const angle = (remainingTime / setTime) * 360;
 
-    if(angle > 180) {
-        s3.style.display = "none";
-        s1.style.transform = "rotate(180deg)";
-        s2.style.transform = "rotate("+angle+"deg)";
-    } else {
-        s3.style.display = "block";
-        s1.style.transform = "rotate("+angle+"deg)";
-        s2.style.transform = "rotate("+angle+"deg)";
-    }
+    // if(angle > 180) {
+    //     s3.style.display = "none";
+    //     s1.style.transform = "rotate(180deg)";
+    //     s2.style.transform = "rotate("+angle+"deg)";
+    // } else {
+    //     s3.style.display = "block";
+    //     s1.style.transform = "rotate("+angle+"deg)";
+    //     s2.style.transform = "rotate("+angle+"deg)";
+    // }
 
-    if(remainingTime > 1000) {
-        timer.innerHTML = remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
-    } else {
+    // if(remainingTime > 1000) {
+    //     timer.innerHTML = remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
+    // } else {
 
-        timer.innerHTML = "0"+remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
-    }
+    //     timer.innerHTML = "0"+remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
+    // }
 
 
 
@@ -280,8 +289,7 @@ function countDownTimer() {
 
 // Wird bei Ablaufen der Zeit aufgerufen
 function timerEnd() {
-    timerContainer.style.display = "none";
-
+    // timerContainer.style.display = "none";
     clearInterval(timerLoop);
     supabaseUpdate('fragen', ['ende'], [true], 'eq', 'id', activequestionid)
     
