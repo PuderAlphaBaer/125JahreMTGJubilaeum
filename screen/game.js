@@ -1,7 +1,6 @@
 function startCountdown(time) {
-    
     let i = 0;
-    let finalOffset = 440; // the length of strokedasharray ( pixel circumference of the circle -> css )
+    let finalOffset = 565; // New circumference
     let step = finalOffset / time;
     let timeCaption = document.querySelector('h2');
     let circle = document.querySelector('.circle_animation').style;
@@ -11,10 +10,11 @@ function startCountdown(time) {
     circle.strokeDashoffset = 0;
     timeCaption.innerText = time;
 
-    var interval = setInterval(() => {
+    var CountdownInterval = setInterval(() => {
         timeCaption.innerText = time - i;
         if (i++ == time) {
-            clearInterval(interval);
+            clearInterval(CountdownInterval);
+            newTimer.display = 'none';
         } else {
             circle.strokeDashoffset = step * i;
         };

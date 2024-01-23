@@ -5,6 +5,7 @@
 	position: relative;
 }
 .newTimer h2 {
+    font-size: 3em;
 	width: 160px;
 	position: absolute;
 	display: flex;
@@ -15,11 +16,10 @@ svg {
 	transform: rotate(-90deg);
 }
 .circle_animation {
-	stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
-	stroke-dashoffset: 0;
-	transition: all 1s linear;
+    stroke-dasharray: 565; /* 2 * π * r */
+    stroke-dashoffset: 0;
+    transition: all 1s linear;
 }
-
 
 
 body {

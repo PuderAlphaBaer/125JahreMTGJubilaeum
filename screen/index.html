@@ -15,16 +15,18 @@
     <link rel="icon" type="image/png" sizes="192x192" href="../Data/mtg192.png">
     <link rel="apple-touch-icon" type="image/png" sizes="167x167" href="/../Data/mtg167.png">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/../Data/mtg180.png">
-    
-    <script src="https://unpkg.com/@supabase/supabase-js"></script>
-    <script src="../database.js"></script>
-    <script src="../password.js"></script>
-    <script src="reset.js"></script>
+
 </head>
 <body>
-    
+
     <!-- Welcome Box -->
     <div id="boxWelcome" class="boxWelcome">
+        <div class="newTimer">
+            <h2>time</h2>
+            <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+                <circle id="circle" class="circle_animation" r="90" cy="100" cx="100" stroke-width="8" stroke="#6fdb6f" fill="none"/>
+            </svg>
+        </div>
 
 
         <div class="logo" id="logo"></div>
@@ -169,12 +171,17 @@
     </div>
 
 
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <script src="../database.js"></script>
+    <!-- <script src="../password.js"></script> -->
+    <script src="reset.js"></script>
     <script src="../libraries/chart.min.js"></script>
     <script src="../libraries/chartjs-plugin-datalabels@2.0.0"></script>
     <script src="../libraries/tsparticles.confetti.bundle.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script> -->
-    <script src="../test/snippets.js"></script>
+
+    <script src="https://unpkg.com/@supabase/supabase-js"></script>
     <script src="../value.js"></script>
     <script src="game.js"></script>
     <script src="end.js"></script>
