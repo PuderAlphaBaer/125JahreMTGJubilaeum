@@ -1,3 +1,29 @@
+.newTimer {
+	display: none;
+    width: 100%;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+    /* make it click through */
+    pointer-events: none;
+}
+.newTimer h2 {
+    font-size: 3em;
+	width: 160px;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+svg {
+	transform: rotate(-90deg);
+}
+.circle_animation {
+    stroke-dasharray: 565; /* 2 * π * r */
+    stroke-dashoffset: 0;
+    transition: all 1s linear;
+}
+
 .buttonSurContainer {
     display: flex;
     flex-flow: column wrap;
@@ -15,6 +41,7 @@
     justify-content: center;
 }
 .button {
+    font-size: 1.5em;
     display: flex;
     justify-content: center;
     width: 44%;
@@ -24,8 +51,6 @@
 .buttonA {
     background-color: rgb(239, 141, 10);
     color: white;
-    font-size: large;
-    font-weight: bolder;
     margin-left: 4vi;
     margin-right: 2vi;
     margin-top: 4vi;
@@ -35,8 +60,6 @@
 .buttonB {
     background-color: rgb(86, 165, 26);
     color: white;
-    font-size: large;
-    font-weight: bolder;
     margin-left: 2vi;
     margin-right: 4vi;
     margin-top: 4vi;
@@ -46,8 +69,6 @@
 .buttonC {
     background-color: rgb(9, 85, 164);
     color: white;
-    font-size: large;
-    font-weight: bolder;
     margin-left: 4vi;
     margin-right: 2vi;
     margin-top: 2vi;
@@ -57,8 +78,6 @@
 .buttonD {
     background-color: rgb(169, 90, 229);
     color: white;
-    font-size: large;
-    font-weight: bolder;
     margin-left: 2vi;
     margin-right: 4vi;
     margin-top: 2vi;
@@ -285,6 +304,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-image: url("Data/hinter.svg");
+    background-size: 100% 100%;
 }
 
 
@@ -350,6 +371,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    /* border: black solid 0.5vmin; */
 }
 
 .box2 {
@@ -357,6 +379,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    /* border: black solid 0.5vmin; */
 }
 
 .devtext {

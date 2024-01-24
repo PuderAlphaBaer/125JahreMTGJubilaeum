@@ -17,7 +17,7 @@ async function reset() {
     for (let i = 0; i < questions.length; i++) {
         supabaseInsert("fragen", ["id"], [i])
     }
-    addDummies(10);
+    addDummies(0);
 }
 
 function noReset() {
