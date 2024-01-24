@@ -43,6 +43,7 @@ function podrank() {
       gesrank.innerHTML = "Rang insgesamt beträgt " + podiumList[0].rank;
       podpoints.style.opacity = 1;
       gesrank.style.opacity = 1;
+      animationStop = false;
     }, 3000);    
   }, 3000);
 }
@@ -165,7 +166,7 @@ function winneranimation() {
       case 5:
         podrank();
         activerank--;
-        //animationStop = true;
+        animationStop = true;
         break;
       case 4:
         endpodium.style.display = "none";
