@@ -342,7 +342,7 @@ function phase3() {
         for (let i = 0; i < data.length; i++) {
             userIndex = userlist.findIndex((obj => obj.id == data[i].id));
             if (userIndex<0) {
-                userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, 0, null, false));
+                userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, null, null, false));
                 console.log("%c Neuer User hinzugefügt", "color: red")
                 userIndex = userlist.findIndex((obj => obj.id == data[i].id));
             }
