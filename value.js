@@ -149,13 +149,15 @@ async function getQuestions() {
   console.log(fragenData.length)
   console.log(questions.length)
   for (let i = 0; i < fragenData.length; i++) {
-    questions[i].beginn = fragenData[i].beginn;
-    questions[i].start = fragenData[i].start;
-    questions[i].ende = fragenData[i].ende;
-    questions[i].auswertung = fragenData[i].auswertung;
+    questions[i].beginn = await fragenData[i].beginn;
+    questions[i].start = await fragenData[i].start;
+    questions[i].ende = await fragenData[i].ende;
+    questions[i].auswertung = await fragenData[i].auswertung;
   }
 }
+
 getQuestions();
+
 
 
 
