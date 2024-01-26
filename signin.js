@@ -151,20 +151,18 @@ function startGame() {
   console.log("püntklich");
 
 
-  
-//in entry point of your app (index.js)    
+console.log("hier vor feier noch entkommentieren");
+// const channel = new BroadcastChannel('tab');
 
-const channel = new BroadcastChannel('tab');
+// channel.postMessage('sign-in');
+// // note that listener is added after posting the message
 
-channel.postMessage('sign-in');
-// note that listener is added after posting the message
-
-channel.addEventListener('message', (msg) => {
-  if (msg.data === 'sign-in') {
-    // message received from 2nd tab
-    window.location.href = "";
-  }
-});
+// channel.addEventListener('message', (msg) => {
+//   if (msg.data === 'sign-in') {
+//     // message received from 2nd tab
+//     window.location.href = "";
+//   }
+// });
 
 //window.addEventListener("beforeunload", beforeUnloadHandler);
 }

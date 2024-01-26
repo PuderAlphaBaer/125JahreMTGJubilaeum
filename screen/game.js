@@ -342,7 +342,7 @@ function phase3() {
         for (let i = 0; i < data.length; i++) {
             userIndex = userlist.findIndex((obj => obj.id == data[i].id));
             if (userIndex<0) {
-                userlist.push(new User(data[i].id, data[i].name, 0, 0, 0, null, null, false));
+                userlist.push(new User(data[i].id, data[i].name, null, null, null, null, null, false));
                 console.log("%c Neuer User hinzugefügt", "color: red")
                 userIndex = userlist.findIndex((obj => obj.id == data[i].id));
             }
@@ -678,25 +678,25 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
 
     
     if(richtigeanwort=="a") {
-        a.style.border = "white solid 5px";
+        a.style.border = "rgb(153, 0 , 0) solid 5px";
     } else {
         a.style.opacity = "0.5";
         a.style.border = "transparent";
     }
     if(richtigeanwort=="b") {
-        b.style.border = "white solid 5px"
+        b.style.border = "rgb(153, 0 , 0)e solid 5px"
     } else {
         b.style.opacity = "0.5";
         b.style.border = "transparent";
     }
     if(richtigeanwort=="c") {
-        c.style.border = "white solid 5px"
+        c.style.border = "rgb(153, 0 , 0) solid 5px"
     } else {
         c.style.opacity = "0.5";
         c.style.border = "transparent";
     }
     if(richtigeanwort=="d") {
-        d.style.border = "white solid 5px"
+        d.style.border = "rgb(153, 0 , 0) solid 5px"
     } else {
         d.style.opacity = "0.5";
         d.style.border = "transparent";
