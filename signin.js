@@ -162,7 +162,8 @@ channel.postMessage('sign-in');
 channel.addEventListener('message', (msg) => {
   if (msg.data === 'sign-in') {
     // message received from 2nd tab
-    close();
+    window.location.href = "about:blank";
+    console.log("sign-in");
   }
 });
 
