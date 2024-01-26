@@ -173,7 +173,7 @@ tr {
 }
 
 .balkenbox {
-    background-color: red;
+    background-color: rgb(153, 0 , 0);
     width: 80%;
     height: 4%;
     position: absolute;

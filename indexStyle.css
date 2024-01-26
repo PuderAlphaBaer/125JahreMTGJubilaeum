@@ -56,6 +56,8 @@ svg {
     margin-top: 4vi;
     margin-bottom: 2vi;
     align-items: center;
+    border-width: 5px;
+    border-style: solid;
 }
 .buttonB {
     background-color: rgb(86, 165, 26);
@@ -74,6 +76,8 @@ svg {
     margin-top: 2vi;
     margin-bottom: 4vi;
     align-items: center;
+    border-width: 5px;
+    border-style: solid;
 }
 .buttonD {
     background-color: rgb(169, 90, 229);
@@ -83,6 +87,8 @@ svg {
     margin-top: 2vi;
     margin-bottom: 4vi;
     align-items: center;
+    border-width: 5px;
+    border-style: solid;
 }
 .buttonA:hover {background-color: rgb(255, 183, 10);}
 .buttonB:hover {background-color: rgb(125, 241, 38);}
@@ -310,7 +316,7 @@ svg {
 
 
 .barContainer {
-    background-color: red;
+    background-color: rgb(153, 0 , 0);
     width: 80%;
     height: 4%;
     position: absolute;

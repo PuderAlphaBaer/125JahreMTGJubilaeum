@@ -293,7 +293,7 @@ function timerEnd() {
     clearInterval(timerLoop);
     supabaseUpdate('fragen', ['ende'], [true], 'eq', 'id', activequestionid)
     
-    if(questions[activequestionid].loesung.includes("a")==true) { a.style.border = "white solid 5px"; } else { a.style.opacity = "0.5"; a.style.border = "transparent"; } if(questions[activequestionid].loesung.includes("b")==true) { b.style.border = "white solid 5px" } else { b.style.opacity = "0.5"; b.style.border = "transparent"; } if(questions[activequestionid].loesung.includes("c")==true) { c.style.border = "white solid 5px" } else { c.style.opacity = "0.5"; c.style.border = "transparent"; } if(questions[activequestionid].loesung.includes("d")==true) { d.style.border = "white solid 5px" } else { d.style.opacity = "0.5"; d.style.border = "transparent"; }
+    if(questions[activequestionid].loesung.includes("a")==true) { a.style.border = "red solid 5px"; } else { a.style.opacity = "0.5"; a.style.border = "transparent"; } if(questions[activequestionid].loesung.includes("b")==true) { b.style.border = "red solid 5px" } else { b.style.opacity = "0.5"; b.style.border = "transparent"; } if(questions[activequestionid].loesung.includes("c")==true) { c.style.border = "red solid 5px" } else { c.style.opacity = "0.5"; c.style.border = "transparent"; } if(questions[activequestionid].loesung.includes("d")==true) { d.style.border = "red solid 5px" } else { d.style.opacity = "0.5"; d.style.border = "transparent"; }
         document.body.classList.add('waiting');
 
         console.log('%c beende frage' + activequestionid, 'background: #222; color: #bada55')
@@ -481,7 +481,7 @@ function nchart() {
                         ticks: {
                             color: "black",
                             font: {
-                                size: 20,
+                                size: 25
                             }   
                         }
                     },
@@ -678,25 +678,25 @@ function showCharts(avotes, bvotes, cvotes, dvotes, richtigeanwort) {
 
     
     if(richtigeanwort=="a") {
-        a.style.border = "rgb(153, 0 , 0) solid 5px";
+        a.style.border = "red solid 5px";
     } else {
         a.style.opacity = "0.5";
         a.style.border = "transparent";
     }
     if(richtigeanwort=="b") {
-        b.style.border = "rgb(153, 0 , 0)e solid 5px"
+        b.style.border = "red solid 5px"
     } else {
         b.style.opacity = "0.5";
         b.style.border = "transparent";
     }
     if(richtigeanwort=="c") {
-        c.style.border = "rgb(153, 0 , 0) solid 5px"
+        c.style.border = "red solid 5px"
     } else {
         c.style.opacity = "0.5";
         c.style.border = "transparent";
     }
     if(richtigeanwort=="d") {
-        d.style.border = "rgb(153, 0 , 0) solid 5px"
+        d.style.border = "red solid 5px"
     } else {
         d.style.opacity = "0.5";
         d.style.border = "transparent";
