@@ -1,3 +1,33 @@
+
+//in entry point of your app (index.js)    
+
+const channel = new BroadcastChannel('tab');
+
+channel.postMessage('another-tab');
+// note that listener is added after posting the message
+
+channel.addEventListener('message', (msg) => {
+  if (msg.data === 'another-tab') {
+    // message received from 2nd tab
+    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const pregamebox = document.getElementById('pregamebox');
 
 const phase1box = document.getElementById('phase1box');
