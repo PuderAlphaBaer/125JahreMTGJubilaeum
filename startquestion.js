@@ -226,28 +226,6 @@ function phase4() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 a.addEventListener('click', aClicked);
 b.addEventListener('click', bClicked);
 c.addEventListener('click', cClicked);
@@ -367,7 +345,7 @@ function startCountdown(time) {
   newTimer.display = 'flex';
   newTimer.zIndex = '0';
   timeCaption.innerText = time;
-  var CountdownInterval = setInterval(countdown, 1000);
+  let CountdownInterval = setInterval(countdown, 1000);
 
   function countdown() {
       timeCaption.innerText = time - i;
@@ -386,6 +364,7 @@ function startCountdown(time) {
        // Then set the interval
   }, 10);
 }
+
 
 function startTimer() {
   startCountdown(questions[questionid].zeit);
