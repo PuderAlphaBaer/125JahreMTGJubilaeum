@@ -40,7 +40,7 @@ function podrank() {
     podname.classList.add('namein');
     setTimeout(() => {
       podpoints.innerHTML = podiumList[0].punkte + " Punkte";
-      gesrank.innerHTML = "Rang insgesamt beträgt " + podiumList[0].rank;
+      gesrank.innerHTML = "Von allen Spielern auf Rang " + podiumList[0].rank;
       podpoints.style.opacity = 1;
       gesrank.style.opacity = 1;
       animationStop = false;
@@ -84,6 +84,7 @@ function rank1() {
                 setTimeout(() => {
                   rankreveal.style.transition = "0.8s";
                   rankreveal.style.fontSize = 0;
+                  supabaseUpdate('fragen', ['auswertung'], [true], 'eq', 'id', activequestionid)
                 }, 4000);
             }, 350);
         }, 3000);

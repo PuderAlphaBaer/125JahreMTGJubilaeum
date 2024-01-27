@@ -55,7 +55,11 @@ function checkStarting() {
       if (questions[i].auswertung == true && auswertung[i] == false) {
         currentQuestionCounter = i;
         auswertung[i] = true;
-        phase4();
+        if (i==questions.length-1) {
+          funfacts();
+        } else {
+          phase4();
+        }
       
       }
     }
