@@ -103,7 +103,9 @@ const beforeUnloadHandler = (event) => {
 };
 
 //window.addEventListener("beforeunload", beforeUnloadHandler);
- 
+console.log("hier vor jubilähum entkommentieren") 
+
+
 startgamebt.addEventListener('click', startgame);
 bt1.addEventListener('click', phase1);
 bt2.addEventListener('click', phase4);
@@ -545,7 +547,7 @@ function fetchRangliste() {
                     trennung = 1;
                 }
                 if(i-1>ranglistenlimit && userlist[i-1].podium==false) {
-                    emptycolumn();
+                    //emptycolumn();
                 }
                 userupdate(userlist[i].id, utype);
             }

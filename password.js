@@ -9,3 +9,4 @@ function pwd() {
 }
 
 //pwd();
+console.log("hier vor jubilähum auskkommentieren")

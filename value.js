@@ -145,7 +145,7 @@ const pretime = 6000;
 
   
 async function getQuestions() {
-  let fragenData = await supabaseFetch('fragen', 'beginn, start, ende, auswertung')
+  let fragenData = await supabaseFetch('fragen', 'beginn, start, ende, auswertung', '', '', '', 'id', true)
   console.log(fragenData.length)
   console.log(questions.length)
   for (let i = 0; i < fragenData.length; i++) {
