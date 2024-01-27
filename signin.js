@@ -75,10 +75,19 @@ async function login() {
     }
   
     if (nickname.toLowerCase().includes("tilman") == true) {
-        console.log("nickname ist tilman");
+        console.log("nickname enthält tilman");
         tb1.classList.add('error');
         unerror.style.color = "red";
         unerror.innerHTML = "Der gewählte Benutzername wurde vom Websiteadministrator gesperrt";
+        return;
+    }
+
+    // if username contains space 
+    if (nickname.includes(' ')) {
+        console.log("nickname enthält Leerzeichen");
+        tb1.classList.add('error');
+        unerror.style.color = "red";
+        unerror.innerHTML = "Der gewählte Benutzername darf keine Leerzeichen enthalten";
         return;
     }
 
@@ -87,7 +96,7 @@ async function login() {
     if (!nickname.match(letters)) {
         tb1.classList.add('error');
         unerror.style.color = "red";
-        unerror.innerHTML = "Benutzername darf nur deutsche Buchstaben und Zahlen enthalten";
+        unerror.innerHTML = "Benutzername darf nur Buchstaben und Zahlen enthalten";
         return;
     }
 
@@ -149,7 +158,7 @@ function startGame() {
 
   toggleInterface(pregamebox);
   console.log("püntklich");
-
+  document.title = "5³ Quiz MTG";
 
 console.log("hier vor feier noch entkommentieren");
 // const channel = new BroadcastChannel('tab');

@@ -112,6 +112,7 @@ svg {
     background-color: darkgray;
     color: white;
     border: white solid 0.5vw;
+    cursor: pointer;
 }
 .buttonStyle:active {
     background-color: black;
