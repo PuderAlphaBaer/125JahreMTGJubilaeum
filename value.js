@@ -130,7 +130,7 @@ const zwischenworte = [
 ]
 
 // Bis zu welchem PLatz die Rangliste gehen soll
-const ranglistenlimit = 20;
+const ranglistenlimit = 5;
 
 
 // Bei welcher Frage das Podium durchgewechselt werden soll
