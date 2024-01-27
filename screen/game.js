@@ -9,7 +9,7 @@ function startCountdown(time) {
     newTimer.display = 'flex';
     newTimer.zIndex = '0';
     timeCaption.innerText = time;
-    var CountdownInterval = setInterval(countdown, 1000);
+    let CountdownInterval = setInterval(countdown, 1000);
 
     function countdown() {
         timeCaption.innerText = time - i;

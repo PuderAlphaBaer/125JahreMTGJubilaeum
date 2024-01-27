@@ -230,28 +230,6 @@ function phase4() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 a.addEventListener('click', aClicked);
 b.addEventListener('click', bClicked);
 c.addEventListener('click', cClicked);

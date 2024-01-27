@@ -46,6 +46,7 @@ svg {
     justify-content: center;
     width: 44%;
     border-radius: 2vi;
+    text-align: center;
 }
 
 .buttonA {
@@ -129,6 +130,10 @@ svg {
     width: 100vw;
     position: absolute;
     pointer-events: none;
+}
+
+.brang {
+    text-align: center;
 }
 
 /* Timerzeug*/
@@ -341,12 +346,12 @@ svg {
 
 .frage1 {
     position: absolute;
-    top: 10vh;
+    top: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80%;
-    height: 30vh;
+    width: 90%;
+    height: 20vh;
     font-size: 6vw;
     text-align: center;
 }
