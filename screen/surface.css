@@ -104,7 +104,6 @@ tr {
     height: 20%;
     display: flex;
     justify-content: center;
-    word-break: break-all;
     overflow-wrap: break-word;
     align-items: center;
     font-size: 5vmin;
@@ -162,6 +161,30 @@ tr {
     left: 0;
     transform-origin: right center;
     border: yellow solid;
+}
+
+.boxPhase2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.newTimer h2 {
+    font-size: 2em;
+    width: 80px;
+}
+.newTimer {
+    top: 30vh;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+    pointer-events: none;
+
+}
+.circle_animation {
+    stroke-dasharray: 565; /* 2 * π * r */
+    stroke-dashoffset: 0;
+    transition: all 1s linear;
 }
 
 .bigcircle {
@@ -409,6 +432,8 @@ tr {
     width: 0;
     height: 0;
   }
+
+
   
   /* Große Box Normalzustand*/
   .slider {

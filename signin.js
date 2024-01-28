@@ -24,7 +24,6 @@ const phase3box = document.getElementById('phase3box');
   const img = document.getElementById('img');
 
 const phase4box = document.getElementById('phase4box');
-  const gespunkte = document.getElementById('gespunkte');
   const rang = document.getElementById('rang');
   const brang = document.getElementById('brang');
 
@@ -169,6 +168,8 @@ console.log("hier vor feier noch entkommentieren");
 // channel.addEventListener('message', (msg) => {
 //   if (msg.data === 'sign-in') {
 //     // message received from 2nd tab
+// unsubscribe from the supabase realtime channels
+
 //     window.location.href = "";
 //   }
 // });

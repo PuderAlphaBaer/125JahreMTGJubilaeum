@@ -173,13 +173,17 @@ function phase3() {
     falsch.style.display = 'block';
     worte.innerHTML = fworte[Math.floor(Math.random() * fworte.length)];
   }
-
+  const streakLine = document.getElementById('streakLine');
   if(streak==0) {
-    ims.style.display = "none";
-    streaktext.innerHTML = "Streak verloren";
+    streakLine.innerHTML = "Antwortserie verloren";
+    streaktext.innerHTML = "";
+    streaktext.style.backgroundImage = "none";
   } else {
-    ims.style.display = "flex";
+    streakLine.innerHTML = "Antwortserie: "
     streaktext.innerHTML = streak;
+    streaktext.style.backgroundImage = "url(../Data/streak.svg)";
+    streaktext.style.backgroundRepeat = "no-repeat";
+    streaktext.style.backgroundPosition = "center";
   }
   if (addPoints!=0) {
     punkte.innerHTML = "Du hast "+addPoints+" Punkte erhalten";
@@ -204,6 +208,8 @@ function phase4() {
   phase25box.style.display = "none";
   phase3box.style.display = "none";
   phase4box.style.display = "flex";
+
+
   supabaseFetch('spieler', 'punkte, rang', 'eq', 'name', nickname, 'punkte', true).then((data) => {
     rang.innerHTML = "Dein Rang: "+data[0].rang;
     brang.innerHTML = "";
