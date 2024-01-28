@@ -56,7 +56,7 @@ function checkStarting() {
         currentQuestionCounter = i;
         auswertung[i] = true;
         if (i==questions.length-1) {
-          funfacts();
+          userend();
         } else {
           phase4();
         }
@@ -226,6 +226,13 @@ function phase4() {
   });
   
 }
+
+
+
+function userend() {
+  
+}
+
 
 
 
