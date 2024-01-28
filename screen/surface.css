@@ -57,8 +57,42 @@ tr {
 }
 
 
-
-
+.buttonA {
+    background-color: rgb(239, 141, 10);
+    color: white;
+    margin-left: 2vi;
+    margin-right: 1vi;
+    margin-top: 2vi;
+    margin-bottom: 1vi;
+    align-items: center;
+}
+.buttonB {
+    background-color: rgb(86, 165, 26);
+    color: white;
+    margin-left: 1vi;
+    margin-right: 2vi;
+    margin-top: 2vi;
+    margin-bottom: 1vi;
+    align-items: center;
+}
+.buttonC {
+    background-color: rgb(9, 85, 164);
+    color: white;
+    margin-left: 2vi;
+    margin-right: 1vi;
+    margin-top: 1vi;
+    margin-bottom: 2vi;
+    align-items: center;
+}
+.buttonD {
+    background-color: rgb(169, 90, 229);
+    color: white;
+    margin-left: 1vi;
+    margin-right: 2vi;
+    margin-top: 1vi;
+    margin-bottom: 2vi;
+    align-items: center;
+}
 
 
 .frage1sur {
@@ -71,6 +105,7 @@ tr {
     display: flex;
     justify-content: center;
     word-break: break-all;
+    overflow-wrap: break-word;
     align-items: center;
     font-size: 5vmin;
     margin-bottom: 8%;
