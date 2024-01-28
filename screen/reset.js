@@ -2,13 +2,13 @@
 function addDummies(number) {
     for (let i = 0; i < number; i++) {
         // insert dummies with name and random points and streak and random votes a or b and random podium true or false
-        supabaseInsert("spieler", ["name", "punkte", "streak", "vote", "podium"], ["Dummy"+[i+1], Math.floor(Math.random() * 1000), Math.floor(Math.random() * 10), "b", Math.random() < 0.5])
+        supabaseInsert("spieler", ["name", "punkte", "streak", "vote", "podium"], ["Dummy"+[i+1], Math.floor(Math.random() * 1000), Math.floor(Math.random() * 10), "b", true])
 
         console.log("Insert Dummy")
     }
 }
 
-
+Math.random() < 0.5
 
 
 async function reset() {

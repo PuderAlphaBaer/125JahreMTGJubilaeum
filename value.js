@@ -25,17 +25,17 @@ const questions = [
   // ----------------------- NICHT ANRÜHREN -----------------------
   // ----------------------- NICHT ANRÜHREN -----------------------
   
-  new Frage("placeholder", "a", "a", "a", "a", "a", 0, false),
-  new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine", "", "", ["a", "b"], 3, false),
-  new Frage("Wie viele Fenster hat unser Hauptschulgebäude?", "420", "690", "134", "208", "d", 3, false),
-  new Frage("Seit wann ist das MTG für Mädchen besuchbar?", "1899", "1978", "1990", "1902", "b", 10, false),
-  new Frage("In welchem Jahr wurde das Maria-Theresia-Gymnasium gegründet?", "1965", "1899", "1940", "2006", "a", 10, false),
-  // new Frage("Was waren die letzten vier Direktoren in richtiger Reihenfolge?", "Frau Duschka, Herr Schairer, Frau Reiter, Herr Endres", "Frau Duschka, Frau Reiter, Herr Schairer, Herr Endres", "Frau Duschka, Frau Reiter, Herr Endres, Herr Schairer", "Frau Reiter, Herr Endres, Herr Schairer, Frau Duschka", "b", 10, false),
-  // new Frage("Wie viele Liegestütze schafft Herr Markl?", "55", "21", "86", "125", "c", 10, false),
-  // new Frage("Was war das profitabelste Unternehmen während der letzten Projekttage in Schule als Staat?", "Museumscafe", "Pizzabäckerei", "Talentshow", "3D Drucker", "a", 10, false),
-  // new Frage("Welche Partei gewann die Juniorwahl 2023 am MTG?", "CSU", "Bündnis 90/Die Grünen", "AfD", "SPD", "a", 10, false),
-  // new Frage("Wie viel Prozent des Schulgebäudes wurden beim Bombentreffer im April 1944 zerstört?", "20%", "0%", "90%", "70%", "d", 10, false),
-  // new Frage("Wie oft besuchte die Namensgeberin Maria-Theresia die Schule?", "Keinmal", "Einmal", "Zweimal", "Dreimal", "b", 10, false)
+  new Frage("placeholder", "a", "a", "a", "a", "a", 0, ),
+  new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine", "", "", ["a", "b"], 3, "Vor genau 100 Tagen haben wir mit dem Programmieren des Quizzes begonnen"),
+  new Frage("Wie viele Fenster hat unser Hauptschulgebäude?", "420", "690", "134", "208", "d", 3, "Die lila Farbe vom vierten Button ist die Komplementärfarbe vom grünen Button"),
+  new Frage("Seit wann ist das MTG für Mädchen besuchbar?", "1899", "1978", "1990", "1902", "b", 10, "Es existieren 431 versionen vom Quiz, schon ab Version 152 konnte man erstmals Fragen starten und beantworten"),
+  new Frage("In welchem Jahr wurde das Maria-Theresia-Gymnasium gegründet?", "1965", "1899", "1940", "2006", "a", 10, "Das Quiz besteht aus 23 Code-Dateien und 3956 Zeilen"),
+  new Frage("Was waren die letzten vier Direktoren in richtiger Reihenfolge?", "Frau Duschka, Herr Schairer, Frau Reiter, Herr Endres", "Frau Duschka, Frau Reiter, Herr Schairer, Herr Endres", "Frau Duschka, Frau Reiter, Herr Endres, Herr Schairer", "Frau Reiter, Herr Endres, Herr Schairer, Frau Duschka", "b", 10, "Es existieren 15 Bilddateien für dieses Quiz, sechs davon sind das Icon der Website in unterschiedlichen Größen"),
+  new Frage("Wie viele Liegestütze schafft Herr Markl?", "55", "21", "86", "125", "c", 10, "Die Punkte die Sie pro Frage dazuerhalten werden multipliziert mit <div class='mul'>1 + (IhrStreak * 0,1)</div>"),
+  new Frage("Was war das profitabelste Unternehmen während der letzten Projekttage in Schule als Staat?", "Museumscafe", "Pizzabäckerei", "Talentshow", "3D Drucker", "a", 10, 'Die Länge unseres Codes entspricht etwa 20% "Harry Potter und der Stein der Weisen"'),
+  new Frage("Welche Partei gewann die Juniorwahl 2023 am MTG?", "CSU", "Bündnis 90/Die Grünen", "AfD", "SPD", "a", 10, "Beim Einloggen gibt es einen Filter für inatequate Benutzernamen"),
+  new Frage("Wie viel Prozent des Schulgebäudes wurden beim Bombentreffer im April 1944 zerstört?", "20%", "0%", "90%", "70%", "d", 10, 'Es gibt eine Adminseite worüber Nutzer auf den Status "Bühne" gesetzt oder manuell gebannt werden können'),
+  new Frage("Wie oft besuchte die Namensgeberin Maria-Theresia die Schule?", "Keinmal", "Einmal", "Zweimal", "Dreimal", "b", 10, false)
 ];
 
 
