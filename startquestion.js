@@ -132,12 +132,6 @@ function phase2(id) {
     d.innerHTML = questions[questionid].d;
   }
 
-  if(questions[questionid].img!=false) {
-    imgbox.style.display = "block";
-    img.src = questions[questionid].img;
-  } else {
-    imgbox.style.display = "none";
-  }
 
 
   questionStart = Date.now();
@@ -346,34 +340,33 @@ function dClicked() {
 }
 
 function startCountdown(time) {
-  let i = 0;
-  let finalOffset = 565; // New circumference
-  let step = finalOffset / time;
-  let timeCaption = document.querySelector('h2');
-  let circle = document.querySelector('.circle_animation').style;
-  let newTimer = document.querySelector('.newTimer').style;
+    let i = 0;
+    let finalOffset = 282.7; // New circumference
+    let step = finalOffset / time;
+    let timeCaption = document.querySelector('h2');
+    let circle = document.querySelector('.circle_animation').style;
+    let newTimer = document.querySelector('.newTimer').style;
 
-  newTimer.display = 'flex';
-  newTimer.zIndex = '0';
-  timeCaption.innerText = time;
-  var CountdownInterval = setInterval(countdown, 1000);
+    newTimer.display = 'flex';
+    newTimer.zIndex = '0';
+    timeCaption.innerText = time;
+    let CountdownInterval = setInterval(countdown, 1000);
 
-  function countdown() {
+    function countdown() {
       timeCaption.innerText = time - i;
       if (i++ >= time) {
-          clearInterval(CountdownInterval);
-          circle.strokeDashoffset = 0;
-          newTimer.display = 'none';
+        clearInterval(CountdownInterval);
+        circle.strokeDashoffset = 0;
+        newTimer.display = 'none';
       } else {
-          circle.strokeDashoffset = step * i;
+        circle.strokeDashoffset = step * i;
       }
-  }
+    }
 
-  setTimeout(() => {
+    setTimeout(() => {
       circle.strokeDashoffset = 0;
       countdown(); // Call the function once to start the countdown immediately
-       // Then set the interval
-  }, 10);
+    }, 10);
 }
 
 function startTimer() {

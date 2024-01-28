@@ -1,6 +1,6 @@
 function startCountdown(time) {
     let i = 0;
-    let finalOffset = 565; // New circumference
+    let finalOffset = 282.7; // New circumference
     let step = finalOffset / time;
     let timeCaption = document.querySelector('h2');
     let circle = document.querySelector('.circle_animation').style;
@@ -14,21 +14,19 @@ function startCountdown(time) {
     function countdown() {
         timeCaption.innerText = time - i;
         if (i++ >= time) {
-            clearInterval(CountdownInterval);
-            circle.strokeDashoffset = 0;
-            newTimer.display = 'none';
+        clearInterval(CountdownInterval);
+        circle.strokeDashoffset = 0;
+        newTimer.display = 'none';
         } else {
-            circle.strokeDashoffset = step * i;
+        circle.strokeDashoffset = step * i;
         }
     }
 
     setTimeout(() => {
         circle.strokeDashoffset = 0;
         countdown(); // Call the function once to start the countdown immediately
-         // Then set the interval
     }, 10);
 }
-
 const anzeigefrage1 = document.getElementById('anzeigefrage1');
 const anzeigefrage2 = document.getElementById('anzeigefrage2');
 const a = document.getElementById('bta');
@@ -45,7 +43,6 @@ const boxPhase2 = document.getElementById('boxPhase2');
 const boxPhase4 = document.getElementById('boxPhase4');
 const btbox = document.getElementById('btbox');
 const buttonBox = document.getElementById('buttonBox');
-const qnumber = document.getElementById('qnumber');
 const votebox = document.getElementById('votebox');
 const vote = document.getElementById('vote');
 let borderColors;
@@ -78,10 +75,12 @@ function togglePhase(phase) {
             nonePhase();
             boxPhase2.style.display = "flex";
             console.log('timer')
+            anzeigefrage2.style.display = "flex";
             // timerContainer.style.display = "flex";
             break;
         case boxPhase3:
             nonePhase();
+            anzeigefrage2.style.display = "none";
             boxPhase2.style.display = "flex";
             boxPhase3.style.display = "flex";
             break;
@@ -124,7 +123,6 @@ function phase1() {
     togglePhase(boxPhase1);
     activequestionid++;
     qnumberinsg = questions.length-1;
-    qnumber.innerHTML = "Frage "+activequestionid+" von "+qnumberinsg;
     supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid)
     prefut = Date.now() + pretime;
     preloop = setInterval(interface1bar, 10);
