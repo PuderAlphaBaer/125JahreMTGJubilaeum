@@ -154,18 +154,20 @@ function phase2() {
     clearInterval(preloop);
     console.log('%c starte frage' + activequestionid, 'background: #222; color: #bada55')
 
-    // reset der letzten Frage
-    // timerContainer.style.display = "flex";
-    c.style.display = "flex";
-    d.style.display = "flex";
-    a.style.opacity = "1";
-    b.style.opacity = "1";
-    c.style.opacity = "1";
-    d.style.opacity = "1";
-    a.style.border = "none";
-    b.style.border = "none";
-    c.style.border = "none";
-    d.style.border = "none";
+    // clear effects from all buttons using a function with parameter
+    function clearEffects(element) {
+        element.style.opacity = "1";
+        element.style.boxShadow = "none";
+        element.style.border = "transparent";
+    }
+    clearEffects(a);
+    clearEffects(b);
+    clearEffects(c);
+    clearEffects(d);
+
+
+
+
     anzeigefrage2.innerHTML = questions[activequestionid].frage;
     bt2.style.display = "none";
 
@@ -293,8 +295,40 @@ function timerEnd() {
     clearInterval(timerLoop);
     supabaseUpdate('fragen', ['ende'], [true], 'eq', 'id', activequestionid)
     
-    if(questions[activequestionid].loesung.includes("a")==true) { a.style.border = "red solid 5px"; } else { a.style.opacity = "0.5"; a.style.border = "transparent"; } if(questions[activequestionid].loesung.includes("b")==true) { b.style.border = "red solid 5px" } else { b.style.opacity = "0.5"; b.style.border = "transparent"; } if(questions[activequestionid].loesung.includes("c")==true) { c.style.border = "red solid 5px" } else { c.style.opacity = "0.5"; c.style.border = "transparent"; } if(questions[activequestionid].loesung.includes("d")==true) { d.style.border = "red solid 5px" } else { d.style.opacity = "0.5"; d.style.border = "transparent"; }
-        document.body.classList.add('waiting');
+    function updateStyle(element, letter) {
+        if (questions[activequestionid].loesung.includes(letter)) {
+            let color;
+            switch (letter) {
+                case "a":
+                    color = "rgb(255, 183, 10)";
+                    break;
+                case "b":
+                    color = "rgb(125, 241, 38)";
+                    break;
+                case "c":
+                    color = "rgb(13, 124, 240)";
+                    break;
+                case "d":
+                    color = "rgb(209, 100, 255)";
+                    break;
+            }
+            element.style.opacity = "1";
+            element.style.boxShadow = `0 0 10px 5px ${color}`;
+            element.style.border = `${color} solid 5px`;
+
+        } else {
+
+            element.style.opacity = "0.3";
+            element.style.boxShadow = "none";
+            element.style.border = "transparent";
+        }
+    }
+
+    updateStyle(a, "a");
+    updateStyle(b, "b");
+    updateStyle(c, "c");
+    updateStyle(d, "d");
+    document.body.classList.add('waiting');
 
         console.log('%c beende frage' + activequestionid, 'background: #222; color: #bada55')
         setTimeout(() => {

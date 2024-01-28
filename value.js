@@ -26,10 +26,10 @@ const questions = [
   // ----------------------- NICHT ANRÜHREN -----------------------
   
   new Frage("placeholder", "a", "a", "a", "a", "a", 0, false),
-  new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine", "", "", ["a", "b"], 10, false),
-  new Frage("Wie viele Fenster hat unser Hauptschulgebäude?", "420", "690", "134", "208", "d", 10, false),
-  // new Frage("Seit wann ist das MTG für Mädchen besuchbar?", "1899", "1978", "1990", "1902", "b", 10, false),
-  // new Frage("In welchem Jahr wurde das Maria-Theresia-Gymnasium gegründet?", "1965", "1899", "1940", "2006", "a", 10, false),
+  new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine", "", "", ["a", "b"], 3, false),
+  new Frage("Wie viele Fenster hat unser Hauptschulgebäude?", "420", "690", "134", "208", "d", 3, false),
+  new Frage("Seit wann ist das MTG für Mädchen besuchbar?", "1899", "1978", "1990", "1902", "b", 10, false),
+  new Frage("In welchem Jahr wurde das Maria-Theresia-Gymnasium gegründet?", "1965", "1899", "1940", "2006", "a", 10, false),
   // new Frage("Was waren die letzten vier Direktoren in richtiger Reihenfolge?", "Frau Duschka, Herr Schairer, Frau Reiter, Herr Endres", "Frau Duschka, Frau Reiter, Herr Schairer, Herr Endres", "Frau Duschka, Frau Reiter, Herr Endres, Herr Schairer", "Frau Reiter, Herr Endres, Herr Schairer, Frau Duschka", "b", 10, false),
   // new Frage("Wie viele Liegestütze schafft Herr Markl?", "55", "21", "86", "125", "c", 10, false),
   // new Frage("Was war das profitabelste Unternehmen während der letzten Projekttage in Schule als Staat?", "Museumscafe", "Pizzabäckerei", "Talentshow", "3D Drucker", "a", 10, false),
@@ -37,12 +37,6 @@ const questions = [
   // new Frage("Wie viel Prozent des Schulgebäudes wurden beim Bombentreffer im April 1944 zerstört?", "20%", "0%", "90%", "70%", "d", 10, false),
   // new Frage("Wie oft besuchte die Namensgeberin Maria-Theresia die Schule?", "Keinmal", "Einmal", "Zweimal", "Dreimal", "b", 10, false)
 ];
-
-
-
-
-
-
 
 
 
@@ -136,7 +130,7 @@ const ranglistenlimit = 5;
 // Bei welcher Frage das Podium durchgewechselt werden soll
 const nextPodium = [5];
 
-const pretime = 6000;
+const pretime = 1000;
 
 // Wär die Mitte
 //const nextPodium = (questions.length - 1)/2;

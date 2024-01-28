@@ -17,9 +17,11 @@
     height: 25vh;
     font-size: 8vw;
     text-align: center;
+    word-break: break-all;
+    overflow-wrap: break-word
 }
 .newTimer h2 {
-    font-size: 3em;
+    font-size: 2em;
     width: 80px;
     position: absolute;
     display: flex;
@@ -311,7 +313,14 @@ svg {
 #punktZahl {
     font-size: 4vw;
 }
-
+.worte {
+    overflow-wrap: break-word;
+    text-align: center;
+}
+.punkte {
+    overflow-wrap: break-word;
+    text-align: center;
+}
 .phasebox {
 
     display: flex;
@@ -421,7 +430,7 @@ svg {
 * {
     margin: 0;
     padding: 0;
-    font-size: 2vmax;
+    font-size: 3vmax;
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
     box-sizing: border-box;

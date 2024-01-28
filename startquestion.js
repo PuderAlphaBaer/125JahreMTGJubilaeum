@@ -205,7 +205,6 @@ function phase4() {
   phase3box.style.display = "none";
   phase4box.style.display = "flex";
   supabaseFetch('spieler', 'punkte, rang', 'eq', 'name', nickname, 'punkte', true).then((data) => {
-    gespunkte.innerHTML = "Deine Punktzahl: "+data[0].punkte;
     rang.innerHTML = "Dein Rang: "+data[0].rang;
     brang.innerHTML = "";
     if(data[0].rang!=1) {
