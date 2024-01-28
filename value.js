@@ -1,5 +1,5 @@
 class Frage {
-    constructor(frage, a, b, c, d, loesung, zeit, img) {
+    constructor(frage, a, b, c, d, loesung, zeit, funfact) {
       this.beginn = false;
       this.start = false;
       this.ende = false;
@@ -12,7 +12,7 @@ class Frage {
       this.d = d;
       this.loesung = loesung;
       this.zeit = zeit;
-      this.img = img;
+      this.funfact = funfact;
     }
   }
 

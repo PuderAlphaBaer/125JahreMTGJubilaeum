@@ -27,7 +27,10 @@ const phase4box = document.getElementById('phase4box');
   const gespunkte = document.getElementById('gespunkte');
   const rang = document.getElementById('rang');
   const brang = document.getElementById('brang');
+  const funfact = document.getElementById('funfact');
 
+const endbox = document.getElementById('endbox');
+  const endrang = document.getElementById('endrang');
 
 const submitbutton = document.getElementById('submit');
 let unerror = document.getElementById('unerror');
@@ -44,6 +47,7 @@ function toggleInterface(phase){
     phase3box.style.display = "none";
     phase4box.style.display = "none";
     pregamebox.style.display = "none";
+    endbox.style.display = "none";
     phase.style.display = "flex";
 }
 toggleInterface(biginputbox);

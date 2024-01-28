@@ -57,8 +57,10 @@ function checkStarting() {
         auswertung[i] = true;
         if (i==questions.length-1) {
           userend();
+          console.log("userend test");
         } else {
           phase4();
+          console.log("phase test");
         }
       
       }
@@ -147,12 +149,7 @@ const falsch = document.getElementById('f');
 function phase3() {
   console.log("%cPhase 3", "color: red; font-size: 20px; font-weight: bold;");
 
-  pregamebox.style.display = "none";
-  phase1box.style.display = "none";
-  phase2box.style.display = "none";
-  phase25box.style.display = "none";
-  phase3box.style.display = "flex";
-  phase4box.style.display = "none";
+  toggleInterface(phase3box);
   clearInterval(timerLoop);
   // s1.style.display = "none";
   // s2.style.display = "none";
@@ -188,7 +185,6 @@ function phase3() {
   }
   punktZahl.innerHTML = points;
 
-  // funfact.innerHTML = questions[questionid].funfact;
 }
 
 
@@ -198,14 +194,8 @@ let vorrang;
 function phase4() {
   console.log("%cPhase 4", "color: red; font-size: 20px; font-weight: bold;");
 
-  pregamebox.style.display = "none";
-  phase1box.style.display = "none";
-  phase2box.style.display = "none";
-  phase25box.style.display = "none";
-  phase3box.style.display = "none";
-  phase4box.style.display = "flex";
+  toggleInterface(phase4box);
   supabaseFetch('spieler', 'punkte, rang', 'eq', 'name', nickname, 'punkte', true).then((data) => {
-    gespunkte.innerHTML = "Deine Punktzahl: "+data[0].punkte;
     rang.innerHTML = "Dein Rang: "+data[0].rang;
     brang.innerHTML = "";
     if(data[0].rang!=1) {
@@ -218,13 +208,18 @@ function phase4() {
       }
     }
   });
-  
+  funfact.innerHTML = questions[questionid].funfact;
 }
 
 
 
 function userend() {
-  
+  console.log("hier userend");
+  toggleInterface(endbox);
+  endrang.innerHTML = "Dein Rang: "+rank;
+  if(rank==1) {
+    endrang.innerHTML = "Du bist der Gewinner!\nBitte komme auf die Bühne.";
+  }
 }
 
 
@@ -256,9 +251,7 @@ function aClicked() {
       streak = 0;
       supabaseUpdate('spieler', ['vote','streak'], ["a", streak], 'eq', 'name', nickname);
     }
-    phase2box.style.display = "none";
-    phase25box.style.display = "flex";
-    phase3box.style.display = "none";
+    toggleInterface(phase25box);
     console.log("%cPhase 2,5", "color: red; font-size: 20px; font-weight: bold;");
 }
 
@@ -282,9 +275,7 @@ function bClicked() {
       streak = 0;
       supabaseUpdate('spieler', ['vote','streak'], ["b", streak], 'eq', 'name', nickname);
     }
-    phase2box.style.display = "none";
-    phase25box.style.display = "flex";
-    phase3box.style.display = "none";
+    toggleInterface(phase25box);
     console.log("%cPhase 2,5", "color: red; font-size: 20px; font-weight: bold;");
 }
 
@@ -307,9 +298,7 @@ function cClicked() {
       streak = 0;
       supabaseUpdate('spieler', ['vote','streak'], ["c", streak], 'eq', 'name', nickname);
     }
-    phase2box.style.display = "none";
-    phase25box.style.display = "flex";
-    phase3box.style.display = "none";
+    toggleInterface(phase25box);
     console.log("%cPhase 2,5", "color: red; font-size: 20px; font-weight: bold;");
 }
 
@@ -333,9 +322,7 @@ function dClicked() {
       streak = 0;
       supabaseUpdate('spieler', ['vote','streak'], ["d", streak], 'eq', 'name', nickname);
     }
-    phase2box.style.display = "none";
-    phase25box.style.display = "flex";
-    phase3box.style.display = "none";
+    toggleInterface(phase25box);
     console.log("%cPhase 2,5", "color: red; font-size: 20px; font-weight: bold;");
 }
 
