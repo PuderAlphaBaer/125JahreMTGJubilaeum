@@ -417,6 +417,11 @@ svg {
     font-size: 8vw;
 }
 
+.tbox2text {
+    font-size: 4vw;
+    text-align: center;
+}
+
 .imgbox {
     display: none;
     position: absolute;
@@ -440,4 +445,33 @@ svg {
     text-decoration: none;
     box-sizing: border-box;
     user-select: none;
+}
+
+
+.funfactbox {
+    bottom: 10%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.funfact {
+    text-align: center;
+
+}
+
+.funfacttext {
+    font-size: 4vmax;
+    color: red;
+    text-align: center;
+}
+
+.puregenius {
+    text-align: center;
+}
+
+.mul {
+    color: blue;
 }
