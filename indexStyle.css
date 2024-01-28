@@ -1,29 +1,39 @@
 .newTimer {
+    top: 30vh;
 	display: none;
     width: 100%;
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-    /* make it click through */
     pointer-events: none;
+}
+.frage1 {
+    position: absolute;
+    top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 25vh;
+    font-size: 8vw;
+    text-align: center;
 }
 .newTimer h2 {
     font-size: 3em;
-	width: 160px;
-	position: absolute;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    width: 80px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 svg {
 	transform: rotate(-90deg);
 }
 .circle_animation {
-    stroke-dasharray: 565; /* 2 * π * r */
+    stroke-dasharray: 282.7; /* 2 * π * r */
     stroke-dashoffset: 0;
     transition: all 1s linear;
 }
-
 .buttonSurContainer {
     display: flex;
     flex-flow: column wrap;
@@ -57,8 +67,6 @@ svg {
     margin-top: 4vi;
     margin-bottom: 2vi;
     align-items: center;
-    border-width: 5px;
-    border-style: solid;
 }
 .buttonB {
     background-color: rgb(86, 165, 26);
@@ -77,8 +85,6 @@ svg {
     margin-top: 2vi;
     margin-bottom: 4vi;
     align-items: center;
-    border-width: 5px;
-    border-style: solid;
 }
 .buttonD {
     background-color: rgb(169, 90, 229);
@@ -88,8 +94,6 @@ svg {
     margin-top: 2vi;
     margin-bottom: 4vi;
     align-items: center;
-    border-width: 5px;
-    border-style: solid;
 }
 .buttonA:hover {background-color: rgb(255, 183, 10);}
 .buttonB:hover {background-color: rgb(125, 241, 38);}
@@ -309,6 +313,7 @@ svg {
 }
 
 .phasebox {
+
     display: flex;
     position: absolute;
     width: 100%;
@@ -344,17 +349,7 @@ svg {
     position: absolute;
 }
 
-.frage1 {
-    position: absolute;
-    top: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    height: 20vh;
-    font-size: 6vw;
-    text-align: center;
-}
+
 
 
 
