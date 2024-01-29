@@ -98,12 +98,10 @@ togglePhase(boxWelcome);
 
 const beforeUnloadHandler = (event) => {
     event.preventDefault();
-    event.returnValue = "Wollen Sie die Seite wirklich verlassen? Die kann zu erheblichen Fehlern im laufenden Quiz führen";
+    event.returnValue = "Wollen Sie die Seite wirklich verlassen? Dies kann zu erheblichen Fehlern im laufenden Quiz führen";
 };
 
-//window.addEventListener("beforeunload", beforeUnloadHandler);
-console.log("hier vor jubilähum entkommentieren") 
-
+window.addEventListener("beforeunload", beforeUnloadHandler);
 
 startgamebt.addEventListener('click', startgame);
 bt1.addEventListener('click', phase1);
@@ -119,11 +117,13 @@ function startgame() {
 
 let qnumberinsg;
 
-function phase1() {
+async function phase1() {
+    document.body.classList.add('waiting');
+    await supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid);
+    document.body.classList.remove('waiting');
     togglePhase(boxPhase1);
     activequestionid++;
     qnumberinsg = questions.length-1;
-    supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid)
     prefut = Date.now() + pretime;
     preloop = setInterval(interface1bar, 10);
     anzeigefrage1.innerHTML = questions[activequestionid].frage;
@@ -139,18 +139,16 @@ function interface1bar() {
     prerem = prefut - Date.now();
     preangle = (prerem / pretime);
     balken.style.width = (preangle*100)+"%";
-
-    // console.log("nur testweise in dieser zeile dann entfernen")
-    // // userlist[userlist.length-1].punkte = userlist[0].punkte+1;
-    // supabaseUpdate('spieler', ['punkte'], [userlist[0].punkte+1], 'eq', 'id', userlist[userlist.length-1].id);
   }
 
 
 
 // wird nach ablaufen der ersten 5s aufgerufen
-function phase2() {
+async function phase2() {
+    document.body.classList.add('waiting');
+    await supabaseUpdate('fragen', ['start'], [true], 'eq', 'id', activequestionid)
+    document.body.classList.remove('waiting');
     togglePhase(boxPhase2);
-    supabaseUpdate('fragen', ['start'], [true], 'eq', 'id', activequestionid)
     clearInterval(preloop);
     console.log('%c starte frage' + activequestionid, 'background: #222; color: #bada55')
 

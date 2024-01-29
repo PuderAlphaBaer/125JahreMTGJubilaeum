@@ -138,7 +138,9 @@ function phase2(id) {
 
   questionStart = Date.now();
   ergebnis = "offen";
-  puregenius.innerHTML = zwischenworte[Math.floor(Math.random() * zwischenworte.length)];
+  textid = Math.floor(Math.random() * zwischenworte.length)
+  puregenius.innerHTML = zwischenworte[textid];
+  zwischenworte.splice(textid, 1);
   startTimer();
 }
 
@@ -164,11 +166,14 @@ function phase3() {
   if(ergebnis=="richtig") {
     richtig.style.display = 'block';
     falsch.style.display = 'none';
-    worte.innerHTML = rworte[Math.floor(Math.random() * rworte.length)];
+    textid = Math.floor(Math.random() * rworte.length)
+    worte.innerHTML = rworte[textid];
+    rworte.splice(textid, 1);
   } else {
     richtig.style.display = 'none';
     falsch.style.display = 'block';
-    worte.innerHTML = fworte[Math.floor(Math.random() * fworte.length)];
+    textid = Math.floor(Math.random() * fworte.length)
+    worte.innerHTML = fworte[textid];
   }
 
   if(streak==0) {

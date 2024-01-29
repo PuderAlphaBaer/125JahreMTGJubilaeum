@@ -164,20 +164,20 @@ function startGame() {
   console.log("püntklich");
   document.title = "5³ Quiz MTG";
 
-console.log("hier vor feier noch entkommentieren");
-// const channel = new BroadcastChannel('tab');
+const channel = new BroadcastChannel('tab');
 
-// channel.postMessage('sign-in');
-// // note that listener is added after posting the message
+channel.postMessage('sign-in');
+// note that listener is added after posting the message
 
-// channel.addEventListener('message', (msg) => {
-//   if (msg.data === 'sign-in') {
-//     // message received from 2nd tab
-//     window.location.href = "";
-//   }
-// });
+channel.addEventListener('message', (msg) => {
+  if (msg.data === 'sign-in') {
+    // message received from 2nd tab
+    window.removeEventListener("beforeunload", beforeUnloadHandler);
+    window.location.href = "";
+  }
+});
 
-//window.addEventListener("beforeunload", beforeUnloadHandler);
+window.addEventListener("beforeunload", beforeUnloadHandler);
 }
 
 
