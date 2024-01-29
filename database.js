@@ -50,6 +50,7 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
     }
     catch (error) {
         console.log(error)
+        errorHandling(table, error)
     }
 }
 
@@ -127,6 +128,7 @@ const supabaseUpdate = async (table, columns, values, conditionType, conditionCo
         }
     } catch (error) {
         console.log(error)
+        errorHandling(table, error)
     }
 }
 

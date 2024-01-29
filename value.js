@@ -17,6 +17,7 @@ class Frage {
   }
 
   qtime = 20;
+  const pretime = 6000;
 
 const questions = [
   // Hier alle Fragen in richtiger Reinfolge auflisten
@@ -132,7 +133,7 @@ const ranglistenlimit = 5;
 // Bei welcher Frage das Podium durchgewechselt werden soll
 const nextPodium = [5];
 
-const pretime = 6000;
+
 
 // Wär die Mitte
 //const nextPodium = (questions.length - 1)/2;

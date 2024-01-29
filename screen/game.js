@@ -33,8 +33,6 @@ const a = document.getElementById('bta');
 const b = document.getElementById('btb');
 const c = document.getElementById('btc');
 const d = document.getElementById('btd');
-const y = document.getElementById('y');
-const n = document.getElementById('n');
 const boxPhase1 = document.getElementById('boxPhase1');
 const boxWelcome = document.getElementById('boxWelcome');
 const balkenbox = document.getElementById('balkenbox');
@@ -58,6 +56,9 @@ const zweiterContainer = document.getElementById('ersterContainer');
 const subbutton = document.getElementById('subButton');
 const boxPhase5 = document.getElementById('boxPhase5');
 const boxPhase3 = document.getElementById('boxPhase3');
+const topButtonContainer = document.getElementById('topButtonContainer');
+const bottomButtonContainer = document.getElementById('bottomButtonContainer');
+
 let activequestionid = 0;
 
 
@@ -112,25 +113,34 @@ bt2.addEventListener('click', phase4);
 
 function startgame() {
     console.log('%c starte spiel', 'background: #222; color: #bada55')
+    startgamebt.style.display = "none"
     phase1();
 }
 
 let qnumberinsg;
 
-async function phase1() {
+function phase1() {
+    bt1.style.display = "none";
     activequestionid++;
     document.body.classList.add('waiting');
-    await supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid);
-    document.body.classList.remove('waiting');
-    togglePhase(boxPhase1);
-    qnumberinsg = questions.length-1;
-    prefut = Date.now() + pretime;
-    preloop = setInterval(interface1bar, 10);
-    anzeigefrage1.innerHTML = questions[activequestionid].frage;
-    console.log('%c beginne frage' + activequestionid, 'background: #222; color: #bada55')
-    setTimeout(() => {
-        phase2();
-    }, pretime);
+    supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid).then((error) => {
+        document.body.classList.remove('waiting');
+        if (error) {
+            togglePhase(boxPhase1);
+            qnumberinsg = questions.length-1;
+            prefut = Date.now() + pretime;
+            preloop = setInterval(interface1bar, 10);
+            anzeigefrage1.innerHTML = questions[activequestionid].frage;
+            console.log('%c beginne frage' + activequestionid, 'background: #222; color: #bada55')
+            setTimeout(() => {
+                phase2();
+            }, pretime);
+        } else {
+            alert("Es ist ein Fehler aufgetreten!")
+            bt1.style.display = "flex";
+            startgamebt.style.display = "flex";
+        }
+    });
 };
 
 
@@ -142,59 +152,49 @@ function interface1bar() {
   }
 
 
+// clear effects from all buttons using a function with parameter
+function clearEffects(element) {
+    element.style.opacity = "1";
+    element.style.boxShadow = "none";
+    element.style.border = "transparent";
+}
 
 // wird nach ablaufen der ersten 5s aufgerufen
-async function phase2() {
+function phase2() {
     document.body.classList.add('waiting');
-    await supabaseUpdate('fragen', ['start'], [true], 'eq', 'id', activequestionid)
-    document.body.classList.remove('waiting');
-    togglePhase(boxPhase2);
-    clearInterval(preloop);
-    console.log('%c starte frage' + activequestionid, 'background: #222; color: #bada55')
+    supabaseUpdate('fragen', ['start'], [true], 'eq', 'id', activequestionid).then((error) => {
+        document.body.classList.remove('waiting');
+        if (error) {
+            togglePhase(boxPhase2);
+            clearInterval(preloop);
+            console.log('%c starte frage' + activequestionid, 'background: #222; color: #bada55')
 
-    // clear effects from all buttons using a function with parameter
-    function clearEffects(element) {
-        element.style.opacity = "1";
-        element.style.boxShadow = "none";
-        element.style.border = "transparent";
-    }
-    clearEffects(a);
-    clearEffects(b);
-    clearEffects(c);
-    clearEffects(d);
+            clearEffects(a);
+            clearEffects(b);
+            clearEffects(c);
+            clearEffects(d);
 
+            anzeigefrage2.innerHTML = questions[activequestionid].frage;
+            bt2.style.display = "none";
 
-
-
-    anzeigefrage2.innerHTML = questions[activequestionid].frage;
-    bt2.style.display = "none";
-
-    // Multiple Choice Frage
-    a.innerHTML = questions[activequestionid].a;
-    b.innerHTML = questions[activequestionid].b;
-    let topButtonContainer = document.getElementById('topButtonContainer');
-    let bottomButtonContainer = document.getElementById('bottomButtonContainer');
-    bottomButtonContainer.style.display = "flex";
-    topButtonContainer.style.height = "50%";
-    if (questions[activequestionid].c=="") {
-      bottomButtonContainer.style.display = "none";
-      topButtonContainer.style.height = "100%";
-    } else {
-      c.innerHTML = questions[activequestionid].c;
-      d.innerHTML = questions[activequestionid].d;
-    }
-    
-
-    if(questions[activequestionid].img!=false) {
-
-    } else {
-
-    }
-
-
-    
-    // Timer starten
-    startTimer();
+            // Multiple Choice Frage
+            a.innerHTML = questions[activequestionid].a;
+            b.innerHTML = questions[activequestionid].b;
+            bottomButtonContainer.style.display = "flex";
+            topButtonContainer.style.height = "50%";
+            if (questions[activequestionid].c=="") {
+            bottomButtonContainer.style.display = "none";
+            topButtonContainer.style.height = "100%";
+            } else {
+            c.innerHTML = questions[activequestionid].c;
+            d.innerHTML = questions[activequestionid].d;
+            }    
+            // Timer starten
+            startTimer();
+        } else {
+            alert("Es ist ein Fehler aufgetreten!")
+        }
+    });
 
 
 }
@@ -216,6 +216,7 @@ function phase4() {
     votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
     fetchRangliste();
     bt1.innerHTML = "Starte Frage "+(activequestionid+1)+" von "+(questions.length-1);
+    bt1.style.display = "flex";
     supabaseUpdate('spieler', ['vote'], [null], 'gt', 'id', '-1');
     console.log('%c beende frage' + activequestionid, 'background: #222; color: #bada55')
 }
@@ -436,18 +437,37 @@ function phase3() {
             }
         }
 
+        aBorder = "transparent";
+        bBorder = "transparent";
+        cBorder = "transparent";
+        dBorder = "transparent";
+
+        if (questions[activequestionid].loesung.includes("a")) {
+            aBorder = "white";
+        }
+        if (questions[activequestionid].loesung.includes("b")) {
+            bBorder = "white";
+        }
+        if (questions[activequestionid].loesung.includes("c")) {
+            cBorder = "white";
+        }
+        if (questions[activequestionid].loesung.includes("d")) {
+            dBorder = "white";
+        }
+
+
         switch(questions[activequestionid].c) {
             case "":
                 xValues = [apod, bpod];
                 yValues = [avotes, bvotes];
                 barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)"];
-                borderColors = [a.style.borderColor, b.style.borderColor];
+                borderColors = [aBorder, bBorder];
                 break;
             default:
                 xValues = [apod, bpod, cpod, dpod]
                 yValues = [avotes, bvotes, cvotes, dvotes];
                 barColors = ["rgb(239, 141, 10)", "rgb(86, 165, 26)", "rgb(9, 85, 164)", "rgb(169, 90, 229)"];
-                borderColors = [a.style.borderColor, b.style.borderColor, c.style.borderColor, d.style.borderColor];
+                borderColors = [aBorder, bBorder, cBorder, dBorder];
                 break;
         }
         bt2.style.display = "flex";
@@ -511,10 +531,12 @@ function nchart() {
                             drawBorder: false,
                         },
                         ticks: {
+                            // Style von podwinnern
                             color: "black",
                             font: {
                                 size: 25
-                            }   
+                            },
+                            
                         }
                     },
                     y: {
