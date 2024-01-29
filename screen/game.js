@@ -118,11 +118,11 @@ function startgame() {
 let qnumberinsg;
 
 async function phase1() {
+    activequestionid++;
     document.body.classList.add('waiting');
     await supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid);
     document.body.classList.remove('waiting');
     togglePhase(boxPhase1);
-    activequestionid++;
     qnumberinsg = questions.length-1;
     prefut = Date.now() + pretime;
     preloop = setInterval(interface1bar, 10);
