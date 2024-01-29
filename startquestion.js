@@ -175,13 +175,17 @@ function phase3() {
     textid = Math.floor(Math.random() * fworte.length)
     worte.innerHTML = fworte[textid];
   }
-
+  const streakLine = document.getElementById('streakLine');
   if(streak==0) {
-    ims.style.display = "none";
-    streaktext.innerHTML = "Streak verloren";
+    streakLine.innerHTML = "Antwortserie verloren";
+    streaktext.innerHTML = "";
+    streaktext.style.backgroundImage = "none";
   } else {
-    ims.style.display = "flex";
+    streakLine.innerHTML = "Antwortserie: "
     streaktext.innerHTML = streak;
+    streaktext.style.backgroundImage = "url(../Data/streak.svg)";
+    streaktext.style.backgroundRepeat = "no-repeat";
+    streaktext.style.backgroundPosition = "center";
   }
   if (addPoints!=0) {
     punkte.innerHTML = "Du hast "+addPoints+" Punkte erhalten";

@@ -24,7 +24,6 @@ const phase3box = document.getElementById('phase3box');
   const img = document.getElementById('img');
 
 const phase4box = document.getElementById('phase4box');
-  const gespunkte = document.getElementById('gespunkte');
   const rang = document.getElementById('rang');
   const brang = document.getElementById('brang');
   const funfact = document.getElementById('funfact');

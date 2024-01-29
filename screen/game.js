@@ -1,6 +1,6 @@
 function startCountdown(time) {
     let i = 0;
-    let finalOffset = 282.7; // New circumference
+    let finalOffset = 565; // New circumference
     let step = finalOffset / time;
     let timeCaption = document.querySelector('h2');
     let circle = document.querySelector('.circle_animation').style;
