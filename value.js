@@ -27,7 +27,7 @@ const questions = [
   new Frage("In welchem Jahr wurde das Maria-Theresia-Gymnasium gegründet?", "1965", "1899", "1940", "2006", "a", qtime, "Das Quiz besteht aus 23 Code-Dateien."),
   new Frage("Wer waren die letzten vier Schuldirektoren unserer Schule in richtiger Reihenfolge?", "Fr. Duschka, Hr. Schairer, Fr. Reiter, Hr. Endres", "Fr. Duschka, Fr. Reiter, Hr. Schairer, Hr. Endres", "Fr. Duschka, Fr. Reiter, Hr. Endres, Hr. Schairer", "Fr. Reiter, Hr. Endres, Hr. Schairer, Fr. Duschka", "b", qtime, "Beim Programmieren dieses Quiz wurden über 10000 Platzhalternutzer erstellt."),
   new Frage("Wie viele Liegestütze schafft Herr Markl?", "55", "21", "86", "125", "c", qtime, "Vor genau 99 Tagen haben Christian und Tilman mit dem Programmieren des Quiz begonnen."),
-  new Frage('Was war das profitabelste Unternehmen während der letzten Projekttage "Schule als Staat"?', "Museumscafé", "Pizzabäckerei", "Talentshow", "3D-Drucker", "a", qtime, 'Der Code für dieses Quiz hat über 4000 Zeilen.'),
+  new Frage('Was war das profitabelste Unternehmen während der letzten Projekttage "Schule als Staat"?', "Museumscafé", "Pizzabäckerei", "Talentshow", "3D-Drucker", "a", qtime, 'Die Länge unseres Codes entspricht etwa 20% von "Harry Potter und der Stein der Weisen"'),
   new Frage("Welche Partei gewann die Juniorwahl 2023 am MTG?", "SPD", "Bündnis 90/Die Grünen", "AfD", "CSU", "b", qtime, "Es gibt einen Filter für nicht unangemessene Benutzernamen."),
   new Frage("Wie viel Prozent des Schulgebäudes wurden beim Bombentreffer im April 1944 zerstört?", "20%", "0%", "90%", "70%", "d", qtime, 'Es gibt eine Seite, auf der man Nutzer auf die Bühne setzen kann und Nutzer mit anstößigen Namen bannen kann.'),
   new Frage("Wie oft besuchte die Namensgeberin Maria-Theresia die Schule?", "Nie", "Einmal", "Zweimal", "Dreimal", "b", qtime, false)
@@ -106,15 +106,15 @@ const fworte = [
   "Ups, das war falsch. Aber wie sagt man so schön: Übung macht den Meister!",
   "Wir fragen uns, ob Sie in der Schule genauso falsche Antworten gegeben haben. Wahrscheinlich ja!",
   "Hätten Sie doch die Festschrift gekauft!",
-  "Ab zum Nachsitzen"
+  "Ab zum Nachsitzen!"
 ]
 const zwischenworte = [
-  "Wir haben ihre Antwort. Bald erfahren Sie, ob Sie ein Quiz-Genie sind!",
+  "Wir haben Ihre Antwort. Bald erfahren Sie, ob Sie ein Quiz-Genie sind!",
   "Ihre Antwort wird geprüft. Gleich wissen Sie, ob Sie auf der Gewinnerseite stehen!",
   "Ihre Antwort wird von unseren klügsten Köpfen überprüft. Daumen drücken!",
   "Ein Expertenteam aus Lehrern, Schülern und einem geheimen Superhelden prüft Ihre Antwort.",
   "Während Ihre Antwort durch die Schulkorridore wandert, genießen wir einen Moment der Vorfreude.",
-  "Lehrer prüfen ihre Antwort mit wissenschaftlicher Präzision",
+  "Lehrer prüfen Ihre Antwort mit wissenschaftlicher Präzision.",
   "Sicher nicht beim Nachbarn über die Schulter geäugt?"
 ]
 
