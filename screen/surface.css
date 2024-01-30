@@ -270,6 +270,8 @@ tr {
     justify-content: center;
     align-items: bottom;
     flex-direction: row;
+    text-align: center;
+
 }
 
 .is {
