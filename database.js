@@ -45,12 +45,11 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
         }
 
         if (error) {
-        throw error
+            alert(error)
         }
     }
     catch (error) {
         console.log(error);
-        errorHandling(table, error);
         throw error;
     }
 }
@@ -59,13 +58,6 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
 const updateRanking = async () => {
     const { data, error } = await database
         .rpc('ranking')
-    if (data) {
-        console.log("Update Ranking", data)
-        return data;
-    }
-    if (error) {
-        throw error
-    }
 }
 
   
@@ -100,7 +92,7 @@ const supabaseInsert = async (table, columns, values) => {
             return data;
         }
         if (error) {
-            throw error
+            alert(error)
         }
     }
     catch (error) {
@@ -126,11 +118,10 @@ const supabaseUpdate = async (table, columns, values, conditionType, conditionCo
             return data;
         }
         if (error) {
-            throw error
+            alert(error)
         }
     } catch (error) {
         console.log(error)
-        errorHandling(table, error)
         throw error;
     }
 }
@@ -150,7 +141,7 @@ const supabaseDelete = async (table, conditionType, conditionColumn, conditionVa
             return data;
         }
         if (error) {
-            throw error
+            alert(error)
         }
     } catch (error) {
         console.log(error);
@@ -169,7 +160,7 @@ const supabaseDeleteAll = async (table) => {
             return data;
         }
         if (error) {
-            throw error
+            alert(error)
         }
     } catch (error) {
         console.log(error)
