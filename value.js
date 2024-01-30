@@ -17,20 +17,20 @@ class Frage {
   }
 
   qtime = 20;
-  const pretime = 6=7000;
+  const pretime = 6000;
 
 const questions = [
   new Frage("placeholder", "a", "a", "a", "a", "a", 0, ),
-  new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine.", "", "", ["a", "b"], qtime, "Ihre erzielten Punkte pro Frage werden nicht nur durch die Schnelligkeit Ihrer Eingabe bestimmt, sondern auch von Ihrer Antwortserie bestimmt."),
+  new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine.", "", "", ["a", "b"], qtime, "Ihre erzielten Punkte pro Frage werden nicht nur durch die Schnelligkeit Ihrer Eingabe, sondern auch von Ihrer Antwortserie bestimmt."),
   new Frage("Wie viele Fenster hat das Hauptgebäude unserer Schule?", "420", "690", "134", "208", "d", qtime, "Die ersten drei Antwortstasten sind in den Farben des MTG-Logos, die lilane Farbe der letzten Taste ist die Komplementärfarbe zum MTG-Grün."),
   new Frage("Seit wann ist das MTG für Mädchen geöffnet?", "1899", "1978", "1990", "1902", "b", qtime, "Es existieren über 440 Versionen des Quiz, bereits ab Version 152 konnte man erstmals Fragen starten und beantworten."),
   new Frage("In welchem Jahr wurde das Maria-Theresia-Gymnasium gegründet?", "1965", "1899", "1940", "2006", "a", qtime, "Das Quiz besteht aus 23 Code-Dateien."),
-  new Frage("Wer waren die letzten vier Schuldirektoren unserer Schule in richtiger Reihenfolge?", "Fr. Duschka, Hr. Schairer, Fr. Reiter, Hr. Endres", "Fr. Duschka, Fr. Reiter, Hr. Schairer, Hr. Endres", "Fr. Duschka, Fr. Reiter, Hr. Endres, Hr. Schairer", "Fr. Reiter, Hr. Endres, Hr. Schairer, Fr. Duschka", "b", qtime, "Beim Programmieren dieses Quiz wurden über 10000 Platzhalternutzer erstellt."),
+  new Frage("Wer waren die letzten vier Schuldirektoren unserer Schule in richtiger Reihenfolge?", "Fr. Duschka, Hr. Schairer, Fr. Reiter, Hr. Endres", "Fr. Duschka, Fr. Reiter, Hr. Schairer, Hr. Endres", "Fr. Duschka, Fr. Reiter, Hr. Endres, Hr. Schairer", "Fr. Reiter, Hr. Endres, Hr. Schairer, Fr. Duschka", "b", qtime, "Beim Programmieren dieses Quiz wurden über 12000 Platzhalternutzer erstellt."),
   new Frage("Wie viele Liegestütze schafft Herr Markl?", "55", "21", "86", "125", "c", qtime, "Vor genau 99 Tagen haben Christian und Tilman mit dem Programmieren des Quiz begonnen."),
   new Frage('Was war das profitabelste Unternehmen während der letzten Projekttage "Schule als Staat"?', "Museumscafé", "Pizzabäckerei", "Talentshow", "3D-Drucker", "a", qtime, 'Die Länge unseres Codes entspricht etwa 20% von "Harry Potter und der Stein der Weisen"'),
   new Frage("Welche Partei gewann die Juniorwahl 2023 am MTG?", "SPD", "Bündnis 90/Die Grünen", "AfD", "CSU", "b", qtime, "Es gibt einen Filter für nicht unangemessene Benutzernamen."),
   new Frage("Wie viel Prozent des Schulgebäudes wurden beim Bombentreffer im April 1944 zerstört?", "20%", "0%", "90%", "70%", "d", qtime, 'Es gibt eine Seite, auf der man Nutzer auf die Bühne setzen kann und Nutzer mit anstößigen Namen bannen kann.'),
-  new Frage("Wie oft besuchte die Namensgeberin Maria-Theresia die Schule?", "Nie", "Einmal", "Zweimal", "Dreimal", "b", qtime, false)
+  new Frage("Wie oft besuchte die Namensgeberin Maria Theresia die Schule?", "Nie", "Einmal", "Zweimal", "Dreimal", "b", qtime, false)
 ];
 
 

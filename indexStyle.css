@@ -72,10 +72,11 @@ svg {
     justify-content: center;
 }
 .button {
-    font-size: 1.5em;
+    font-size: 6vmin;
     display: flex;
     justify-content: center;
     width: 44%;
+    height: 88%;
     border-radius: 2vi;
     text-align: center;
 }
