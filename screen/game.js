@@ -118,7 +118,7 @@ startgamebt.addEventListener('click', () => {
         startgame();
     } else {
         console.log('cooldown')
-    
+        alert('Cooldown')
     }
 });
 
@@ -128,6 +128,7 @@ bt1.addEventListener('click', () => {
         phase1();
     } else {
         console.log('cooldown')
+        alert('Cooldown')
     }
 });
 
@@ -137,6 +138,7 @@ bt2.addEventListener('click', () => {
         phase4();
     } else {
         console.log('cooldown')
+        alert('Cooldown')
     }
 });
 

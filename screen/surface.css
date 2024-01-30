@@ -219,7 +219,7 @@ tr {
 }
 
 .balkenbox {
-    background-color: rgb(153, 0 , 0);
+    background-color: rgb(125, 241, 38);;
     width: 80%;
     height: 4%;
     position: absolute;
@@ -318,7 +318,7 @@ tr {
 }
 
 .podium {
-    background-color: rgb(255, 183, 10);
+    background-color: rgb(13, 124, 240);
     transition: 0.4s;
 }
 
