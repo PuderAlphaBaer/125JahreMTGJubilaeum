@@ -49,8 +49,9 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
         }
     }
     catch (error) {
-        console.log(error)
-        errorHandling(table, error)
+        console.log(error);
+        errorHandling(table, error);
+        throw error;
     }
 }
 
@@ -103,8 +104,9 @@ const supabaseInsert = async (table, columns, values) => {
         }
     }
     catch (error) {
-        console.log(error)
-        errorHandling(error, table)
+        console.log(error);
+        errorHandling(error, table);
+        throw error;
     }
 }
 
@@ -129,6 +131,7 @@ const supabaseUpdate = async (table, columns, values, conditionType, conditionCo
     } catch (error) {
         console.log(error)
         errorHandling(table, error)
+        throw error;
     }
 }
 
@@ -150,7 +153,8 @@ const supabaseDelete = async (table, conditionType, conditionColumn, conditionVa
             throw error
         }
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        throw error;
     }
 }
 
@@ -169,6 +173,7 @@ const supabaseDeleteAll = async (table) => {
         }
     } catch (error) {
         console.log(error)
+        throw error;
     }
 }
 

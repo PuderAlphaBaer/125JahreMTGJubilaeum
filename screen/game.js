@@ -123,24 +123,23 @@ function phase1() {
     bt1.style.display = "none";
     activequestionid++;
     document.body.classList.add('waiting');
-    supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid).then((error) => {
+
+
+
+    supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid)
         document.body.classList.remove('waiting');
-        if (error) {
-            togglePhase(boxPhase1);
-            qnumberinsg = questions.length-1;
-            prefut = Date.now() + pretime;
-            preloop = setInterval(interface1bar, 10);
-            anzeigefrage1.innerHTML = questions[activequestionid].frage;
-            console.log('%c beginne frage' + activequestionid, 'background: #222; color: #bada55')
-            setTimeout(() => {
-                phase2();
-            }, pretime);
-        } else {
-            alert("Es ist ein Fehler aufgetreten!")
-            bt1.style.display = "flex";
-            startgamebt.style.display = "flex";
-        }
-    });
+        togglePhase(boxPhase1);
+        qnumberinsg = questions.length-1;
+        prefut = Date.now() + pretime;
+        preloop = setInterval(interface1bar, 10);
+        anzeigefrage1.innerHTML = questions[activequestionid].frage;
+        console.log('%c beginne frage' + activequestionid, 'background: #222; color: #bada55')
+        setTimeout(() => {
+        phase2();
+        }, pretime);
+        alert("Es ist ein Fehler aufgetreten!")
+        bt1.style.display = "flex";
+        startgamebt.style.display = "flex";
 };
 
 
