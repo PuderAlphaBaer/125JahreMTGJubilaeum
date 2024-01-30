@@ -45,11 +45,12 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
         }
 
         if (error) {
-            alert(error)
+            throw error;
         }
     }
     catch (error) {
-        console.log(error);
+        console.log(error)
+        alert(error.message)
         throw error;
     }
 }
@@ -92,11 +93,10 @@ const supabaseInsert = async (table, columns, values) => {
             return data;
         }
         if (error) {
-            alert(error)
+            throw error;
         }
     }
     catch (error) {
-        console.log(error);
         errorHandling(error, table);
         throw error;
     }
@@ -118,10 +118,11 @@ const supabaseUpdate = async (table, columns, values, conditionType, conditionCo
             return data;
         }
         if (error) {
-            alert(error)
+            throw error;
         }
     } catch (error) {
         console.log(error)
+        alert(error.message)
         throw error;
     }
 }
@@ -141,10 +142,12 @@ const supabaseDelete = async (table, conditionType, conditionColumn, conditionVa
             return data;
         }
         if (error) {
-            alert(error)
+            throw error;
+
         }
     } catch (error) {
-        console.log(error);
+        console.log(error)
+        alert(error.message)
         throw error;
     }
 }
@@ -160,10 +163,11 @@ const supabaseDeleteAll = async (table) => {
             return data;
         }
         if (error) {
-            alert(error)
+            throw error;
         }
     } catch (error) {
         console.log(error)
+        alert(error.message)
         throw error;
     }
 }
@@ -176,6 +180,9 @@ function errorHandling (error, table) {
         if (error.code == '23505') {
             alert('Der von Ihnen gewählte Spitzname ist bereits vergeben, bitte suchen Sie sich einen anderen aus.');
         }
+    } else {
+        console.log(error)
+        alert(error.message)
     }
 }
     

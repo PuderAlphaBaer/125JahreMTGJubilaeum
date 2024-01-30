@@ -103,9 +103,24 @@ const beforeUnloadHandler = (event) => {
 
 window.addEventListener("beforeunload", beforeUnloadHandler);
 
-startgamebt.addEventListener('click', startgame);
-bt1.addEventListener('click', phase1);
-bt2.addEventListener('click', phase4);
+function addCooldown(button, callback) {
+    button.addEventListener('click', function() {
+        // Disable the button
+        button.disabled = true;
+
+        // Call the original event handler
+        callback();
+
+        // Enable the button after 3 seconds
+        setTimeout(function() {
+            button.disabled = false;
+        }, 3000);
+    });
+}
+
+addCooldown(startgamebt, startgame);
+addCooldown(bt1, phase1);
+addCooldown(bt2, phase4);
 
 
 
