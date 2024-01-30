@@ -1,5 +1,5 @@
 .newTimer {
-    top: 30vh;
+    bottom: 50vh;
 	display: none;
 	justify-content: center;
 	align-items: center;
@@ -14,7 +14,7 @@
     align-items: center;
     width: 90%;
     height: 25vh;
-    font-size: 5vw;
+    font-size: 4vw;
     text-align: center;
     overflow-wrap: break-word
 }
