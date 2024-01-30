@@ -29,14 +29,14 @@ const questions = [
   // ----------------------- NICHT ANRÜHREN -----------------------
   
   new Frage("placeholder", "a", "a", "a", "a", "a", 0, ),
-  new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine", "", "", ["a", "b"], qtime, "Vor genau 100 Tagen haben wir mit dem Programmieren des Quizzes begonnen"),
-  new Frage("Wie viele Fenster hat unser Hauptschulgebäude?", "420", "690", "134", "208", "d", qtime, "Die lila Farbe vom vierten Button ist die Komplementärfarbe vom grünen Button"),
-  new Frage("Seit wann ist das MTG für Mädchen besuchbar?", "1899", "1978", "1990", "1902", "b", qtime, "Es existieren 431 versionen vom Quiz, schon ab Version 152 konnte man erstmals Fragen starten und beantworten"),
-  new Frage("In welchem Jahr wurde das Maria-Theresia-Gymnasium gegründet?", "1965", "1899", "1940", "2006", "a", qtime, "Das Quiz besteht aus 23 Code-Dateien und 3956 Zeilen"),
-  new Frage("Was waren die letzten vier Direktoren in richtiger Reihenfolge?", "Fr. Duschka, Hr. Schairer, Fr. Reiter, Hr. Endres", "Fr. Duschka, Fr. Reiter, Hr. Schairer, Hr. Endres", "Fr. Duschka, Fr. Reiter, Hr. Endres, Hr. Schairer", "Fr. Reiter, Hr. Endres, Hr. Schairer, Fr. Duschka", "b", qtime, "Es existieren 15 Bilddateien für dieses Quiz, sechs davon sind das Icon der Website in unterschiedlichen Größen"),
-  new Frage("Wie viele Liegestütze schafft Herr Markl?", "55", "21", "86", "125", "c", qtime, "Die Punkte die Sie pro Frage dazuerhalten werden multipliziert mit <div class='mul'>1 + (IhrStreak * 0,1)</div>"),
-  new Frage("Was war das profitabelste Unternehmen während der letzten Projekttage in Schule als Staat?", "Museumscafe", "Pizzabäckerei", "Talentshow", "3D Drucker", "a", qtime, 'Die Länge unseres Codes entspricht etwa 20% "Harry Potter und der Stein der Weisen"'),
-  new Frage("Welche Partei gewann die Juniorwahl 2023 am MTG?", "CSU", "Bündnis 90/Die Grünen", "AfD", "SPD", "a", qtime, "Beim Einloggen gibt es einen Filter für inatequate Benutzernamen"),
+  new Frage("Haben Sie schon unsere Festschrift gekauft?", "Ja", "Nein, aber ich kaufe gleich am Ende eine.", "", "", ["a", "b"], qtime, "Vor genau 100 Tagen haben Christian und Tilman mit dem Programmieren des Quiz begonnen."),
+  new Frage("Wie viele Fenster hat das Hauptgebäude unserer Schule?", "420", "690", "134", "208", "d", qtime, "Die ersten drei Antwortstasten sind in den Farben des MTG-Logos, die lilane Farbe der letzten Taste ist die Komplementärfarbe zum MTG-Grün."),
+  new Frage("Seit wann ist das MTG für Mädchen geöffnet?", "1899", "1978", "1990", "1902", "b", qtime, "Es existieren über 450 Versionen des Quiz, bereits ab Version 152 konnte man erstmals Fragen starten und beantworten."),
+  new Frage("In welchem Jahr wurde das Maria-Theresia-Gymnasium gegründet?", "1965", "1899", "1940", "2006", "a", qtime, "Das Quiz besteht aus 23 Code-Dateien."),
+  new Frage("Wer waren die letzten vier Schuldirektoren unserer Schule in richtiger Reihenfolge?", "Fr. Duschka, Hr. Schairer, Fr. Reiter, Hr. Endres", "Fr. Duschka, Fr. Reiter, Hr. Schairer, Hr. Endres", "Fr. Duschka, Fr. Reiter, Hr. Endres, Hr. Schairer", "Fr. Reiter, Hr. Endres, Hr. Schairer, Fr. Duschka", "b", qtime, "Es existieren 15 Bilddateien für dieses Quiz."),
+  new Frage("Wie viele Liegestütze schafft Herr Markl?", "55", "21", "86", "125", "c", qtime, "Ihre erzielten Punkte pro Frage werden nicht nur durch die Schnelligkeit Ihrer Eingabe bestimmt, sondern auch von Ihrer Antwortserie bestimmt."),
+  new Frage("Was war das profitabelste Unternehmen während der letzten Projekttage "Schule als Staat"?", "Museumscafé", "Pizzabäckerei", "Talentshow", "3D-Drucker", "a", qtime, 'Der Code für dieses Quiz hat über 4000 Zeilen'),
+  new Frage("Welche Partei gewann die Juniorwahl 2023 am MTG?", "SPD", "Bündnis 90/Die Grünen", "AfD", "CSU", "b", qtime, "Beim Anmelden für dieses Quiz gibt es einen Filter für inadäquate Benutzernamen"),
   new Frage("Wie viel Prozent des Schulgebäudes wurden beim Bombentreffer im April 1944 zerstört?", "20%", "0%", "90%", "70%", "d", qtime, 'Es gibt eine Adminseite worüber Nutzer auf den Status "Bühne" gesetzt oder manuell gebannt werden können'),
   new Frage("Wie oft besuchte die Namensgeberin Maria-Theresia die Schule?", "Keinmal", "Einmal", "Zweimal", "Dreimal", "b", qtime, false)
 ];
