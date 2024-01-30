@@ -141,7 +141,7 @@ function phase2(id) {
   textid = Math.floor(Math.random() * zwischenworte.length)
   puregenius.innerHTML = zwischenworte[textid];
   zwischenworte.splice(textid, 1);
-  startTimer();
+  startCountdown(questions[questionid].zeit);
 }
 
 
@@ -365,53 +365,6 @@ function startCountdown(time) {
     }, 10);
 }
 
-function startTimer() {
-  startCountdown(questions[questionid].zeit);
-  setTime = questions[questionid].zeit*1000;
-  // timer.innerHTML = questions[questionid].zeit+".00";
-  timerLoop = setInterval(countDownTimer, 15);
-  futureTime = Date.now() + setTime;
-  // s1.style.display = "block";
-  // s2.style.display = "block";
-  // s1.style.backgroundColor = "gray";
-  // s2.style.backgroundColor = "gray";
-  // timer.style.color = "gray";
-  // timer.style.fontSize = "5vh";
-}
-
-function countDownTimer() {
-  const remainingTime = futureTime - Date.now();
-  // const angle = (remainingTime / setTime) * 360;
-
-  // if(angle > 180) {
-  //     s3.style.display = "none";
-  //     s1.style.transform = "rotate(180deg)";
-  //     s2.style.transform = "rotate("+angle+"deg)";
-  // } else {
-  //     s3.style.display = "block";
-  //     s1.style.transform = "rotate("+angle+"deg)";
-  //     s2.style.transform = "rotate("+angle+"deg)";
-  // }
-
-  // if(remainingTime > 1000) {
-  //     timer.innerHTML = remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
-  // } else {
-  //     timer.innerHTML = "0"+remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
-  // }
-
-  // Letzten 5 Sekunden rot
-  // if(remainingTime <= 5000) {
-  //     s1.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-  //     s2.style.backgroundColor = "rgba(0, 255, 0, 0.8)";
-  //     timer.style.color = "rgba(55, 0, 255, 0.8)";
-  // }
-
-  if(remainingTime <= 0) {
-      clearInterval(timerLoop);
-  }
-
-}
-
 const beforeUnloadHandler = (event) => {
   // Recommended
   event.preventDefault();
@@ -420,3 +373,50 @@ const beforeUnloadHandler = (event) => {
   event.returnValue = "Wollen Sie das Quiz wirklich verlassen? Ihr Account wird nicht gespeichert.";
 };
 
+
+  // function startTimer() {
+  //   startCountdown(questions[questionid].zeit);
+  //   setTime = questions[questionid].zeit*1000;
+  //   // timer.innerHTML = questions[questionid].zeit+".00";
+  //   timerLoop = setInterval(countDownTimer, 15);
+  //   futureTime = Date.now() + setTime;
+  //   // s1.style.display = "block";
+  //   // s2.style.display = "block";
+  //   // s1.style.backgroundColor = "gray";
+  //   // s2.style.backgroundColor = "gray";
+  //   // timer.style.color = "gray";
+  //   // timer.style.fontSize = "5vh";
+  // }
+
+// function countDownTimer() {
+//   const remainingTime = futureTime - Date.now();
+//   // const angle = (remainingTime / setTime) * 360;
+
+//   // if(angle > 180) {
+//   //     s3.style.display = "none";
+//   //     s1.style.transform = "rotate(180deg)";
+//   //     s2.style.transform = "rotate("+angle+"deg)";
+//   // } else {
+//   //     s3.style.display = "block";
+//   //     s1.style.transform = "rotate("+angle+"deg)";
+//   //     s2.style.transform = "rotate("+angle+"deg)";
+//   // }
+
+//   // if(remainingTime > 1000) {
+//   //     timer.innerHTML = remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
+//   // } else {
+//   //     timer.innerHTML = "0"+remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
+//   // }
+
+//   // Letzten 5 Sekunden rot
+//   // if(remainingTime <= 5000) {
+//   //     s1.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+//   //     s2.style.backgroundColor = "rgba(0, 255, 0, 0.8)";
+//   //     timer.style.color = "rgba(55, 0, 255, 0.8)";
+//   // }
+
+//   if(remainingTime <= 0) {
+//       clearInterval(timerLoop);
+//   }
+
+// }
