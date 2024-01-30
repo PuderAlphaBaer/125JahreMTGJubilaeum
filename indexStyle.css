@@ -339,6 +339,7 @@ svg {
 .punkte {
     overflow-wrap: break-word;
     text-align: center;
+    margin: 1vh;
 }
 .phasebox {
 
