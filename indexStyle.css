@@ -16,7 +16,7 @@
     height: 25vh;
     font-size: 4vw;
     text-align: center;
-    overflow-wrap: break-word
+    overflow-wrap: break-word;
 }
 .egoBox {
     position: absolute;
