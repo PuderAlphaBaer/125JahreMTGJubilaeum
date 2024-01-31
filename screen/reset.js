@@ -11,16 +11,14 @@ function addDummies(number) {
 Math.random() < 0.5
 
 
-async function reset() {
-    await supabaseDeleteAll('spieler');
+async function resetFragen() {
     await supabaseDeleteAll('fragen');
     for (let i = 0; i < questions.length; i++) {
         supabaseInsert("fragen", ["id"], [i])
     }
-    addDummies(0);  
 }
 
-function noReset() {
+function noResetFragen() {
     supabaseFetch('fragen', 'beginn, id', '', '', '', 'id', true).then((data) => {
         console.log(data);
         for (let i = 0; i < data.length; i++) {
@@ -42,4 +40,5 @@ async function ende() {
 }
 
 
-confirm("Die Spieler werden nun zurückgesetzt, es wird bei Frage 1 gestartet.\n\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? reset() : noReset();
+confirm("Sollen alle Spieler zurückgesezt werden?") ? supabaseDeleteAll('spieler') : console.log("Spieler nicht zurückgesetzt");
+confirm("Es wird bei Frage 1 gestartet.\n\nWenn sie Abbrechen drücken, wird das letzte gespielte Quiz forgesetzt.") ? resetFragen() : noResetFragen();

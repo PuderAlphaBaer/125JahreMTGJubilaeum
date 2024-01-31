@@ -402,7 +402,7 @@ function phase3() {
                     userlist[userIndex].vote = data[i].vote;
                     userlist[userIndex].podium = data[i].podium;
                     userlist[userIndex].rank = i+1;
-                    
+         
                     switch (data[i].vote) {
                         case 'a':
                             avotes++;
