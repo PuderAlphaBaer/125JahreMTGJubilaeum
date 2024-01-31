@@ -103,24 +103,44 @@ const beforeUnloadHandler = (event) => {
 
 window.addEventListener("beforeunload", beforeUnloadHandler);
 
-function addCooldown(button, callback) {
-    button.addEventListener('click', function() {
-        // Disable the button
-        button.disabled = true;
+let isCooldown = false;
 
-        // Call the original event handler
-        callback();
-
-        // Enable the button after 3 seconds
-        setTimeout(function() {
-            button.disabled = false;
-        }, 3000);
-    });
+function startCooldown() {
+    isCooldown = true;
+    setTimeout(() => {
+        isCooldown = false;
+    }, 5000);
 }
 
-addCooldown(startgamebt, startgame);
-addCooldown(bt1, phase1);
-addCooldown(bt2, phase4);
+startgamebt.addEventListener('click', () => {
+    if (!isCooldown) {
+        startCooldown();
+        startgame();
+    } else {
+        console.log('cooldown')
+        alert('Cooldown')
+    }
+});
+
+bt1.addEventListener('click', () => {
+    if (!isCooldown) {
+        startCooldown();
+        phase1();
+    } else {
+        console.log('cooldown')
+        alert('Cooldown')
+    }
+});
+
+bt2.addEventListener('click', () => {
+    if (!isCooldown) {
+        startCooldown();
+        phase4();
+    } else {
+        console.log('cooldown')
+        alert('Cooldown')
+    }
+});
 
 
 
@@ -133,9 +153,15 @@ function startgame() {
 let qnumberinsg;
 
 async function phase1() {
-    activequestionid++;
-    document.body.classList.add('waiting');
-    await supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid);
+    try {
+        activequestionid++;
+        document.body.classList.add('waiting');
+        await supabaseUpdate('fragen', ['beginn'], [true], 'eq', 'id', activequestionid);
+    } catch (error) {
+        activequestionid--;
+        alert(error.message);
+        return;
+    }
     document.body.classList.remove('waiting');
     togglePhase(boxPhase1);
     qnumberinsg = questions.length-1;
@@ -160,8 +186,13 @@ function interface1bar() {
 
 // wird nach ablaufen der ersten 5s aufgerufen
 async function phase2() {
-    document.body.classList.add('waiting');
-    await supabaseUpdate('fragen', ['start'], [true], 'eq', 'id', activequestionid)
+    try {
+        document.body.classList.add('waiting');
+        await supabaseUpdate('fragen', ['start'], [true], 'eq', 'id', activequestionid)
+    } catch (error) {
+        alert(error.message);
+        return;
+    }
     document.body.classList.remove('waiting');
     togglePhase(boxPhase2);
     clearInterval(preloop);
@@ -220,18 +251,23 @@ let timestart;
 
 
 
-function phase4() {
+async function phase4() {
     if (activequestionid==questions.length-1) {
         theend();
         return;
     }
+    try {
+        await supabaseUpdate('fragen', ['auswertung'], [true], 'eq', 'id', activequestionid);
+        await supabaseUpdate('spieler', ['vote'], [null], 'gt', 'id', '-1');
+    } catch (error) {
+        alert(error.message);
+        return;
+    }
     togglePhase(boxPhase4);
-    supabaseUpdate('fragen', ['auswertung'], [true], 'eq', 'id', activequestionid)
     votebox.removeChild(document.getElementById('vote'));
     votebox.innerHTML = '<canvas id="vote" class="vote"></canvas>';
     fetchRangliste();
     bt1.innerHTML = "Starte Frage "+(activequestionid+1)+" von "+(questions.length-1);
-    supabaseUpdate('spieler', ['vote'], [null], 'gt', 'id', '-1');
     console.log('%c beende frage' + activequestionid, 'background: #222; color: #bada55')
 }
 
@@ -303,11 +339,15 @@ function countDownTimer() {
 
 
 // Wird bei Ablaufen der Zeit aufgerufen
-function timerEnd() {
+async function timerEnd() {
     // timerContainer.style.display = "none";
-    clearInterval(timerLoop);
-    supabaseUpdate('fragen', ['ende'], [true], 'eq', 'id', activequestionid)
-    
+    try {
+        clearInterval(timerLoop);
+        await supabaseUpdate('fragen', ['ende'], [true], 'eq', 'id', activequestionid)
+    } catch (error) {
+        alert(error.message);
+        return;
+    }
     function updateStyle(element, letter) {
         if (questions[activequestionid].loesung.includes(letter)) {
             let color;
@@ -348,7 +388,7 @@ function timerEnd() {
             phase3();
         }, 500);
 
-    }
+}
 
 
 
@@ -376,34 +416,39 @@ userlist = [
 // Diagramm wer für was gestimmt hat
 // Musst du nicht verstehen, hab versucht so gut wie möglich zu kommentieren, damit für Style einfacher ist
 // Im Fall der Fälle kannst du unter https://www.chartjs.org/docs/latest/ alles nachlesen
-function phase3() {
-    togglePhase(boxPhase3);
-    avotes = 0;
-    bvotes = 0;
-    cvotes = 0;
-    dvotes = 0;
-    updateRanking();
-    
-    supabaseFetch('spieler', 'id, name, punkte, streak, vote, podium', '', '', '', 'punkte', false).then((data) => {
+async function phase3() {
+    let datenStrom;
+    try {
+        await updateRanking();
+        datenStrom = await supabaseFetch('spieler', 'id, name, punkte, streak, vote, podium', '', '', '', 'punkte', false)
+    } catch (error) {
+        alert(error.message);
+        return;
+    }
+        togglePhase(boxPhase3);
+        avotes = 0;
+        bvotes = 0;
+        cvotes = 0;
+        dvotes = 0;    
         console.log("Beginne Auswertung")
-        for (let i = 0; i < data.length; i++) {
-            userIndex = userlist.findIndex((obj => obj.id == data[i].id));
+        for (let i = 0; i < datenStrom.length; i++) {
+            userIndex = userlist.findIndex((obj => obj.id == datenStrom[i].id));
             if (userIndex<0) {
-                userlist.push(new User(data[i].id, data[i].name, null, null, null, null, null, false));
+                userlist.push(new User(datenStrom[i].id, datenStrom[i].name, null, null, null, null, null, false));
                 console.log("%c Neuer User hinzugefügt", "color: red")
-                userIndex = userlist.findIndex((obj => obj.id == data[i].id));
+                userIndex = userlist.findIndex((obj => obj.id == datenStrom[i].id));
             }
-            if (data[i].punkte<0) {
+            if (datenStrom[i].punkte<0) {
                 userlist.splice(userIndex, 1);
             } else {
                     userlist[userIndex].lastrank = userlist[userIndex].rank;
-                    userlist[userIndex].punkte = data[i].punkte;
-                    userlist[userIndex].streak = data[i].streak;
-                    userlist[userIndex].vote = data[i].vote;
-                    userlist[userIndex].podium = data[i].podium;
+                    userlist[userIndex].punkte = datenStrom[i].punkte;
+                    userlist[userIndex].streak = datenStrom[i].streak;
+                    userlist[userIndex].vote = datenStrom[i].vote;
+                    userlist[userIndex].podium = datenStrom[i].podium;
                     userlist[userIndex].rank = i+1;
-         
-                    switch (data[i].vote) {
+                    
+                    switch (datenStrom[i].vote) {
                         case 'a':
                             avotes++;
                             break;
@@ -467,7 +512,6 @@ function phase3() {
         }
         bt2.style.display = "flex";
         nchart();
-    });
 }
 
 
@@ -679,16 +723,26 @@ function checkStarting () {
 
 
 
-function toggle(id, cb) {
+async function toggle(id, cb) {
     userIndex = userlist.findIndex((obj => obj.id == id));
     if(cb.checked == true) {
+        try {
+            supabaseUpdate('spieler', ['podium'], [true], 'eq', 'id', id);
+        } catch (error) {
+            alert(error.message);
+            return;
+        }
         userlist[userIndex].podium = true;
-        supabaseUpdate('spieler', ['podium'], [true], 'eq', 'id', id);
         document.getElementById(id+"row").classList.remove('userRecord');
         document.getElementById(id+"row").classList.add('podium');
     } else {
+        try {
+            supabaseUpdate('spieler', ['podium'], [false], 'eq', 'id', id);
+        } catch (error) {
+            alert(error.message);
+            return;
+        }
         userlist[userIndex].podium = false;
-        supabaseUpdate('spieler', ['podium'], [false], 'eq', 'id', id);
         document.getElementById(id+"row").classList.remove('podium');
         document.getElementById(id+"row").classList.add('userRecord');
     }

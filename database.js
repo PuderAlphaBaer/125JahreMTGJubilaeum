@@ -57,8 +57,21 @@ const supabaseFetch = async (table, columns, conditionType, conditionColumn, con
 
 
 const updateRanking = async () => {
-    const { data, error } = await database
-        .rpc('ranking')
+    try {
+        const { data, error } = await database
+            .rpc('ranking')
+    if (data) {
+        console.log('success updating ranking')
+        return data;
+    }
+    if (error) {
+        throw error;
+    }
+    } catch (error) {
+        console.log(error)
+        alert(error.message)
+        throw error;
+    }
 }
 
   
