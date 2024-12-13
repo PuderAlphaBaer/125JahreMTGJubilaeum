@@ -1,6 +1,6 @@
 # 125 Jahre MTG Jubiläum Quiz
 
-Ein interaktives, Kahoot-inspiriertes Quiz zur Feier des 125-jährigen Jubiläums des Maria-Theresia-Gymnasiums, entwickelt von den Schülern [@Chriveloper] & [@Parrot42].
+Ein interaktives, Kahoot-inspiriertes Quiz zur Feier des 125-jährigen Jubiläums des Maria-Theresia-Gymnasiums, entwickelt von den Schülern @Chriveloper & @Parrot42.
 
 ## Übersicht
 
