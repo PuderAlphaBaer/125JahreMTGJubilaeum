@@ -1,11 +1,28 @@
 # 125 Jahre MTG Jubiläum Quiz
 
 Ein interaktives, Kahoot-inspiriertes Quiz zur Feier des 125-jährigen Jubiläums des Maria-Theresia-Gymnasiums, entwickelt von den Schülern @Chriveloper & @Parrot42.
+Über 200 Gäste nahmen an der Jubiläumsfeier live am Quiz teil.
 
 ## Übersicht
 
-Das 125 Jahre MTG Jubiläum Quiz ist eine serverlose, webbasierte Anwendung, die Supabase als Backend-Service nutzt, um eine reibungslose Datenverwaltung und Echtzeit-Updates zu gewährleisten. Entwickelt mit HTML, CSS und JavaScript, besteht die Anwendung aus mehreren Frontend-Komponenten, die eine nahtlose Interaktion zwischen Teilnehmern und Moderatoren ermöglichen. Teilnehmer können über einen Browserlink dem Quiz beitreten, ihre Antworten in Echtzeit einsenden und den aktuellen Punktestand live verfolgen.
+Das 125 Jahre MTG Jubiläum Quiz ist eine serverlose, webbasierte Anwendung, die Supabase als Backend-Service nutzt, um eine reibungslose Datenverwaltung und Echtzeit-Updates zu gewährleisten.
 
-## Echtzeit-Interaktion
+## Für Teilnehmer
+- Einfacher Zugang über Browser ohne Installation
+- Beantwortung von Fragen in Echtzeit innerhalb von Zeitlimits
+- Personalisierte Punkteanzeige und Rang-Tracking
+- Aufbauende Antwortserie ("Streak") für Bonuspunkte
+- Echtzeit-Feedback nach jeder Antwort
+- Vergleich mit führenden Spielern
 
-Die Echtzeit-Interaktion wird durch die Integration von Supabase als Backend-Service ermöglicht. Supabase sorgt für eine nahtlose Synchronisation der Daten zwischen Teilnehmern und Moderatoren. Sobald ein Teilnehmer eine Antwort einreicht, wird diese sofort im Backend aktualisiert und der aktuelle Punktestand wird in Echtzeit an alle Teilnehmer übertragen. Moderatoren können den Fortschritt des Quiz live verfolgen, Fragen dynamisch steuern und Ergebnisse unmittelbar anzeigen lassen.
+## Für Moderatoren
+- Steuerung des Fragenablaufs und Timing
+- Live-Überwachung der Teilnehmerantworten
+- Podium-System für ausgewählte Teilnehmer
+- Einsicht in Live-Statistiken und Ergebnisse
+
+## Technische Features
+
+- Serverlose Architektur mit Supabase für Echtzeit-Datensynchronisation
+- Echtzeit-Synchronisation aller Clients
+- Mobilgerätefreundliches responsives Design

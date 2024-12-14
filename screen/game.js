@@ -144,7 +144,6 @@ bt2.addEventListener('click', () => {
 
 
 
-
 function startgame() {
     console.log('%c starte spiel', 'background: #222; color: #bada55')
     phase1();
@@ -175,13 +174,11 @@ async function phase1() {
 };
 
 
-
 function interface1bar() {
     prerem = prefut - Date.now();
     preangle = (prerem / pretime);
     balken.style.width = (preangle*100)+"%";
   }
-
 
 
 // wird nach ablaufen der ersten 5s aufgerufen
@@ -210,8 +207,6 @@ async function phase2() {
     clearEffects(d);
 
 
-
-
     anzeigefrage2.innerHTML = questions[activequestionid].frage;
     bt2.style.display = "none";
 
@@ -236,19 +231,14 @@ async function phase2() {
     } else {
 
     }
-
-
     
     // Timer starten
     startTimer();
-
 
 }
 
 
 let timestart;
-
-
 
 
 async function phase4() {
@@ -272,12 +262,6 @@ async function phase4() {
 }
 
 
-// const timer = document.getElementById('timertext');
-// const s1 = document.getElementById('s1');
-// const s2 = document.getElementById('s2');
-// const s3 = document.getElementById('s3');
-// const timerContainer = document.getElementById('timerContainer');
-
 // Länge der Zeit für Fragen
 let setTime;
 let timerLoop;
@@ -288,48 +272,15 @@ let futureTime;
 function startTimer() { 
   timerLoop = setInterval(countDownTimer, 10);
   setTime = questions[activequestionid].zeit*1000;
-//   timer.innerHTML = questions[activequestionid].zeit+".00";
   futureTime = Date.now() + setTime;
   startCountdown(questions[activequestionid].zeit);
-//   s1.style.display = "block";
-//   s2.style.display = "block";
-//   s1.style.backgroundColor = "orangered";
-//   s2.style.backgroundColor = "orangered";
-//   timer.style.color = "yellow";
-//   timer.style.fontSize = "5vh";
+
 }
 
 
 // Lässt Timer ablaufen, hinterfrags nicht, es funtioniert einfach
 function countDownTimer() {
     const remainingTime = futureTime - Date.now();
-    // const angle = (remainingTime / setTime) * 360;
-
-    // if(angle > 180) {
-    //     s3.style.display = "none";
-    //     s1.style.transform = "rotate(180deg)";
-    //     s2.style.transform = "rotate("+angle+"deg)";
-    // } else {
-    //     s3.style.display = "block";
-    //     s1.style.transform = "rotate("+angle+"deg)";
-    //     s2.style.transform = "rotate("+angle+"deg)";
-    // }
-
-    // if(remainingTime > 1000) {
-    //     timer.innerHTML = remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
-    // } else {
-
-    //     timer.innerHTML = "0"+remainingTime.toString().slice(0, -3)+"."+remainingTime.toString().slice(-3, -1);
-    // }
-
-
-
-    // Letzten 5 Sekunden rot
-    // if(remainingTime <= 5000) {
-    //     s1.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-    //     s2.style.backgroundColor = "rgba(0, 255, 0, 0.8)";
-    //     timer.style.color = "rgba(55, 0, 255, 0.8)";
-    // }
 
     if(remainingTime <= 0) {
         timerEnd();
@@ -391,7 +342,6 @@ async function timerEnd() {
 }
 
 
-
 class User {
     constructor(id, name, punkte, streak, rank, lastrank, vote, podium) {
         this.id = id;
@@ -406,11 +356,9 @@ class User {
 }
 
 
-
 userlist = [
 
 ];
-
 
 
 // Diagramm wer für was gestimmt hat
