@@ -220,105 +220,33 @@ function userend() {
 }
 
 
-a.addEventListener('click', aClicked);
-b.addEventListener('click', bClicked);
-c.addEventListener('click', cClicked);
-d.addEventListener('click', dClicked);
-
-
-// wird aufgerufen bei vote für a
-function aClicked() {
-    if(questions[questionid].loesung.includes('a')==true) {
-      questiontime = questions[questionid].zeit*1000;
-      ergebnis = "richtig";
-      addPoints = Date.now()-questionStart;
-      addPoints = questiontime-addPoints;
-      streakrech = streak*0.1;
-      streakrech = 1+streakrech;
-      addPoints = addPoints*streakrech;
-      addPoints = Math.floor(addPoints / questions[questionid].zeit);
-      streak = streak+1;
-      points = points+addPoints;
-      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], ["a", streak, points], 'eq', 'name', nickname);
+function handleVote(option) {
+    if(questions[questionid].loesung.includes(option)) {
+        questiontime = questions[questionid].zeit*1000;
+        ergebnis = "richtig";
+        addPoints = Date.now()-questionStart;
+        addPoints = questiontime-addPoints;
+        streakrech = streak*0.1;
+        streakrech = 1+streakrech;
+        addPoints = addPoints*streakrech;
+        addPoints = Math.floor(addPoints / questions[questionid].zeit);
+        streak = streak+1;
+        points = points+addPoints;
+        supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], [option, streak, points], 'eq', 'name', nickname);
     } else {
-      ergebnis = "falsch";
-      streak = 0;
-      supabaseUpdate('spieler', ['vote','streak'], ["a", streak], 'eq', 'name', nickname);
+        ergebnis = "falsch";
+        streak = 0;
+        supabaseUpdate('spieler', ['vote','streak'], [option, streak], 'eq', 'name', nickname);
     }
     toggleInterface(phase25box);
     console.log("%cPhase 2,5", "color: red; font-size: 20px; font-weight: bold;");
 }
 
-// wird aufgerufen bei vote für b
-function bClicked() {
-
-    if(questions[questionid].loesung.includes('b')==true) {
-      questiontime = questions[questionid].zeit*1000;
-      ergebnis = "richtig";
-      addPoints = Date.now()-questionStart;
-      addPoints = questiontime-addPoints+20;
-      streakrech = streak*0.1;
-      streakrech = 1+streakrech;
-      addPoints = addPoints*streakrech;
-      addPoints = Math.floor(addPoints / questions[questionid].zeit);
-      streak = streak+1;
-      points = points+addPoints;
-      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], ["b", streak, points], 'eq', 'name', nickname);
-    } else {
-      ergebnis = "falsch";
-      streak = 0;
-      supabaseUpdate('spieler', ['vote','streak'], ["b", streak], 'eq', 'name', nickname);
-    }
-    toggleInterface(phase25box);
-    console.log("%cPhase 2,5", "color: red; font-size: 20px; font-weight: bold;");
-}
-
-// wird aufgerufen bei vote für c
-function cClicked() {
-    if(questions[questionid].loesung.includes('c')==true) {
-      questiontime = questions[questionid].zeit*1000;
-      ergebnis = "richtig";
-      addPoints = Date.now()-questionStart;
-      addPoints = questiontime-addPoints;
-      streakrech = streak*0.1;
-      streakrech = 1+streakrech;
-      addPoints = addPoints*streakrech;
-      addPoints = Math.floor(addPoints / questions[questionid].zeit);
-      streak = streak+1;
-      points = points+addPoints;
-      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], ["c", streak, points], 'eq', 'name', nickname);
-    } else {
-      ergebnis = "falsch";
-      streak = 0;
-      supabaseUpdate('spieler', ['vote','streak'], ["c", streak], 'eq', 'name', nickname);
-    }
-    toggleInterface(phase25box);
-    console.log("%cPhase 2,5", "color: red; font-size: 20px; font-weight: bold;");
-}
-
-
-// wird aufgerufen bei vote für d
-function dClicked() {
-    if(questions[questionid].loesung.includes('d')==true) {
-      questiontime = questions[questionid].zeit*1000;
-      ergebnis = "richtig";
-      addPoints = Date.now()-questionStart;
-      addPoints = questiontime-addPoints;
-      streakrech = streak*0.1;
-      streakrech = 1+streakrech;
-      addPoints = addPoints*streakrech;
-      addPoints = Math.floor(addPoints / questions[questionid].zeit);
-      streak = streak+1;
-      points = points+addPoints;
-      supabaseUpdate('spieler', ['vote', 'streak', 'punkte'], ["d", streak, points], 'eq', 'name', nickname);
-    } else {
-      ergebnis = "falsch";
-      streak = 0;
-      supabaseUpdate('spieler', ['vote','streak'], ["d", streak], 'eq', 'name', nickname);
-    }
-    toggleInterface(phase25box);
-    console.log("%cPhase 2,5", "color: red; font-size: 20px; font-weight: bold;");
-}
+// Replace individual click handlers with unified approach
+a.addEventListener('click', () => handleVote('a'));
+b.addEventListener('click', () => handleVote('b'));
+c.addEventListener('click', () => handleVote('c'));
+d.addEventListener('click', () => handleVote('d'));
 
 function startCountdown(time) {
     let i = 0;

@@ -1,7 +1,8 @@
 # 125 Jahre MTG Jubiläum Quiz
 
 Ein interaktives, Kahoot-inspiriertes Quiz zur Feier des 125-jährigen Jubiläums des Maria-Theresia-Gymnasiums, entwickelt von den Schülern @Chriveloper & @Parrot42.
-Über 200 Gäste nahmen an der Jubiläumsfeier live am Quiz teil.
+
+Über 200 Gäste nahmen live am Quiz teil, der Ablauf war erfolgreich und frei von technischen Problemen.
 
 ## Übersicht
 
@@ -24,5 +25,6 @@ Das 125 Jahre MTG Jubiläum Quiz ist eine serverlose, webbasierte Anwendung, die
 ## Technische Features
 
 - Serverlose Architektur mit Supabase für Echtzeit-Datensynchronisation
+- Einfach Skalierbarkeit durch Supabase
 - Echtzeit-Synchronisation aller Clients
 - Mobilgerätefreundliches responsives Design
